@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.8"
+        android:background="#0089BA"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/img_home"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="5dp"
+
+            android:layout_weight="1"
+
+            android:src="@mipmap/home" />
+
+        <ImageView
+            android:id="@+id/img_event"
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="0dp"
+
+            android:layout_weight="1"
+            android:src="@mipmap/calendar" />
+
+        <ImageView
+            android:id="@+id/img_training"
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+
+            android:layout_marginTop="5dp"
+
+            android:layout_marginBottom="0dp"
+
+            android:layout_weight="1"
+            android:src="@mipmap/shop" />
+
+        <ImageView
+            android:id="@+id/img_location"
+            android:layout_width="50dp"
+            android:layout_marginTop="5dp"
+
+            android:layout_height="50dp"
+
+            android:layout_marginBottom="0dp"
+
+            android:layout_weight="1"
+            android:baselineAligned="false"
+            android:src="@mipmap/support" />
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>
