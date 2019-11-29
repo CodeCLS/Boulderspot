@@ -15,7 +15,7 @@ public class Event_Model {
     public static String time;
     public static String info;
     public static int size;
-
+//test
     public static int getSize() {
         return size;
     }
