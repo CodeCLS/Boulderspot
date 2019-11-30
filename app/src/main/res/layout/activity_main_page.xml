@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".main_page">
+        tools:context=".Main.MainActivity">
 
         <FrameLayout
             android:id="@+id/container_fragment"
