@@ -2,11 +2,11 @@ package app.playstore.boulderspot.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +66,30 @@ public class Home_Fragment extends Fragment {
         rec.setAdapter(adapter_event);
         rec.setLayoutManager(new LinearLayoutManager(getContext()));
 
+  //      NotificationCompat.Builder mBuilder =
+  //            new NotificationCompat.Builder(getContext())
+  //                    .setSmallIcon(R.mipmap.boulderspot_logo)
+  //                    .setContentTitle("My notification")
+  //                    .setContentText("Hello World!");
 
+
+  //    // Gets an instance of the NotificationManager service//
+
+  //    NotificationManager mNotificationManager =
+
+  //            (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+
+  //    // When you issue multiple notifications about the same type of event,
+  //    // it’s best practice for your app to try to update an existing notification
+  //    // with this new information, rather than immediately creating a new notification.
+  //    // If you want to update this notification at a later date, you need to assign it an ID.
+  //    // You can then use this ID whenever you issue a subsequent notification.
+  //    // If the previous notification is still visible, the system will update this existing notification,
+  //    // rather than create a new one. In this example, the notification’s ID is 001//
+
+
+
+  //            mNotificationManager.notify(001, mBuilder.build());
 
     }
     @Override

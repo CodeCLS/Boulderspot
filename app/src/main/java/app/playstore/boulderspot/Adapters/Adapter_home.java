@@ -1,8 +1,8 @@
 package app.playstore.boulderspot.Adapters;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +23,7 @@ public class Adapter_home extends RecyclerView.Adapter<Adapter_home.ViewHolder> 
     private  ArrayList<String> video_url= new ArrayList<>();
     private  ArrayList<String> ID_User  = new ArrayList<>();
     private  ArrayList<String> ID_video = new ArrayList<>();
+    private  ArrayList<String> likes = new ArrayList<>();
 
     public Context mContext;
 
@@ -51,6 +52,13 @@ public class Adapter_home extends RecyclerView.Adapter<Adapter_home.ViewHolder> 
 
 
 
+        viewHolder.video_view.setVideoPath("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Epic%20Bouldering%20Motivation.mp4?alt=media&token=056f6fd9-32d0-4e08-b7d7-a8856a2f451c");
+        viewHolder.video_view.start();
+        viewHolder.grade_txt.setText("5V");
+        viewHolder.name_txt.setText("CodeCLS");
+        viewHolder.info_txt.setText("Hard Boulder with many crimps. Be careful very slippery");
+        viewHolder.maker_txt.setText("HardMaker92");
+
     }
 
     @Override
@@ -61,7 +69,7 @@ public class Adapter_home extends RecyclerView.Adapter<Adapter_home.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView grade_txt;
         TextView name_txt;
-        com.mikhaellopez.circularimageview.CircularImageView IMG_img_profile_pic;
+        de.hdodenhof.circleimageview.CircleImageView IMG_img_profile_pic;
         TextView info_txt;
         VideoView video_view;
         TextView maker_txt;

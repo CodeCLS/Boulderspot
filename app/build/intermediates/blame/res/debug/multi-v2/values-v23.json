@@ -4,7 +4,7 @@
             "outputFile": "/Users/freetime/Documents/Boulderspot3/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/9887d82b1799143d6643d2613c7d48a0/res/values-v23/values-v23.xml",
+                    "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/5891ebea03b9bb2c502152132fa4b270/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,19,32,33,34,35,36",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
@@ -15,7 +15,7 @@
                     }
                 },
                 {
-                    "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/9bb5a6e858ce89d351e37d78a666acd6/res/values-v23/values-v23.xml",
+                    "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/9b0f55ba3dbf44eca3c098c678461931/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

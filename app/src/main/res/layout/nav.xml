@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav"
@@ -10,13 +10,17 @@
     android:background="@android:color/transparent"
     android:orientation="vertical">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.9"
+        android:background="@drawable/background_nav_bar" />
 
     <LinearLayout
         android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:alpha="0.8"
-        android:background="#0089BA"
+        android:alpha="0.9"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,8 +31,8 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
 
-            android:layout_marginBottom="0dp"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="0dp"
 
             android:layout_weight="1"
 
@@ -62,9 +66,9 @@
         <ImageView
             android:id="@+id/img_location"
             android:layout_width="50dp"
-            android:layout_marginTop="5dp"
-
             android:layout_height="50dp"
+
+            android:layout_marginTop="5dp"
 
             android:layout_marginBottom="0dp"
 
@@ -74,4 +78,4 @@
     </LinearLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
