@@ -4,16 +4,6 @@
             "outputFile": "/Users/freetime/Documents/Boulderspot3/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-large-v4/values-large-v4.xml",
             "map": [
                 {
-                    "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/5891ebea03b9bb2c502152132fa4b270/res/values-large-v4/values-large-v4.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,114,185,256,326,396,464,532,636",
-                        "endColumns": "58,70,70,69,69,67,67,103,115",
-                        "endOffsets": "109,180,251,321,391,459,527,631,747"
-                    }
-                },
-                {
                     "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/78511fbadc1039f3e69e8d9a3f4b31b1/res/values-large-v4/values-large-v4.xml",
                     "from": {
                         "startLines": "2,3",
@@ -28,6 +18,16 @@
                         "startOffsets": "752,874",
                         "endColumns": "121,133",
                         "endOffsets": "869,1003"
+                    }
+                },
+                {
+                    "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/6f9a91e9c95f56c16af0a27143ca123a/res/values-large-v4/values-large-v4.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,114,185,256,326,396,464,532,636",
+                        "endColumns": "58,70,70,69,69,67,67,103,115",
+                        "endOffsets": "109,180,251,321,391,459,527,631,747"
                     }
                 }
             ]

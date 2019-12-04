@@ -4,7 +4,17 @@
             "outputFile": "/Users/freetime/Documents/Boulderspot3/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/5891ebea03b9bb2c502152132fa4b270/res/values-v16/values-v16.xml",
+                    "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/51a69a3dcb70f4332f67127b5d87d533/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                },
+                {
+                    "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/6f9a91e9c95f56c16af0a27143ca123a/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -20,16 +30,6 @@
                         "endLines": "6",
                         "endColumns": "12",
                         "endOffsets": "289"
-                    }
-                },
-                {
-                    "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/0109202bf64e0fac0f07bf87a2eb4c0e/res/values-v16/values-v16.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "65",
-                        "endOffsets": "116"
                     }
                 }
             ]

@@ -5,52 +5,56 @@ INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifes
 INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-38:12
 INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-38:12
 MERGED from [com.google.android.material:material:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/78511fbadc1039f3e69e8d9a3f4b31b1/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.appcompat:appcompat:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/5891ebea03b9bb2c502152132fa4b270/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/6f9a91e9c95f56c16af0a27143ca123a/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/freetime/.gradle/caches/transforms-2/files-2.1/2bb4c4db21ead0f9d9f06c7545ddf9d4/AndroidManifest.xml:2:1-11:12
-MERGED from [com.google.firebase:firebase-database:16.0.4] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a9b97383df45452f72e7a0d3409e862a/AndroidManifest.xml:15:1-25:12
-MERGED from [com.google.firebase:firebase-auth:16.0.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/12499c8f73b4f0c40e704cce875d29ee/AndroidManifest.xml:17:1-42:12
+MERGED from [com.google.firebase:firebase-database:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a5be78985f7dbb96369ab0391ba970cb/AndroidManifest.xml:15:1-38:12
+MERGED from [com.google.firebase:firebase-auth:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dbfe48016bdc3d4ed2138e5946ea62c8/AndroidManifest.xml:17:1-42:12
+MERGED from [com.google.firebase:firebase-storage:19.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/00c5eb5fb23b2b6c6e7f1365e50472d0/AndroidManifest.xml:15:1-39:12
 MERGED from [com.mikhaellopez:circularimageview:3.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/ba30f6ce05f4b0cc1ba6427356d5df61/AndroidManifest.xml:2:1-11:12
 MERGED from [com.squareup.picasso:picasso:2.71828] /Users/freetime/.gradle/caches/transforms-2/files-2.1/b1c56e74e27e9fc75e0b9877a8187b96/AndroidManifest.xml:2:1-14:12
 MERGED from [com.google.android.gms:play-services-auth:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/91592bc6cb0531265436d48a729b02a3/AndroidManifest.xml:17:1-39:12
 MERGED from [de.hdodenhof:circleimageview:3.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/702b7df15ce11f4f6f90e4019f7f09e2/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.recyclerview:recyclerview:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/fbcdb39813ff05e1d37cbb466f2a9d18/AndroidManifest.xml:17:1-22:12
-MERGED from [com.google.android.gms:play-services-flags:16.0.1] /Users/freetime/.gradle/caches/transforms-2/files-2.1/88851055e8e49c5de9d6c63564bf272d/AndroidManifest.xml:17:1-22:12
-MERGED from [com.google.firebase:firebase-auth-interop:16.0.1] /Users/freetime/.gradle/caches/transforms-2/files-2.1/18671e814feaa9b044b72296629cc9fe/AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/aed8463849c31fdfe0adb1ea14dbe12c/AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.android.gms:play-services-auth-api-phone:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/1f5ed8e331ce41f0ecaf637968a56dd8/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-auth-base:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/6f9fcb1b280ecb57fd2810f7b463ec5d/AndroidManifest.xml:2:1-7:12
-MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/486490636da6b2eb11b36d37b4217de1/AndroidManifest.xml:17:1-29:12
-MERGED from [com.google.firebase:firebase-common:16.0.3] /Users/freetime/.gradle/caches/transforms-2/files-2.1/d5ae0055d5b39c59d46fe4b77f8b2b03/AndroidManifest.xml:2:1-17:12
-MERGED from [com.google.firebase:firebase-database-collection:16.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dac0ddc0067010f6ad58896a149e1578/AndroidManifest.xml:2:1-8:12
+MERGED from [com.google.android.gms:play-services-base:17.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/974a6e21eaf597bdc7f8186ec243acdd/AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dd94d2432f9c46d5a9497e97574f9c74/AndroidManifest.xml:15:1-39:12
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/12b94ba375c306d2e475cb2ce2827f83/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/1be308331396b550acd37d7691ffcd0d/AndroidManifest.xml:17:1-28:12
-MERGED from [androidx.fragment:fragment:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/759acbb1ff0adc63f487b5d0548a3f3e/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/8b9412652762eb02c289308502c1d045/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/bb7712c473c44d4311feb5dc16bde7cb/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/32a0ae03b9084e91dc9fbd4bbd8cbc3c/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/729fe40c6607faabc270f61f4c62e5f8/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/4df203aa2a1c814c43ebfcda261e63ad/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/af55bec8fcb08894b0a46e2fc0d47c1b/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.vectordrawable:vectordrawable:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/8d4d9d54cc6fbaaff3161ec62d4016b7/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.transition:transition:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/13681e109ae44c9933ed1657ee150f0b/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.loader:loader:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/c18a973b781d7597b285290d7ae29377/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/9e69ea235d03f5e21fec770bc61930a5/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/90c9c7bf77ecba76a57e44229b8ecf60/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/6f5195fe5963c02b22d00b75795a50aa/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/9453f18afd03daf6c1f0b25a2dc68bd5/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/f8d77e79283b177c340a58c7e07c8e29/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/4df203aa2a1c814c43ebfcda261e63ad/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/fb0265d5d675b7bc57bee7da5cd12620/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.customview:customview:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/d8f6fc56c8f75286014dad4da8c70be4/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/55b6011a6b8334028eee5fa545749a4a/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/5c5c02880ba5e1cf0d8c46b5caf42f70/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.core:core:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/0109202bf64e0fac0f07bf87a2eb4c0e/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/3fde72bf7fc842d8658b130b4c16e0ca/AndroidManifest.xml:17:1-25:12
+MERGED from [androidx.core:core:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/51a69a3dcb70f4332f67127b5d87d533/AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/4125e96b0cb2d5f51951237948c6ad8c/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cardview:cardview:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/9b0f55ba3dbf44eca3c098c678461931/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.exifinterface:exifinterface:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/68c95201b40a3ce74fe2f580ed9554ba/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/55113787c5741de8f40733999a0c5c20/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/1ce0eb9d85dd707cb929d2712f429239/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/9fbd6ef63bce390b130c3de1deeb13d3/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.print:print:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a15a221c972a058a6d39758b1d09ad9a/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/1a4e13427fbbc4b88256ebef873df3e3/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.firebase:firebase-components:16.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/570cd4f83d2aa39ee5922ff71fc52aa6/AndroidManifest.xml:15:1-23:12
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/68c95201b40a3ce74fe2f580ed9554ba/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/37440a6b846f309bbf8949472cb86773/AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/5e7b20be17ca2db8d58d894a1ae3ff56/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/1ce0eb9d85dd707cb929d2712f429239/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a15a221c972a058a6d39758b1d09ad9a/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/2e3505b79d1a2f2810d20680bc596b9c/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/bf525e0cf7098d879cd863c7944d194c/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/f68a8d49bf28b41b603b46e6878a884d/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/ff332dcb4dec0bdc78ff7ab710625b5d/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/f09c31a810a754ebe45b21bc29545be9/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/1b0224706eab44392d065f6e2c07cd1a/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.firebase:firebase-database-collection:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/339b37f2d05bce86cd0c72534e27bb56/AndroidManifest.xml:2:1-7:12
 INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-38:12
 INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-38:12
 INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-38:12
@@ -104,30 +108,34 @@ MERGED from [com.google.android.material:material:1.0.0] /Users/freetime/.gradle
 MERGED from [com.google.android.material:material:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/78511fbadc1039f3e69e8d9a3f4b31b1/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/freetime/.gradle/caches/transforms-2/files-2.1/2bb4c4db21ead0f9d9f06c7545ddf9d4/AndroidManifest.xml:9:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/freetime/.gradle/caches/transforms-2/files-2.1/2bb4c4db21ead0f9d9f06c7545ddf9d4/AndroidManifest.xml:9:5-20
-MERGED from [com.google.firebase:firebase-auth:16.0.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/12499c8f73b4f0c40e704cce875d29ee/AndroidManifest.xml:23:5-40:19
-MERGED from [com.google.firebase:firebase-auth:16.0.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/12499c8f73b4f0c40e704cce875d29ee/AndroidManifest.xml:23:5-40:19
+MERGED from [com.google.firebase:firebase-database:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a5be78985f7dbb96369ab0391ba970cb/AndroidManifest.xml:28:5-36:19
+MERGED from [com.google.firebase:firebase-database:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a5be78985f7dbb96369ab0391ba970cb/AndroidManifest.xml:28:5-36:19
+MERGED from [com.google.firebase:firebase-auth:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dbfe48016bdc3d4ed2138e5946ea62c8/AndroidManifest.xml:23:5-40:19
+MERGED from [com.google.firebase:firebase-auth:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dbfe48016bdc3d4ed2138e5946ea62c8/AndroidManifest.xml:23:5-40:19
+MERGED from [com.google.firebase:firebase-storage:19.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/00c5eb5fb23b2b6c6e7f1365e50472d0/AndroidManifest.xml:29:5-37:19
+MERGED from [com.google.firebase:firebase-storage:19.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/00c5eb5fb23b2b6c6e7f1365e50472d0/AndroidManifest.xml:29:5-37:19
 MERGED from [com.squareup.picasso:picasso:2.71828] /Users/freetime/.gradle/caches/transforms-2/files-2.1/b1c56e74e27e9fc75e0b9877a8187b96/AndroidManifest.xml:7:5-12:19
 MERGED from [com.squareup.picasso:picasso:2.71828] /Users/freetime/.gradle/caches/transforms-2/files-2.1/b1c56e74e27e9fc75e0b9877a8187b96/AndroidManifest.xml:7:5-12:19
 MERGED from [com.google.android.gms:play-services-auth:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/91592bc6cb0531265436d48a729b02a3/AndroidManifest.xml:22:5-37:19
 MERGED from [com.google.android.gms:play-services-auth:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/91592bc6cb0531265436d48a729b02a3/AndroidManifest.xml:22:5-37:19
 MERGED from [de.hdodenhof:circleimageview:3.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/702b7df15ce11f4f6f90e4019f7f09e2/AndroidManifest.xml:9:5-20
 MERGED from [de.hdodenhof:circleimageview:3.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/702b7df15ce11f4f6f90e4019f7f09e2/AndroidManifest.xml:9:5-20
-MERGED from [com.google.firebase:firebase-auth-interop:16.0.1] /Users/freetime/.gradle/caches/transforms-2/files-2.1/18671e814feaa9b044b72296629cc9fe/AndroidManifest.xml:7:5-8:19
-MERGED from [com.google.firebase:firebase-auth-interop:16.0.1] /Users/freetime/.gradle/caches/transforms-2/files-2.1/18671e814feaa9b044b72296629cc9fe/AndroidManifest.xml:7:5-8:19
-MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/486490636da6b2eb11b36d37b4217de1/AndroidManifest.xml:22:5-27:19
-MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/486490636da6b2eb11b36d37b4217de1/AndroidManifest.xml:22:5-27:19
-MERGED from [com.google.firebase:firebase-common:16.0.3] /Users/freetime/.gradle/caches/transforms-2/files-2.1/d5ae0055d5b39c59d46fe4b77f8b2b03/AndroidManifest.xml:9:5-15:19
-MERGED from [com.google.firebase:firebase-common:16.0.3] /Users/freetime/.gradle/caches/transforms-2/files-2.1/d5ae0055d5b39c59d46fe4b77f8b2b03/AndroidManifest.xml:9:5-15:19
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/aed8463849c31fdfe0adb1ea14dbe12c/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/aed8463849c31fdfe0adb1ea14dbe12c/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.android.gms:play-services-base:17.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/974a6e21eaf597bdc7f8186ec243acdd/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:17.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/974a6e21eaf597bdc7f8186ec243acdd/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dd94d2432f9c46d5a9497e97574f9c74/AndroidManifest.xml:25:5-37:19
+MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dd94d2432f9c46d5a9497e97574f9c74/AndroidManifest.xml:25:5-37:19
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/12b94ba375c306d2e475cb2ce2827f83/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/12b94ba375c306d2e475cb2ce2827f83/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/1be308331396b550acd37d7691ffcd0d/AndroidManifest.xml:22:5-26:19
 MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/1be308331396b550acd37d7691ffcd0d/AndroidManifest.xml:22:5-26:19
-MERGED from [androidx.core:core:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/0109202bf64e0fac0f07bf87a2eb4c0e/AndroidManifest.xml:22:5-89
-MERGED from [androidx.core:core:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/0109202bf64e0fac0f07bf87a2eb4c0e/AndroidManifest.xml:22:5-89
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/3fde72bf7fc842d8658b130b4c16e0ca/AndroidManifest.xml:22:5-23:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/3fde72bf7fc842d8658b130b4c16e0ca/AndroidManifest.xml:22:5-23:19
+MERGED from [androidx.core:core:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/51a69a3dcb70f4332f67127b5d87d533/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/51a69a3dcb70f4332f67127b5d87d533/AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/37440a6b846f309bbf8949472cb86773/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/37440a6b846f309bbf8949472cb86773/AndroidManifest.xml:24:5-25:19
 	android:appComponentFactory
-		ADDED from [androidx.core:core:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/0109202bf64e0fac0f07bf87a2eb4c0e/AndroidManifest.xml:22:18-86
+		ADDED from [androidx.core:core:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/51a69a3dcb70f4332f67127b5d87d533/AndroidManifest.xml:24:18-86
 	android:supportsRtl
 		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:21:9-35
 	android:label
@@ -172,14 +180,16 @@ INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifes
 INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml
 MERGED from [com.google.android.material:material:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/78511fbadc1039f3e69e8d9a3f4b31b1/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.material:material:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/78511fbadc1039f3e69e8d9a3f4b31b1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.appcompat:appcompat:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/5891ebea03b9bb2c502152132fa4b270/AndroidManifest.xml:20:5-44
-MERGED from [androidx.appcompat:appcompat:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/5891ebea03b9bb2c502152132fa4b270/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/6f9a91e9c95f56c16af0a27143ca123a/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/6f9a91e9c95f56c16af0a27143ca123a/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/freetime/.gradle/caches/transforms-2/files-2.1/2bb4c4db21ead0f9d9f06c7545ddf9d4/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/freetime/.gradle/caches/transforms-2/files-2.1/2bb4c4db21ead0f9d9f06c7545ddf9d4/AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.firebase:firebase-database:16.0.4] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a9b97383df45452f72e7a0d3409e862a/AndroidManifest.xml:18:5-20:41
-MERGED from [com.google.firebase:firebase-database:16.0.4] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a9b97383df45452f72e7a0d3409e862a/AndroidManifest.xml:18:5-20:41
-MERGED from [com.google.firebase:firebase-auth:16.0.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/12499c8f73b4f0c40e704cce875d29ee/AndroidManifest.xml:21:5-44
-MERGED from [com.google.firebase:firebase-auth:16.0.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/12499c8f73b4f0c40e704cce875d29ee/AndroidManifest.xml:21:5-44
+MERGED from [com.google.firebase:firebase-database:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a5be78985f7dbb96369ab0391ba970cb/AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-database:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a5be78985f7dbb96369ab0391ba970cb/AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-auth:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dbfe48016bdc3d4ed2138e5946ea62c8/AndroidManifest.xml:21:5-44
+MERGED from [com.google.firebase:firebase-auth:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dbfe48016bdc3d4ed2138e5946ea62c8/AndroidManifest.xml:21:5-44
+MERGED from [com.google.firebase:firebase-storage:19.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/00c5eb5fb23b2b6c6e7f1365e50472d0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.firebase:firebase-storage:19.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/00c5eb5fb23b2b6c6e7f1365e50472d0/AndroidManifest.xml:20:5-22:41
 MERGED from [com.mikhaellopez:circularimageview:3.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/ba30f6ce05f4b0cc1ba6427356d5df61/AndroidManifest.xml:7:5-9:41
 MERGED from [com.mikhaellopez:circularimageview:3.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/ba30f6ce05f4b0cc1ba6427356d5df61/AndroidManifest.xml:7:5-9:41
 MERGED from [com.squareup.picasso:picasso:2.71828] /Users/freetime/.gradle/caches/transforms-2/files-2.1/b1c56e74e27e9fc75e0b9877a8187b96/AndroidManifest.xml:5:5-44
@@ -190,44 +200,44 @@ MERGED from [de.hdodenhof:circleimageview:3.0.0] /Users/freetime/.gradle/caches/
 MERGED from [de.hdodenhof:circleimageview:3.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/702b7df15ce11f4f6f90e4019f7f09e2/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.recyclerview:recyclerview:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/fbcdb39813ff05e1d37cbb466f2a9d18/AndroidManifest.xml:20:5-44
 MERGED from [androidx.recyclerview:recyclerview:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/fbcdb39813ff05e1d37cbb466f2a9d18/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-flags:16.0.1] /Users/freetime/.gradle/caches/transforms-2/files-2.1/88851055e8e49c5de9d6c63564bf272d/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-flags:16.0.1] /Users/freetime/.gradle/caches/transforms-2/files-2.1/88851055e8e49c5de9d6c63564bf272d/AndroidManifest.xml:20:5-44
-MERGED from [com.google.firebase:firebase-auth-interop:16.0.1] /Users/freetime/.gradle/caches/transforms-2/files-2.1/18671e814feaa9b044b72296629cc9fe/AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-auth-interop:16.0.1] /Users/freetime/.gradle/caches/transforms-2/files-2.1/18671e814feaa9b044b72296629cc9fe/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/aed8463849c31fdfe0adb1ea14dbe12c/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/aed8463849c31fdfe0adb1ea14dbe12c/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-auth-api-phone:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/1f5ed8e331ce41f0ecaf637968a56dd8/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-auth-api-phone:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/1f5ed8e331ce41f0ecaf637968a56dd8/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-auth-base:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/6f9fcb1b280ecb57fd2810f7b463ec5d/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-auth-base:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/6f9fcb1b280ecb57fd2810f7b463ec5d/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/486490636da6b2eb11b36d37b4217de1/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-base:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/486490636da6b2eb11b36d37b4217de1/AndroidManifest.xml:20:5-44
-MERGED from [com.google.firebase:firebase-common:16.0.3] /Users/freetime/.gradle/caches/transforms-2/files-2.1/d5ae0055d5b39c59d46fe4b77f8b2b03/AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.firebase:firebase-common:16.0.3] /Users/freetime/.gradle/caches/transforms-2/files-2.1/d5ae0055d5b39c59d46fe4b77f8b2b03/AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.firebase:firebase-database-collection:16.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dac0ddc0067010f6ad58896a149e1578/AndroidManifest.xml:6:5-44
-MERGED from [com.google.firebase:firebase-database-collection:16.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dac0ddc0067010f6ad58896a149e1578/AndroidManifest.xml:6:5-44
+MERGED from [com.google.android.gms:play-services-base:17.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/974a6e21eaf597bdc7f8186ec243acdd/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:17.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/974a6e21eaf597bdc7f8186ec243acdd/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dd94d2432f9c46d5a9497e97574f9c74/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dd94d2432f9c46d5a9497e97574f9c74/AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/12b94ba375c306d2e475cb2ce2827f83/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/12b94ba375c306d2e475cb2ce2827f83/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/1be308331396b550acd37d7691ffcd0d/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/1be308331396b550acd37d7691ffcd0d/AndroidManifest.xml:20:5-44
-MERGED from [androidx.fragment:fragment:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/759acbb1ff0adc63f487b5d0548a3f3e/AndroidManifest.xml:20:5-44
-MERGED from [androidx.fragment:fragment:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/759acbb1ff0adc63f487b5d0548a3f3e/AndroidManifest.xml:20:5-44
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/8b9412652762eb02c289308502c1d045/AndroidManifest.xml:20:5-44
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/8b9412652762eb02c289308502c1d045/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/bb7712c473c44d4311feb5dc16bde7cb/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/bb7712c473c44d4311feb5dc16bde7cb/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/32a0ae03b9084e91dc9fbd4bbd8cbc3c/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/32a0ae03b9084e91dc9fbd4bbd8cbc3c/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/729fe40c6607faabc270f61f4c62e5f8/AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/729fe40c6607faabc270f61f4c62e5f8/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/4df203aa2a1c814c43ebfcda261e63ad/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/4df203aa2a1c814c43ebfcda261e63ad/AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/af55bec8fcb08894b0a46e2fc0d47c1b/AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/af55bec8fcb08894b0a46e2fc0d47c1b/AndroidManifest.xml:20:5-44
-MERGED from [androidx.vectordrawable:vectordrawable:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/8d4d9d54cc6fbaaff3161ec62d4016b7/AndroidManifest.xml:20:5-44
-MERGED from [androidx.vectordrawable:vectordrawable:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/8d4d9d54cc6fbaaff3161ec62d4016b7/AndroidManifest.xml:20:5-44
 MERGED from [androidx.transition:transition:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/13681e109ae44c9933ed1657ee150f0b/AndroidManifest.xml:20:5-44
 MERGED from [androidx.transition:transition:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/13681e109ae44c9933ed1657ee150f0b/AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/c18a973b781d7597b285290d7ae29377/AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/c18a973b781d7597b285290d7ae29377/AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/9e69ea235d03f5e21fec770bc61930a5/AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/9e69ea235d03f5e21fec770bc61930a5/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/90c9c7bf77ecba76a57e44229b8ecf60/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/90c9c7bf77ecba76a57e44229b8ecf60/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/6f5195fe5963c02b22d00b75795a50aa/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/6f5195fe5963c02b22d00b75795a50aa/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/9453f18afd03daf6c1f0b25a2dc68bd5/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/9453f18afd03daf6c1f0b25a2dc68bd5/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/f8d77e79283b177c340a58c7e07c8e29/AndroidManifest.xml:20:5-44
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/f8d77e79283b177c340a58c7e07c8e29/AndroidManifest.xml:20:5-44
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/4df203aa2a1c814c43ebfcda261e63ad/AndroidManifest.xml:20:5-44
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/4df203aa2a1c814c43ebfcda261e63ad/AndroidManifest.xml:20:5-44
 MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/fb0265d5d675b7bc57bee7da5cd12620/AndroidManifest.xml:20:5-44
 MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/fb0265d5d675b7bc57bee7da5cd12620/AndroidManifest.xml:20:5-44
 MERGED from [androidx.customview:customview:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/d8f6fc56c8f75286014dad4da8c70be4/AndroidManifest.xml:20:5-44
@@ -236,34 +246,40 @@ MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/freeti
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/55b6011a6b8334028eee5fa545749a4a/AndroidManifest.xml:20:5-44
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/5c5c02880ba5e1cf0d8c46b5caf42f70/AndroidManifest.xml:20:5-44
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/5c5c02880ba5e1cf0d8c46b5caf42f70/AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/0109202bf64e0fac0f07bf87a2eb4c0e/AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/0109202bf64e0fac0f07bf87a2eb4c0e/AndroidManifest.xml:20:5-44
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/3fde72bf7fc842d8658b130b4c16e0ca/AndroidManifest.xml:20:5-44
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/3fde72bf7fc842d8658b130b4c16e0ca/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/51a69a3dcb70f4332f67127b5d87d533/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/51a69a3dcb70f4332f67127b5d87d533/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/4125e96b0cb2d5f51951237948c6ad8c/AndroidManifest.xml:20:5-44
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/4125e96b0cb2d5f51951237948c6ad8c/AndroidManifest.xml:20:5-44
 MERGED from [androidx.cardview:cardview:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/9b0f55ba3dbf44eca3c098c678461931/AndroidManifest.xml:20:5-44
 MERGED from [androidx.cardview:cardview:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/9b0f55ba3dbf44eca3c098c678461931/AndroidManifest.xml:20:5-44
-MERGED from [androidx.exifinterface:exifinterface:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/68c95201b40a3ce74fe2f580ed9554ba/AndroidManifest.xml:20:5-44
-MERGED from [androidx.exifinterface:exifinterface:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/68c95201b40a3ce74fe2f580ed9554ba/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/55113787c5741de8f40733999a0c5c20/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/55113787c5741de8f40733999a0c5c20/AndroidManifest.xml:20:5-44
-MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/1ce0eb9d85dd707cb929d2712f429239/AndroidManifest.xml:20:5-44
-MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/1ce0eb9d85dd707cb929d2712f429239/AndroidManifest.xml:20:5-44
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/9fbd6ef63bce390b130c3de1deeb13d3/AndroidManifest.xml:20:5-44
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/9fbd6ef63bce390b130c3de1deeb13d3/AndroidManifest.xml:20:5-44
-MERGED from [androidx.print:print:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a15a221c972a058a6d39758b1d09ad9a/AndroidManifest.xml:20:5-44
-MERGED from [androidx.print:print:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a15a221c972a058a6d39758b1d09ad9a/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/1a4e13427fbbc4b88256ebef873df3e3/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/1a4e13427fbbc4b88256ebef873df3e3/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-components:16.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/570cd4f83d2aa39ee5922ff71fc52aa6/AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-components:16.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/570cd4f83d2aa39ee5922ff71fc52aa6/AndroidManifest.xml:19:5-21:41
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/68c95201b40a3ce74fe2f580ed9554ba/AndroidManifest.xml:20:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/68c95201b40a3ce74fe2f580ed9554ba/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/37440a6b846f309bbf8949472cb86773/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/37440a6b846f309bbf8949472cb86773/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/5e7b20be17ca2db8d58d894a1ae3ff56/AndroidManifest.xml:20:5-44
 MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/5e7b20be17ca2db8d58d894a1ae3ff56/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/1ce0eb9d85dd707cb929d2712f429239/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/1ce0eb9d85dd707cb929d2712f429239/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a15a221c972a058a6d39758b1d09ad9a/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a15a221c972a058a6d39758b1d09ad9a/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/2e3505b79d1a2f2810d20680bc596b9c/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/2e3505b79d1a2f2810d20680bc596b9c/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/bf525e0cf7098d879cd863c7944d194c/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/bf525e0cf7098d879cd863c7944d194c/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/f68a8d49bf28b41b603b46e6878a884d/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/f68a8d49bf28b41b603b46e6878a884d/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/ff332dcb4dec0bdc78ff7ab710625b5d/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/ff332dcb4dec0bdc78ff7ab710625b5d/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/f09c31a810a754ebe45b21bc29545be9/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/f09c31a810a754ebe45b21bc29545be9/AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/1b0224706eab44392d065f6e2c07cd1a/AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/1b0224706eab44392d065f6e2c07cd1a/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-database-collection:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/339b37f2d05bce86cd0c72534e27bb56/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-database-collection:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/339b37f2d05bce86cd0c72534e27bb56/AndroidManifest.xml:5:5-44
 INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml
 INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml
 	android:targetSdkVersion
@@ -275,41 +291,67 @@ INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifes
 		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from [com.google.firebase:firebase-database:16.0.4] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a9b97383df45452f72e7a0d3409e862a/AndroidManifest.xml:22:5-79
+ADDED from [com.google.firebase:firebase-database:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a5be78985f7dbb96369ab0391ba970cb/AndroidManifest.xml:25:5-79
+MERGED from [com.google.firebase:firebase-storage:19.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/00c5eb5fb23b2b6c6e7f1365e50472d0/AndroidManifest.xml:26:5-79
+MERGED from [com.google.firebase:firebase-storage:19.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/00c5eb5fb23b2b6c6e7f1365e50472d0/AndroidManifest.xml:26:5-79
 	android:name
-		ADDED from [com.google.firebase:firebase-database:16.0.4] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a9b97383df45452f72e7a0d3409e862a/AndroidManifest.xml:22:22-76
+		ADDED from [com.google.firebase:firebase-database:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a5be78985f7dbb96369ab0391ba970cb/AndroidManifest.xml:25:22-76
 uses-permission#android.permission.INTERNET
-ADDED from [com.google.firebase:firebase-database:16.0.4] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a9b97383df45452f72e7a0d3409e862a/AndroidManifest.xml:23:5-67
+ADDED from [com.google.firebase:firebase-database:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a5be78985f7dbb96369ab0391ba970cb/AndroidManifest.xml:26:5-67
+MERGED from [com.google.firebase:firebase-storage:19.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/00c5eb5fb23b2b6c6e7f1365e50472d0/AndroidManifest.xml:27:5-67
+MERGED from [com.google.firebase:firebase-storage:19.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/00c5eb5fb23b2b6c6e7f1365e50472d0/AndroidManifest.xml:27:5-67
 	android:name
-		ADDED from [com.google.firebase:firebase-database:16.0.4] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a9b97383df45452f72e7a0d3409e862a/AndroidManifest.xml:23:22-64
-activity#com.google.firebase.auth.internal.FederatedSignInActivity
-ADDED from [com.google.firebase:firebase-auth:16.0.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/12499c8f73b4f0c40e704cce875d29ee/AndroidManifest.xml:24:9-31:50
-	android:excludeFromRecents
-		ADDED from [com.google.firebase:firebase-auth:16.0.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/12499c8f73b4f0c40e704cce875d29ee/AndroidManifest.xml:26:13-46
-	android:launchMode
-		ADDED from [com.google.firebase:firebase-auth:16.0.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/12499c8f73b4f0c40e704cce875d29ee/AndroidManifest.xml:28:13-44
-	android:exported
-		ADDED from [com.google.firebase:firebase-auth:16.0.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/12499c8f73b4f0c40e704cce875d29ee/AndroidManifest.xml:27:13-36
-	android:permission
-		ADDED from [com.google.firebase:firebase-auth:16.0.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/12499c8f73b4f0c40e704cce875d29ee/AndroidManifest.xml:29:13-102
-	android:theme
-		ADDED from [com.google.firebase:firebase-auth:16.0.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/12499c8f73b4f0c40e704cce875d29ee/AndroidManifest.xml:30:13-72
-	tools:replace
-		ADDED from [com.google.firebase:firebase-auth:16.0.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/12499c8f73b4f0c40e704cce875d29ee/AndroidManifest.xml:31:13-47
-	android:name
-		ADDED from [com.google.firebase:firebase-auth:16.0.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/12499c8f73b4f0c40e704cce875d29ee/AndroidManifest.xml:25:13-85
+		ADDED from [com.google.firebase:firebase-database:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a5be78985f7dbb96369ab0391ba970cb/AndroidManifest.xml:26:22-64
 service#com.google.firebase.components.ComponentDiscoveryService
-ADDED from [com.google.firebase:firebase-auth:16.0.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/12499c8f73b4f0c40e704cce875d29ee/AndroidManifest.xml:33:9-39:19
+ADDED from [com.google.firebase:firebase-database:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a5be78985f7dbb96369ab0391ba970cb/AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.firebase:firebase-auth:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dbfe48016bdc3d4ed2138e5946ea62c8/AndroidManifest.xml:33:9-39:19
+MERGED from [com.google.firebase:firebase-auth:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dbfe48016bdc3d4ed2138e5946ea62c8/AndroidManifest.xml:33:9-39:19
+MERGED from [com.google.firebase:firebase-storage:19.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/00c5eb5fb23b2b6c6e7f1365e50472d0/AndroidManifest.xml:30:9-36:19
+MERGED from [com.google.firebase:firebase-storage:19.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/00c5eb5fb23b2b6c6e7f1365e50472d0/AndroidManifest.xml:30:9-36:19
+MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dd94d2432f9c46d5a9497e97574f9c74/AndroidManifest.xml:32:9-36:35
+MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dd94d2432f9c46d5a9497e97574f9c74/AndroidManifest.xml:32:9-36:35
 	android:exported
-		ADDED from [com.google.firebase:firebase-auth:16.0.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/12499c8f73b4f0c40e704cce875d29ee/AndroidManifest.xml:35:13-37
+		ADDED from [com.google.firebase:firebase-database:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a5be78985f7dbb96369ab0391ba970cb/AndroidManifest.xml:31:13-37
+	tools:targetApi
+		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dd94d2432f9c46d5a9497e97574f9c74/AndroidManifest.xml:36:13-32
+	android:directBootAware
+		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dd94d2432f9c46d5a9497e97574f9c74/AndroidManifest.xml:34:13-43
 	android:name
-		ADDED from [com.google.firebase:firebase-auth:16.0.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/12499c8f73b4f0c40e704cce875d29ee/AndroidManifest.xml:34:13-84
-meta-data#com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar
-ADDED from [com.google.firebase:firebase-auth:16.0.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/12499c8f73b4f0c40e704cce875d29ee/AndroidManifest.xml:36:13-38:85
+		ADDED from [com.google.firebase:firebase-database:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a5be78985f7dbb96369ab0391ba970cb/AndroidManifest.xml:30:13-84
+meta-data#com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar
+ADDED from [com.google.firebase:firebase-database:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a5be78985f7dbb96369ab0391ba970cb/AndroidManifest.xml:32:13-34:85
 	android:value
-		ADDED from [com.google.firebase:firebase-auth:16.0.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/12499c8f73b4f0c40e704cce875d29ee/AndroidManifest.xml:38:17-82
+		ADDED from [com.google.firebase:firebase-database:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a5be78985f7dbb96369ab0391ba970cb/AndroidManifest.xml:34:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-auth:16.0.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/12499c8f73b4f0c40e704cce875d29ee/AndroidManifest.xml:37:17-109
+		ADDED from [com.google.firebase:firebase-database:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/a5be78985f7dbb96369ab0391ba970cb/AndroidManifest.xml:33:17-109
+activity#com.google.firebase.auth.internal.FederatedSignInActivity
+ADDED from [com.google.firebase:firebase-auth:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dbfe48016bdc3d4ed2138e5946ea62c8/AndroidManifest.xml:24:9-31:50
+	android:excludeFromRecents
+		ADDED from [com.google.firebase:firebase-auth:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dbfe48016bdc3d4ed2138e5946ea62c8/AndroidManifest.xml:26:13-46
+	android:launchMode
+		ADDED from [com.google.firebase:firebase-auth:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dbfe48016bdc3d4ed2138e5946ea62c8/AndroidManifest.xml:28:13-44
+	android:exported
+		ADDED from [com.google.firebase:firebase-auth:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dbfe48016bdc3d4ed2138e5946ea62c8/AndroidManifest.xml:27:13-36
+	android:permission
+		ADDED from [com.google.firebase:firebase-auth:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dbfe48016bdc3d4ed2138e5946ea62c8/AndroidManifest.xml:29:13-102
+	android:theme
+		ADDED from [com.google.firebase:firebase-auth:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dbfe48016bdc3d4ed2138e5946ea62c8/AndroidManifest.xml:30:13-72
+	tools:replace
+		ADDED from [com.google.firebase:firebase-auth:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dbfe48016bdc3d4ed2138e5946ea62c8/AndroidManifest.xml:31:13-47
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dbfe48016bdc3d4ed2138e5946ea62c8/AndroidManifest.xml:25:13-85
+meta-data#com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar
+ADDED from [com.google.firebase:firebase-auth:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dbfe48016bdc3d4ed2138e5946ea62c8/AndroidManifest.xml:36:13-38:85
+	android:value
+		ADDED from [com.google.firebase:firebase-auth:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dbfe48016bdc3d4ed2138e5946ea62c8/AndroidManifest.xml:38:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:19.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dbfe48016bdc3d4ed2138e5946ea62c8/AndroidManifest.xml:37:17-109
+meta-data#com.google.firebase.components:com.google.firebase.storage.StorageRegistrar
+ADDED from [com.google.firebase:firebase-storage:19.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/00c5eb5fb23b2b6c6e7f1365e50472d0/AndroidManifest.xml:33:13-35:85
+	android:value
+		ADDED from [com.google.firebase:firebase-storage:19.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/00c5eb5fb23b2b6c6e7f1365e50472d0/AndroidManifest.xml:35:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-storage:19.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/00c5eb5fb23b2b6c6e7f1365e50472d0/AndroidManifest.xml:34:17-107
 provider#com.squareup.picasso.PicassoProvider
 ADDED from [com.squareup.picasso:picasso:2.71828] /Users/freetime/.gradle/caches/transforms-2/files-2.1/b1c56e74e27e9fc75e0b9877a8187b96/AndroidManifest.xml:8:9-11:40
 	android:authorities
@@ -337,23 +379,23 @@ ADDED from [com.google.android.gms:play-services-auth:17.0.0] /Users/freetime/.g
 	android:name
 		ADDED from [com.google.android.gms:play-services-auth:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/91592bc6cb0531265436d48a729b02a3/AndroidManifest.xml:34:13-89
 activity#com.google.android.gms.common.api.GoogleApiActivity
-ADDED from [com.google.android.gms:play-services-base:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/486490636da6b2eb11b36d37b4217de1/AndroidManifest.xml:23:9-26:75
+ADDED from [com.google.android.gms:play-services-base:17.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/974a6e21eaf597bdc7f8186ec243acdd/AndroidManifest.xml:23:9-26:75
 	android:exported
-		ADDED from [com.google.android.gms:play-services-base:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/486490636da6b2eb11b36d37b4217de1/AndroidManifest.xml:25:13-37
+		ADDED from [com.google.android.gms:play-services-base:17.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/974a6e21eaf597bdc7f8186ec243acdd/AndroidManifest.xml:25:13-37
 	android:theme
-		ADDED from [com.google.android.gms:play-services-base:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/486490636da6b2eb11b36d37b4217de1/AndroidManifest.xml:26:13-72
+		ADDED from [com.google.android.gms:play-services-base:17.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/974a6e21eaf597bdc7f8186ec243acdd/AndroidManifest.xml:26:13-72
 	android:name
-		ADDED from [com.google.android.gms:play-services-base:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/486490636da6b2eb11b36d37b4217de1/AndroidManifest.xml:24:13-79
+		ADDED from [com.google.android.gms:play-services-base:17.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/974a6e21eaf597bdc7f8186ec243acdd/AndroidManifest.xml:24:13-79
 provider#com.google.firebase.provider.FirebaseInitProvider
-ADDED from [com.google.firebase:firebase-common:16.0.3] /Users/freetime/.gradle/caches/transforms-2/files-2.1/d5ae0055d5b39c59d46fe4b77f8b2b03/AndroidManifest.xml:10:9-14:39
+ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dd94d2432f9c46d5a9497e97574f9c74/AndroidManifest.xml:26:9-30:39
 	android:authorities
-		ADDED from [com.google.firebase:firebase-common:16.0.3] /Users/freetime/.gradle/caches/transforms-2/files-2.1/d5ae0055d5b39c59d46fe4b77f8b2b03/AndroidManifest.xml:12:13-72
+		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dd94d2432f9c46d5a9497e97574f9c74/AndroidManifest.xml:28:13-72
 	android:exported
-		ADDED from [com.google.firebase:firebase-common:16.0.3] /Users/freetime/.gradle/caches/transforms-2/files-2.1/d5ae0055d5b39c59d46fe4b77f8b2b03/AndroidManifest.xml:13:13-37
+		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dd94d2432f9c46d5a9497e97574f9c74/AndroidManifest.xml:29:13-37
 	android:initOrder
-		ADDED from [com.google.firebase:firebase-common:16.0.3] /Users/freetime/.gradle/caches/transforms-2/files-2.1/d5ae0055d5b39c59d46fe4b77f8b2b03/AndroidManifest.xml:14:13-36
+		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dd94d2432f9c46d5a9497e97574f9c74/AndroidManifest.xml:30:13-36
 	android:name
-		ADDED from [com.google.firebase:firebase-common:16.0.3] /Users/freetime/.gradle/caches/transforms-2/files-2.1/d5ae0055d5b39c59d46fe4b77f8b2b03/AndroidManifest.xml:11:13-77
+		ADDED from [com.google.firebase:firebase-common:19.3.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dd94d2432f9c46d5a9497e97574f9c74/AndroidManifest.xml:27:13-77
 meta-data#com.google.android.gms.version
 ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/1be308331396b550acd37d7691ffcd0d/AndroidManifest.xml:23:9-25:69
 	android:value

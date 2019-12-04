@@ -1,6 +1,7 @@
 package app.playstore.boulderspot.Login_SignUp;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import app.playstore.boulderspot.R;
 
 public class extra_questions_register extends AppCompatActivity {
+    private static final String TAG = "extra";
     private EditText edit_grade;
     private EditText edit_height;
     private EditText edit_city;
@@ -73,6 +75,7 @@ public class extra_questions_register extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        Log.d(TAG,"war heir");
         mAuth = FirebaseAuth.getInstance();
     }
 }

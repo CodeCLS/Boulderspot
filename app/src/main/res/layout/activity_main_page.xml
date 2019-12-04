@@ -6,34 +6,26 @@
     android:layout_width="match_parent">
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/plus_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:clickable="true"
-        android:src="@mipmap/plus"
-
-
-        app:backgroundTint="#fff"
-        app:fabCustomSize="64dp"
-        app:layout_constraintBottom_toTopOf="@+id/include_nav"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:maxImageSize="32dp" />
-
-
     <FrameLayout
         android:id="@+id/container_fragment"
         android:layout_width="match_parent"
-        android:layout_height="650dp"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include_profil" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-
+    <include
+        layout="@layout/custom_user"
+        android:layout_height="100dp"
+        android:layout_width="match_parent"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="-20dp"
+        android:layout_marginEnd="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
         <include
             android:id="@+id/include_nav"
 
@@ -48,16 +40,4 @@
             app:layout_constraintBottom_toBottomOf="parent"/>
 
 
-
-    <include
-        android:id="@+id/include_profil"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        layout="@layout/custom_user"
-        android:layout_weight="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
 </androidx.constraintlayout.widget.ConstraintLayout>

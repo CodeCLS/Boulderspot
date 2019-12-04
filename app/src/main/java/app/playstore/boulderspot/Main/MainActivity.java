@@ -1,21 +1,28 @@
 package app.playstore.boulderspot.Main;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+
 import androidx.fragment.app.FragmentManager;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 
 import app.playstore.boulderspot.Fragments.Home_Fragment;
+import app.playstore.boulderspot.Fragments.video_upload_fragment;
 import app.playstore.boulderspot.R;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
+    private FloatingActionButton plus_img;
 
 
     private static final String CHANNEL_ID = "boulder";
@@ -45,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
 // notificationId is a unique int for each notification that you must define
         notificationManager.notify(101, builder.build());
+
+
 
 
 

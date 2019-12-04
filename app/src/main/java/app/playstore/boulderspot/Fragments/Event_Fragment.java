@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import app.playstore.boulderspot.Adapters.Adapter_event;
-import app.playstore.boulderspot.Firebase.Fire_Event;
 import app.playstore.boulderspot.Models.Event_Model;
 import app.playstore.boulderspot.R;
 
@@ -45,11 +44,11 @@ public class Event_Fragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         for(int i = 0; i< Event_Model.getSize(); i++){
-            Fire_Event.getEvent_attributes(i);
+           // Fire_Event.getEvent_attributes(i);
             setVals(view);
 
         }
-        RecyclerView rec = view.findViewById(R.id.rec_event);
+        RecyclerView rec = view.findViewById(R.id.rec_course);
         Adapter_event adapter_event = new Adapter_event(IMG_URL,Date,Title_boulderhalle,Location,costs,min_age,
                 Grade,event_name,time,info,getContext());
 
