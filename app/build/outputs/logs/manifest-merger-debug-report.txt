@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-38:12
-INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-38:12
-INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-38:12
-INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-38:12
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-40:12
+INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-40:12
+INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-40:12
+INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-40:12
 MERGED from [com.google.android.material:material:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/78511fbadc1039f3e69e8d9a3f4b31b1/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/6f9a91e9c95f56c16af0a27143ca123a/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/freetime/.gradle/caches/transforms-2/files-2.1/2bb4c4db21ead0f9d9f06c7545ddf9d4/AndroidManifest.xml:2:1-11:12
@@ -55,22 +55,22 @@ MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/freetime/.gradl
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/f09c31a810a754ebe45b21bc29545be9/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/1b0224706eab44392d065f6e2c07cd1a/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.firebase:firebase-database-collection:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/339b37f2d05bce86cd0c72534e27bb56/AndroidManifest.xml:2:1-7:12
-INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-38:12
-INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-38:12
-INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-38:12
+INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-40:12
+INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-40:12
+INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-40:12
 	package
 		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:4:5-40
 		INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-38:12
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-40:12
 		INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml
 	xmlns:tools
 		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-38:12
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-40:12
 		INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:11-69
@@ -103,7 +103,7 @@ ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.x
 	android:name
 		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:12:17-68
 application
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:16:5-36:19
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:17:5-38:19
 MERGED from [com.google.android.material:material:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/78511fbadc1039f3e69e8d9a3f4b31b1/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/78511fbadc1039f3e69e8d9a3f4b31b1/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/freetime/.gradle/caches/transforms-2/files-2.1/2bb4c4db21ead0f9d9f06c7545ddf9d4/AndroidManifest.xml:9:5-20
@@ -137,43 +137,47 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/free
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/51a69a3dcb70f4332f67127b5d87d533/AndroidManifest.xml:24:18-86
 	android:supportsRtl
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:21:9-35
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:22:9-35
 	android:label
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:19:9-41
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:20:9-41
 	tools:ignore
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:23:9-48
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:24:9-48
 	android:roundIcon
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:20:9-54
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:21:9-54
 	android:icon
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:18:9-43
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:19:9-43
 	android:allowBackup
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:17:9-35
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:18:9-35
 	android:theme
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:22:9-40
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:23:9-40
+activity#app.playstore.boulderspot.Login_SignUp.extra_questions_register
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:25:9-75
+	android:name
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:25:19-72
 activity#app.playstore.boulderspot.Login_SignUp.Boulderspot_Log_In
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:24:9-32:20
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:26:9-34:20
 	android:label
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:26:13-45
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:28:13-45
 	android:name
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:25:13-60
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:27:13-60
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:27:13-31:29
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:29:13-33:29
 action#android.intent.action.MAIN
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:28:17-69
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:30:17-69
 	android:name
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:28:25-66
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:30:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:30:17-77
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:32:17-77
 	android:name
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:30:27-74
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:32:27-74
 activity#app.playstore.boulderspot.Main.MainActivity
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:33:9-55
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:35:9-55
 	android:name
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:33:19-52
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:35:19-52
 activity#app.playstore.boulderspot.Login_SignUp.Boulderspot_Sign_Up
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:34:9-70
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:36:9-70
 	android:name
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:34:19-67
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:36:19-67
 uses-sdk
 INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml

@@ -32,6 +32,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 import app.playstore.boulderspot.Main.MainActivity;
 import app.playstore.boulderspot.R;
 
@@ -39,16 +41,16 @@ public class Boulderspot_Log_In extends AppCompatActivity implements GoogleApiCl
     private static final String TAG = "Login";
     public static boolean status;
     private GoogleApiClient mGoogleApiClient;
-
+    private ImageView google;
     private Button btn_log_in;
     private TextView txt_sign_up;
-    private TextView terms_conditions_txt;
-    private ImageView img_google_log_in;
-    private ImageView img_facebook_sign_in;
+    //private ImageView img_google_log_in;
+    //private ImageView img_facebook_sign_in;
     private EditText editText_name_log_in;
     private int RC_SIGN_IN = 1;
     private EditText editText_pwd_log_in;
     private FirebaseAuth mAuth;
+    private GoogleSignInOptions gso;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("Login");
@@ -58,77 +60,80 @@ public class Boulderspot_Log_In extends AppCompatActivity implements GoogleApiCl
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.log_in_layout);
-        initGoogle();
-
         init_views();
+
+        initGoogle();
+        setOnclick_google();
+
+
         listener();
         txt_sign_up_listener();
-        google_sign_up();
 
 
     }
 
+    private void setOnclick_google() {
+        google.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+                startActivityForResult(signInIntent, RC_SIGN_IN);
+
+            }
+        });
+    }
+
     private void initGoogle() {
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
+         gso = initGoogleSignInOptions();
+        initGoogleApiClient(gso);
+    }
+
+    private void initGoogleApiClient(GoogleSignInOptions gso) {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this , this )
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
     }
 
+    private GoogleSignInOptions initGoogleSignInOptions() {
+        return new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(getString(R.string.default_web_client_id))
+                    .requestEmail()
+                    .build();
+    }
+
     private void txt_sign_up_listener() {
         txt_sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Boulderspot_Log_In.this,Boulderspot_Sign_Up.class );
-                startActivity(intent);
+                intent_sign_up();
             }
         });
+    }
+
+    private void intent_sign_up() {
+        Intent intent = new Intent(Boulderspot_Log_In.this, Boulderspot_Sign_Up.class );
+        startActivity(intent);
     }
 
     private void listener() {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (final DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+
 
                     btn_log_in.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (editText_name_log_in.getText().toString().equals("")|| editText_pwd_log_in.getText().toString().equals("")){
-                                Toast.makeText(Boulderspot_Log_In.this, "Fill all fields", Toast.LENGTH_SHORT).show();
+                            if (check_fields()){
+                                Toast_fill();
 
                             }
                             else{
-                                mAuth.signInWithEmailAndPassword(editText_name_log_in.getText().toString(),editText_pwd_log_in.getText().toString())
-                                        .addOnCompleteListener(Boulderspot_Log_In.this, new OnCompleteListener<AuthResult>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                                if (task.isSuccessful()) {
-                                                    // Sign in success, update UI with the signed-in user's information
-                                                    Log.d(TAG, "signInWithEmail:success");
-                                                    FirebaseUser user = mAuth.getCurrentUser();
-                                                    Intent intent = new Intent(Boulderspot_Log_In.this , MainActivity.class);
-                                                    startActivity(intent);
-                                                    Boulderspot_Log_In.this.finish();
-
-                                                } else {
-                                                    // If sign in fails, display a message to the user.
-                                                    Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                                    Toast.makeText(Boulderspot_Log_In.this, "Authentication failed. Error: " + task.getException().getLocalizedMessage(),
-                                                            Toast.LENGTH_LONG).show();
-                                                }
-
-                                                // ...
-                                            }
-                                        });
+                                Log_in_normal();
 
 
                             }
-                            Log.d(TAG,"Data_of_post:" + postSnapshot.child("User").getValue());
 
 
 
@@ -142,7 +147,7 @@ public class Boulderspot_Log_In extends AppCompatActivity implements GoogleApiCl
                         }
                     });
 
-                }
+
 
             }
 
@@ -157,24 +162,50 @@ public class Boulderspot_Log_In extends AppCompatActivity implements GoogleApiCl
 
     }
 
+    private void Log_in_normal() {
+        mAuth.signInWithEmailAndPassword(editText_name_log_in.getText().toString(),editText_pwd_log_in.getText().toString())
+                .addOnCompleteListener(Boulderspot_Log_In.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            google_success("signInWithEmail:success");
 
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            no_google_success(task, "signInWithEmail:failure");
 
+                        }
 
+                        // ...
+                    }
+                });
+    }
 
+    private boolean check_fields() {
+        return editText_name_log_in.getText().toString().equals("")|| editText_pwd_log_in.getText().toString().equals("");
+    }
 
+    private void Toast_fill() {
+        Toast.makeText(Boulderspot_Log_In.this, "Fill all fields", Toast.LENGTH_SHORT).show();
+    }
 
-
-
-
-
+    private void google_success(String s) {
+        // Sign in success, update UI with the signed-in user's information
+        Log.d(TAG, s);
+        //FirebaseUser user = mAuth.getCurrentUser();
+        Intent intent = new Intent(Boulderspot_Log_In.this, MainActivity.class);
+        startActivity(intent);
+        Boulderspot_Log_In.this.finish();
+    }
 
 
     private void init_views() {
         btn_log_in = findViewById(R.id.btn_sign_up);
         txt_sign_up = findViewById(R.id.Log_in_txt_sign_up);
-        terms_conditions_txt = findViewById(R.id.terms_conditions_txt_sign_up);
+//        TextView terms_conditions_txt = findViewById(R.id.terms_conditions_txt_sign_up);
         editText_name_log_in = findViewById(R.id.edit_name_sign_up);
         editText_pwd_log_in = findViewById(R.id.edit_sign_up_pwd);
+        google = findViewById(R.id.google_logo_log_in);
 
 
     }
@@ -183,30 +214,32 @@ public class Boulderspot_Log_In extends AppCompatActivity implements GoogleApiCl
         super.onStart();
         //init Authentication
         mAuth = FirebaseAuth.getInstance();
-        Log.d(TAG,"currentuser:" + mAuth.getCurrentUser());
+        log_current_user(mAuth.getCurrentUser());
 
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser == null){
-            return;
-        }
-        else{
+        if (currentUser != null){
             Log.d(TAG,"UID:"+mAuth.getUid() + "   " + mAuth.getCurrentUser());
             Intent intent = new Intent(Boulderspot_Log_In.this, MainActivity.class);
             startActivity(intent);
             Boulderspot_Log_In.this.finish();
-
         }
-    }
-    private void google_sign_up() {
-
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-
-
-
 
     }
+
+    private void log_current_user(Object currentUser2) {
+        Log.d(TAG, "currentuser:" + currentUser2);
+    }
+
+    //private void google_sign_up() {
+//
+    //    Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+    //    startActivityForResult(signInIntent, RC_SIGN_IN);
+//
+//
+//
+//
+    //}
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -217,8 +250,9 @@ public class Boulderspot_Log_In extends AppCompatActivity implements GoogleApiCl
             if (result.isSuccess()) {
 // Signed in successfully
                 GoogleSignInAccount acct = result.getSignInAccount();
-                String id = acct.getId();
-                String name = acct.getDisplayName();
+              //  String id = acct.getId();
+              //  String name = acct.getDisplayName();
+                assert acct != null;
                 String email = acct.getEmail();
 
                 firebaseAuthWithGoogle(acct);
@@ -244,17 +278,10 @@ public class Boulderspot_Log_In extends AppCompatActivity implements GoogleApiCl
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Intent intent = new Intent(Boulderspot_Log_In.this, MainActivity.class);
-                            startActivity(intent);
-                            Boulderspot_Log_In.this.finish();
+                            google_success("signInWithCredential:success");
 
                         } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            //   Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
+                            no_google_success(task, "signInWithCredential:failure");
                         }
 
                         // ...
@@ -262,10 +289,17 @@ public class Boulderspot_Log_In extends AppCompatActivity implements GoogleApiCl
                 });
     }
 
+    private void no_google_success(@NonNull Task<AuthResult> task, String s) {
+        // If sign in fails, display a message to the user.
+        Log.w(TAG, s, task.getException());
+        Toast.makeText(Boulderspot_Log_In.this, "Authentication failed. Error: " + Objects.requireNonNull(task.getException()).getLocalizedMessage(),
+                Toast.LENGTH_LONG).show();
+        //   Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
+    }
+
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
-
 }

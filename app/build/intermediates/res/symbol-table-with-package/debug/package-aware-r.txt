@@ -1196,6 +1196,7 @@ id always
 id async
 id auto
 id barrier
+id beginner_txt_sign_up
 id beginning
 id blocking
 id bottom
@@ -1207,6 +1208,7 @@ id btn_search
 id btn_search_location
 id btn_sign_up
 id btn_upload_video
+id button
 id buttonPanel
 id center
 id center_horizontal
@@ -1246,12 +1248,19 @@ id dimensions
 id direct
 id disableHome
 id editText
+id editText2
+id editText3
+id editText4
+id editText5
+id editText7
+id editText8
 id edit_age_extra
 id edit_city_extra
 id edit_email_sign_up
 id edit_grade_extra
 id edit_height_extra
 id edit_location
+id edit_name_halle_sign_up
 id edit_name_sign_up
 id edit_query
 id edit_search_nav
@@ -1263,7 +1272,6 @@ id event_layout
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
-id facebook_logo_sign_up
 id fill
 id fill_horizontal
 id fill_vertical
@@ -1276,7 +1284,7 @@ id frame_round_videoframe
 id friends_img_include
 id ghost_view
 id gone
-id google_logo_sign_up
+id google_logo_log_in
 id grade_edit
 id grade_titel
 id grade_txt
@@ -1294,10 +1302,11 @@ id image
 id img_event
 id img_home
 id img_location
+id img_logo_round
 id img_pro_custom_home_img
 id img_training
 id img_user_course_custom
-id include_nav
+id include_nav_home
 id include_search_course
 id info
 id info_edit
@@ -1320,7 +1329,12 @@ id line_20
 id line_3
 id line_5
 id line_7
+id line_img_event
+id line_img_home
+id line_img_location
+id line_img_training
 id linearLayout
+id linearLayout2
 id linearLayout3
 id linearLayout4
 id linear_box
@@ -1406,6 +1420,7 @@ id shortcut
 id showCustom
 id showHome
 id showTitle
+id sign_up_kletterhalle
 id smallLabel
 id snackbar_action
 id snackbar_text
@@ -1555,6 +1570,8 @@ layout design_text_input_password_icon
 layout event_custom
 layout event_page
 layout extra_questions_layout
+layout kletterhalle_sign_up
+layout kletterhalle_sign_up_next
 layout location_page
 layout location_people_page
 layout log_in_layout
@@ -1662,6 +1679,7 @@ string common_open_on_phone
 string common_signin_button_text
 string common_signin_button_text_long
 string default_web_client_id
+string email_patterm
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string firebase_database_url

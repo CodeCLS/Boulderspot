@@ -1,6 +1,9 @@
 package app.playstore.boulderspot.Login_SignUp;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,18 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,6 +32,11 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Objects;
+import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -43,14 +46,12 @@ import app.playstore.boulderspot.R;
 public class Boulderspot_Sign_Up extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
     private static final String TAG = "Boulderspot_Sign_up";
     private GoogleApiClient mGoogleApiClient;
-    private int RC_SIGN_IN = 1;
     private EditText edit_email;
     private EditText edit_pwd;
     private EditText edit_user;
     private TextView log_in;
     private GoogleSignInClient signInClient;
     private Button btn_sign_up;
-    private ImageView facebook;
     private ImageView google;
     private GoogleSignInClient msignin;
 
@@ -64,18 +65,18 @@ public class Boulderspot_Sign_Up extends AppCompatActivity implements GoogleApiC
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up_layout);
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this , this )
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
+
         initviews();
         sign_up();
-        google_sign_up();
         login_txt();
+        initShared();
+    }
+
+    private void initShared() {
+        SharedPreferences sharedPreferences_first = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor shared_edit_first = sharedPreferences_first.edit();
+        shared_edit_first.putBoolean("First" , false);
+        shared_edit_first.apply();
     }
 
     private void login_txt() {
@@ -90,15 +91,7 @@ public class Boulderspot_Sign_Up extends AppCompatActivity implements GoogleApiC
         });
     }
 
-    private void google_sign_up() {
 
-                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-                startActivityForResult(signInIntent, RC_SIGN_IN);
-
-
-
-
-        }
 
       //  Intent signInIntent = gso.getSignInIntent();
       //  startActivityForResult(signInIntent, RC_SIGN_IN);
@@ -161,15 +154,14 @@ public class Boulderspot_Sign_Up extends AppCompatActivity implements GoogleApiC
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Log.d(TAG,"userData: " + user + " I want: " + mAuth.getUid());
+                            //FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(Boulderspot_Sign_Up.this, "Success!", Toast.LENGTH_SHORT).show();
-                            myRef.child(mAuth.getUid()).child("Email").setValue(email);
-                            myRef.child(mAuth.getUid()).child("Username").setValue(edit_user.getText().toString());
-                            myRef.child(mAuth.getUid()).child("PWD").setValue(pwd);
-                            Intent intent = new Intent(Boulderspot_Sign_Up.this, extra_questions_register.class);
-                            startActivity(intent);
-                            Boulderspot_Sign_Up.this.finish();
+
+                           // myRef.child(mAuth.getUid()).child("Email").setValue(email);
+                            register_new_user_to_realtime();
+
+                            //myRef.child(mAuth.getUid()).child("PWD").setValue(pwd);
+                            intent_to_extra();
 
 
                         } else {
@@ -186,9 +178,46 @@ public class Boulderspot_Sign_Up extends AppCompatActivity implements GoogleApiC
 
     }
 
+    private void register_new_user_to_realtime() {
+        String nowAsISO = getTimeStamp_in_ISO8601();
+        myRef.child(Objects.requireNonNull(mAuth.getUid())).setValue(mAuth.getUid());
+        myRef.child(Objects.requireNonNull(mAuth.getUid())).child("Name").setValue(edit_user.getText().toString());
+        myRef.child(Objects.requireNonNull(mAuth.getUid())).child("User_type").setValue("person");
+        myRef.child(Objects.requireNonNull(mAuth.getUid())).child("Bio").setValue("/");
+        myRef.child(Objects.requireNonNull(mAuth.getUid())).child("Mitgliedschaft").setValue("Standart");
+        myRef.child(Objects.requireNonNull(mAuth.getUid())).child("Boulder_most_centre").setValue("/");
+        myRef.child(Objects.requireNonNull(mAuth.getUid())).child("Liked").setValue("Liked");
+        myRef.child(Objects.requireNonNull(mAuth.getUid())).child("Follower").setValue("Follower");
+        myRef.child(Objects.requireNonNull(mAuth.getUid())).child("Following").setValue("Following");
+        myRef.child(Objects.requireNonNull(mAuth.getUid())).child("Posts").setValue("Posts");
+        myRef.child(Objects.requireNonNull(mAuth.getUid())).child("Liked").setValue(nowAsISO);
+
+
+        shared_mAuth_user_id();
+    }
+
+    private String getTimeStamp_in_ISO8601() {
+        TimeZone tz = TimeZone.getTimeZone("UTC");
+        @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'"); // Quoted "Z" to indicate UTC, no timezone offset
+        df.setTimeZone(tz);
+        return df.format(new Date());
+    }
+
+    private void shared_mAuth_user_id() {
+        SharedPreferences sharedPreferences_UID = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor shared_edit_first = sharedPreferences_UID.edit();
+        shared_edit_first.putString("mAuth_UID", mAuth.getUid());
+        shared_edit_first.apply();
+    }
+
+    private void intent_to_extra() {
+        Intent intent = new Intent(Boulderspot_Sign_Up.this, extra_questions_register.class);
+        startActivity(intent);
+        Boulderspot_Sign_Up.this.finish();
+    }
+
     private void initviews() {
-        facebook = findViewById(R.id.facebook_logo_sign_up);
-        google = findViewById(R.id.google_logo_sign_up);
+        google = findViewById(R.id.google_logo_log_in);
         edit_email = findViewById(R.id.edit_email_sign_up);
         edit_pwd = findViewById(R.id.edit_sign_up_pwd);
         edit_user = findViewById(R.id.edit_name_sign_up);
@@ -208,27 +237,31 @@ public class Boulderspot_Sign_Up extends AppCompatActivity implements GoogleApiC
         Log.d(TAG,"currentuser:" + mAuth.getCurrentUser());
 
 
-        if (currentUser == null){
-            return;
-        }
-        else{
-            Log.d(TAG,"UID:"+mAuth.getUid() + "   " + mAuth.getCurrentUser());
-            Intent intent = new Intent(Boulderspot_Sign_Up.this, MainActivity.class);
-            startActivity(intent);
-            Boulderspot_Sign_Up.this.finish();
+        if (currentUser != null){
+            already_loggeed_in_action();
+
 
         }
+        else{
+
+        }
+
 
 
     }
 
-
+    private void already_loggeed_in_action() {
+        Log.d(TAG,"UID:"+mAuth.getUid() + "   " + mAuth.getCurrentUser());
+        Intent intent = new Intent(Boulderspot_Sign_Up.this, MainActivity.class);
+        startActivity(intent);
+        Boulderspot_Sign_Up.this.finish();
+    }
 
 
     public boolean isValidEmail(String email)
     {
         final String EMAIL_PATTERN =
-                "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+                getString(R.string.email_patterm);
         final Pattern pattern = Pattern.compile(EMAIL_PATTERN);
         final Matcher matcher = pattern.matcher(email);
         return matcher.matches();
@@ -241,14 +274,16 @@ public class Boulderspot_Sign_Up extends AppCompatActivity implements GoogleApiC
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        int RC_SIGN_IN = 1;
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
 
             if (result.isSuccess()) {
 // Signed in successfully
                 GoogleSignInAccount acct = result.getSignInAccount();
-                String id = acct.getId();
-                String name = acct.getDisplayName();
+                assert acct != null;
+                //String id = acct.getId();
+                //String name = acct.getDisplayName();
                 String email = acct.getEmail();
 
                 firebaseAuthWithGoogle(acct);
@@ -276,10 +311,11 @@ public class Boulderspot_Sign_Up extends AppCompatActivity implements GoogleApiC
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "signInWithCredential:success");
 
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                Intent intent = new Intent(Boulderspot_Sign_Up.this, MainActivity.class);
+                                //FirebaseUser user = mAuth.getCurrentUser();
+
+                                Intent intent = new Intent(Boulderspot_Sign_Up.this, extra_questions_register.class);
                                 startActivity(intent);
-                                Boulderspot_Sign_Up.this.finish();
+                               // Boulderspot_Sign_Up.this.finish();
 
                             } else {
                                 // If sign in fails, display a message to the user.

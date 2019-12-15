@@ -28,7 +28,7 @@
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="88dp"
+        android:layout_marginBottom="76dp"
         android:background="@drawable/custom_log_in_button"
         android:text="Continue"
         android:textColor="#fff"
@@ -44,13 +44,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="172dp"
-        android:layout_marginTop="168dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="175dp"
         android:text="Hey there, mind answering some questions?"
         android:textAlignment="center"
-        android:textSize="25sp"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="172dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="175dp"
         android:text="Boulderspot"
         android:textSize="36sp"
@@ -69,13 +69,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="300dp"
+        android:layout_height="350dp"
         android:layout_marginBottom="8dp"
+        android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/btn_continue"
-        app:layout_constraintTop_toBottomOf="@+id/title_qustion_info">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_qustion_info"
+        app:layout_constraintVertical_bias="0.858">
 
         <EditText
             android:id="@+id/edit_grade_extra"
@@ -90,6 +95,22 @@
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="281dp" />
+
+        <EditText
+            android:id="@+id/edit_age_extra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="15dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Age? Ex. 23"
+            android:inputType="number"
+            android:maxLength="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_qustion_info" />
 
         <EditText
             android:id="@+id/edit_height_extra"
@@ -121,20 +142,19 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="459dp" />
 
-        <EditText
-            android:id="@+id/edit_age_extra"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_margin="15dp"
-            android:layout_marginTop="8dp"
-            android:ems="10"
-            android:hint="Age? Ex. 23"
-            android:inputType="number"
-            android:maxLength="2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_qustion_info" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/beginner_txt_sign_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Beginner? Click here."
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_qustion_info" />
 </androidx.constraintlayout.widget.ConstraintLayout>
