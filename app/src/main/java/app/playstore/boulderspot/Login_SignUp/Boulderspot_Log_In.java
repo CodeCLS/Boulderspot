@@ -282,6 +282,7 @@ public class Boulderspot_Log_In extends AppCompatActivity implements GoogleApiCl
 
                         } else {
                             no_google_success(task, "signInWithCredential:failure");
+                            //No Google access
                         }
 
                         // ...

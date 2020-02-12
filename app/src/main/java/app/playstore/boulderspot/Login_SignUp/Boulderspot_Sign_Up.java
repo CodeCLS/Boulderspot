@@ -181,16 +181,15 @@ public class Boulderspot_Sign_Up extends AppCompatActivity implements GoogleApiC
     private void register_new_user_to_realtime() {
         String nowAsISO = getTimeStamp_in_ISO8601();
         myRef.child(Objects.requireNonNull(mAuth.getUid())).setValue(mAuth.getUid());
+        myRef.child(mAuth.getUid()).child("User_ID").setValue(mAuth.getUid());
         myRef.child(Objects.requireNonNull(mAuth.getUid())).child("Name").setValue(edit_user.getText().toString());
-        myRef.child(Objects.requireNonNull(mAuth.getUid())).child("User_type").setValue("person");
-        myRef.child(Objects.requireNonNull(mAuth.getUid())).child("Bio").setValue("/");
+       // myRef.child(Objects.requireNonNull(mAuth.getUid())).child("User_type").setValue("person");
+        myRef.child(Objects.requireNonNull(mAuth.getUid())).child("Info").setValue("/");
         myRef.child(Objects.requireNonNull(mAuth.getUid())).child("Mitgliedschaft").setValue("Standart");
-        myRef.child(Objects.requireNonNull(mAuth.getUid())).child("Boulder_most_centre").setValue("/");
-        myRef.child(Objects.requireNonNull(mAuth.getUid())).child("Liked").setValue("Liked");
+        //myRef.child(Objects.requireNonNull(mAuth.getUid())).child("Boulder_most_centre").setValue("/");
+        //myRef.child(Objects.requireNonNull(mAuth.getUid())).child("Liked").setValue("Liked");
         myRef.child(Objects.requireNonNull(mAuth.getUid())).child("Follower").setValue("Follower");
         myRef.child(Objects.requireNonNull(mAuth.getUid())).child("Following").setValue("Following");
-        myRef.child(Objects.requireNonNull(mAuth.getUid())).child("Posts").setValue("Posts");
-        myRef.child(Objects.requireNonNull(mAuth.getUid())).child("Liked").setValue(nowAsISO);
 
 
         shared_mAuth_user_id();

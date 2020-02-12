@@ -34,6 +34,7 @@
         </activity>
         <activity android:name=".Main.MainActivity" />
         <activity android:name=".Login_SignUp.Boulderspot_Sign_Up" />
+        <activity android:name=".Notifaction.Base_Internet" />
 
     </application>
 

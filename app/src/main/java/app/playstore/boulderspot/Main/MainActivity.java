@@ -2,26 +2,35 @@ package app.playstore.boulderspot.Main;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.appcompat.app.AppCompatActivity;
 
+import com.flarebit.flarebarlib.FlareBar;
+import com.flarebit.flarebarlib.Flaretab;
+import com.flarebit.flarebarlib.TabEventObject;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
+
+import app.playstore.boulderspot.Notifaction.Base_Internet;
 import app.playstore.boulderspot.DB.FeedReaderDBHelper;
 import app.playstore.boulderspot.Fragments.Search_Fragment;
 import app.playstore.boulderspot.Fragments.Home_Fragment;
 import app.playstore.boulderspot.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Base_Internet {
+
     private static final String TAG = "Main";
     private static final String COLUMN_NAME_TITLE = "Caleb";
     private static final String COLUMN_NAME_SUBTITLE = "Info";
@@ -53,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
        //             .add(R.id.container_fragment, new Home_Fragment()).commit();
        // }
 // Gets the data repository in write mode();
-
-
 
         initAuth();
         initViews();
@@ -99,21 +106,95 @@ public class MainActivity extends AppCompatActivity {
 
     private void initViews() {
 
+        final FlareBar bottomBar = findViewById(R.id.bottomBar);
+        bottomBar.setBarBackgroundColor(Color.parseColor("#FFFFFF"));
+        ArrayList<Flaretab> tabs = new ArrayList<>();
+        tabs.add(new Flaretab(getResources().getDrawable(R.drawable.inboxb),"Home","#FFECB3"));
+        tabs.add(new Flaretab(getResources().getDrawable(R.drawable.searchb),"Search","#80DEEA"));
+        tabs.add(new Flaretab(getResources().getDrawable(R.drawable.phoneb),"Community","#B39DDB"));
+        tabs.add(new Flaretab(getResources().getDrawable(R.drawable.avatarb),"Training","#EF9A9A"));
+        tabs.add(new Flaretab(getResources().getDrawable(R.drawable.settingsb),"Settings","#B2DFDB"));
+
+        bottomBar.setTabList(tabs);
+        bottomBar.attachTabs(MainActivity.this);
+        bottomBar.setTabChangedListener(new TabEventObject.TabChangedListener() {
+            @Override
+            public void onTabChanged(LinearLayout selectedTab, int selectedIndex, int oldIndex) {
+                //tabIndex starts from 0 (zero). Example : 4 tabs = last Index - 3
+                switch (selectedIndex){
+
+                    case 0:
+                        Log.d(TAG,"seaerch");
+                        Search_Fragment mFragment = new Search_Fragment();
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.container_fragment, mFragment).commit();
+
+                    case 1:
+                        Log.d(TAG,"seaerch");
+                        Search_Fragment mFragment1 = new Search_Fragment();
+                        FragmentManager fragmentManager1 = getSupportFragmentManager();
+                        fragmentManager1.beginTransaction()
+                                .replace(R.id.container_fragment, mFragment1).commit();
+
+
+                    case 2:
+                        Log.d(TAG,"Home");
+                        Home_Fragment mFragment2 = new Home_Fragment();
+                        FragmentManager fragmentManager2= getSupportFragmentManager();
+                        fragmentManager2.beginTransaction()
+                                .replace(R.id.container_fragment, mFragment2).commit();
+
+                        // Home_Fragment mFragment = new Home_Fragment();
+                       // FragmentManager fragmentManager = getSupportFragmentManager();
+                       // fragmentManager.beginTransaction()
+                       //         .replace(R.id.container_fragment, mFragment).commit();
+                       //
+
+
+                    case 3:
+                        Log.d(TAG,"Home");
+                        Home_Fragment mFragment3 = new Home_Fragment();
+                        FragmentManager fragmentManager3 = getSupportFragmentManager();
+                        fragmentManager3.beginTransaction()
+                                .replace(R.id.container_fragment, mFragment3).commit();
+
+                        //   Home_Fragment mFragment = new Home_Fragment();
+                     //   FragmentManager fragmentManager = getSupportFragmentManager();
+                     //   fragmentManager.beginTransaction()
+                     //           .replace(R.id.container_fragment, mFragment).commit();
+//
 
 
 
-         includeView = findViewById(R.id.include_nav_home);
+
+                    case 4:
+
+                     //   Home_Fragment mFragment = new Home_Fragment();
+                     //   FragmentManager fragmentManager = getSupportFragmentManager();
+                     //   fragmentManager.beginTransaction()
+                     //           .replace(R.id.container_fragment, mFragment).commit();
+                     //   setAlpha(1);
+//
+                }
+
+                Toast.makeText(MainActivity.this,"Tab "+ selectedIndex+" Selected.", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
-         img_home = includeView.findViewById(R.id.img_home);
-         img_event = includeView.findViewById(R.id.img_event);
-         img_course = includeView.findViewById(R.id.img_training);
-         img_location = includeView.findViewById(R.id.img_location);
 
-         line_course = includeView.findViewById(R.id.line_img_training);
-         line_home = includeView.findViewById(R.id.line_img_home);
-         line_location = includeView.findViewById(R.id.line_img_location);
-         line_event = includeView.findViewById(R.id.line_img_event);
+
+//
+       //  img_home = includeView.findViewById(R.id.img_home);
+       //  img_event = includeView.findViewById(R.id.img_event);
+       //  img_course = includeView.findViewById(R.id.img_training);
+       //  img_location = includeView.findViewById(R.id.img_location);
+//
+       //  line_course = includeView.findViewById(R.id.line_img_training);
+       //  line_home = includeView.findViewById(R.id.line_img_home);
+       //  line_location = includeView.findViewById(R.id.line_img_location);
+       //  line_event = includeView.findViewById(R.id.line_img_event);
 
 
 
@@ -136,54 +217,55 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     private void setOnclick() {
-        img_course.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Home_Fragment mFragment = new Home_Fragment();
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container_fragment, mFragment).commit();
-                setAlpha(3);
+     //  img_course.setOnClickListener(new View.OnClickListener() {
+     //      @Override
+     //      public void onClick(View v) {
 
 
-            }
-        });
-        img_event.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Search_Fragment mFragment = new Search_Fragment();
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container_fragment, mFragment).commit();
-                setAlpha(2);
-
-            }
-        });
-        img_location.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Home_Fragment mFragment = new Home_Fragment();
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container_fragment, mFragment).commit();
-                setAlpha(4);
+     //          Home_Fragment mFragment = new Home_Fragment();
+     //          FragmentManager fragmentManager = getSupportFragmentManager();
+     //          fragmentManager.beginTransaction()
+     //                  .replace(R.id.container_fragment, mFragment).commit();
+     //          setAlpha(3);
 
 
-            }
-        });
+     //      }
+     //  });
+     //  img_event.setOnClickListener(new View.OnClickListener() {
+     //      @Override
+     //      public void onClick(View v) {
+     //          Search_Fragment mFragment = new Search_Fragment();
+     //          FragmentManager fragmentManager = getSupportFragmentManager();
+     //          fragmentManager.beginTransaction()
+     //                  .replace(R.id.container_fragment, mFragment).commit();
+     //          setAlpha(2);
 
-        img_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Home_Fragment mFragment = new Home_Fragment();
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container_fragment, mFragment).commit();
-                setAlpha(1);
+     //      }
+     //  });
+     //  img_location.setOnClickListener(new View.OnClickListener() {
+     //      @Override
+     //      public void onClick(View v) {
+     //          Home_Fragment mFragment = new Home_Fragment();
+     //          FragmentManager fragmentManager = getSupportFragmentManager();
+     //          fragmentManager.beginTransaction()
+     //                  .replace(R.id.container_fragment, mFragment).commit();
+     //          setAlpha(4);
 
-            }
-        });
+
+     //      }
+     //  });
+
+     //  img_home.setOnClickListener(new View.OnClickListener() {
+     //      @Override
+     //      public void onClick(View v) {
+     //          Home_Fragment mFragment = new Home_Fragment();
+     //          FragmentManager fragmentManager = getSupportFragmentManager();
+     //          fragmentManager.beginTransaction()
+     //                  .replace(R.id.container_fragment, mFragment).commit();
+     //          setAlpha(1);
+
+     //      }
+     //  });
     }
 
     private void reveal_line(int i) {
