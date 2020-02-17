@@ -2,7 +2,12 @@ package app.playstore.boulderspot.Adapters;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.transition.Scene;
+import androidx.transition.TransitionManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +27,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import app.playstore.boulderspot.Fragments.Training_list_fragment;
+import app.playstore.boulderspot.Fragments.video_upload_fragment;
 import app.playstore.boulderspot.R;
 
 public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -107,28 +114,36 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, final int i) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder,int i) {
+        i = i -1;
+
         // Read from the database
         switch (viewHolder.getItemViewType()) {
             case 0:
                 ViewHolder2 viewHolder2 = (ViewHolder2) viewHolder;
-              //  viewHolder2.rec_item_layout.setOnClickListener(new View.OnClickListener() {
-              //      @Override
-              //      public void onClick(View v) {
-              //          //New Fragment
-              //      }
-              //  });
+                viewHolder2.rec_item_layout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Training_list_fragment mFragment = new Training_list_fragment();
+                        FragmentManager fragmentManager = ((AppCompatActivity)mContext).getSupportFragmentManager();
+                        fragmentManager.beginTransaction().addToBackStack("Fragment_training").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                                .replace(R.id.container_fragment, mFragment).commit();
+
+
+                    }
+                });
 
 
 
                 break;
 
             case 1:
+                Log.d(TAG,"number_adapter:" + i);
                 ViewHolder1 viewHolder1 = (ViewHolder1)viewHolder;
                 //liking_event(viewHolder1, i);
                 //viewHolder1.liked.setText(likes.get(i));
-                //setWidgets(viewHolder1, i);
-                //pause_play_video(viewHolder1);
+                setWidgets(viewHolder1, i);
+                pause_play_video(viewHolder1);
                 //profile_pic_click_event(viewHolder1);
                 break;
         }
@@ -137,19 +152,12 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     }
 
-    private void profile_pic_click_event(@NonNull ViewHolder1 viewHolder) {
-        viewHolder.IMG_img_profile_pic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
-    }
 
     private void setWidgets(@NonNull ViewHolder1 viewHolder, int i) {
-        viewHolder.grade_txt.setText(grade.get(i));
+        Log.d(TAG,"grade_txt" + i + "   .. " + grade.size() + "... " + grade.get(i));
         viewHolder.info_txt.setText(info.get(i));
-        Picasso.get().load(IMG_URL.get(i)).into(viewHolder.IMG_img_profile_pic);
+        Picasso.get().load(IMG_URL.get(i)).fit().into(viewHolder.IMG_img_profile_pic);
         viewHolder.video_view.setVideoPath(video_url.get(i));
         viewHolder.video_view.seekTo(2);
         viewHolder.name_txt.setText(name.get(i));
@@ -266,13 +274,10 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         ViewHolder1(View view) {
             super(view);
-            // grade_txt = (TextView) view.findViewById(R.id.grade_txt);
-            // name_txt = (TextView) view.findViewById(R.id.username_txt);
-            IMG_img_profile_pic =  view.findViewById(R.id.img_pro_custom_home_img);
-            //     info_txt = (TextView) view.findViewById(R.id.info_txt);
-            //maker_txt = (TextView) view.findViewById(R.id.maker_txt);
-            //  full_screen = (ImageView) view.findViewById(R.id.full_view_img_custom);
-
+             name_txt = (TextView) view.findViewById(R.id.name_profile_custom_home);
+            IMG_img_profile_pic =  view.findViewById(R.id.profile_image);
+                info_txt = (TextView) view.findViewById(R.id.info_view_home);
+            video_view = view.findViewById(R.id.myvideoview);
 
 
 

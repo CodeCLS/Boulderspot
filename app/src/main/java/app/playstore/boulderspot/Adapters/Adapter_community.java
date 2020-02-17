@@ -49,7 +49,7 @@ public class Adapter_community extends RecyclerView.Adapter<Adapter_community.Vi
 
     @Override
     public int getItemCount() {
-        return 0;
+        return array_img.size();
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView array_title_textView;

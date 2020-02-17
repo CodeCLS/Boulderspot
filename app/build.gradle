@@ -49,9 +49,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.github.wenchaojiang:AndroidSwipeableCardStack:0.1.6'
-
-
     implementation 'com.ldoublem.thumbUplib:ThumbUplib:0.5'
+    implementation 'com.ramotion.circlemenu:circle-menu:0.3.2'
+
+    implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
 
     implementation 'com.mikhaellopez:circularimageview:3.2.0'
     implementation 'com.squareup.picasso:picasso:2.71828'

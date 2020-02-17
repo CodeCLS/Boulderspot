@@ -1,4 +1,4 @@
-package app.playstore.boulderspot.Fragments;
+package app.playstore.boulderspot.Fragments.Search;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class Event_Custom_Fragment extends Fragment {
+public class Search_Custom_Fragment extends Fragment {
 
     @Nullable
     @Override
@@ -21,6 +21,8 @@ public class Event_Custom_Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
+
+
 
     @Override
     public void onAttach(Context context) {

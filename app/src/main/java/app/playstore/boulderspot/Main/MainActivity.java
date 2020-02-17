@@ -23,10 +23,11 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
+import app.playstore.boulderspot.Fragments.Community_Fragment;
 import app.playstore.boulderspot.Notifaction.Base_Internet;
 import app.playstore.boulderspot.DB.FeedReaderDBHelper;
-import app.playstore.boulderspot.Fragments.Search_Fragment;
-import app.playstore.boulderspot.Fragments.Home_Fragment;
+import app.playstore.boulderspot.Fragments.Search.Search_Fragment;
+import app.playstore.boulderspot.Fragments.Home.Home_Fragment;
 import app.playstore.boulderspot.R;
 
 public class MainActivity extends Base_Internet {
@@ -116,70 +117,49 @@ public class MainActivity extends Base_Internet {
         tabs.add(new Flaretab(getResources().getDrawable(R.drawable.settingsb),"Settings","#B2DFDB"));
 
         bottomBar.setTabList(tabs);
-        bottomBar.attachTabs(MainActivity.this);
+        bottomBar.attachTabs(this);
         bottomBar.setTabChangedListener(new TabEventObject.TabChangedListener() {
             @Override
             public void onTabChanged(LinearLayout selectedTab, int selectedIndex, int oldIndex) {
                 //tabIndex starts from 0 (zero). Example : 4 tabs = last Index - 3
-                switch (selectedIndex){
+               if (selectedIndex == 0) {
+                   Home_Fragment mFragment_Home= new Home_Fragment();
+                   FragmentManager fragmentManager_search = getSupportFragmentManager();
+                   fragmentManager_search.beginTransaction()
+                           .replace(R.id.container_fragment, mFragment_Home).commit();
 
-                    case 0:
-                        Log.d(TAG,"seaerch");
-                        Search_Fragment mFragment = new Search_Fragment();
-                        FragmentManager fragmentManager = getSupportFragmentManager();
-                        fragmentManager.beginTransaction()
-                                .replace(R.id.container_fragment, mFragment).commit();
+               }
 
-                    case 1:
-                        Log.d(TAG,"seaerch");
-                        Search_Fragment mFragment1 = new Search_Fragment();
-                        FragmentManager fragmentManager1 = getSupportFragmentManager();
-                        fragmentManager1.beginTransaction()
-                                .replace(R.id.container_fragment, mFragment1).commit();
+                if (selectedIndex == 1) {
+                    Search_Fragment mFragment_Search = new Search_Fragment();
+                    FragmentManager fragmentManager_search = getSupportFragmentManager();
+                    fragmentManager_search.beginTransaction()
+                            .replace(R.id.container_fragment, mFragment_Search).commit();
 
+                }
 
-                    case 2:
-                        Log.d(TAG,"Home");
-                        Home_Fragment mFragment2 = new Home_Fragment();
-                        FragmentManager fragmentManager2= getSupportFragmentManager();
-                        fragmentManager2.beginTransaction()
-                                .replace(R.id.container_fragment, mFragment2).commit();
+                if (selectedIndex == 2) {
+                    Community_Fragment mFragment_Search = new Community_Fragment();
+                    FragmentManager fragmentManager_search = getSupportFragmentManager();
+                    fragmentManager_search.beginTransaction()
+                            .replace(R.id.container_fragment, mFragment_Search).commit();
 
-                        // Home_Fragment mFragment = new Home_Fragment();
-                       // FragmentManager fragmentManager = getSupportFragmentManager();
-                       // fragmentManager.beginTransaction()
-                       //         .replace(R.id.container_fragment, mFragment).commit();
-                       //
+                }
 
+                if (selectedIndex == 3) {
+                    Search_Fragment mFragment_Search = new Search_Fragment();
+                    FragmentManager fragmentManager_search = getSupportFragmentManager();
+                    fragmentManager_search.beginTransaction()
+                            .replace(R.id.container_fragment, mFragment_Search).commit();
 
-                    case 3:
-                        Log.d(TAG,"Home");
-                        Home_Fragment mFragment3 = new Home_Fragment();
-                        FragmentManager fragmentManager3 = getSupportFragmentManager();
-                        fragmentManager3.beginTransaction()
-                                .replace(R.id.container_fragment, mFragment3).commit();
+                }
 
-                        //   Home_Fragment mFragment = new Home_Fragment();
-                     //   FragmentManager fragmentManager = getSupportFragmentManager();
-                     //   fragmentManager.beginTransaction()
-                     //           .replace(R.id.container_fragment, mFragment).commit();
-//
-
-
-
-
-                    case 4:
-
-                     //   Home_Fragment mFragment = new Home_Fragment();
-                     //   FragmentManager fragmentManager = getSupportFragmentManager();
-                     //   fragmentManager.beginTransaction()
                      //           .replace(R.id.container_fragment, mFragment).commit();
                      //   setAlpha(1);
 //
                 }
 
-                Toast.makeText(MainActivity.this,"Tab "+ selectedIndex+" Selected.", Toast.LENGTH_SHORT).show();
-            }
+
         });
 
 

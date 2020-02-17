@@ -1,4 +1,4 @@
-package app.playstore.boulderspot.Fragments;
+package app.playstore.boulderspot.Fragments.Home;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import app.playstore.boulderspot.Adapters.Adapter_home;
+import app.playstore.boulderspot.Fragments.video_upload_fragment;
 import app.playstore.boulderspot.R;
 import app.playstore.boulderspot.Views.Navigation_bar;
 
@@ -82,12 +83,22 @@ public class Home_Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //readDB();
+        IMG_URL.clear();
+        name.clear();
+        info.clear();
+        video_url.clear();
+        ID_User.clear();
+        likes.clear();
+        post.clear();
+        grade.clear();
+        place.clear();
+
         IMG_URL.add("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Folder%2Fmelody-jacob-hb8v-SZm7VY-unsplash.jpg?alt=media&token=d9daa0e9-a575-4c6a-8143-e19acc2b1649");
         grade.add("7+");
         place.add("Berta");
         name.add("Caleb");
         info.add("Calebs info");
-        video_url.add("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Folder%2FNameYoWantToAdd?alt=media&token=00ab2c0b-6397-4e9a-8c04-c22b3da1e496");
+        video_url.add("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Folder%2FUltimateCheerfulCanine-mobile.mp4?alt=media&token=c132bed7-a412-4e99-a475-d0a0c8a8c89c");
         ID_User.add("asfdafs");
         likes.add("2");
         post.add("adsdads");
@@ -128,31 +139,10 @@ public class Home_Fragment extends Fragment {
 
 
 
-    private String getnamedata(final String User_ID) {
-
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                name_fire =dataSnapshot.child(User_ID).child("Anzeigename").toString();
-                URL = dataSnapshot.child(User_ID).child("User_ID").getValue().toString();
 
 
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        return name_fire;
-    }
 
 
-    private DatabaseReference setnewUserref(String user) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        return database.getReference(user);
-    }
 
 
     private void floatingAction(@NonNull View view) {
@@ -175,7 +165,7 @@ public class Home_Fragment extends Fragment {
 
 
 
-        fragmentManager.beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+        fragmentManager.beginTransaction().addToBackStack("video").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .replace(R.id.container_fragment, mFragment).commit();
     }
 

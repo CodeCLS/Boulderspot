@@ -28,7 +28,7 @@ public class Community_Fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.community_page, container);
+        return inflater.inflate(R.layout.community_page, container,false);
     }
 
     @Override
@@ -36,26 +36,40 @@ public class Community_Fragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setAdapter();
 
+        setRec(view);
+    }
+
+    private void setRec(@NonNull View view) {
         RecyclerView rec;
 
-        rec = view.findViewById(R.id.rec_home);
+        rec = view.findViewById(R.id.rec_community);
         rec.setAdapter(Adapter_community);
 
         rec.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
     private void setAdapter() {
+        cleararray();
+        addData();
+
+    }
+
+    private void addData() {
         array_img.add("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Folder%2Fmelody-jacob-hb8v-SZm7VY-unsplash.jpg?alt=media&token=d9daa0e9-a575-4c6a-8143-e19acc2b1649");
         array_title.add("Chat");
         array_description.add("Ein Ort an dem Boulderer und Kletterer miteinander kommunizieren können");
-
-        array_img.add("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Folder%2Fmelody-jacob-hb8v-SZm7VY-unsplash.jpg?alt=media&token=d9daa0e9-a575-4c6a-8143-e19acc2b1649");
-        array_title.add("Training");
-        array_description.add("Ein Ort an dem Boulderer und Kletterer neue Wege finden sich auzuwärmen und fitter zu werden");
-
         array_img.add("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Folder%2Fmelody-jacob-hb8v-SZm7VY-unsplash.jpg?alt=media&token=d9daa0e9-a575-4c6a-8143-e19acc2b1649");
         array_title.add("Freunde");
         array_description.add("Ein Ort an dem Boulderer und Kletterer sehen können ob Freunde in einer Boulderhalle sind ");
+        array_img.add("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Folder%2Fmelody-jacob-hb8v-SZm7VY-unsplash.jpg?alt=media&token=d9daa0e9-a575-4c6a-8143-e19acc2b1649");
+        array_title.add("Statistik");
+        array_description.add("Ein Ort an dem Boulderer und Kletterer sehen können wie ihre Kletterstatistiken aussehen");
+    }
+
+    private void cleararray() {
+        array_description.clear();
+        array_title.clear();
+        array_img.clear();
     }
 
     @Override

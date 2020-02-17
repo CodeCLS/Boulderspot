@@ -8,15 +8,11 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
-import java.io.IOException;
-
-import app.playstore.boulderspot.Fragments.Home_Fragment;
+import app.playstore.boulderspot.Fragments.Home.Home_Fragment;
 import app.playstore.boulderspot.Fragments.no_connection;
-import app.playstore.boulderspot.Fragments.video_upload_fragment;
 import app.playstore.boulderspot.R;
 
 public class Base_Internet extends AppCompatActivity {

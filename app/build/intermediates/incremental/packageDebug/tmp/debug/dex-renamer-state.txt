@@ -1,7 +1,13 @@
-#Wed Feb 12 18:12:52 CET 2020
-base.0=/Users/freetime/Documents/Boulderspot3/app/build/intermediates/dex/debug/mergeExtDexDebug/out
+#Mon Feb 17 14:25:14 CET 2020
+path.3=classes3.dex
+path.2=classes2.dex
 path.1=classes.dex
-renamed.1=classes2.dex
 path.0=classes.dex
+renamed.3=classes4.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
 renamed.0=classes.dex
+base.3=/Users/freetime/Documents/Boulderspot3/app/build/intermediates/dex/debug/mergeExtDexDebug/out
+base.2=/Users/freetime/Documents/Boulderspot3/app/build/intermediates/dex/debug/mergeExtDexDebug/out
 base.1=/Users/freetime/Documents/Boulderspot3/app/build/intermediates/dex/debug/mergeProjectDexDebug/out
+base.0=/Users/freetime/Documents/Boulderspot3/app/build/intermediates/dex/debug/mergeExtDexDebug/out

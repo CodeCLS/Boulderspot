@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-41:12
-INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-41:12
-INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-41:12
-INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-41:12
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-43:12
+INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-43:12
+INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-43:12
+INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-43:12
 MERGED from [com.github.vaibhav1929:android-navigation-bar:1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/5a3b1fab84520705453d248a0fe06d80/AndroidManifest.xml:2:1-11:12
 MERGED from [bg.devlabs.fullscreenvideoview:library:1.1.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/da1dd0c697eda0a8a6d612449f9fde8a/AndroidManifest.xml:17:1-26:12
 MERGED from [com.ornach.nobobutton:nobobutton:1.6] /Users/freetime/.gradle/caches/transforms-2/files-2.1/6892012c84ea86f9f4e6e1c0055779f2/AndroidManifest.xml:2:1-17:12
@@ -11,6 +11,7 @@ MERGED from [com.google.android.material:material:1.0.0] /Users/freetime/.gradle
 MERGED from [com.google.android.libraries.places:places:2.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/e6ca53789ad3d557da64af0986b14b73/AndroidManifest.xml:2:1-26:12
 MERGED from [com.github.wenchaojiang:AndroidSwipeableCardStack:0.1.6] /Users/freetime/.gradle/caches/transforms-2/files-2.1/8725315695eab4521e0e2f2c3817624e/AndroidManifest.xml:2:1-14:12
 MERGED from [com.ldoublem.thumbUplib:ThumbUplib:0.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/b57c84e6b0cb450cf22b5b779452880d/AndroidManifest.xml:2:1-17:12
+MERGED from [com.github.AnyChart:AnyChart-Android:1.1.2] /Users/freetime/.gradle/caches/transforms-2/files-2.1/d22a57806a1e69a17614feee55a69043/AndroidManifest.xml:2:1-17:12
 MERGED from [com.github.florent37:viewanimator:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/5b5bbbf600b017e18221dc9bd315a149/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/6f9a91e9c95f56c16af0a27143ca123a/AndroidManifest.xml:17:1-24:12
 MERGED from [com.github.dmytrodanylyk.circular-progress-button:library:1.1.3] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dc5c4d1ec812cb95a8742d0709f7fdb0/AndroidManifest.xml:2:1-14:12
@@ -71,55 +72,57 @@ MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/freetime/.
 MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/1b0224706eab44392d065f6e2c07cd1a/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.firebase:firebase-database-collection:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/339b37f2d05bce86cd0c72534e27bb56/AndroidManifest.xml:2:1-7:12
 MERGED from [com.android.volley:volley:1.1.1] /Users/freetime/.gradle/caches/transforms-2/files-2.1/04e1d10c3bfbf5c761a71f576d823f1e/AndroidManifest.xml:2:1-11:12
-INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-41:12
-INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-41:12
-INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-41:12
+INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-43:12
+INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-43:12
+INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-43:12
 	package
 		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:4:5-40
 		INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml
+	android:screenOrientation
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:5:5-41
 	android:versionName
 		INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-41:12
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-43:12
 		INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml
 	xmlns:tools
 		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-41:12
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-43:12
 		INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:2:11-69
 permission#android.hardware.camera.autofocus
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:6:5-68
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:7:5-68
 	android:name
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:6:17-65
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:7:17-65
 permission#android.permission.INTERNET
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:7:5-62
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:8:5-62
 	android:name
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:7:17-59
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:8:17-59
 permission#android.permission.READ_PHONE_STATE
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:8:5-70
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:9:5-70
 	android:name
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:8:17-67
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:9:17-67
 permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:9:5-74
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:10:5-74
 	android:name
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:9:17-71
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:10:17-71
 permission#android.permission.CAMERA
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:10:5-60
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:11:5-60
 	android:name
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:10:17-57
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:11:17-57
 permission#android.permission.FLASHLIGHT
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:11:5-64
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:12:5-64
 	android:name
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:11:17-61
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:12:17-61
 permission#android.permission.ACCESS_WIFI_STATE
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:12:5-71
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:13:5-71
 	android:name
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:12:17-68
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:13:17-68
 application
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:17:5-39:19
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:18:5-41:19
 MERGED from [com.ornach.nobobutton:nobobutton:1.6] /Users/freetime/.gradle/caches/transforms-2/files-2.1/6892012c84ea86f9f4e6e1c0055779f2/AndroidManifest.xml:11:5-15:19
 MERGED from [com.ornach.nobobutton:nobobutton:1.6] /Users/freetime/.gradle/caches/transforms-2/files-2.1/6892012c84ea86f9f4e6e1c0055779f2/AndroidManifest.xml:11:5-15:19
 MERGED from [com.google.android.material:material:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/78511fbadc1039f3e69e8d9a3f4b31b1/AndroidManifest.xml:22:5-20
@@ -130,6 +133,8 @@ MERGED from [com.github.wenchaojiang:AndroidSwipeableCardStack:0.1.6] /Users/fre
 MERGED from [com.github.wenchaojiang:AndroidSwipeableCardStack:0.1.6] /Users/freetime/.gradle/caches/transforms-2/files-2.1/8725315695eab4521e0e2f2c3817624e/AndroidManifest.xml:12:5-20
 MERGED from [com.ldoublem.thumbUplib:ThumbUplib:0.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/b57c84e6b0cb450cf22b5b779452880d/AndroidManifest.xml:11:5-15:19
 MERGED from [com.ldoublem.thumbUplib:ThumbUplib:0.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/b57c84e6b0cb450cf22b5b779452880d/AndroidManifest.xml:11:5-15:19
+MERGED from [com.github.AnyChart:AnyChart-Android:1.1.2] /Users/freetime/.gradle/caches/transforms-2/files-2.1/d22a57806a1e69a17614feee55a69043/AndroidManifest.xml:11:5-15:19
+MERGED from [com.github.AnyChart:AnyChart-Android:1.1.2] /Users/freetime/.gradle/caches/transforms-2/files-2.1/d22a57806a1e69a17614feee55a69043/AndroidManifest.xml:11:5-15:19
 MERGED from [com.github.dmytrodanylyk.circular-progress-button:library:1.1.3] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dc5c4d1ec812cb95a8742d0709f7fdb0/AndroidManifest.xml:12:5-20
 MERGED from [com.github.dmytrodanylyk.circular-progress-button:library:1.1.3] /Users/freetime/.gradle/caches/transforms-2/files-2.1/dc5c4d1ec812cb95a8742d0709f7fdb0/AndroidManifest.xml:12:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/freetime/.gradle/caches/transforms-2/files-2.1/2bb4c4db21ead0f9d9f06c7545ddf9d4/AndroidManifest.xml:9:5-20
@@ -175,51 +180,53 @@ MERGED from [com.android.volley:volley:1.1.1] /Users/freetime/.gradle/caches/tra
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/51a69a3dcb70f4332f67127b5d87d533/AndroidManifest.xml:24:18-86
 	android:supportsRtl
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:22:9-35
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:24:9-35
 	android:label
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:20:9-41
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:22:9-41
 	tools:ignore
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:24:9-48
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:26:9-48
 	android:roundIcon
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:21:9-54
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:23:9-54
 	android:icon
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:19:9-43
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:21:9-43
 	android:allowBackup
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:18:9-35
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:20:9-35
 	android:theme
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:23:9-40
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:25:9-40
 activity#app.playstore.boulderspot.Login_SignUp.extra_questions_register
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:25:9-75
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:27:9-111
+	android:screenOrientation
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:27:73-109
 	android:name
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:25:19-72
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:27:19-72
 activity#app.playstore.boulderspot.Login_SignUp.Boulderspot_Log_In
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:26:9-34:20
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:28:9-36:20
 	android:label
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:28:13-45
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:30:13-45
 	android:name
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:27:13-60
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:29:13-60
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:29:13-33:29
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:31:13-35:29
 action#android.intent.action.MAIN
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:30:17-69
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:32:17-69
 	android:name
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:30:25-66
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:32:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:32:17-77
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:34:17-77
 	android:name
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:32:27-74
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:34:27-74
 activity#app.playstore.boulderspot.Main.MainActivity
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:35:9-55
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:37:9-55
 	android:name
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:35:19-52
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:37:19-52
 activity#app.playstore.boulderspot.Login_SignUp.Boulderspot_Sign_Up
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:36:9-70
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:38:9-70
 	android:name
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:36:19-67
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:38:19-67
 activity#app.playstore.boulderspot.Notifaction.Base_Internet
-ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:37:9-63
+ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:39:9-63
 	android:name
-		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:37:19-60
+		ADDED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml:39:19-60
 uses-sdk
 INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/freetime/Documents/Boulderspot3/app/src/main/AndroidManifest.xml
@@ -238,6 +245,8 @@ MERGED from [com.github.wenchaojiang:AndroidSwipeableCardStack:0.1.6] /Users/fre
 MERGED from [com.github.wenchaojiang:AndroidSwipeableCardStack:0.1.6] /Users/freetime/.gradle/caches/transforms-2/files-2.1/8725315695eab4521e0e2f2c3817624e/AndroidManifest.xml:8:5-10:41
 MERGED from [com.ldoublem.thumbUplib:ThumbUplib:0.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/b57c84e6b0cb450cf22b5b779452880d/AndroidManifest.xml:7:5-9:41
 MERGED from [com.ldoublem.thumbUplib:ThumbUplib:0.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/b57c84e6b0cb450cf22b5b779452880d/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.AnyChart:AnyChart-Android:1.1.2] /Users/freetime/.gradle/caches/transforms-2/files-2.1/d22a57806a1e69a17614feee55a69043/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.AnyChart:AnyChart-Android:1.1.2] /Users/freetime/.gradle/caches/transforms-2/files-2.1/d22a57806a1e69a17614feee55a69043/AndroidManifest.xml:7:5-9:41
 MERGED from [com.github.florent37:viewanimator:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/5b5bbbf600b017e18221dc9bd315a149/AndroidManifest.xml:7:5-9:41
 MERGED from [com.github.florent37:viewanimator:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/5b5bbbf600b017e18221dc9bd315a149/AndroidManifest.xml:7:5-9:41
 MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/6f9a91e9c95f56c16af0a27143ca123a/AndroidManifest.xml:20:5-22:41
