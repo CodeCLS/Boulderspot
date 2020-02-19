@@ -4,7 +4,7 @@
             "outputFile": "/Users/freetime/Documents/Boulderspot3/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-pt-rPT/values-pt-rPT.xml",
             "map": [
                 {
-                    "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/e6ca53789ad3d557da64af0986b14b73/res/values-pt-rPT/values.xml",
+                    "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/2fe919727ae2ad3c0d11d97460b59140/res/values-pt-rPT/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11",
                         "startColumns": "0,0,0,0,0,0,0,0",

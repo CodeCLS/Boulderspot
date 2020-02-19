@@ -4,23 +4,6 @@
             "outputFile": "/Users/freetime/Documents/Boulderspot3/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-nb/values-nb.xml",
             "map": [
                 {
-                    "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/e6ca53789ad3d557da64af0986b14b73/res/values-nb/values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11",
-                        "startColumns": "0,0,0,0,0,0,0,0",
-                        "startOffsets": "184,251,314,405,465,510,576,656",
-                        "endColumns": "66,62,90,59,44,65,79,53",
-                        "endOffsets": "250,313,404,464,509,575,655,709"
-                    },
-                    "to": {
-                        "startLines": "47,48,49,50,51,52,53,54",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "5439,5510,5577,5672,5736,5785,5855,5939",
-                        "endColumns": "70,66,94,63,48,69,83,57",
-                        "endOffsets": "5505,5572,5667,5731,5780,5850,5934,5992"
-                    }
-                },
-                {
                     "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/974a6e21eaf597bdc7f8186ec243acdd/res/values-nb/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
@@ -52,6 +35,23 @@
                         "startOffsets": "105,208,303,417,503,603,716,793,869,960,1052,1146,1240,1341,1434,1529,1627,1718,1809,1886,1989,2087,2183,2287,2386,2487,2640,5997",
                         "endColumns": "102,94,113,85,99,112,76,75,90,91,93,93,100,92,94,97,90,90,76,102,97,95,103,98,100,152,96,78",
                         "endOffsets": "203,298,412,498,598,711,788,864,955,1047,1141,1235,1336,1429,1524,1622,1713,1804,1881,1984,2082,2178,2282,2381,2482,2635,2732,6071"
+                    }
+                },
+                {
+                    "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/2fe919727ae2ad3c0d11d97460b59140/res/values-nb/values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11",
+                        "startColumns": "0,0,0,0,0,0,0,0",
+                        "startOffsets": "184,251,314,405,465,510,576,656",
+                        "endColumns": "66,62,90,59,44,65,79,53",
+                        "endOffsets": "250,313,404,464,509,575,655,709"
+                    },
+                    "to": {
+                        "startLines": "47,48,49,50,51,52,53,54",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "5439,5510,5577,5672,5736,5785,5855,5939",
+                        "endColumns": "70,66,94,63,48,69,83,57",
+                        "endOffsets": "5505,5572,5667,5731,5780,5850,5934,5992"
                     }
                 },
                 {

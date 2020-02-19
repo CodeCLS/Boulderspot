@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/quantum_deeporange50"
-        android:orientation="vertical">>
+        android:layout_weight="1"
+        android:background="#fff"
+        android:orientation="vertical"
+
+
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
 
-            android:layout_marginBottom="10dp"
             android:layout_weight="1.8"
             android:orientation="vertical">
 
@@ -25,25 +28,33 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1.4">
 
                 <TextView
+                    android:id="@+id/hang_time_txt"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1.4"
+                    android:autoSizeTextType="uniform"
+
                     android:gravity="center"
                     android:text="Hang Time"
-
-                    android:textSize="30sp" />
+                    android:textSize="30sp"
+                    app:autoSizeTextType="uniform" />
 
                 <TextView
+                    android:id="@+id/pause_time_txt"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1.4"
 
+                    android:autoSizeTextType="uniform"
+                    android:gravity="center"
                     android:text="Pause Time"
-                    android:textSize="30sp" />
+                    android:textSize="30sp"
+                    app:autoSizeTextType="uniform" />
 
 
             </LinearLayout>
@@ -56,22 +67,30 @@
                 android:gravity="bottom">
 
                 <EditText
+                    android:id="@+id/hang_time_edit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1.4"
+                    android:autoSizeTextType="uniform"
+
                     android:gravity="center"
                     android:hint="Seconds"
-
-                    android:textSize="30sp" />
+                    android:inputType="number"
+                    android:textSize="20sp" />
 
                 <EditText
+                    android:id="@+id/pause_time_edit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1.4"
 
+                    android:autoSizeTextType="uniform"
+                    android:gravity="center"
                     android:hint="Seconds"
-                    android:textSize="30sp" />
+                    android:inputType="number"
+                    android:textSize="20sp" />
 
 
             </LinearLayout>
@@ -82,32 +101,41 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+
             android:layout_weight="1.9"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1.4">
 
                 <TextView
+                    android:id="@+id/rest_time_txt"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1.4"
+
+                    android:autoSizeTextType="uniform"
+
+
                     android:gravity="center"
                     android:text="Rest Time "
-
-                    android:textSize="30sp" />
+                    android:textSize="30sp"
+                    app:autoSizeTextType="uniform" />
 
                 <TextView
+                    android:id="@+id/number_sets_txt"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1.4"
 
-                    android:text="Number of Sets"
+
+                    android:autoSizeTextType="uniform"
+                    android:gravity="center"
+                    android:text="Sets"
                     android:textSize="30sp" />
 
 
@@ -121,22 +149,30 @@
                 android:gravity="bottom">
 
                 <EditText
+                    android:id="@+id/rest_time_edit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1.4"
+                    android:autoSizeTextType="uniform"
+
                     android:gravity="center"
                     android:hint="Seconds"
-
-                    android:textSize="30sp" />
+                    android:inputType="number"
+                    android:textSize="20sp" />
 
                 <EditText
+                    android:id="@+id/number_sets_edit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1.4"
 
+                    android:autoSizeTextType="uniform"
+                    android:gravity="center"
                     android:hint="Sets"
-                    android:textSize="30sp" />
+                    android:inputType="number"
+                    android:textSize="20sp" />
 
 
             </LinearLayout>
@@ -146,24 +182,28 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+
             android:layout_weight="2"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1.4">
 
                 <TextView
+                    android:id="@+id/number_rounds_txt"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1.4"
 
-                    android:text="Number of Rounds"
-                    android:textSize="30sp" />
+
+                    android:autoSizeTextType="uniform"
+                    android:gravity="center"
+                    android:text="Rounds"
+                    android:textSize="30sp"
+                    app:autoSizeTextType="uniform" />
 
 
             </LinearLayout>
@@ -176,13 +216,16 @@
                 android:gravity="bottom">
 
                 <EditText
+                    android:id="@+id/number_rounds_edit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
+                    android:layout_margin="20dp"
 
+                    android:layout_weight="1.4"
+                    android:gravity="center"
                     android:hint="Rounds"
-                    android:textSize="30sp" />
+                    android:inputType="number"
+                    android:textSize="20sp" />
 
 
             </LinearLayout>
@@ -192,28 +235,31 @@
 
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_weight="1.8"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout3"
-        app:srcCompat="@android:drawable/ic_lock_silent_mode" />
-
-    <Button
-        android:id="@+id/button2"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="match_parent"
+        android:layout_weight="8">
+        <Button
+            android:id="@+id/btn_start_train_hangboard"
+            android:elevation="10dp"
 
-        android:text="Start"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Start"
+            android:layout_weight="1"
+            android:background="@color/quantum_amberA100"
+            />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btn_sound_hang"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:elevation="10dp"
+
+            android:background="@color/quantum_amber900"
+            android:text="Sound" />
+
+</LinearLayout>
+
+</LinearLayout>

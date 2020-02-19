@@ -19,6 +19,8 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
+
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/plus_img"
         android:layout_width="wrap_content"
@@ -35,10 +37,10 @@
         app:fabCustomSize="64dp"
         app:layout_constraintBottom_toBottomOf="@+id/rec_home"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.798"
+        app:layout_constraintVertical_bias="0.795"
         app:maxImageSize="32dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

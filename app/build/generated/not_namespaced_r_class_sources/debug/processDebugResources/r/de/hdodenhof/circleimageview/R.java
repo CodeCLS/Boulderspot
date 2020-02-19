@@ -12,15 +12,15 @@ public final class R {
     public static final class attr {
         private attr() {}
 
-        public static final int civ_border_color = 0x7f03008e;
-        public static final int civ_border_overlay = 0x7f03008f;
-        public static final int civ_border_width = 0x7f030090;
-        public static final int civ_circle_background_color = 0x7f030091;
+        public static final int civ_border_color = 0x7f0300a6;
+        public static final int civ_border_overlay = 0x7f0300a7;
+        public static final int civ_border_width = 0x7f0300a8;
+        public static final int civ_circle_background_color = 0x7f0300a9;
     }
     public static final class styleable {
         private styleable() {}
 
-        public static final int[] CircleImageView = { 0x7f03008e, 0x7f03008f, 0x7f030090, 0x7f030091 };
+        public static final int[] CircleImageView = { 0x7f0300a6, 0x7f0300a7, 0x7f0300a8, 0x7f0300a9 };
         public static final int CircleImageView_civ_border_color = 0;
         public static final int CircleImageView_civ_border_overlay = 1;
         public static final int CircleImageView_civ_border_width = 2;

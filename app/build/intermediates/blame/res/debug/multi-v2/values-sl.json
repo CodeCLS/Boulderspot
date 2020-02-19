@@ -4,6 +4,23 @@
             "outputFile": "/Users/freetime/Documents/Boulderspot3/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sl/values-sl.xml",
             "map": [
                 {
+                    "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/2fe919727ae2ad3c0d11d97460b59140/res/values-sl/values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11",
+                        "startColumns": "0,0,0,0,0,0,0,0",
+                        "startOffsets": "184,257,320,407,468,515,593,676",
+                        "endColumns": "72,62,86,60,46,77,82,54",
+                        "endOffsets": "256,319,406,467,514,592,675,730"
+                    },
+                    "to": {
+                        "startLines": "47,48,49,50,51,52,53,54",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "5564,5641,5708,5799,5864,5915,5997,6084",
+                        "endColumns": "76,66,90,64,50,81,86,58",
+                        "endOffsets": "5636,5703,5794,5859,5910,5992,6079,6138"
+                    }
+                },
+                {
                     "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/974a6e21eaf597bdc7f8186ec243acdd/res/values-sl/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
@@ -18,23 +35,6 @@
                         "startOffsets": "2851,2959,3156,3287,3396,3602,3734,3878,4210,4427,4536,4734,4866,5077,5259,5359,5451",
                         "endColumns": "107,196,130,108,205,131,143,132,216,108,197,131,210,181,99,91,112",
                         "endOffsets": "2954,3151,3282,3391,3597,3729,3873,4006,4422,4531,4729,4861,5072,5254,5354,5446,5559"
-                    }
-                },
-                {
-                    "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/e6ca53789ad3d557da64af0986b14b73/res/values-sl/values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11",
-                        "startColumns": "0,0,0,0,0,0,0,0",
-                        "startOffsets": "184,257,320,407,468,515,593,676",
-                        "endColumns": "72,62,86,60,46,77,82,54",
-                        "endOffsets": "256,319,406,467,514,592,675,730"
-                    },
-                    "to": {
-                        "startLines": "47,48,49,50,51,52,53,54",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "5564,5641,5708,5799,5864,5915,5997,6084",
-                        "endColumns": "76,66,90,64,50,81,86,58",
-                        "endOffsets": "5636,5703,5794,5859,5910,5992,6079,6138"
                     }
                 },
                 {
