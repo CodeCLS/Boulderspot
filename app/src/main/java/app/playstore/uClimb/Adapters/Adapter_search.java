@@ -88,6 +88,9 @@ public class Adapter_search extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int i) {
         Log.d("Adapter_search" , "viewtype" + viewHolder.getItemViewType() );
 
+
+        //TODO create threads to fight against laggy pages
+
         if (viewHolder.getItemViewType()== 0) {
             ViewHolder_video viewHolder_video = (ViewHolder_video) viewHolder;
             viewHolder_video.videoView.setVideoPath(URL.get(i));

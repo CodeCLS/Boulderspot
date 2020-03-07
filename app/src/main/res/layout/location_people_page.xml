@@ -94,5 +94,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/title_location_people_page"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/settings" />
+         />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,6 +19,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import app.playstore.uClimb.Fragments.Hangboard_page;
+import app.playstore.uClimb.Fragments.Stretch_page.Stretch_page;
+import app.playstore.uClimb.Fragments.custom_workout.custom_workout_page;
 import app.playstore.uClimb.R;
 
 public class training_list_adapter extends RecyclerView.Adapter<training_list_adapter.ViewHolder> {
@@ -65,12 +67,20 @@ public class training_list_adapter extends RecyclerView.Adapter<training_list_ad
 
                 }
                 if (position==1){
+                    Stretch_page mFragment = new Stretch_page();
+                    FragmentManager fragmentManager = ((AppCompatActivity)mContext).getSupportFragmentManager();
+                    fragmentManager.beginTransaction().addToBackStack("Fragment_training").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .replace(R.id.container_fragment, mFragment).commit();
 
                 }
                 if (position==2){
 
                 }
                 if (position==3){
+                    custom_workout_page mFragment = new custom_workout_page();
+                    FragmentManager fragmentManager = ((AppCompatActivity)mContext).getSupportFragmentManager();
+                    fragmentManager.beginTransaction().addToBackStack("Fragment_training").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .replace(R.id.container_fragment, mFragment).commit();
 
                 }
 

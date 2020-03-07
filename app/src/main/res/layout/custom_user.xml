@@ -24,7 +24,6 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="4dp"
             android:layout_marginTop="10dp"
-            android:src="@mipmap/selfie"
             app:civ_border_color="#EEEEEE"
             app:civ_border_width="4dp"
             app:civ_shadow="true"
@@ -48,7 +47,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/name_txt_include"
             app:layout_constraintVertical_bias="0.2"
-            app:srcCompat="@mipmap/settings" />
+             />
 
         <TextView
             android:id="@+id/name_txt_include"
@@ -116,7 +115,6 @@
 
 
                     android:scaleType="centerInside"
-                    app:srcCompat="@mipmap/friendship"
                     android:contentDescription="TODO" />
 
                 <TextView
@@ -142,7 +140,7 @@
                     android:scaleType="centerInside"
                     android:layout_weight="0.4"
 
-                    app:srcCompat="@mipmap/user" />
+                     />
 
                 <TextView
                     android:layout_width="0dp"

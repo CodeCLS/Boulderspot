@@ -312,4 +312,10 @@ public class Hangboard_page extends Fragment {
         btn_start = view.findViewById(R.id.btn_start_train_hangboard);
         btn_sound = view.findViewById(R.id.btn_sound_hang);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mp.stop();
+    }
 }

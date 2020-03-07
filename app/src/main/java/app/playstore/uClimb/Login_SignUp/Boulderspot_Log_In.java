@@ -269,24 +269,20 @@ public class Boulderspot_Log_In extends AppCompatActivity implements GoogleApiCl
 
         }}
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            google_success("signInWithCredential:success");
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        google_success("signInWithCredential:success");
 
-                        } else {
-                            no_google_success(task, "signInWithCredential:failure");
-                            //No Google access
-                        }
-
-                        // ...
+                    } else {
+                        no_google_success(task, "signInWithCredential:failure");
+                        //No Google access
                     }
+
+                    // ...
                 });
     }
 

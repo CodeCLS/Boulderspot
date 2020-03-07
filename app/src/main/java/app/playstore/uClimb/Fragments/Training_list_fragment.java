@@ -41,6 +41,9 @@ public class Training_list_fragment extends Fragment {
     }
 
     private void setarrayitems() {
+        array_img_link.clear();
+        array_txt.clear();
+
         array_img_link.add("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Folder%2F02-001-002-1.png?alt=media&token=6b027f8c-67fa-4581-a020-b14c3a2701dc");
         array_txt.add("Hangboard");
         array_img_link.add("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Folder%2Fkl-dehn-ubungen-fur-kletterer-richtig-dehnen-teaserbild-n-jpg--bigMobileWideOdc-3394e8b-1565918.jpg?alt=media&token=04e73511-a15d-4e7a-add3-e6cfc22f0f57");

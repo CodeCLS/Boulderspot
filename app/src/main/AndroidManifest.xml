@@ -12,10 +12,13 @@
     <permission android:name="android.permission.FLASHLIGHT" />
     <permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" tools:node="remove"/>
 
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
+
 
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,6 +27,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCBG4HfWkuFX4MYM-7589gNw6hFbQiS8VM"/>
         <activity android:name="app.playstore.uClimb.Login_SignUp.extra_questions_register"/>
         <activity
             android:name="app.playstore.uClimb.Login_SignUp.Boulderspot_Log_In"

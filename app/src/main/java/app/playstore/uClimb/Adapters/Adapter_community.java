@@ -19,6 +19,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import app.playstore.uClimb.Fragments.Location_fragment;
 import app.playstore.uClimb.Fragments.Post.custom_post_page;
 import app.playstore.uClimb.Fragments.Training_list_fragment;
 import app.playstore.uClimb.R;
@@ -52,6 +53,16 @@ public class Adapter_community extends RecyclerView.Adapter<Adapter_community.Vi
         holder.array_img_Imageview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (array_title.get(position) == "Locations"){
+                    Location_fragment mFragment = new Location_fragment();
+                    Log.d("adapter_home" , "context_home2" + mContext);
+
+                    FragmentManager fragmentManager = ((AppCompatActivity)mContext).getSupportFragmentManager();
+                    fragmentManager.beginTransaction().addToBackStack("Fragment_training").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .replace(R.id.container_fragment, mFragment).commit();
+
+
+                }
 
 
 

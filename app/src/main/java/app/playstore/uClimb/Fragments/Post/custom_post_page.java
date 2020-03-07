@@ -44,17 +44,11 @@ public class custom_post_page extends Fragment {
 
         checkSource(type,view);
 
-        img_post.setOnClickListener(new DoubleClickListener() {
-
+        img_post.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onSingleClick(View v) {
-                //do nothing
-
-            }
-
-            @Override
-            public void onDoubleClick(View v) {
+            public boolean onLongClick(View v) {
                 Toast.makeText(getContext(), "Liked", Toast.LENGTH_SHORT).show();
+                return true;
 
             }
         });
@@ -111,8 +105,8 @@ public class custom_post_page extends Fragment {
     }
 
     private void initViews(@NonNull View view) {
-        img_post = view.findViewById(R.id.img_post_custom);
-        videoView = view.findViewById(R.id.video_post_custom);
+     //   img_post = view.findViewById(R.id.img_post_custom);
+     //   videoView = view.findViewById(R.id.video_post_custom);
     }
 
 

@@ -161,7 +161,7 @@ public class Boulderspot_Sign_Up extends AppCompatActivity implements GoogleApiC
                             register_new_user_to_realtime();
 
                             //myRef.child(mAuth.getUid()).child("PWD").setValue(pwd);
-                            intent_to_extra();
+                            intent_to_Main();
 
 
                         } else {
@@ -196,21 +196,25 @@ public class Boulderspot_Sign_Up extends AppCompatActivity implements GoogleApiC
     }
 
     private String getTimeStamp_in_ISO8601() {
-        TimeZone tz = TimeZone.getTimeZone("UTC");
+        TimeZone tz = TimeZone.getTimeZone("UTC+01:00");
         @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'"); // Quoted "Z" to indicate UTC, no timezone offset
         df.setTimeZone(tz);
         return df.format(new Date());
     }
 
     private void shared_mAuth_user_id() {
-        SharedPreferences sharedPreferences_UID = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences_UID = getSharedPreferences("mAuth",Context.MODE_PRIVATE);
         SharedPreferences.Editor shared_edit_first = sharedPreferences_UID.edit();
-        shared_edit_first.putString("mAuth_UID", mAuth.getUid());
+        shared_edit_first.putString("mAuth_UID", mAuth.getUid().toString());
+        shared_edit_first.commit();
         shared_edit_first.apply();
+        Log.d(TAG,"mAUth_UID"+ mAuth.getUid()+"shared:" +sharedPreferences_UID.getString("mAuth_UID",null));
+        Toast.makeText(this, "mAUth" + mAuth.getUid()+ "shared:" + sharedPreferences_UID.getString("mAuth_UID",null), Toast.LENGTH_SHORT).show();
+
     }
 
-    private void intent_to_extra() {
-        Intent intent = new Intent(Boulderspot_Sign_Up.this, extra_questions_register.class);
+    private void intent_to_Main() {
+        Intent intent = new Intent(Boulderspot_Sign_Up.this, MainActivity.class);
         startActivity(intent);
         Boulderspot_Sign_Up.this.finish();
     }

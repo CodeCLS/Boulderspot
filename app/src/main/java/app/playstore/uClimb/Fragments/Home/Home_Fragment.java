@@ -1,6 +1,7 @@
 package app.playstore.uClimb.Fragments.Home;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,16 +30,16 @@ import java.util.Objects;
 import app.playstore.uClimb.Adapters.Adapter_home;
 import app.playstore.uClimb.Fragments.video_upload_fragment;
 import app.playstore.uClimb.R;
+import app.playstore.uClimb.ViewModelFragments.current_user_presenter;
+import app.playstore.uClimb.ViewModelFragments.home_posts_presenter;
 
-public class Home_Fragment extends Fragment {
+public class Home_Fragment extends Fragment implements home_posts_presenter.display {
     private static final String TAG = "Home Fragment";
     private String name_fire;
     private String URL;
     private FirebaseAuth mAuth;
     final Bundle bundle = new Bundle();
     private ArrayList<String> post = new ArrayList<>();
-
-
     private ArrayList<String> IMG_URL = new ArrayList<>();
     private ArrayList<String> grade = new ArrayList<>();
     private ArrayList<String> place = new ArrayList<>();
@@ -51,7 +52,6 @@ public class Home_Fragment extends Fragment {
     private ArrayList<String> likes = new ArrayList<>();
 
     //Adapter home is init
-    private Adapter_home adapter_home = new Adapter_home(IMG_URL, grade, place, name, info,  video_url, ID_User, likes,post, getContext());
     //Firebase values are init
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef = database.getReference("User");
@@ -68,14 +68,36 @@ public class Home_Fragment extends Fragment {
     }
 
 
-
-
-
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //readDB();
+        initreadDB(view);
+
+
+        cleararrays();
+
+
+
+
+    }
+
+    private void initreadDB(View view) {
+        SharedPreferences sharedPreferences_UID = getContext().getSharedPreferences("mAuth",Context.MODE_PRIVATE);
+
+
+
+
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("mAuth" , Context.MODE_PRIVATE);
+        String mAuth = sharedPreferences_UID.getString("mAuth_UID",null);
+        Log.d(TAG,"mauth"+mAuth);
+
+        home_posts_presenter home_posts_presenter = new home_posts_presenter(this);
+        home_posts_presenter.setData(view,mAuth,getContext());
+
+    }
+
+
+    private void cleararrays() {
         IMG_URL.clear();
         name.clear();
         info.clear();
@@ -85,37 +107,10 @@ public class Home_Fragment extends Fragment {
         post.clear();
         grade.clear();
         place.clear();
-
-        IMG_URL.add("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Folder%2Fmelody-jacob-hb8v-SZm7VY-unsplash.jpg?alt=media&token=d9daa0e9-a575-4c6a-8143-e19acc2b1649");
-        grade.add("7+");
-        place.add("Berta");
-        name.add("Caleb");
-        info.add("Calebs info");
-        video_url.add("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Folder%2FUltimateCheerfulCanine-mobile.mp4?alt=media&token=c132bed7-a412-4e99-a475-d0a0c8a8c89c");
-        ID_User.add("asfdafs");
-        likes.add("2");
-        post.add("adsdads");
-
-        setRec(view);
-
-
-        floatingAction(view);
-
-
     }
 
 
 
-    private void floatingAction(@NonNull View view) {
-        FloatingActionButton plus_img = view.findViewById(R.id.plus_img);
-        plus_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                fragmentTransactiontoUpload();
-            }
-        });
-    }
 
     private void fragmentTransactiontoUpload() {
         video_upload_fragment mFragment = new video_upload_fragment();
@@ -125,19 +120,11 @@ public class Home_Fragment extends Fragment {
         assert fragmentManager != null;
 
 
-
         fragmentManager.beginTransaction().addToBackStack("video").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .replace(R.id.container_fragment, mFragment).commit();
     }
 
-    private void setRec(@NonNull View view) {
-        RecyclerView rec;
 
-        rec = view.findViewById(R.id.rec_home);
-        rec.setAdapter(adapter_home);
-
-        rec.setLayoutManager(new LinearLayoutManager(getContext()));
-    }
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -150,14 +137,13 @@ public class Home_Fragment extends Fragment {
     public void onStart() {
         super.onStart();
         mAuth = FirebaseAuth.getInstance();
-        Log.d(TAG,"my"+myRef);
+        Log.d(TAG, "my" + myRef);
 
     }
 
 
-
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
 
 
@@ -167,56 +153,12 @@ public class Home_Fragment extends Fragment {
 
 
 
-
-
-
-
-
-
-
-
-
-    private void logs_getting_data(@NonNull DataSnapshot dataSnapshot, DataSnapshot postsnapshot, DataSnapshot datasnapshot1, String key) {
-        Log.d(TAG,"Datasnapshot" + dataSnapshot);
-        Log.d(TAG,"Datasnapshot1"+datasnapshot1);
-        Log.d(TAG,"STepOneData"+datasnapshot1.child(key).child("Posts"));
-        Log.d(TAG,"post_data" + Objects.requireNonNull(postsnapshot.getValue()).toString());
-    }
-
-
-
-        //
-        //
-        //
-        //
-
-
-
-    //info.add(Objects.requireNonNull(postsnapshot.child("Description").getValue()).toString());
-        //video_url.add(Objects.requireNonNull(postsnapshot.child("Content").getValue()).toString());
-        //ID_video.add(postsnapshot.getKey());
-        //likes.add(Objects.requireNonNull(postsnapshot.child("Likes").getValue()).toString());
-        //place.add(Objects.requireNonNull(postsnapshot.child("Place").getValue()).toString());
-        //ID_User.add(Objects.requireNonNull(postsnapshot.child("Uploader").getValue()).toString());
-        //grade.add(Objects.requireNonNull(postsnapshot.child("grade").getValue()).toString());
-        //maker.add(Objects.requireNonNull(postsnapshot.child("maker").getValue()).toString());
-        //IMG_URL.add(Objects.requireNonNull(postsnapshot.child("IMG").getValue()).toString());
-        //name.add(Objects.requireNonNull(postsnapshot.child("Name").getValue()).toString());
-
-
-    private void clearArrayLists() {
-        info.clear();
-        video_url.clear();
-        place.clear();
-        likes.clear();
-        IMG_URL.clear();
-        grade.clear();
-        ID_User.clear();
-        name.clear();
-
+    @Override
+    public void allPostData(Bundle bundle) {
 
 
     }
+
 
 
 }

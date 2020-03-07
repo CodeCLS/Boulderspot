@@ -2,7 +2,10 @@ package app.playstore.uClimb.Main;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationListener;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,32 +22,54 @@ import com.flarebit.flarebarlib.Flaretab;
 import com.flarebit.flarebarlib.TabEventObject;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 import app.playstore.uClimb.Fragments.Community_Fragment;
+import app.playstore.uClimb.Fragments.Profile.Profile_Fragment;
 import app.playstore.uClimb.Notifaction.Base_Internet;
 import app.playstore.uClimb.DB.FeedReaderDBHelper;
 import app.playstore.uClimb.Fragments.Search.Search_Fragment;
 import app.playstore.uClimb.Fragments.Home.Home_Fragment;
 import app.playstore.uClimb.R;
+import app.playstore.uClimb.ViewModelFragments.current_user_presenter;
+import app.playstore.uClimb.ViewModelFragments.home_posts_presenter;
 
-public class MainActivity extends Base_Internet {
+public class MainActivity extends Base_Internet  {
 
     private static final String TAG = "Main";
     private static final String COLUMN_NAME_TITLE = "Caleb";
     private static final String COLUMN_NAME_SUBTITLE = "Info";
     private FirebaseAuth mAuth;
     private FloatingActionButton plus_img;
-    private View includeView;
-    private ImageView img_home  ;
-    private ImageView img_event ;
-    private ImageView img_course ;
-    private ImageView img_location ;
-    private View line_home;
-    private View line_event;
-    private View line_course;
-    private View line_location;
+    private ArrayList IMG   = new ArrayList();
+    private ArrayList source= new ArrayList();
+    private ArrayList info_user  = new ArrayList();
+    private ArrayList name_user  = new ArrayList();
+    private ArrayList place_user = new ArrayList();
+    private ArrayList<String> post = new ArrayList<>();
+    private ArrayList<String> IMG_URL = new ArrayList<>();
+    private ArrayList<String> grade = new ArrayList<>();
+    private ArrayList<String> place = new ArrayList<>();
+    private ArrayList<String> seen_by = new ArrayList<>();
+    private ArrayList<String> name = new ArrayList<>();
+    private ArrayList<String> info = new ArrayList<>();
+
+    private ArrayList<String> video_url = new ArrayList<>();
+    private ArrayList<String> ID_User = new ArrayList<>();
+    private ArrayList<String> likes = new ArrayList<>();
+
+    private ArrayList following = new ArrayList();
+
+//    private SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+
+
+
     private FeedReaderDBHelper dbHelper = new FeedReaderDBHelper(MainActivity.this);
 
 
@@ -52,6 +77,11 @@ public class MainActivity extends Base_Internet {
 
 
     private static final String CHANNEL_ID = "boulder";
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,16 +92,17 @@ public class MainActivity extends Base_Internet {
        //             .add(R.id.container_fragment, new Home_Fragment()).commit();
        // }
 // Gets the data repository in write mode();
+        //            String mAuth = sharedPreferences.getString("mAuth", null);
 
         initAuth();
         initViews();
-        setOnclick();
         setHomeFragment();
         sendNotification();
 
         // Gets an instance of the NotificationManager service//
 
     }
+
 
 
 
@@ -117,49 +148,44 @@ public class MainActivity extends Base_Internet {
 
         bottomBar.setTabList(tabs);
         bottomBar.attachTabs(this);
-        bottomBar.setTabChangedListener(new TabEventObject.TabChangedListener() {
-            @Override
-            public void onTabChanged(LinearLayout selectedTab, int selectedIndex, int oldIndex) {
-                //tabIndex starts from 0 (zero). Example : 4 tabs = last Index - 3
-               if (selectedIndex == 0) {
-                   Home_Fragment mFragment_Home= new Home_Fragment();
-                   FragmentManager fragmentManager_search = getSupportFragmentManager();
-                   fragmentManager_search.beginTransaction()
-                           .replace(R.id.container_fragment, mFragment_Home).commit();
+        bottomBar.setTabChangedListener((selectedTab, selectedIndex, oldIndex) -> {
+            //tabIndex starts from 0 (zero). Example : 4 tabs = last Index - 3
+           if (selectedIndex == 0) {
+               Home_Fragment mFragment_Home= new Home_Fragment();
+               FragmentManager fragmentManager_search = getSupportFragmentManager();
+               fragmentManager_search.beginTransaction()
+                       .replace(R.id.container_fragment, mFragment_Home).commit();
 
-               }
+           }
 
-                if (selectedIndex == 1) {
-                    Search_Fragment mFragment_Search = new Search_Fragment();
-                    FragmentManager fragmentManager_search = getSupportFragmentManager();
-                    fragmentManager_search.beginTransaction()
-                            .replace(R.id.container_fragment, mFragment_Search).commit();
+            if (selectedIndex == 1) {
+                Search_Fragment mFragment_Search = new Search_Fragment();
+                FragmentManager fragmentManager_search = getSupportFragmentManager();
+                fragmentManager_search.beginTransaction()
+                        .replace(R.id.container_fragment, mFragment_Search).commit();
 
-                }
+            }
 
-                if (selectedIndex == 2) {
-                    Community_Fragment mFragment_Search = new Community_Fragment();
-                    FragmentManager fragmentManager_search = getSupportFragmentManager();
-                    fragmentManager_search.beginTransaction()
-                            .replace(R.id.container_fragment, mFragment_Search).commit();
+            if (selectedIndex == 2) {
+                Community_Fragment mFragment_Community = new Community_Fragment();
+                FragmentManager fragmentManager_community = getSupportFragmentManager();
+                fragmentManager_community.beginTransaction()
+                        .replace(R.id.container_fragment, mFragment_Community).commit();
 
-                }
+            }
 
-                if (selectedIndex == 3) {
-                    Search_Fragment mFragment_Search = new Search_Fragment();
-                    FragmentManager fragmentManager_search = getSupportFragmentManager();
-                    fragmentManager_search.beginTransaction()
-                            .replace(R.id.container_fragment, mFragment_Search).commit();
+            if (selectedIndex == 3) {
+                Profile_Fragment mFragment_profile = new Profile_Fragment();
+                FragmentManager fragmentManager_profile = getSupportFragmentManager();
+                fragmentManager_profile.beginTransaction()
+                        .replace(R.id.container_fragment, mFragment_profile).commit();
 
-                }
+            }
 
-                     //           .replace(R.id.container_fragment, mFragment).commit();
-                     //   setAlpha(1);
+                 //           .replace(R.id.container_fragment, mFragment).commit();
+                 //   setAlpha(1);
 //
-                }
-
-
-        });
+            });
 
 
 
@@ -195,122 +221,7 @@ public class MainActivity extends Base_Internet {
             notificationManager.createNotificationChannel(channel);
         }
     }
-    private void setOnclick() {
-     //  img_course.setOnClickListener(new View.OnClickListener() {
-     //      @Override
-     //      public void onClick(View v) {
 
-
-     //          Home_Fragment mFragment = new Home_Fragment();
-     //          FragmentManager fragmentManager = getSupportFragmentManager();
-     //          fragmentManager.beginTransaction()
-     //                  .replace(R.id.container_fragment, mFragment).commit();
-     //          setAlpha(3);
-
-
-     //      }
-     //  });
-     //  img_event.setOnClickListener(new View.OnClickListener() {
-     //      @Override
-     //      public void onClick(View v) {
-     //          Search_Fragment mFragment = new Search_Fragment();
-     //          FragmentManager fragmentManager = getSupportFragmentManager();
-     //          fragmentManager.beginTransaction()
-     //                  .replace(R.id.container_fragment, mFragment).commit();
-     //          setAlpha(2);
-
-     //      }
-     //  });
-     //  img_location.setOnClickListener(new View.OnClickListener() {
-     //      @Override
-     //      public void onClick(View v) {
-     //          Home_Fragment mFragment = new Home_Fragment();
-     //          FragmentManager fragmentManager = getSupportFragmentManager();
-     //          fragmentManager.beginTransaction()
-     //                  .replace(R.id.container_fragment, mFragment).commit();
-     //          setAlpha(4);
-
-
-     //      }
-     //  });
-
-     //  img_home.setOnClickListener(new View.OnClickListener() {
-     //      @Override
-     //      public void onClick(View v) {
-     //          Home_Fragment mFragment = new Home_Fragment();
-     //          FragmentManager fragmentManager = getSupportFragmentManager();
-     //          fragmentManager.beginTransaction()
-     //                  .replace(R.id.container_fragment, mFragment).commit();
-     //          setAlpha(1);
-
-     //      }
-     //  });
-    }
-
-    private void reveal_line(int i) {
-        switch(i){
-            case 1:
-                line_location.setVisibility(View.INVISIBLE);
-                line_event.setVisibility(View.INVISIBLE);
-                line_course.setVisibility(View.INVISIBLE);
-                line_home.setVisibility(View.VISIBLE);
-            case 2:
-                line_location.setVisibility(View.INVISIBLE);
-                line_event.setVisibility(View.VISIBLE);
-                line_course.setVisibility(View.INVISIBLE);
-                line_home.setVisibility(View.INVISIBLE);
-            case 3:
-                line_location.setVisibility(View.INVISIBLE);
-                line_event.setVisibility(View.INVISIBLE);
-                line_course.setVisibility(View.VISIBLE);
-                line_home.setVisibility(View.INVISIBLE);
-            case 4:
-                line_location.setVisibility(View.VISIBLE);
-                line_event.setVisibility(View.INVISIBLE);
-                line_course.setVisibility(View.INVISIBLE);
-                line_home.setVisibility(View.INVISIBLE);
-
-
-        }
-
-    }
-    private void setAlpha(int i){
-        switch(i){
-            case 1:
-                Log.d(TAG,"case: " + i);
-                img_home.setAlpha(1f);
-                img_event.setAlpha(1/2f);
-                img_course.setAlpha(1/2f);
-                img_location.setAlpha(1/2f);
-
-            case 2:
-                Log.d(TAG,"case: " + i);
-
-
-                img_home.setAlpha(1/2f);
-                img_event.setAlpha(1f);
-                img_course.setAlpha(0.5f);
-                img_location.setAlpha(0.5f);
-            case 3:
-                Log.d(TAG,"case: " + i);
-
-                img_home.setAlpha(0.5f);
-                img_event.setAlpha(0.5f);
-                img_course.setAlpha(1.0f);
-                img_location.setAlpha(0.5f);
-            case 4:
-                Log.d(TAG,"case: " + i);
-
-                img_home.setAlpha(0.5f);
-                img_event.setAlpha(0.5f);
-                img_course.setAlpha(0.5f);
-                img_location.setAlpha(1.0f);
-
-
-        }
-
-
-    }
 
 
 }
