@@ -166,10 +166,10 @@
         android:layout_marginTop="16dp"
         android:src="@mipmap/testimg"
         app:layout_constraintStart_toEndOf="@+id/abaf"
-        app:layout_constraintBottom_toTopOf="@+id/constraing_num1231q321"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/abaf" />
+        app:layout_constraintTop_toTopOf="@+id/abaf"
+        tools:ignore="NotSibling" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

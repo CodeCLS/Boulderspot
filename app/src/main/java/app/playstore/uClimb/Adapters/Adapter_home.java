@@ -1,5 +1,7 @@
 package app.playstore.uClimb.Adapters;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import androidx.annotation.NonNull;
@@ -14,10 +16,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.ViewTreeObserver;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,6 +51,10 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private ArrayList<String> array_likes = new ArrayList();
     private static final String TAG = "adapter_home";
     private boolean anim_boolean_status = false;
+    private int weight_linear_name = 1;
+    private float weight_comment = (int) 1.5;
+    private int weight_linear_text =1;
+
 
 
     private ArrayList<String> likes;
@@ -56,9 +65,14 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private Boolean exists;
     private FirebaseAuth mAuth;
     public static final int layout_one = 1;
-    private double l = (float)1;
+    private double l = (float)3;
+    private double i_anim = (float)1.5;
+    private double q = (float)1;
+
+    private double w = (float)1.2;
     public static final int layout_two = 2;
-    private double i = (float)1;
+
+
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private final DatabaseReference myRef = database.getReference("Posts");
@@ -67,6 +81,17 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private boolean anim_boolean_status_source = false;
     private int grow_num_layout = 0;
     private float text_size_comment_txt = 13;
+    private int height_anim2;
+    private long long_time_anim_comment_duration = 1000;
+    private long long_time_anim_comment_delay = 0;
+    private long long_time_anim_tools_duration = 1000;
+    private long long_time_anim_tools_delay = 0;
+    private long long_time_anim_text_inside_duration = 1000;
+    private long long_time_anim_text_inside_delay = 0;
+    private long long_time_anim_abc_duration = 1000;
+    private long long_time_anim_abc_delay = 0;
+    private long long_time_anim_layout_duration = 1000;
+    private long long_time_anim_layout_delay = 500;
 
     @Override
     public int getItemViewType(final int position) {
@@ -133,6 +158,7 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, int i) {
+
         i = i-1;
         Log.d("adapter_home", "context_home" + mContext);
         if (viewHolder.getItemViewType() == 0) {
@@ -164,61 +190,49 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         if (viewHolder.getItemViewType() == 1) {
             Adapter_home.ViewHolder viewHolder_normal = (ViewHolder) viewHolder;
-
-            viewHolder_normal.video_view.setOnClickListener(new View.OnClickListener() {
+            ViewTreeObserver viewTreeObserver = viewHolder_normal.home_custom.getViewTreeObserver();
+            viewTreeObserver.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
                 @Override
-                public void onClick(View v) {
-                    if (anim_boolean_status_source){
-                        return;
+                public boolean onPreDraw() {
+                    if (viewHolder_normal.home_custom.getMeasuredWidth() > 0) {
+                        viewHolder_normal.home_custom.getViewTreeObserver().removeOnPreDrawListener(this);
+                        height_anim2 = viewHolder_normal.home_custom.getMeasuredHeight();
 
+                        //Do something with width and height here!
                     }
-                    else {
-                      // if (grow_num_layout<=5) {
-                      //     grow_num_layout++;
-                      //     Log.d(TAG,"grow_num"+grow_num_layout);
-
-                      //     ValueAnimator anim = ValueAnimator.ofInt(viewHolder_normal.video_view.getMeasuredHeight(), viewHolder_normal.home_custom.getMeasuredHeight() + grow_num_layout);
-                      //     anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                      //         @Override
-                      //         public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                      //             int val = (Integer) valueAnimator.getAnimatedValue();
-                      //             ViewGroup.LayoutParams layoutParams = viewHolder_normal.home_custom.getLayoutParams();
-                      //             layoutParams.height = val;
-                      //             viewHolder_normal.home_custom.setLayoutParams(layoutParams);
-                      //         }
-                      //     });
-                      //     anim.setDuration(2000);
-                      //     anim.start();
-                      // }
-                      // else{
-                      //     return;
-                      // }
-                    }
-
+                    return true; // Continue with the draw pass, as not to stop it
                 }
             });
+            Log.d(TAG,"anim2first" + height_anim2 + "measure" + viewHolder_normal.home_custom.getY());
 
-            viewHolder_normal.text_inside.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //viewHolder_normal.text_inside.animate().scaleY(2);
+            viewHolder_normal.video_view.setOnClickListener(v -> {
+                if (!anim_boolean_status_source){
+                    if (grow_num_layout<=5) {
+                        grow_num_layout++;
+
                 }
+
+
+                }
+
             });
-            viewHolder_normal.home_custom.setOnClickListener(new View.OnClickListener() {
 
-                @Override
-                public void onClick(View v) {
-                    if (anim_boolean_status){
-                        return;
+
+
+            viewHolder_normal.text_inside.setOnClickListener(v -> {
+                //viewHolder_normal.text_inside.animate().scaleY(2);
+            });
+            height_anim2 = viewHolder_normal.home_custom.getMeasuredHeight();
+
+            viewHolder_normal.text_inside.setOnClickListener(v -> {
+                if (!anim_boolean_status){
+                    if (grow_num_layout <= 10) {
+                        animation_layout_and_text(viewHolder_normal);
+
 
                     }
-                    else {
-                        if (grow_num_layout >= 5) {
 
-                        } else {
-                            animation_layout_and_text(viewHolder_normal);
-                        }
-                    }
+
                 }
             });
 
@@ -232,44 +246,107 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     private void animation_layout_and_text(ViewHolder viewHolder_normal) {
-        grow_num_layout++;
-        ValueAnimator anim = ValueAnimator.ofInt(viewHolder_normal.text_inside.getMeasuredHeight(), viewHolder_normal.text_inside.getMeasuredHeight() + 500);
-        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+
+
+
+        if (!anim_boolean_status) {
+            anim_boolean_status = true;
+            grow_num_layout++;
+            all_animations_for_custom_home(viewHolder_normal);
+
+
+        }
+    }
+
+    private void all_animations_for_custom_home(ViewHolder viewHolder_normal) {
+        animate_weight_change_text_inside(viewHolder_normal);
+        animate_height_change_home(viewHolder_normal);
+        //viewHolder_normal.abc.setLayoutParams(new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, (float) w));
+
+        //text_size_comment_txt = text_size_comment_txt - 10;
+        animate_weight_change_comment_txt(viewHolder_normal);
+
+        animate_weight_change_tools_layout(viewHolder_normal);
+        //viewHolder_normal.tools_btn_layout.setLayoutParams(new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,
+        //LayoutParams.MATCH_PARENT, (float) i));
+
+        animate_weight_change_abc(viewHolder_normal);
+    }
+
+    private void animate_weight_change_text_inside(ViewHolder viewHolder_normal) {
+        ValueAnimator m1 = ValueAnimator.ofFloat((float)q, (float)q-(float)0.05); //fromWeight, toWeight
+        q = q-0.05;
+        m1.setDuration(long_time_anim_text_inside_duration);
+        m1.setStartDelay(long_time_anim_text_inside_delay);
+        m1.setInterpolator(new LinearInterpolator());
+        m1.addUpdateListener(animation -> {
+            ((LinearLayout.LayoutParams) viewHolder_normal.text_inside.getLayoutParams()).weight = (float) animation.getAnimatedValue();
+            viewHolder_normal.text_inside.requestLayout();
+        });
+        m1.start();
+    }
+
+    private void animate_height_change_home(ViewHolder viewHolder_normal) {
+        Log.d(TAG,"anim2" + height_anim2);
+        ValueAnimator anim2 = ValueAnimator.ofInt(height_anim2, height_anim2+500);
+        height_anim2 = height_anim2 +500;
+        anim2.setStartDelay(long_time_anim_layout_delay);
+
+        anim2.addUpdateListener(valueAnimator -> {
+            int val = (Integer) valueAnimator.getAnimatedValue();
+            LayoutParams layoutParams = viewHolder_normal.home_custom.getLayoutParams();
+            layoutParams.height = val;
+            viewHolder_normal.home_custom.setLayoutParams(layoutParams);
+        });
+        anim2.addListener(new AnimatorListenerAdapter() {
             @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                int val = (Integer) valueAnimator.getAnimatedValue();
-                LayoutParams layoutParams = viewHolder_normal.text_inside.getLayoutParams();
-                layoutParams.height = val;
-                viewHolder_normal.text_inside.setLayoutParams(layoutParams);
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                anim_boolean_status = false;
             }
         });
-        anim.setDuration(2000);
-        anim.start();
-        ValueAnimator anim2 = ValueAnimator.ofInt(viewHolder_normal.home_custom.getMeasuredHeight(), viewHolder_normal.home_custom.getMeasuredHeight() + 500);
-        anim2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                int val = (Integer) valueAnimator.getAnimatedValue();
-                LayoutParams layoutParams = viewHolder_normal.home_custom.getLayoutParams();
-                layoutParams.height = val;
-                viewHolder_normal.home_custom.setLayoutParams(layoutParams);
-            }
-        });
-        anim2.setDuration(2000);
+        anim2.setDuration(long_time_anim_layout_duration);
         anim2.start();
-        i = i+0.5;
-        l = l+0.7;
-        text_size_comment_txt = text_size_comment_txt-10;
+    }
 
-        viewHolder_normal.comments_txt.setLayoutParams(new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT, (float) l));
+    private void animate_weight_change_comment_txt(ViewHolder viewHolder_normal) {
+        ValueAnimator m1 = ValueAnimator.ofFloat((float)i_anim, (float)i_anim+(float)0.5); //fromWeight, toWeight
+        i_anim = i_anim+0.5;
+        m1.setDuration(long_time_anim_comment_duration);
+        m1.setStartDelay(long_time_anim_comment_delay);
+        m1.setInterpolator(new LinearInterpolator());
+        m1.addUpdateListener(animation -> {
+            ((LinearLayout.LayoutParams) viewHolder_normal.comments_txt.getLayoutParams()).weight = (float) animation.getAnimatedValue();
+            viewHolder_normal.comments_txt.requestLayout();
+        });
+        m1.start();
+    }
 
-        viewHolder_normal.comments_txt.setTextSize(text_size_comment_txt);
+    private void animate_weight_change_tools_layout(ViewHolder viewHolder_normal) {
+        //viewHolder_normal.comments_txt.setTextSize(text_size_comment_txt);
+        ValueAnimator m1 = ValueAnimator.ofFloat((float)l, (float)l+(float)0.5); //fromWeight, toWeight
+        l = l+0.5;
+        m1.setDuration(long_time_anim_tools_duration);
+        m1.setStartDelay(long_time_anim_tools_delay);
+        m1.setInterpolator(new LinearInterpolator());
+        m1.addUpdateListener(animation -> {
+            ((LinearLayout.LayoutParams) viewHolder_normal.tools_btn_layout.getLayoutParams()).weight = (float) animation.getAnimatedValue();
+            viewHolder_normal.tools_btn_layout.requestLayout();
+        });
+        m1.start();
+    }
 
-        viewHolder_normal.tools_btn_layout.setLayoutParams(new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,
-                LayoutParams.MATCH_PARENT, (float) i));
-
-
-
+    private void animate_weight_change_abc(ViewHolder viewHolder_normal) {
+        ValueAnimator m1 = ValueAnimator.ofFloat((float)w, (float)w+(float)0.04); //fromWeight, toWeight
+        w = w+0.04;
+        m1.setDuration(long_time_anim_abc_duration);
+        m1.setStartDelay(long_time_anim_abc_delay);
+        m1.setInterpolator(new LinearInterpolator());
+        m1.addUpdateListener(animation -> {
+            ((LinearLayout.LayoutParams) viewHolder_normal.abc.getLayoutParams()).weight = (float) animation.getAnimatedValue();
+            viewHolder_normal.abc.requestLayout();
+        });
+        m1.start();
     }
 
     // Read from the database
@@ -291,82 +368,25 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         viewHolder.name_txt.setText(array_name.get(i));
     }
 
-    private void liking_event(@NonNull ViewHolder viewHolder, int i) {
-        setting_and_changing_boolean_for_liking(i);
-        clicking_like_text(viewHolder, i);
-    }
-
-    private void setting_and_changing_boolean_for_liking(int i) {
-
-        auth = mAuth.getUid();
-        UID = array_user_id.get(i);
-        String_post = array_post_id.get(i);
-
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-
-                exists = dataSnapshot.child(UID).child(String_post).child("Likes").child(auth).exists();
-                Log.d(TAG, "exists2: " + exists);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
-    }
-
-    private void clicking_like_text(@NonNull ViewHolder viewHolder, final int i) {
-       // viewHolder.liked.setOnClickListener(new View.OnClickListener() {
-       //     @Override
-       //     public void onClick(View v) {
-//
-//
-       //         testingliked(UID, String_post, auth, myRef, i);
-//
-//
-       //     }
-       // });
-    }
-
-    private void testingliked(String UID, String string_post, String auth, DatabaseReference myRef, int i) {
-        if (exists) {
-
-            myRef.child(UID).child(string_post).child("Likes").child(auth).getRef().removeValue();
 
 
-        }
-        if (!exists) {
-            myRef.child(UID).child(array_post_id.get(i)).child("Likes").child(auth).setValue(auth);
-
-
-        }
-    }
 
     private void pause_play_video(@NonNull final ViewHolder viewHolder) {
-        viewHolder.video_view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        viewHolder.video_view.setOnClickListener(v -> {
 
-                if (clicked == 0) {
-                    Log.d(TAG, "clicked_first");
-                    viewHolder.video_view.start();
-                    clicked = 1;
-                } else {
-                    viewHolder.video_view.pause();
-                    clicked = 0;
-                    Log.d(TAG, "clicked_second");
-
-
-                }
+            if (clicked == 0) {
+                Log.d(TAG, "clicked_first");
+                viewHolder.video_view.start();
+                clicked = 1;
+            } else {
+                viewHolder.video_view.pause();
+                clicked = 0;
+                Log.d(TAG, "clicked_second");
 
 
             }
+
+
         });
     }
 
@@ -375,8 +395,9 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         return array_source.size() + 1;
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
-        TextView grade_txt;
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        LinearLayout abc;
+        //TextView grade_txt;
         TextView name_txt;
         ImageView img_view;
         de.hdodenhof.circleimageview.CircleImageView IMG_img_profile_pic;
@@ -395,13 +416,14 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         ViewHolder(View view) {
             super(view);
+            abc = view.findViewById(R.id.abc);
             comments_txt = view.findViewById(R.id.comments_txt);
             tools_btn_layout = view.findViewById(R.id.tools_btn_layout_home);
             like_btn = view.findViewById(R.id.img_home_like);
             share_btn = view.findViewById(R.id.img_home_share);
-            name_txt = (TextView) view.findViewById(R.id.txt_username_home);
+            name_txt =  view.findViewById(R.id.txt_username_home);
             IMG_img_profile_pic = view.findViewById(R.id.profile_img_custom_home);
-            info_txt = (TextView) view.findViewById(R.id.txt_info_custom_home);
+            info_txt =  view.findViewById(R.id.txt_info_custom_home);
             video_view = view.findViewById(R.id.video_custom_home);
             img_view = view.findViewById(R.id.img_view_custom_home);
             text_inside = view.findViewById(R.id.text_inside_home);
@@ -411,7 +433,7 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }
 
-    class ViewHolder_training extends RecyclerView.ViewHolder {
+    static class ViewHolder_training extends RecyclerView.ViewHolder {
         LinearLayout layout;
         TextView start_training_txt;
         TextView post_success_txt;
@@ -423,9 +445,9 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         ViewHolder_training(View view) {
             super(view);
-            layout = (LinearLayout) view.findViewById(R.id.rec_training_item_layout);
-            start_training_txt =(TextView) view.findViewById(R.id.txt_start_training);
-            post_success_txt =(TextView) view.findViewById(R.id.txt_post_success);
+            layout =  view.findViewById(R.id.rec_training_item_layout);
+            start_training_txt = view.findViewById(R.id.txt_start_training);
+            post_success_txt = view.findViewById(R.id.txt_post_success);
 
 
 
