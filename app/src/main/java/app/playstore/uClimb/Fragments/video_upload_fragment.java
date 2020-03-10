@@ -75,12 +75,12 @@ public class video_upload_fragment extends Fragment {
     }
 
     private void initViews(View view) {
-        file_name = view.findViewById(R.id.txt_file_upload);
-        info_edit = view.findViewById(R.id.info_edit);
-        grade = view.findViewById(R.id.grade_edit);
-        name_of_location = view.findViewById(R.id.edit_location);
-        upload_btn = view.findViewById(R.id.btn_upload_video);
-        import_btn = view.findViewById(R.id.btn_import_video);
+       //file_name = view.findViewById(R.id.txt_file_upload);
+       //info_edit = view.findViewById(R.id.info_edit);
+       //grade = view.findViewById(R.id.grade_edit);
+       //name_of_location = view.findViewById(R.id.edit_location);
+       //upload_btn = view.findViewById(R.id.btn_upload_video);
+       //import_btn = view.findViewById(R.id.btn_import_video);
     }
 
     @Nullable

@@ -43,6 +43,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/constraing_num1231q321"
+
 
 
             android:layout_weight="0.7">
@@ -50,9 +52,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/constraing_num1231q321"
                 android:background="@color/colorPrimaryDark"
-                android:layout_weight="0.7">
+                android:layout_weight="0.9">
                 <VideoView
                     android:id="@+id/video_custom_home"
                     android:layout_width="wrap_content"
@@ -141,13 +142,31 @@
                     android:padding="5dp"
                     android:layout_marginBottom="10dp"
                     android:text="Comments"
+
                     android:textAlignment="center" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rec_home_custom"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.1"
+
+                    android:layout_weight="0.8"
+                    android:visibility="gone" />
+                <EditText
+                    android:id="@+id/edit_comment_home_custom"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="comment"
+                    android:layout_weight="0.9"
+                    android:visibility="gone" />
+                <Button
+                    android:text="Submit"
+
+
+                    android:id="@+id/btn_comment_home_custom"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.9"
                     android:visibility="gone" />
 
             </LinearLayout>

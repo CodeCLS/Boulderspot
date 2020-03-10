@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 import app.playstore.uClimb.Adapters.Adapter_search;
 import app.playstore.uClimb.R;
+import app.playstore.uClimb.ViewModelFragments.search_presenter.Search_presenter;
 
 public class Search_Fragment extends Fragment {
     private EditText search_edit;
@@ -42,82 +43,15 @@ public class Search_Fragment extends Fragment {
 
 
 
+
     }
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initViewsexceptRec(view);
-        IMG_URL.clear();
-        Date.clear();
-        Location.clear();
-        Info.clear();
-        type_array.clear();
-        IMG_URL.add("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Folder%2FNameYoWantToAdd?alt=media&token=00ab2c0b-6397-4e9a-8c04-c22b3da1e496");
-        Date.add("ada");
-        Location.add("asdasd");
-        Info.add("asdasd");
-        type_array.add("video");
-        IMG_URL.add("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Folder%2FNameYoWantToAdd?alt=media&token=00ab2c0b-6397-4e9a-8c04-c22b3da1e496");
-        Date.add("ada");
-        Location.add("asdasd");
-        Info.add("asdasd");
-        type_array.add("video");
-        IMG_URL.add("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Folder%2FNameYoWantToAdd?alt=media&token=00ab2c0b-6397-4e9a-8c04-c22b3da1e496");
-        Date.add("ada");
-        Location.add("asdasd");
-        Info.add("asdasd");
-        type_array.add("video");
-        IMG_URL.add("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Folder%2FNameYoWantToAdd?alt=media&token=00ab2c0b-6397-4e9a-8c04-c22b3da1e496");
-        Date.add("ada");
-        Location.add("asdasd");
-        Info.add("asdasd");
-        type_array.add("video");
-
-       IMG_URL.add("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Folder%2F141047_00_2x.jpg?alt=media&token=1e726061-5bf6-4738-9dd8-ebb9d531513d");
-       Date.add("ada");
-       Location.add("asdasd");
-       Info.add("asdasd");
-       type_array.add("img");
-
-       IMG_URL.add("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Folder%2F141047_00_2x.jpg?alt=media&token=1e726061-5bf6-4738-9dd8-ebb9d531513d");
-       Date.add("ada");
-       Location.add("asdasd");
-       Info.add("asdasd");
-       type_array.add("img");
-
-       IMG_URL.add("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Folder%2F141047_00_2x.jpg?alt=media&token=1e726061-5bf6-4738-9dd8-ebb9d531513d");
-       Date.add("ada");
-       Location.add("asdasd");
-       Info.add("asdasd");
-       type_array.add("img");
-
-        IMG_URL.add("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Folder%2F141047_00_2x.jpg?alt=media&token=1e726061-5bf6-4738-9dd8-ebb9d531513d");
-        Date.add("ada");
-        Location.add("asdasd");
-        Info.add("asdasd");
-        type_array.add("img");
-
-
-
-        IMG_URL.add("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Folder%2F141047_00_2x.jpg?alt=media&token=1e726061-5bf6-4738-9dd8-ebb9d531513d");
-        Date.add("ada");
-        Location.add("asdasd");
-        Info.add("asdasd");
-        type_array.add("img");
-
-
-
-
-
-        IMG_URL.add("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Folder%2F141047_00_2x.jpg?alt=media&token=1e726061-5bf6-4738-9dd8-ebb9d531513d");
-        Date.add("ada");
-        Location.add("asdasd");
-        Info.add("asdasd");
-        type_array.add("img");
-
-
-
+        Search_presenter search_presenter = new Search_presenter();
+        search_presenter.setRec(view,getContext());
 
 
 

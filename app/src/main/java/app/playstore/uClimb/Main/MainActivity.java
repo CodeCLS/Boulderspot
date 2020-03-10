@@ -2,16 +2,9 @@ package app.playstore.uClimb.Main;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.location.Location;
-import android.location.LocationListener;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.core.app.NotificationCompat;
@@ -19,14 +12,8 @@ import androidx.core.app.NotificationManagerCompat;
 
 import com.flarebit.flarebarlib.FlareBar;
 import com.flarebit.flarebarlib.Flaretab;
-import com.flarebit.flarebarlib.TabEventObject;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -37,8 +24,6 @@ import app.playstore.uClimb.DB.FeedReaderDBHelper;
 import app.playstore.uClimb.Fragments.Search.Search_Fragment;
 import app.playstore.uClimb.Fragments.Home.Home_Fragment;
 import app.playstore.uClimb.R;
-import app.playstore.uClimb.ViewModelFragments.current_user_presenter;
-import app.playstore.uClimb.ViewModelFragments.home_posts_presenter;
 
 public class MainActivity extends Base_Internet  {
 

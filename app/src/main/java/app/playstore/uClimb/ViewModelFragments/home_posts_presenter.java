@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,6 +25,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import app.playstore.uClimb.Adapters.Adapter_home;
+import app.playstore.uClimb.Adapters.Adapter_home_comment;
 import app.playstore.uClimb.Main.MainActivity;
 import app.playstore.uClimb.Models.Model_home;
 import app.playstore.uClimb.R;
@@ -40,11 +42,19 @@ public class home_posts_presenter  {
     private ArrayList<String> array_source_img = new ArrayList();
     private ArrayList<String> array_source = new ArrayList();
     private ArrayList<String> array_info = new ArrayList();
+    private boolean status = false;
+
     private ArrayList<String> array_place = new ArrayList();
     private ArrayList<String> array_user_id = new ArrayList();
+    private ArrayList<String> array_name_comment = new ArrayList();
+    private ArrayList<String> array_time_comment = new ArrayList();
+    private ArrayList<String> array_comment_id = new ArrayList();
+    private ArrayList<String> array_comment = new ArrayList();
+    private ArrayList<String> array_User_ID = new ArrayList();
     private ArrayList<String> array_post_id = new ArrayList();
     private ArrayList<String> array_type = new ArrayList();
     private ArrayList<String> array_likes = new ArrayList();
+    Adapter_home_comment adapter_home_comment = new Adapter_home_comment(array_name_comment,array_comment_id,array_comment,array_User_ID,array_time_comment);
     Adapter_home adapter_home = new Adapter_home(array_time,array_name,array_source_img,array_source,array_info,array_place,array_user_id,array_post_id,array_type,array_likes);
 
 
@@ -53,6 +63,16 @@ public class home_posts_presenter  {
     private home_posts_model model_home;
     private display display;
     private void clearArrayLists() {
+        array_type.clear();
+        array_post_id.clear();
+        array_user_id.clear();
+        array_place.clear();
+        array_info.clear();
+        array_source_img.clear();
+        array_source.clear();
+        array_likes.clear();
+        array_name.clear();
+        array_time.clear();
 
 
     }
@@ -63,17 +83,8 @@ public class home_posts_presenter  {
 
     }
 
-    public void setRecylcerviewandData(View view, Context context){
-
-
-
-
-        initRec(view, context);
-
-
-    }
-
     private void initRec(View view, Context context) {
+
         array_time.add("6:00");
         array_name.add("Caleb");
         array_source.add("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Folder%2FVID_20200128_180436.mp4?alt=media&token=08b6fd4d-3fc1-47e8-9638-83a7309901bb");
@@ -173,6 +184,50 @@ public class home_posts_presenter  {
         bundle.putStringArrayList("array_likes",array_likes);
         return bundle;
     }
+    public void initcomments(RecyclerView rec, Context mContext){
+
+
+        getcommentdata(mContext,rec,array_name, array_time, array_comment_id, array_comment, array_User_ID);
+        rec.setAdapter(adapter_home_comment);
+        rec.setLayoutManager(new LinearLayoutManager(mContext));
+
+    }
+
+    private void getcommentdata(Context mContext,RecyclerView rec,ArrayList<String> array_name, ArrayList<String> array_time, ArrayList<String> array_comment_id, ArrayList<String> array_comment, ArrayList<String> array_User_ID) {
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = firebaseDatabase.getReference("");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot.child("Comments").getChildren()){
+                    String uid= postSnapshot.child("U_ID").getValue().toString();
+                    Log.d(TAG,"uid"+ uid);
+                    String name = dataSnapshot.child("User").child(uid).child("Name").getValue().toString();
+                    array_name_comment.add(name);
+                    Log.d(TAG,"postsnapshotname" + array_name);
+
+                    String time = postSnapshot.child("Time").getValue().toString();
+                    Log.d(TAG,"postsnapshottime" + array_time);
+                    array_time_comment.add(time);
+                    array_comment.add(postSnapshot.child("comment").getValue().toString());
+                    String comment_id = postSnapshot.getKey();
+                    array_comment_id.add(comment_id);
+                    String uid_String = postSnapshot.child("U_ID").getValue().toString();
+                    array_User_ID.add(uid_String);
+
+
+                }
+                rec.setAdapter(adapter_home_comment);
+                rec.setLayoutManager(new LinearLayoutManager(mContext));
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     private DatabaseReference addDatatoArray_postID(String mAuth) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -240,6 +295,32 @@ public class home_posts_presenter  {
                 }
             }
         });
+    }
+    public boolean liked(String id, String mAuth){
+        // Write a message to the database
+        DatabaseReference myRef = initfireliked();
+        // Read from the database
+        setstatusliked(id, mAuth, myRef);
+
+
+        return status;
+
+
+    }
+
+    private void setstatusliked(String id, String mAuth, DatabaseReference myRef) {
+        myRef.child("Posts").child(id).child("likes").child(mAuth).setValue(mAuth, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+                status = true;
+
+            }
+        });
+    }
+
+    private DatabaseReference initfireliked() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        return database.getReference("");
     }
 
     private void for_loop_posts(DatabaseReference myRef_posts) {

@@ -7,171 +7,82 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="40dp"
-        android:background="@drawable/background_box"
-        app:layout_constraintBottom_toTopOf="@+id/linear_box"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <EditText
-
-            android:id="@+id/info_edit"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:ems="10"
-            android:hint="Info about this boulder"
-            android:inputType="textPersonName" />
-    </LinearLayout>
-
-
-
-
-
-    <View
-        android:id="@+id/line_7"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="5dp"
-        android:background="#707070"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txt_upload_video"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Upload Video"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/line_7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btn_import_video"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/custom_log_in_button"
-        android:text="Import"
-        android:textColor="#fff"
-        app:layout_constraintBottom_toBottomOf="@+id/txt_file_upload"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line_7"
-        app:layout_constraintTop_toTopOf="@id/line_7" />
-
-    <Button
-        android:id="@+id/btn_upload_video"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="100dp"
-        android:background="@drawable/custom_log_in_button"
-        android:text="Upload"
-        android:textColor="#fff"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line_7"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/txt_file_upload"
-        android:layout_width="249dp"
-        android:layout_height="85dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:gravity="center_vertical"
-        android:paddingStart="5dp"
-        android:text="TextView"
-
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.809"
-        app:layout_constraintStart_toEndOf="@+id/btn_import_video"
-        app:layout_constraintTop_toTopOf="@+id/line_7"
-        app:layout_constraintVertical_bias="0.593" />
-
-
-
-
-
-
-    <LinearLayout
-        android:id="@+id/linear_box"
-        android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/btn_upload_video"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_margin="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@drawable/background_box">
-
-
-            <EditText
-                android:id="@+id/edit_location"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:ems="10"
-                android:hint="Grade"
-                android:inputType="textPersonName"
-
-                app:layout_constraintVertical_bias="0.527" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_margin="5dp"
-
-
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/background_box">
+            android:layout_weight="1.5"
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Here you can add videos and photos of your success. If you are just posting videos and photos for fun thats of course no problem"
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/grade_edit"
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:text="Access Gallery" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:ems="10"
-                android:hint="Location"
-                android:inputType="textPersonName" />
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:text="How difficult was your workound for you?"
+                    android:textSize="15sp" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Easy" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Medium " />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Hard " />
+            </LinearLayout>
 
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+        </LinearLayout>
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

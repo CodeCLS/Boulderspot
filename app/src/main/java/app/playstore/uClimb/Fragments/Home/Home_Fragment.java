@@ -8,8 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.Scene;
 
 import android.util.Log;
@@ -17,20 +15,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
 import java.util.ArrayList;
-import java.util.Objects;
 
-import app.playstore.uClimb.Adapters.Adapter_home;
 import app.playstore.uClimb.Fragments.video_upload_fragment;
 import app.playstore.uClimb.R;
-import app.playstore.uClimb.ViewModelFragments.current_user_presenter;
 import app.playstore.uClimb.ViewModelFragments.home_posts_presenter;
 
 public class Home_Fragment extends Fragment implements home_posts_presenter.display {
