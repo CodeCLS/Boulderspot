@@ -5,27 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_gravity="center"
+    android:background="#6BDADADA"
+    android:layout_gravity="center">
 
-    >
-    <include
-    android:id="@+id/include"
-    layout="@layout/search_bar"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_weight="8"
-     />
-
-    <include
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rec_search_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="8dp"
-        layout="@layout/search_custom_recyclerview"
-        android:layout_weight="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
+        android:layout_height="match_parent" />
+
+
+
+
+
 
 
 </LinearLayout>
+
+

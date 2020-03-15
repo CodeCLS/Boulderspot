@@ -13,11 +13,17 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.anychart.AnyChart;
+import com.anychart.AnyChartView;
+import com.anychart.chart.common.dataentry.DataEntry;
+import com.anychart.chart.common.dataentry.ValueDataEntry;
+import com.anychart.charts.Pie;
 import com.flarebit.flarebarlib.FlareBar;
 import com.flarebit.flarebarlib.Flaretab;
 import com.flarebit.flarebarlib.TabEventObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import app.playstore.uClimb.Fragments.Community_Fragment;
 import app.playstore.uClimb.Fragments.Home.Home_Fragment;
@@ -36,6 +42,17 @@ public class Profile_Fragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Toast.makeText(getContext(), "Hey", Toast.LENGTH_SHORT).show();
         initViews(view);
+        Pie pie = AnyChart.pie();
+
+        List<DataEntry> data = new ArrayList<>();
+        data.add(new ValueDataEntry("John", 10000));
+        data.add(new ValueDataEntry("Jake", 12000));
+        data.add(new ValueDataEntry("Peter", 18000));
+
+        pie.data(data);
+
+        AnyChartView anyChartView = (AnyChartView) view.findViewById(R.id.profile_statistics_chart);
+        anyChartView.setChart(pie);
 
 
     }
@@ -44,60 +61,10 @@ public class Profile_Fragment extends Fragment {
 
     private void initViews(View view) {
 
-        final FlareBar bottomBar = view.findViewById(R.id.flare_bar_profile);
-        bottomBar.setBarBackgroundColor(Color.parseColor("#FFFFFF"));
-        ArrayList<Flaretab> tabs = new ArrayList<>();
-        tabs.add(new Flaretab(getResources().getDrawable(R.drawable.inboxb),"Home","#FFECB3"));
-        tabs.add(new Flaretab(getResources().getDrawable(R.drawable.searchb),"Search","#80DEEA"));
-        tabs.add(new Flaretab(getResources().getDrawable(R.drawable.phoneb),"Community","#B39DDB"));
-        tabs.add(new Flaretab(getResources().getDrawable(R.drawable.avatarb),"Training","#EF9A9A"));
-        tabs.add(new Flaretab(getResources().getDrawable(R.drawable.settingsb),"Settings","#B2DFDB"));
-
-        bottomBar.setTabList(tabs);
-        bottomBar.attachTabs(getContext());
-        bottomBar.setTabChangedListener(new TabEventObject.TabChangedListener() {
-            @Override
-            public void onTabChanged(LinearLayout selectedTab, int selectedIndex, int oldIndex) {
-                //tabIndex starts from 0 (zero). Example : 4 tabs = last Index - 3
-                if (selectedIndex == 0) {
-                    Home_Fragment mFragment_Home= new Home_Fragment();
-                    FragmentManager fragmentManager_search = getChildFragmentManager();
-                    fragmentManager_search.beginTransaction()
-                            .replace(R.id.container_fragment, mFragment_Home).commit();
-
-                }
-
-                if (selectedIndex == 1) {
-                    Search_Fragment mFragment_Search = new Search_Fragment();
-                    FragmentManager fragmentManager_search =  getChildFragmentManager();
-                    fragmentManager_search.beginTransaction()
-                            .replace(R.id.container_fragment, mFragment_Search).commit();
-
-                }
-
-                if (selectedIndex == 2) {
-                    Community_Fragment mFragment_Community = new Community_Fragment();
-                    FragmentManager fragmentManager_community =  getChildFragmentManager();
-                    fragmentManager_community.beginTransaction()
-                            .replace(R.id.container_fragment, mFragment_Community).commit();
-
-                }
-
-                if (selectedIndex == 3) {
-                    app.playstore.uClimb.Fragments.Profile.Profile_Fragment mFragment_profile = new Profile_Fragment();
-                    FragmentManager fragmentManager_profile =  getChildFragmentManager();
-                    fragmentManager_profile.beginTransaction()
-                            .replace(R.id.container_fragment, mFragment_profile).commit();
-
-                }
-
-                //           .replace(R.id.container_fragment, mFragment).commit();
-                //   setAlpha(1);
-//
-            }
 
 
-        });
+
+
 
 
 

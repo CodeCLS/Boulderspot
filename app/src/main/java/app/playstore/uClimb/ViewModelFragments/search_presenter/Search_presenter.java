@@ -16,7 +16,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import app.playstore.uClimb.Adapters.Adapter_search;
+import app.playstore.uClimb.Adapters.Adapter_search_inner;
 import app.playstore.uClimb.R;
 
 public class Search_presenter {
@@ -56,7 +56,8 @@ public class Search_presenter {
         rec.setLayoutManager(new GridLayoutManager(mContext,numbercolumns));
 
 
-        rec.setAdapter(new Adapter_search(URL,Date,Location,info,type_array,mContext));
+        rec.setAdapter(new Adapter_search_inner(URL,Date,Location,info,type_array,mContext));
+        Log.d(TAG,"recyclerview" + URL + " rec:" + rec);
 
 
 

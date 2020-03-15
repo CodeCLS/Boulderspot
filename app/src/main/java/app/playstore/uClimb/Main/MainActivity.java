@@ -1,7 +1,9 @@
 package app.playstore.uClimb.Main;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -68,11 +70,14 @@ public class MainActivity extends Base_Internet  {
         super.onStart();
     }
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
-       // if (savedInstanceState == null) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        // if (savedInstanceState == null) {
        //     getSupportFragmentManager().beginTransaction()
        //             .add(R.id.container_fragment, new Home_Fragment()).commit();
        // }

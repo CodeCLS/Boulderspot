@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 
 import app.playstore.uClimb.Adapters.Adapter_search;
+import app.playstore.uClimb.Adapters.Adapter_search_inner;
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.ViewModelFragments.search_presenter.Search_presenter;
 
@@ -50,8 +52,7 @@ public class Search_Fragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initViewsexceptRec(view);
-        Search_presenter search_presenter = new Search_presenter();
-        search_presenter.setRec(view,getContext());
+
 
 
 
@@ -88,12 +89,9 @@ public class Search_Fragment extends Fragment {
     }
 
     private void initRec(@NonNull View view) {
-        RecyclerView rec = view.findViewById(R.id.rec_search_page);
-        int numbercolumns = 2;
-        rec.setLayoutManager(new GridLayoutManager(getContext(),numbercolumns));
-
-
-        rec.setAdapter(new Adapter_search(IMG_URL,Date,Location,Info,type_array,getContext()));
+        RecyclerView rec = view.findViewById(R.id.rec_search_main);
+        rec.setLayoutManager(new LinearLayoutManager(getContext()));
+        rec.setAdapter(new Adapter_search());
 
 
 

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -28,23 +29,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-import app.playstore.uClimb.Fragments.Post.custom_post_page;
 import app.playstore.uClimb.Fragments.Training_list_fragment;
 import app.playstore.uClimb.Fragments.video_upload_fragment;
 import app.playstore.uClimb.R;
@@ -105,6 +101,7 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private long long_time_anim_abc_delay = 0;
     private long long_time_anim_layout_duration = 500;
     private long long_time_anim_layout_delay = 250;
+    private double weight_btn = 0.9;
 
     @Override
     public int getItemViewType(final int position) {
@@ -345,6 +342,7 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     private void anim_comment(ViewHolder viewHolder_normal) {
+
         ValueAnimator m1 = ValueAnimator.ofFloat((float)weight_text_inside, (float)weight_text_inside+(float)0.5); //fromWeight, toWeight
         weight_text_inside = weight_text_inside+0.5;
         m1.setDuration(long_time_anim_text_inside_duration);
@@ -380,8 +378,8 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         });
         m3.start();
 
-        ValueAnimator m4 = ValueAnimator.ofFloat((float)constraing_num1231q321_weight, (float) ((float) constraing_num1231q321_weight+0.6)); //fromWeight, toWeight
-        constraing_num1231q321_weight = constraing_num1231q321_weight+0.6;
+        ValueAnimator m4 = ValueAnimator.ofFloat((float)constraing_num1231q321_weight, (float) ((float) constraing_num1231q321_weight+0.4)); //fromWeight, toWeight
+        constraing_num1231q321_weight = constraing_num1231q321_weight+0.4;
 
         m4.setDuration(long_time_anim_text_inside_duration);
         m4.setStartDelay(long_time_anim_text_inside_delay);
@@ -457,7 +455,7 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     private void onCLick_text_inside_action(ViewHolder viewHolder_normal) {
         if (!anim_boolean_status){
-            if (grow_num_layout <= 3) {
+            if (grow_num_layout <= 2) {
                 animation_layout_and_text(viewHolder_normal);
 
 
@@ -487,6 +485,7 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
     private void animate_height_change_home_custom_comment(ViewHolder viewHolder_normal,int k){
         ValueAnimator anim2 = ValueAnimator.ofInt(height_anim2, height_anim2+k);
+        height_anim2 = height_anim2+k;
         anim2.setStartDelay(long_time_anim_layout_delay);
 
         anim2.addUpdateListener(valueAnimator -> {
@@ -528,7 +527,7 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     private void all_animations_for_custom_home(ViewHolder viewHolder_normal) {
-        animate_weight_change_text_inside(viewHolder_normal);
+        animate_weight_change_text_inside_btn(viewHolder_normal);
         animate_height_change_home(viewHolder_normal);
 
         animate_weight_change_comment_txt(viewHolder_normal);
@@ -538,7 +537,7 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         animate_weight_change_abc(viewHolder_normal);
     }
 
-    private void animate_weight_change_text_inside(ViewHolder viewHolder_normal) {
+    private void animate_weight_change_text_inside_btn(ViewHolder viewHolder_normal) {
         ValueAnimator m1 = ValueAnimator.ofFloat((float)weight_text_inside, (float)weight_text_inside-(float)0.05); //fromWeight, toWeight
         weight_text_inside = weight_text_inside-0.05;
         m1.setDuration(long_time_anim_text_inside_duration);
@@ -549,11 +548,22 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             viewHolder_normal.text_inside.requestLayout();
         });
         m1.start();
+        //btnanimation
+        ValueAnimator m0 = ValueAnimator.ofFloat((float)weight_btn, (float)weight_btn+(float)0.04); //fromWeight, toWeight
+        weight_btn = weight_btn+0.04;
+        m0.setDuration(long_time_anim_text_inside_duration);
+        m0.setStartDelay(long_time_anim_text_inside_delay);
+        m0.setInterpolator(new LinearInterpolator());
+        m0.addUpdateListener(animation -> {
+            ((LinearLayout.LayoutParams) viewHolder_normal.comment_btn.getLayoutParams()).weight = (float) animation.getAnimatedValue();
+            viewHolder_normal.comment_btn.requestLayout();
+        });
+        m0.start();
     }
 
     private void animate_height_change_home(ViewHolder viewHolder_normal) {
-        ValueAnimator anim2 = ValueAnimator.ofInt(height_anim2, height_anim2+500);
-        height_anim2 = height_anim2 +500;
+        ValueAnimator anim2 = ValueAnimator.ofInt(height_anim2, height_anim2+700);
+        height_anim2 = height_anim2 +700;
         anim2.setStartDelay(long_time_anim_layout_delay);
 
         anim2.addUpdateListener(valueAnimator -> {
@@ -619,6 +629,12 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         viewHolder.info_txt.setText(array_info.get(i));
         Picasso.get().load(array_source_img.get(i)).fit().centerCrop().into(viewHolder.IMG_img_profile_pic);
         viewHolder.video_view.setVideoPath(array_source.get(i));
+        viewHolder.video_view.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+            @Override
+            public boolean onError(MediaPlayer mp, int what, int extra) {
+                return true;
+            }
+        });
         viewHolder.video_view.seekTo(2);
         viewHolder.name_txt.setText(array_name.get(i));
     }

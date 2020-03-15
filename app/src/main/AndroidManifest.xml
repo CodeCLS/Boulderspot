@@ -39,6 +39,7 @@
             </intent-filter>
         </activity>
         <activity android:name="app.playstore.uClimb.Main.MainActivity"
+            android:screenOrientation="fullSensor"
             android:windowSoftInputMode="adjustPan"
 
 

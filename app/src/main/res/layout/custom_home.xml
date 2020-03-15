@@ -161,6 +161,8 @@
                     android:visibility="gone" />
                 <Button
                     android:text="Submit"
+                    android:textColor="@color/colorPrimaryDark"
+
 
 
                     android:id="@+id/btn_comment_home_custom"

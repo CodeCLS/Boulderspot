@@ -1,22 +1,26 @@
 package app.playstore.uClimb.ViewModelFragments;
 
+import android.app.AlertDialog;
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,8 +30,6 @@ import java.util.List;
 
 import app.playstore.uClimb.Adapters.Adapter_home;
 import app.playstore.uClimb.Adapters.Adapter_home_comment;
-import app.playstore.uClimb.Main.MainActivity;
-import app.playstore.uClimb.Models.Model_home;
 import app.playstore.uClimb.R;
 
 public class home_posts_presenter  {
@@ -85,20 +87,45 @@ public class home_posts_presenter  {
 
     private void initRec(View view, Context context) {
 
-        array_time.add("6:00");
-        array_name.add("Caleb");
-        array_source.add("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Folder%2FVID_20200128_180436.mp4?alt=media&token=08b6fd4d-3fc1-47e8-9638-83a7309901bb");
-        array_source_img.add("https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Folder%2F2019-Boulderwelt-Regensburg-Event-Bouldern-Klettern-Bouldergame-Catch-Ya-Match-25.jpg?alt=media&token=3dfa8e9a-47f4-40d9-a777-f6287d397685");
-        array_info.add("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.");
-        array_place.add("Berta Block Boulderhalle");
-        array_user_id.add("daoasds");
-        array_post_id.add("asdads");
-        array_type.add("video");
-        array_likes.add("2");
+
+        if (array_time.isEmpty()){
+            create_snackbar(view,context);
+            boolean testrun= true;
+
+            if (testrun){
+                array_type.add("IMG");
+                array_post_id.add("asdsa");
+                array_user_id.add("adsfa");
+                array_place.add("plae");
+                array_info.add("asda");
+                array_source_img.add("ass");
+                array_source.add("asda");
+                array_likes.add("2");
+                array_name.add("Caleb");
+                array_time.add("5:00");
+
+
+            }
+
+
+        }
+
         RecyclerView rec;
         rec = view.findViewById(R.id.rec_home);
         rec.setAdapter(adapter_home);
         rec.setLayoutManager(new LinearLayoutManager(context));
+    }
+
+    private void create_snackbar(View view,Context context) {
+        if (view == null){
+            Toast.makeText(context, "Something is going very wrong here:ERROR X12", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Snackbar snackbar = Snackbar.make(view, "Go and follow some people on the search page to see things in your feed. : )", Snackbar.LENGTH_LONG);
+            snackbar.setBackgroundTint(context.getResources().getColor(R.color.colorPrimaryDark));
+            snackbar.show();
+        }
+
     }
 
     public void setData(View view,String mAuth,Context context){
@@ -242,6 +269,7 @@ public class home_posts_presenter  {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d(TAG,"mAuth2"+ mAuth);
+                //TODO mAUth not working (nullpointer)
                 for(DataSnapshot postsnapshot: dataSnapshot.child(mAuth).child("Following").getChildren()){
                     String post_value = postsnapshot.getValue().toString();
                     following.add(post_value);

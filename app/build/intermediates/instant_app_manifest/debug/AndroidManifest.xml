@@ -56,6 +56,7 @@
         </activity>
         <activity
             android:name="app.playstore.uClimb.Main.MainActivity"
+            android:screenOrientation="fullSensor"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name="app.playstore.uClimb.Login_SignUp.Boulderspot_Sign_Up" />
         <activity android:name="app.playstore.uClimb.Notifaction.Base_Internet" />

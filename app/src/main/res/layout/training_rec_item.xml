@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,6 +33,7 @@
             android:gravity="center"
             android:padding="5dp"
             android:text="Start Training"
+            android:textColor="@color/colorPrimaryDark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -61,6 +63,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+
             app:srcCompat="@drawable/background_box" />
 
         <TextView
@@ -68,6 +71,8 @@
             android:layout_width="116dp"
             android:layout_height="58dp"
             android:layout_margin="5dp"
+            android:textColor="@color/colorPrimaryDark"
+
             android:gravity="center"
             android:padding="5dp"
             android:text="Post success"

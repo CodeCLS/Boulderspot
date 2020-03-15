@@ -47,8 +47,9 @@ public class Base_Internet extends AppCompatActivity {
 
         if (ni != null && ni.getState() == NetworkInfo.State.CONNECTED) {
             if (screen_on == true){
-                setscreenback();
+
                 screen_on = false;
+                setscreenback();
 
 
             }
