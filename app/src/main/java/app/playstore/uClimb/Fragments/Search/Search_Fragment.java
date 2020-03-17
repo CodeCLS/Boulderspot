@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,9 +18,7 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 
 import app.playstore.uClimb.Adapters.Adapter_search;
-import app.playstore.uClimb.Adapters.Adapter_search_inner;
 import app.playstore.uClimb.R;
-import app.playstore.uClimb.ViewModelFragments.search_presenter.Search_presenter;
 
 public class Search_Fragment extends Fragment {
     private EditText search_edit;

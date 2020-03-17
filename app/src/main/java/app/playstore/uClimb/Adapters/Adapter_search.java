@@ -1,11 +1,9 @@
 package app.playstore.uClimb.Adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -13,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import app.playstore.uClimb.R;
-import app.playstore.uClimb.ViewModelFragments.search_presenter.Search_presenter;
+import app.playstore.uClimb.ViewModelPresenters.search_presenter.Search_presenter;
 
 public class Adapter_search extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context mContext;

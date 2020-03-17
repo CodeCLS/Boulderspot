@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 import app.playstore.uClimb.Fragments.video_upload_fragment;
 import app.playstore.uClimb.R;
-import app.playstore.uClimb.ViewModelFragments.home_posts_presenter;
+import app.playstore.uClimb.ViewModelPresenters.home_posts_presenter;
 
 public class Home_Fragment extends Fragment implements home_posts_presenter.display {
     private static final String TAG = "Home Fragment";

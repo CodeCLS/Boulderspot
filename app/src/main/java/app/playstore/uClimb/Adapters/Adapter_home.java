@@ -44,7 +44,7 @@ import java.util.Objects;
 import app.playstore.uClimb.Fragments.Training_list_fragment;
 import app.playstore.uClimb.Fragments.video_upload_fragment;
 import app.playstore.uClimb.R;
-import app.playstore.uClimb.ViewModelFragments.home_posts_presenter;
+import app.playstore.uClimb.ViewModelPresenters.home_posts_presenter;
 
 public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements home_posts_presenter.display {
     private ArrayList<String> array_time = new ArrayList();

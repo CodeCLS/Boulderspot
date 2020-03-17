@@ -120,6 +120,10 @@
         "source": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/res/drawable/background_recyclerview.xml"
     },
     {
+        "merged": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/build/intermediates/res/merged/debug/layout_signup_questions.xml.flat",
+        "source": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/res/layout/signup_questions.xml"
+    },
+    {
         "merged": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/build/intermediates/res/merged/debug/layout_location_page.xml.flat",
         "source": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/res/layout/location_page.xml"
     },
@@ -262,10 +266,6 @@
     {
         "merged": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher_foreground.png.flat",
         "source": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png"
-    },
-    {
-        "merged": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/build/intermediates/res/merged/debug/layout_extra_questions_layout.xml.flat",
-        "source": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/res/layout/extra_questions_layout.xml"
     },
     {
         "merged": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/build/intermediates/res/merged/debug/drawable_round_event_custom.xml.flat",

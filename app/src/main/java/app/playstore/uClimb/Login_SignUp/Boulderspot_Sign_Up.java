@@ -220,7 +220,6 @@ public class Boulderspot_Sign_Up extends AppCompatActivity implements GoogleApiC
     }
 
     private void initviews() {
-        google = findViewById(R.id.google_logo_log_in);
         edit_email = findViewById(R.id.edit_email_sign_up);
         edit_pwd = findViewById(R.id.edit_sign_up_pwd);
         edit_user = findViewById(R.id.edit_name_sign_up);
@@ -273,66 +272,6 @@ public class Boulderspot_Sign_Up extends AppCompatActivity implements GoogleApiC
 
 
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
 
-        int RC_SIGN_IN = 1;
-        if (requestCode == RC_SIGN_IN) {
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-
-            if (result.isSuccess()) {
-// Signed in successfully
-                GoogleSignInAccount acct = result.getSignInAccount();
-                assert acct != null;
-                //String id = acct.getId();
-                //String name = acct.getDisplayName();
-                String email = acct.getEmail();
-
-                firebaseAuthWithGoogle(acct);
-
-
-                Toast.makeText(getApplicationContext(), email, Toast.LENGTH_SHORT).show();
-
-            } else {
-
-
-                Toast.makeText(getApplicationContext(), "Failed to authenticate user", Toast.LENGTH_SHORT).show();
-
-            }
-
-        }}
-        private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-            Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
-
-            AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-            mAuth.signInWithCredential(credential)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                Log.d(TAG, "signInWithCredential:success");
-
-                                //FirebaseUser user = mAuth.getCurrentUser();
-
-                                Intent intent = new Intent(Boulderspot_Sign_Up.this, extra_questions_register.class);
-                                startActivity(intent);
-                               // Boulderspot_Sign_Up.this.finish();
-
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                Log.w(TAG, "signInWithCredential:failure", task.getException());
-                             //   Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-                            }
-
-                            // ...
-                        }
-                    });
-        }
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
 
 }
