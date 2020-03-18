@@ -3,6 +3,7 @@ package app.playstore.uClimb.Login_SignUp;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.BaseTransientBottomBar;
@@ -31,18 +33,22 @@ import java.util.Locale;
 
 import app.playstore.uClimb.Main.MainActivity;
 import app.playstore.uClimb.R;
+import app.playstore.uClimb.ViewModelPresenters.register_presenter;
 
 public class extra_questions_register extends AppCompatActivity {
     private static final String TAG = "extra";
     private AutoCompleteTextView edit_grade;
     private AutoCompleteTextView edit_height;
-    private AutoCompleteTextView edit_city;
+    private AutoCompleteTextView edit_country;
     private AutoCompleteTextView edit_age;
     private Button btn_continue;
     private TextView terms;
+    private String email;
+    private String pwd;
+    private String username;
 
     private Boolean edit_age_status = false;
-    private Boolean edit_city_status = false;
+    private Boolean edit_country_status = false;
     private Boolean edit_height_status = false;
     private Boolean edit_grade_status = false;
 
@@ -57,6 +63,7 @@ public class extra_questions_register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup_questions);
 
+
         initviews();
         onClick();
         listeners();
@@ -65,7 +72,7 @@ public class extra_questions_register extends AppCompatActivity {
 
     private void listeners() {
         edit_age_listener();
-        edit_city_listener();
+        edit_country_listener();
         edit_height_listener();
         edit_grade_listener();
     }
@@ -174,18 +181,18 @@ public class extra_questions_register extends AppCompatActivity {
 
     }
 
-    private void edit_city_listener() {
-        edit_city.addTextChangedListener(new TextWatcher() {
+    private void edit_country_listener() {
+        edit_country.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 if (s.toString().trim().length() == 0) {
-                    edit_city_status = false;
+                    edit_country_status = false;
 
                     Drawable background = btn_continue.getBackground();
                     background.setTint(getResources().getColor(R.color.grey_pressed_btn));
 
                 } else {
-                    edit_city_status = true;
+                    edit_country_status = true;
 
                     if (status_edit()){
                         Drawable background = btn_continue.getBackground();
@@ -200,13 +207,13 @@ public class extra_questions_register extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.toString().trim().length() == 0) {
-                    edit_city_status = false;
+                    edit_country_status = false;
 
                     Drawable background = btn_continue.getBackground();
                     background.setTint(getResources().getColor(R.color.grey_pressed_btn));
 
                 } else {
-                    edit_city_status = true;
+                    edit_country_status = true;
 
                     if (status_edit()){
                         Drawable background = btn_continue.getBackground();
@@ -279,10 +286,10 @@ public class extra_questions_register extends AppCompatActivity {
     }
 
     private boolean status_edit() {
-        Boolean bool = edit_age_status && edit_city_status&& edit_height_status&&edit_grade_status;
+        Boolean bool = edit_age_status && edit_country_status&& edit_height_status&&edit_grade_status;
         Log.d(TAG,"abool"+bool);
 
-        return edit_age_status && edit_city_status&& edit_height_status&&edit_grade_status;
+        return edit_age_status && edit_country_status&& edit_height_status&&edit_grade_status;
     }
     public ArrayList getCities(){
 
@@ -305,16 +312,16 @@ public class extra_questions_register extends AppCompatActivity {
 
     private void onClick() {
         btn_continue.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.P)
             @Override
             public void onClick(View v) {
-                if (getCities().contains(edit_city.getText().toString())&& getGrade().contains(edit_grade.getText().toString())) {
+                if (getCities().contains(edit_country.getText().toString())&& getGrade().contains(edit_grade.getText().toString())) {
                     if (check_fields()) {
                         Snackbar snackbar = Snackbar.make(extra_questions_register.this.getWindow().getDecorView(), "Please fill all the fields", BaseTransientBottomBar.LENGTH_SHORT);
                         snackbar.setBackgroundTint(getResources().getColor(R.color.colorPrimaryDark));
                     } else {
-                        Intent intent = new Intent(extra_questions_register.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
+
+                        succesfully_registered();
                     }
                 }
                 else{
@@ -325,8 +332,27 @@ public class extra_questions_register extends AppCompatActivity {
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.P)
+    private void succesfully_registered() {
+        Snackbar snackbar = Snackbar.make(extra_questions_register.this.getWindow().getDecorView(),"Succesfully registered", BaseTransientBottomBar.LENGTH_SHORT);
+        snackbar.setBackgroundTint(getResources().getColor(R.color.colorPrimaryDark));
+        Bundle bundle = new Bundle();
+        bundle.putString("age",edit_age.getText().toString());
+        bundle.putString("country",edit_country.getText().toString());
+        bundle.putString("Grade",edit_grade.getText().toString());
+        bundle.putString("Height",edit_height.getText().toString());
+
+        register_presenter register_presenter = new register_presenter();
+        register_presenter.RegisterNewUser(pwd, email, username,extra_questions_register.this,bundle,extra_questions_register.this.getWindow().getCurrentFocus());
+
+        //Intent intent = new Intent(extra_questions_register.this, MainActivity.class);
+        //startActivity(intent);
+        //finish();
+        finish();
+    }
+
     private boolean check_fields() {
-        return edit_age.getText().toString().isEmpty() ||edit_city.getText().toString().isEmpty()
+        return edit_age.getText().toString().isEmpty() ||edit_country.getText().toString().isEmpty()
         || edit_height.getText().toString().isEmpty() || edit_grade.getText().toString().isEmpty();
     }
 
@@ -334,12 +360,7 @@ public class extra_questions_register extends AppCompatActivity {
         Toast.makeText(extra_questions_register.this, "Fill in all fields", Toast.LENGTH_SHORT).show();
     }
 
-    private void setVals() {
-        myRef.child(mAuth.getUid()).child("Grade").setValue(edit_grade.getText().toString());
-        myRef.child(mAuth.getUid()).child("Groeße").setValue(edit_height.getText().toString());
-        myRef.child(mAuth.getUid()).child("City").setValue(edit_city.getText().toString());
-        myRef.child(mAuth.getUid()).child("Alter").setValue(edit_age.getText().toString());
-    }
+
 
     private void MainIntent() {
         Intent intent = new Intent(extra_questions_register.this, MainActivity.class);
@@ -350,13 +371,13 @@ public class extra_questions_register extends AppCompatActivity {
         edit_age = findViewById(R.id.edit_age_extra);
         edit_height = findViewById(R.id.edit_height_extra);
         edit_grade = findViewById(R.id.edit_grade_extra);
-        edit_city = findViewById(R.id.edit_city_extra);
+        edit_country = findViewById(R.id.edit_country_extra);
         btn_continue = findViewById(R.id.btn_continue);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, getCities());
         ArrayAdapter<String> adapter_grade = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, getGrade());
-        edit_city.setAdapter(adapter);
+        edit_country.setAdapter(adapter);
         edit_grade.setAdapter(adapter_grade);
 
 
@@ -382,6 +403,7 @@ public class extra_questions_register extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        receiveIntent();
 
 
         if (check_fields() == true){
@@ -393,6 +415,13 @@ public class extra_questions_register extends AppCompatActivity {
         Log.d(TAG,"war heir");
         mAuth = FirebaseAuth.getInstance();
         updateUI(mAuth.getCurrentUser());
+    }
+
+    private void receiveIntent() {
+        Intent intent = getIntent();
+        pwd = intent.getStringExtra("pwd");
+        email = intent.getStringExtra("email");
+        username = intent.getStringExtra("username");
     }
 
     private void updateUI(FirebaseUser currentUser) {

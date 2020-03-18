@@ -126,31 +126,38 @@ public class Hangboard_page extends Fragment {
 
 
         } else {
-            hang_time = Integer.parseInt(hang_time_edit.getText().toString());
-            pause_time = Integer.parseInt(pause_time_edit.getText().toString());
-            rest_time = Integer.parseInt(rest_time_edit.getText().toString());
-            number_sets = Integer.parseInt(number_sets_edit.getText().toString());
-            numb_rounds = Integer.parseInt(number_rounds_edit.getText().toString());
-            new CountDownTimer(3000, 1000) {
 
-                @SuppressLint("SetTextI18n")
-                public void onTick(long millisUntilFinished) {
-                    btn_start.setText("" + millisUntilFinished / 1000);
+            try {
+                hang_time = Integer.parseInt(hang_time_edit.getText().toString());
+                pause_time = Integer.parseInt(pause_time_edit.getText().toString());
+                rest_time = Integer.parseInt(rest_time_edit.getText().toString());
+                number_sets = Integer.parseInt(number_sets_edit.getText().toString());
+                numb_rounds = Integer.parseInt(number_rounds_edit.getText().toString());
+                new CountDownTimer(3000, 1000) {
 
-                }
+                    @SuppressLint("SetTextI18n")
+                    public void onTick(long millisUntilFinished) {
+                        btn_start.setText("" + millisUntilFinished / 1000);
 
-                @SuppressLint("SetTextI18n")
-                public void onFinish() {
-                    booldoSound();
+                    }
 
-
-                    btn_start.setText("GO!");
-
+                    @SuppressLint("SetTextI18n")
+                    public void onFinish() {
+                        booldoSound();
 
 
-                    hang_time_text();
-                }
-            }.start();
+                        btn_start.setText("GO!");
+
+
+
+                        hang_time_text();
+                    }
+                }.start();
+            } catch (NumberFormatException e) {
+                Toast.makeText(getContext(), "Wrong input", Toast.LENGTH_SHORT).show();
+
+            }
+
 
         }
     }

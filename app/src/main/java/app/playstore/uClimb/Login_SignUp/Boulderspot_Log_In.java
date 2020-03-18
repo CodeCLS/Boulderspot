@@ -41,6 +41,7 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.FirebaseUserMetadata;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -309,7 +310,9 @@ public class Boulderspot_Log_In extends AppCompatActivity implements GoogleApiCl
     @Override
     protected void onStart() {
         super.onStart();
+
         mAuth = FirebaseAuth.getInstance();
+
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
 
@@ -317,6 +320,7 @@ public class Boulderspot_Log_In extends AppCompatActivity implements GoogleApiCl
     }
 
     private void updateUI(FirebaseUser currentUser) {
+        mAuth.signOut();
         if (currentUser == null){
             Log.d(TAG,"currentsuer" + currentUser);
             return;
@@ -341,13 +345,11 @@ public class Boulderspot_Log_In extends AppCompatActivity implements GoogleApiCl
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 Toast.makeText(this, "Logged in", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, extra_questions_register.class);
-                startActivity(intent);
+
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 firebaseAuthWithGoogle(account);
 
-                Log.d(TAG,"AccountGOogle" + account + "mauth" + mAuth.getCurrentUser() );
                 //firebaseAuthWithGoogle(account);
             } catch (ApiException e) {
                 Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
@@ -369,7 +371,18 @@ public class Boulderspot_Log_In extends AppCompatActivity implements GoogleApiCl
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            //updateUI(user);
+                            FirebaseUserMetadata metadata = mAuth.getCurrentUser().getMetadata();
+
+
+                            if (metadata.getCreationTimestamp() == metadata.getLastSignInTimestamp()) {
+                                Log.d(TAG,"first");
+                                updateUInew(user);
+                            } else {
+                                Log.d(TAG,"notfirst");
+
+                                updateUI(user);
+                                // This is an existing user, show them a welcome back screen.
+                            }                            //updateUI(user);
                             Log.d(TAG,"users123:"+user);
                         } else {
                             // If sign in fails, display a message to the user.
@@ -381,5 +394,13 @@ public class Boulderspot_Log_In extends AppCompatActivity implements GoogleApiCl
                         // ...
                     }
                 });
+    }
+
+    private void updateUInew(FirebaseUser user) {
+        Intent intent = new Intent(Boulderspot_Log_In.this,extra_questions_register.class);
+        intent.putExtra("pwd" , "wqn9YzHxf4odtGt");
+        intent.putExtra("username" , user.getDisplayName());
+        intent.putExtra("email", user.getEmail());
+        startActivity(intent);
     }
 }

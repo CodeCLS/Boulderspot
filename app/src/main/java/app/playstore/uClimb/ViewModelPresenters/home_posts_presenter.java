@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 import app.playstore.uClimb.Adapters.Adapter_home;
 import app.playstore.uClimb.Adapters.Adapter_home_comment;
@@ -87,7 +88,7 @@ public class home_posts_presenter  {
 
         if (array_time.isEmpty()){
             create_snackbar(view,context);
-            boolean testrun= true;
+            boolean testrun= false;
 
             if (testrun){
                 array_type.add("IMG");
@@ -118,6 +119,8 @@ public class home_posts_presenter  {
             Toast.makeText(context, "Something is going very wrong here:ERROR X12", Toast.LENGTH_SHORT).show();
         }
         else {
+            Log.d(TAG,"ViewPresenter" + view);
+
             Snackbar snackbar = Snackbar.make(view, "Go and follow some people on the search page to see things in your feed. : )", Snackbar.LENGTH_LONG);
             snackbar.setBackgroundTint(context.getResources().getColor(R.color.colorPrimaryDark));
             snackbar.show();
@@ -224,8 +227,9 @@ public class home_posts_presenter  {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot: dataSnapshot.child("Comments").getChildren()){
-                    String uid= postSnapshot.child("U_ID").getValue().toString();
+                    String uid= Objects.requireNonNull(postSnapshot.child("U_ID").getValue()).toString();
                     Log.d(TAG,"uid"+ uid);
+
                     String name = dataSnapshot.child("User").child(uid).child("Name").getValue().toString();
                     array_name_comment.add(name);
                     Log.d(TAG,"postsnapshotname" + array_name);

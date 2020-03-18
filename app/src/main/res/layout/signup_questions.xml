@@ -73,7 +73,7 @@
                 <AutoCompleteTextView
                     android:gravity="center"
 
-                    android:id="@+id/edit_city_extra"
+                    android:id="@+id/edit_country_extra"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:ems="10"

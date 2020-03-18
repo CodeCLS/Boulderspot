@@ -51,8 +51,8 @@ public class Profile_Fragment extends Fragment {
 
         pie.data(data);
 
-        AnyChartView anyChartView = (AnyChartView) view.findViewById(R.id.profile_statistics_chart);
-        anyChartView.setChart(pie);
+        //AnyChartView anyChartView = (AnyChartView) view.findViewById(R.id.profile_statistics_chart);
+        //anyChartView.setChart(pie);
 
 
     }
