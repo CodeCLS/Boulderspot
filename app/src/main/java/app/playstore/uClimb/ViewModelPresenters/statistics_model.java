@@ -13,8 +13,12 @@ public class statistics_model {
     private ArrayList<String> boulders_grade;
     private ArrayList<String> boulders_way_of_accomplishment;
     private ArrayList<String> competition_array_boulder;
+    private ArrayList<String> competition_array_uid;
 
-    public statistics_model(String statistics_ID, String UID, ArrayList<String> training_sessions_time, ArrayList<String> training_sessions_types, ArrayList<String> training_sessions_amount, String average_grade, ArrayList<String> boulders_times, ArrayList<String> boulders_grade, ArrayList<String> boulders_way_of_accomplishment, ArrayList<String> competition_array_boulder) {
+    public statistics_model() {
+    }
+
+    public statistics_model(String statistics_ID, String UID, ArrayList<String> training_sessions_time, ArrayList<String> training_sessions_types, ArrayList<String> training_sessions_amount, String average_grade, ArrayList<String> boulders_times, ArrayList<String> boulders_grade, ArrayList<String> boulders_way_of_accomplishment, ArrayList<String> competition_array_boulder, ArrayList<String> competition_array_uid) {
         Statistics_ID = statistics_ID;
         this.UID = UID;
         this.training_sessions_time = training_sessions_time;
@@ -25,10 +29,7 @@ public class statistics_model {
         this.boulders_grade = boulders_grade;
         this.boulders_way_of_accomplishment = boulders_way_of_accomplishment;
         this.competition_array_boulder = competition_array_boulder;
-    }
-
-    public statistics_model() {
-
+        this.competition_array_uid = competition_array_uid;
     }
 
     public String getStatistics_ID() {
@@ -109,5 +110,13 @@ public class statistics_model {
 
     public void setCompetition_array_boulder(ArrayList<String> competition_array_boulder) {
         this.competition_array_boulder = competition_array_boulder;
+    }
+
+    public ArrayList<String> getCompetition_array_uid() {
+        return competition_array_uid;
+    }
+
+    public void setCompetition_array_uid(ArrayList<String> competition_array_uid) {
+        this.competition_array_uid = competition_array_uid;
     }
 }

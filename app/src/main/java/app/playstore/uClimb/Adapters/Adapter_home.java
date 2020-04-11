@@ -299,7 +299,7 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         if (viewHolder.getItemViewType() == 1) {
             ViewHolder viewHolder_normal = (ViewHolder) viewHolder;
-            home_posts_presenter home_posts_presenter = new home_posts_presenter(this);
+            home_posts_presenter home_posts_presenter = new home_posts_presenter(this,mContext);
             home_posts_presenter.initcomments(viewHolder_normal.comment_rec,mContext);
             observe_if_view_was_rendered(viewHolder_normal);
 
@@ -423,8 +423,8 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         viewHolder_normal.like_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                home_posts_presenter home_posts_presenter = new home_posts_presenter(Adapter_home.this);
-                Boolean boolean_status =home_posts_presenter.liked(array_post_id.get(finalI),array_user_id.get(finalI));//TODO presenter like method
+                home_posts_presenter home_posts_presenter = new home_posts_presenter(Adapter_home.this,mContext);
+                Boolean boolean_status =home_posts_presenter.liked(array_post_id.get(finalI));//TODO presenter like method
                 if (boolean_status== false){
                     Toast.makeText(mContext, "Something went wrong", Toast.LENGTH_SHORT).show();
                 }

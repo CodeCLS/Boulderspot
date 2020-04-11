@@ -320,17 +320,40 @@ public class Boulderspot_Log_In extends AppCompatActivity implements GoogleApiCl
     }
 
     private void updateUI(FirebaseUser currentUser) {
-        mAuth.signOut();
+
         if (currentUser == null){
             Log.d(TAG,"currentsuer" + currentUser);
             return;
         }
         else{
+            Log.d(TAG,"updateUI" + currentUser);
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference("User");
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.child(Objects.requireNonNull(mAuth.getUid())).exists()){
+                        Log.d(TAG,"mauthexists");
+
+                        Intent intent = new Intent(Boulderspot_Log_In.this, MainActivity.class);
+                        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(Boulderspot_Log_In.this).toBundle());
+                        finish();
+
+                    }
+                    else{
+                        updateUInew(currentUser);
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
 
 
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
-            finish();
 
         }
     }
@@ -374,15 +397,37 @@ public class Boulderspot_Log_In extends AppCompatActivity implements GoogleApiCl
                             FirebaseUserMetadata metadata = mAuth.getCurrentUser().getMetadata();
 
 
-                            if (metadata.getCreationTimestamp() == metadata.getLastSignInTimestamp()) {
-                                Log.d(TAG,"first");
-                                updateUInew(user);
-                            } else {
-                                Log.d(TAG,"notfirst");
 
-                                updateUI(user);
+                                Log.d(TAG,"mAuthgoogle" + mAuth.getUid());
+
+                                // Write a message to the database
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                DatabaseReference myRef = database.getReference("");
+
+                                myRef.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        if (dataSnapshot.child(Objects.requireNonNull(mAuth.getUid())).exists()){
+                                            Log.d(TAG,"notfirst");
+
+                                            updateUI(user);
+
+                                        }
+                                        else{
+                                            updateUInew(user);
+
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
+
                                 // This is an existing user, show them a welcome back screen.
-                            }                            //updateUI(user);
+                                                     //updateUI(user);
                             Log.d(TAG,"users123:"+user);
                         } else {
                             // If sign in fails, display a message to the user.
@@ -397,8 +442,13 @@ public class Boulderspot_Log_In extends AppCompatActivity implements GoogleApiCl
     }
 
     private void updateUInew(FirebaseUser user) {
+        Log.d(TAG,"Logingooglenew");
         Intent intent = new Intent(Boulderspot_Log_In.this,extra_questions_register.class);
         intent.putExtra("pwd" , "wqn9YzHxf4odtGt");
+        Log.d(TAG,"Logingooglenew" + user.getDisplayName());
+        Log.d(TAG,"Logingooglenew" + user.getEmail());
+
+
         intent.putExtra("username" , user.getDisplayName());
         intent.putExtra("email", user.getEmail());
         startActivity(intent);

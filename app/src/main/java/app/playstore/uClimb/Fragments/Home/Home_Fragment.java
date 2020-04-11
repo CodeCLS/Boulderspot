@@ -84,8 +84,8 @@ public class Home_Fragment extends Fragment implements home_posts_presenter.disp
         String mAuth = sharedPreferences_UID.getString("mAuth_UID",null);
         Log.d(TAG,"mauth"+mAuth);
 
-        home_posts_presenter home_posts_presenter = new home_posts_presenter(this);
-        home_posts_presenter.setData(view,mAuth,getContext());
+        home_posts_presenter home_posts_presenter = new home_posts_presenter(this,getContext());
+        home_posts_presenter.setData(view,getContext());
 
     }
 

@@ -2,6 +2,7 @@ package app.playstore.uClimb.ViewModelPresenters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +22,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
 
@@ -40,15 +45,18 @@ public class register_presenter {
     public register_presenter() {
         register_model = new register_model();
         mAuth = FirebaseAuth.getInstance();
+        Log.d(TAG,"MAuthregister" + mAuth.getUid());
 
     }
     @RequiresApi(api = Build.VERSION_CODES.P)
     public void RegisterNewUser(String pwd, String email, String username , Context mContext , Bundle bundle , View v){
-        if (pwd == "wqn9YzHxf4odtGt"){
-            createfiredata(bundle);
+        if (pwd.equals("wqn9YzHxf4odtGt")){
+            createfiredata(bundle,mContext);
+            Log.d(TAG,"googleaccount");
 
         }
         else {
+            Log.d(TAG,"pwdgoogle" + pwd);
             // Write a message to the database
             mAuth.createUserWithEmailAndPassword(email, pwd)
                     .addOnCompleteListener(mContext.getMainExecutor(), new OnCompleteListener<AuthResult>() {
@@ -60,10 +68,10 @@ public class register_presenter {
                                 createSnackbar(true, mContext,v);
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 updateUI(user, mContext,"null");
-                                createfiredata(bundle);
+                                createfiredata(bundle,mContext);
                             } else {
                                 // If sign in fails, display a message to the user.
-                                Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                Log.w(TAG, "createUserWithEmail2:failure", task.getException());
                                 createSnackbar(false, mContext,v);
 
                                 updateUI(null, mContext,task.getException().toString());
@@ -77,7 +85,10 @@ public class register_presenter {
 
     }
 
-    private void createfiredata(Bundle bundle) {
+    private void createfiredata(Bundle bundle,Context mContext) {
+        Log.d(TAG,"arrived");
+        Log.d(TAG,"arrived" + mAuth.getUid());
+
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("");
@@ -88,6 +99,12 @@ public class register_presenter {
         String Info = "Just the usual climber";
         String Subscription ="Standart";
         String Name = bundle.getString("Name");
+
+        if (Name == null){
+            Toast.makeText(mContext, "Your Username wasn't added... Change it in the settings", Toast.LENGTH_SHORT).show();
+            Name = getSaltString();
+        }
+        Log.d(TAG,"NameUser" + Name);
         String IMG = "IMG";//TODO IMG
         String boulder_centre_default = "";
         String account_type = "person";
@@ -119,8 +136,23 @@ public class register_presenter {
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("Position").child("Position_lon").setValue(Position_lon);
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("Position").child("position_status").setValue(position_status);
         String hash = getSaltString();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
+        String currentDateandTime = sdf.format(new Date());
+        myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("Time_created").setValue(currentDateandTime);
+
+
+
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("StatisticsID").setValue(hash);
         myRef.child("Statistics").child(Objects.requireNonNull(hash)).setValue(hash);
+        SharedPreferences sharedPreferences_stat = mContext.getSharedPreferences("statuid", Context.MODE_PRIVATE);
+        SharedPreferences.Editor shared_edit_stat = sharedPreferences_stat.edit();
+        shared_edit_stat.putString("statuid" , mAuth.getUid());
+        shared_edit_stat.apply();
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences("uid", Context.MODE_PRIVATE);
+        SharedPreferences.Editor shared_edit = sharedPreferences.edit();
+        shared_edit.putString("uid" , mAuth.getUid());
+        shared_edit.apply();
+
 
 
 

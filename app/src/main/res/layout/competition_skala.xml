@@ -14,10 +14,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
         <com.anychart.AnyChartView
-            android:id="@+id/comptetition_statistic"
+            android:id="@+id/competition_statistic"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_height="match_parent" />
+
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/competition_statistic_rec"

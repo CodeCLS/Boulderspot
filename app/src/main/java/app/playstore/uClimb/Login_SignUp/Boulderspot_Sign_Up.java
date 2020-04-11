@@ -270,6 +270,7 @@ public class Boulderspot_Sign_Up extends AppCompatActivity {
                             intent.putExtra("pwd" , pwd);
                             intent.putExtra("username" , username);
                             intent.putExtra("email" , email);
+                            Log.d(TAG,"passwordfromlogingoogle" + pwd);
 
                             startActivity(intent);
 

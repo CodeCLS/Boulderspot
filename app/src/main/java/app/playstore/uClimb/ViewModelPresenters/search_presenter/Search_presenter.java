@@ -15,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import app.playstore.uClimb.Adapters.Adapter_search_inner;
 import app.playstore.uClimb.R;
@@ -56,7 +57,7 @@ public class Search_presenter {
         rec.setLayoutManager(new GridLayoutManager(mContext,numbercolumns));
 
 
-        rec.setAdapter(new Adapter_search_inner(URL,Date,Location,info,type_array,mContext));
+        rec.setAdapter(new Adapter_search_inner(URL,Date,Location,info,type_array,mContext,user_id_array,post_id_array));
         Log.d(TAG,"recyclerview" + URL + " rec:" + rec);
 
 
@@ -80,6 +81,7 @@ public class Search_presenter {
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("");
+
         myRef.child("Posts").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -90,12 +92,13 @@ public class Search_presenter {
                     Log.d(TAG,"datasnapshot"+postSnapshot);
 
 
-                    String URL_s = postSnapshot.child("Source").getValue().toString();
+
+                    String URL_s = Objects.requireNonNull(postSnapshot.child("Source").getValue()).toString();
                     Log.d(TAG,"URL"+URL_s);
-                    String type = postSnapshot.child("type").getValue().toString();
-                    String time = postSnapshot.child("Time").getValue().toString();
-                    String u_ID = postSnapshot.child("User_ID").getValue().toString();
-                    String p_ID = postSnapshot.getKey().toString();
+                    String type = Objects.requireNonNull(postSnapshot.child("type").getValue()).toString();
+                    String time = Objects.requireNonNull(postSnapshot.child("Time").getValue()).toString();
+                    String u_ID = Objects.requireNonNull(postSnapshot.child("User_ID").getValue()).toString();
+                    String p_ID = postSnapshot.getKey();
                     getArrayData_l_s_s(postSnapshot);
                     addData(URL_s, type, time, u_ID, p_ID);
 

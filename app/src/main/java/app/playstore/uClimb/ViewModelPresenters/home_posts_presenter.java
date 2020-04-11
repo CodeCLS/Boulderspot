@@ -29,6 +29,7 @@ import java.util.Objects;
 import app.playstore.uClimb.Adapters.Adapter_home;
 import app.playstore.uClimb.Adapters.Adapter_home_comment;
 import app.playstore.uClimb.R;
+import app.playstore.uClimb.ViewModelPresenters.login.login_presenter;
 
 public class home_posts_presenter  {
     private static final String TAG = "presenter";
@@ -56,6 +57,8 @@ public class home_posts_presenter  {
     private ArrayList<String> array_likes = new ArrayList();
     Adapter_home_comment adapter_home_comment = new Adapter_home_comment(array_name_comment,array_comment_id,array_comment,array_User_ID,array_time_comment);
     Adapter_home adapter_home = new Adapter_home(array_time,array_name,array_source_img,array_source,array_info,array_place,array_user_id,array_post_id,array_type,array_likes);
+    private String mAuth;
+    private Context mContext;
 
 
 
@@ -77,18 +80,23 @@ public class home_posts_presenter  {
 
     }
 
-    public home_posts_presenter(display display) {
+    public home_posts_presenter(display display,Context mContext) {
         this.model_home = new home_posts_model();
         this.display = display;
+        login_presenter login_presenter = new login_presenter();
+        this.mAuth = login_presenter.getUID(mContext);
+        Log.d(TAG,"mAuth3" + this.mAuth);
+        //TODO mAUth nbull
 
     }
 
     private void initRec(View view, Context context) {
+        Log.d(TAG,"initRec");
 
 
         if (array_time.isEmpty()){
             create_snackbar(view,context);
-            boolean testrun= false;
+            boolean testrun= true;
 
             if (testrun){
                 array_type.add("IMG");
@@ -121,18 +129,18 @@ public class home_posts_presenter  {
         else {
             Log.d(TAG,"ViewPresenter" + view);
 
-            Snackbar snackbar = Snackbar.make(view, "Go and follow some people on the search page to see things in your feed. : )", Snackbar.LENGTH_LONG);
-            snackbar.setBackgroundTint(context.getResources().getColor(R.color.colorPrimaryDark));
-            snackbar.show();
+           Snackbar snackbar = Snackbar.make(view, "Go and follow some people on the search page to see things in your feed. : )", Snackbar.LENGTH_SHORT);
+           snackbar.setBackgroundTint(context.getResources().getColor(R.color.colorPrimaryDark));
+           snackbar.show();
         }
 
     }
 
-    public void setData(View view,String mAuth,Context context){
+    public void setData(View view,Context context){
 
-        DatabaseReference myRef = addDatatoArray_postID(mAuth);
+        DatabaseReference myRef = addDatatoArray_postID();
         for_loop_posts(myRef);
-        sortList();
+        //sortList();
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -153,18 +161,21 @@ public class home_posts_presenter  {
     }
 
     private void getallpostdata(@NonNull DataSnapshot dataSnapshot,View view,Context context) {
-        clearArrayLists();
+        Log.d(TAG,"lsize"+ l);
+
+        //clearArrayLists();
 
         for (int i = 0;i< l.size();i++) {
 
 
             for (DataSnapshot postSnapshot : dataSnapshot.child("Posts").getChildren()) {
 
-                if (postSnapshot.child("Time").getValue().equals(l.get(i))){
+                //if (postSnapshot.child("Time").getValue().equals(l.get(i))){
                     addDatato_arrays(dataSnapshot, postSnapshot);
 
 
-                }
+
+                //}
 
             }
         }
@@ -194,6 +205,8 @@ public class home_posts_presenter  {
         array_post_id.add(post_ID);
         array_type.add(type);
         array_likes.add(likes);
+        Log.d(TAG,"likes"+likes);
+
     }
 
     private Bundle createBundle() {
@@ -257,7 +270,7 @@ public class home_posts_presenter  {
         });
     }
 
-    private DatabaseReference addDatatoArray_postID(String mAuth) {
+    private DatabaseReference addDatatoArray_postID() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("User");
         DatabaseReference myRef_posts = database.getReference("Posts");
@@ -280,12 +293,13 @@ public class home_posts_presenter  {
 
                 }
                 for(int i= 0;i<following.size();i++){
-                    final String ID_instance = following_ID.get(i);
+                    final String ID_instance = following.get(i);
+
                     myRef.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            for(DataSnapshot postSnapshot: dataSnapshot.child(ID_instance).child("posts").getChildren()){
-                                String post_val = postSnapshot.getValue().toString();
+                            for(DataSnapshot postSnapshot: dataSnapshot.child(ID_instance).child("Posts").getChildren()){
+                                String post_val = Objects.requireNonNull(postSnapshot.getValue()).toString();
                                 posts.add(post_val);
                                 Log.d(TAG,"posts_data" + posts);
                             }
@@ -325,11 +339,11 @@ public class home_posts_presenter  {
             }
         });
     }
-    public boolean liked(String id, String mAuth){
+    public boolean liked(String id){
         // Write a message to the database
         DatabaseReference myRef = initfireliked();
         // Read from the database
-        setstatusliked(id, mAuth, myRef);
+        setstatusliked(id, myRef);
 
 
         return status;
@@ -337,7 +351,7 @@ public class home_posts_presenter  {
 
     }
 
-    private void setstatusliked(String id, String mAuth, DatabaseReference myRef) {
+    private void setstatusliked(String id, DatabaseReference myRef) {
         myRef.child("Posts").child(id).child("likes").child(mAuth).setValue(mAuth, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {

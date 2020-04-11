@@ -23,6 +23,7 @@ import java.util.ArrayList;
 
 import app.playstore.uClimb.Fragments.Post.custom_post_page;
 import app.playstore.uClimb.R;
+import app.playstore.uClimb.ViewModelPresenters.login.login_presenter;
 
 public class Adapter_search_inner extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -32,22 +33,28 @@ public class Adapter_search_inner extends RecyclerView.Adapter<RecyclerView.View
     private  ArrayList<String> Location= new ArrayList<>();;
     private  ArrayList<String> info= new ArrayList<>();
     private  ArrayList<String> type_array= new ArrayList<>();
+    private  ArrayList<String> post_id= new ArrayList<>();
+    private  ArrayList<String>uid= new ArrayList<>();
+
 
     public Context mContext;
 
 
-    public Adapter_search_inner(ArrayList<String> IMG_URL, ArrayList<String> date, ArrayList<String> location, ArrayList<String> info, ArrayList<String> type_array, Context mContext) {
+    public Adapter_search_inner(ArrayList<String> IMG_URL, ArrayList<String> date, ArrayList<String> location, ArrayList<String> info, ArrayList<String> type_array, Context mContext,ArrayList<String> uid ,ArrayList<String> post_id) {
         this.URL = IMG_URL;
         Date = date;
         Location = location;
         this.info = info;
         this.type_array = type_array;
         this.mContext = mContext;
+        this.uid = uid;
+        this.post_id = post_id;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        Log.d(TAG,"UID_inner" + uid);
         View view =null;
         RecyclerView.ViewHolder viewHolder = null;
         Log.d("adapter_search_final" , "type_array" + type_array.get(i)+ "number..." + i);
@@ -111,9 +118,11 @@ public class Adapter_search_inner extends RecyclerView.Adapter<RecyclerView.View
                 }
             });
             viewHolder_video.videoView.seekTo(2);
+
             ((ViewHolder_video) viewHolder).videoView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Log.d(TAG,"cliockedonce");
                     transactiontopost(i);
 
 
@@ -153,11 +162,14 @@ public class Adapter_search_inner extends RecyclerView.Adapter<RecyclerView.View
     }
 
     private void transactiontopost(int position) {
+        login_presenter login_presenter = new login_presenter();
+
+
         custom_post_page mFragment = new custom_post_page();
         Bundle arguments = new Bundle();
         arguments.putString("Source", URL.get(position));
-        arguments.putString("UserID", URL.get(position));
-        arguments.putString("PostID", URL.get(position));
+        arguments.putString("UserID", uid.get(position));
+        arguments.putString("PostID", post_id.get(position));
         arguments.putString("Type", type_array.get(position));
 
 
@@ -167,7 +179,7 @@ public class Adapter_search_inner extends RecyclerView.Adapter<RecyclerView.View
 
         FragmentManager fragmentManager = ((AppCompatActivity)mContext).getSupportFragmentManager();
         mFragment.setArguments(arguments);
-        fragmentManager.beginTransaction().addToBackStack("Fragment_training").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+        fragmentManager.beginTransaction().addToBackStack("Fragment_custom_post_page").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .replace(R.id.container_fragment, mFragment).commit();
 
     }

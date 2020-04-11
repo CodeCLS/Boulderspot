@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 import app.playstore.uClimb.Fragments.Community_Fragment;
 import app.playstore.uClimb.Fragments.Profile.Profile_Fragment;
+import app.playstore.uClimb.Fragments.Statistics_fragment;
 import app.playstore.uClimb.Notifaction.Base_Internet;
 import app.playstore.uClimb.DB.FeedReaderDBHelper;
 import app.playstore.uClimb.Fragments.Search.Search_Fragment;
@@ -165,7 +166,7 @@ public class MainActivity extends Base_Internet  {
             }
 
             if (selectedIndex == 3) {
-                Profile_Fragment mFragment_profile = new Profile_Fragment();
+                Statistics_fragment mFragment_profile = new Statistics_fragment();
                 FragmentManager fragmentManager_profile = getSupportFragmentManager();
                 fragmentManager_profile.beginTransaction()
                         .replace(R.id.container_fragment, mFragment_profile).commit();
