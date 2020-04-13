@@ -28,6 +28,7 @@ MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/freetime/.gradle/cache
 MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/ee402462607e3d7bc40e1166a58a6978/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-auth:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/5becd67d34fcbceea29c723da507aed6/jetified-play-services-auth-17.0.0/AndroidManifest.xml:17:1-39:12
 MERGED from [androidx.percentlayout:percentlayout:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/724eac67793f7710a73d6723f4c49922/percentlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [org.tensorflow:tensorflow-lite:0.0.0-nightly] /Users/freetime/.gradle/caches/transforms-2/files-2.1/52911682f602f3d6d1dafc14d6dce6e1/jetified-tensorflow-lite-0.0.0-nightly/AndroidManifest.xml:2:1-12:12
 MERGED from [androidx.work:work-runtime:2.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/2efaecca5c1a1576343f409480808e4b/work-runtime-2.0.0/AndroidManifest.xml:17:1-123:12
 MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/7e11ac1883f9e27592a377296b09eec8/jetified-firebase-auth-interop-19.0.0/AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.firebase:firebase-common:19.3.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/1b23a58bb1c539c2a19df1b0920c32b5/jetified-firebase-common-19.3.0/AndroidManifest.xml:15:1-39:12
@@ -172,6 +173,8 @@ MERGED from [de.hdodenhof:circleimageview:3.1.0] /Users/freetime/.gradle/caches/
 MERGED from [de.hdodenhof:circleimageview:3.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/b83093d7160cac6f58228c6198882b43/jetified-circleimageview-3.1.0/AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.gms:play-services-auth:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/5becd67d34fcbceea29c723da507aed6/jetified-play-services-auth-17.0.0/AndroidManifest.xml:22:5-37:19
 MERGED from [com.google.android.gms:play-services-auth:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/5becd67d34fcbceea29c723da507aed6/jetified-play-services-auth-17.0.0/AndroidManifest.xml:22:5-37:19
+MERGED from [org.tensorflow:tensorflow-lite:0.0.0-nightly] /Users/freetime/.gradle/caches/transforms-2/files-2.1/52911682f602f3d6d1dafc14d6dce6e1/jetified-tensorflow-lite-0.0.0-nightly/AndroidManifest.xml:10:5-20
+MERGED from [org.tensorflow:tensorflow-lite:0.0.0-nightly] /Users/freetime/.gradle/caches/transforms-2/files-2.1/52911682f602f3d6d1dafc14d6dce6e1/jetified-tensorflow-lite-0.0.0-nightly/AndroidManifest.xml:10:5-20
 MERGED from [androidx.work:work-runtime:2.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/2efaecca5c1a1576343f409480808e4b/work-runtime-2.0.0/AndroidManifest.xml:27:5-121:19
 MERGED from [androidx.work:work-runtime:2.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/2efaecca5c1a1576343f409480808e4b/work-runtime-2.0.0/AndroidManifest.xml:27:5-121:19
 MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/7e11ac1883f9e27592a377296b09eec8/jetified-firebase-auth-interop-19.0.0/AndroidManifest.xml:7:5-8:19
@@ -316,6 +319,8 @@ MERGED from [com.google.android.gms:play-services-auth:17.0.0] /Users/freetime/.
 MERGED from [com.google.android.gms:play-services-auth:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/5becd67d34fcbceea29c723da507aed6/jetified-play-services-auth-17.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.percentlayout:percentlayout:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/724eac67793f7710a73d6723f4c49922/percentlayout-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.percentlayout:percentlayout:1.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/724eac67793f7710a73d6723f4c49922/percentlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [org.tensorflow:tensorflow-lite:0.0.0-nightly] /Users/freetime/.gradle/caches/transforms-2/files-2.1/52911682f602f3d6d1dafc14d6dce6e1/jetified-tensorflow-lite-0.0.0-nightly/AndroidManifest.xml:7:5-8:41
+MERGED from [org.tensorflow:tensorflow-lite:0.0.0-nightly] /Users/freetime/.gradle/caches/transforms-2/files-2.1/52911682f602f3d6d1dafc14d6dce6e1/jetified-tensorflow-lite-0.0.0-nightly/AndroidManifest.xml:7:5-8:41
 MERGED from [androidx.work:work-runtime:2.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/2efaecca5c1a1576343f409480808e4b/work-runtime-2.0.0/AndroidManifest.xml:21:5-44
 MERGED from [androidx.work:work-runtime:2.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/2efaecca5c1a1576343f409480808e4b/work-runtime-2.0.0/AndroidManifest.xml:21:5-44
 MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/7e11ac1883f9e27592a377296b09eec8/jetified-firebase-auth-interop-19.0.0/AndroidManifest.xml:5:5-44
@@ -437,6 +442,7 @@ INJECTED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boul
 	android:minSdkVersion
 		INJECTED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml
 		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml
+		MERGED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml
 uses-permission#android.permission.ACCESS_WIFI_STATE
 ADDED from [com.google.android.libraries.places:places:2.2.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/3a8fc46bc67a69bbcd67756262e8d44c/jetified-places-2.2.0/AndroidManifest.xml:10:5-76

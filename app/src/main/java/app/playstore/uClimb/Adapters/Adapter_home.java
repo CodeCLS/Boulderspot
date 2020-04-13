@@ -19,6 +19,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -105,14 +106,9 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public int getItemViewType(final int position) {
-        return getItemViewtypeAction(position);
+        int i = -2;
 
-    }
-
-    private int getItemViewtypeAction(int position) {
-        int i = 0;
-
-
+        Log.d(TAG,"position"+ position);
         if (position==0) {
             i = 0;
         }
@@ -120,8 +116,12 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
             i = 1;
         }
+
+
         return i;
     }
+
+
 
     public Adapter_home(ArrayList<String> array_time, ArrayList<String> array_name, ArrayList<String> array_source_img, ArrayList<String> array_source, ArrayList<String> array_info, ArrayList<String> array_place, ArrayList<String> array_user_id, ArrayList<String> array_post_id, ArrayList<String> array_type, ArrayList<String> array_likes) {
         this.array_time = array_time;
@@ -250,6 +250,7 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         View view;
         RecyclerView.ViewHolder viewHolder = null;
+        Log.d(TAG,"idata"+i);
 
 
         if (i == 0) {
@@ -263,7 +264,7 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
 
         }
-        return Objects.requireNonNull(viewHolder);
+        return viewHolder;
     }
 
     private void setInstances(@NonNull ViewGroup viewGroup) {
@@ -290,7 +291,7 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
 
     private void frontendonBind(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        i = i-1; //important
+        i = i-1;
         if (viewHolder.getItemViewType() == 0) {
             training_and_post_onClick((ViewHolder_training) viewHolder);
 

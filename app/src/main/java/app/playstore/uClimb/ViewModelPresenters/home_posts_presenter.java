@@ -89,6 +89,29 @@ public class home_posts_presenter  {
         //TODO mAUth nbull
 
     }
+    public void setData(View view, Context mContext){
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference("");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot.child("Posts").getChildren()){
+                    addDatato_arrays(dataSnapshot,postSnapshot);
+
+
+
+                }
+                initRec(view,mContext);
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     private void initRec(View view, Context context) {
         Log.d(TAG,"initRec");
@@ -96,7 +119,7 @@ public class home_posts_presenter  {
 
         if (array_time.isEmpty()){
             create_snackbar(view,context);
-            boolean testrun= true;
+            boolean testrun= false;
 
             if (testrun){
                 array_type.add("IMG");
@@ -136,57 +159,14 @@ public class home_posts_presenter  {
 
     }
 
-    public void setData(View view,Context context){
-
-        DatabaseReference myRef = addDatatoArray_postID();
-        for_loop_posts(myRef);
-        //sortList();
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                getallpostdata(dataSnapshot,view,context);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        Bundle bundle = createBundle();
-        display.allPostData(bundle);
-
-
-    }
-
-    private void getallpostdata(@NonNull DataSnapshot dataSnapshot,View view,Context context) {
-        Log.d(TAG,"lsize"+ l);
-
-        //clearArrayLists();
-
-        for (int i = 0;i< l.size();i++) {
-
-
-            for (DataSnapshot postSnapshot : dataSnapshot.child("Posts").getChildren()) {
-
-                //if (postSnapshot.child("Time").getValue().equals(l.get(i))){
-                    addDatato_arrays(dataSnapshot, postSnapshot);
 
 
 
-                //}
-
-            }
-        }
-        initRec(view,context);
-
-    }
 
     private void addDatato_arrays(@NonNull DataSnapshot dataSnapshot, DataSnapshot postSnapshot) {
         String time =postSnapshot.child("Time").getValue().toString();
         String name = dataSnapshot.child("User").child(postSnapshot.child("User_ID").getValue().toString()).child("Name").getValue().toString();
-        String profile_img = dataSnapshot.child("User").child(postSnapshot.child("User_ID").getValue().toString()).child("Profil_IMG").getValue().toString();
+        String profile_img = dataSnapshot.child("User").child(postSnapshot.child("User_ID").getValue().toString()).child("IMG").getValue().toString();
         String source = postSnapshot.child("Source").getValue().toString();
         String info = postSnapshot.child("Info").getValue().toString();
         String place = postSnapshot.child("Place").getValue().toString();
