@@ -204,14 +204,14 @@ public class home_posts_presenter  {
         bundle.putStringArrayList("array_likes",array_likes);
         return bundle;
     }
-    public void initcomments(RecyclerView rec, Context mContext){
-
-
-        getcommentdata(mContext,rec,array_name, array_time, array_comment_id, array_comment, array_User_ID);
-        rec.setAdapter(adapter_home_comment);
-        rec.setLayoutManager(new LinearLayoutManager(mContext));
-
-    }
+    //public void initcomments(RecyclerView rec, Context mContext){
+//
+//
+    //    getcommentdata(mContext,rec,array_name, array_time, array_comment_id, array_comment, array_User_ID);
+    //    rec.setAdapter(adapter_home_comment);
+    //    rec.setLayoutManager(new LinearLayoutManager(mContext));
+//
+    //}
 
     private void getcommentdata(Context mContext,RecyclerView rec,ArrayList<String> array_name, ArrayList<String> array_time, ArrayList<String> array_comment_id, ArrayList<String> array_comment, ArrayList<String> array_User_ID) {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();

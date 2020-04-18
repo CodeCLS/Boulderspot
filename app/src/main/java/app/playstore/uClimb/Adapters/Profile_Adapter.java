@@ -62,7 +62,7 @@ public class Profile_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private ArrayList follower = new ArrayList();
     private ArrayList  following = new ArrayList();
     private String Height;
-    private ArrayList competition = new ArrayList();
+    private ArrayList friends = new ArrayList();
     private String account_type;
     private String time_created;
     private String position_lat;
@@ -94,7 +94,7 @@ public class Profile_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
 
-    public Profile_Adapter(String uid, String stat_uid, String age, String name, String profile_img, String info, String subscription, String grade, String country, ArrayList follower, ArrayList following, String height, ArrayList competition, String account_type, String time_created, String position_lat, String position_long, String position_last_updated, Boolean position_status,String email) {
+    public Profile_Adapter(String uid, String stat_uid, String age, String name, String profile_img, String info, String subscription, String grade, String country, ArrayList follower, ArrayList following, String height, ArrayList friends, String account_type, String time_created, String position_lat, String position_long, String position_last_updated, Boolean position_status,String email) {
         this.uid = uid;
         this.stat_uid = stat_uid;
         Age = age;
@@ -107,7 +107,7 @@ public class Profile_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.follower = follower;
         this.following = following;
         Height = height;
-        this.competition = competition;
+        this.friends= friends;
         this.account_type = account_type;
         this.time_created = time_created;
         this.position_lat = position_lat;
@@ -212,7 +212,7 @@ public class Profile_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private void viewHolder_0_code(@NonNull standart_profile holder) {
         standart_profile standart_profile = holder;
-        Picasso.get().load(profile_img).fit().into(standart_profile.Imageview);
+        Picasso.get().load(profile_img).into(standart_profile.Imageview);
         Log.d(TAG,"profile_img4" + profile_img);
         standart_profile.Email.setText(Email);
         standart_profile.Name.setText(Name);
@@ -223,7 +223,7 @@ public class Profile_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         standart_profile.Height.setText(Height);
         set_spinner_following(standart_profile);
         set_spinner_follower(standart_profile);
-        set_spinner_competition(standart_profile);
+        set_spinner_friends(standart_profile);
         standart_profile.Following_number.setText(following.size() + " Following");
         standart_profile.Follower_number.setText(follower.size() + " Follower");
 // Create an ArrayAdapter using the string array and a default spinner layout
@@ -356,7 +356,7 @@ public class Profile_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 standart_profile_b.email.setVisibility(View.VISIBLE);
                 standart_profile_b.recyclerview_holder.setVisibility(View.VISIBLE);
                 standart_profile_b.recyclerView.setVisibility(View.VISIBLE);
-                standart_profile_b.input_competition.setVisibility(View.VISIBLE);
+                standart_profile_b.input_friends.setVisibility(View.VISIBLE);
 
                 standart_profile_b.btn_change_data.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -519,15 +519,15 @@ public class Profile_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 });
     }
 
-    private void set_spinner_competition(standart_profile standart_profile) {
+    private void set_spinner_friends(standart_profile standart_profile) {
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<String> dataAdapter_competition = new ArrayAdapter<String>(mContext,
-                android.R.layout.simple_spinner_item, competition);
+        ArrayAdapter<String> dataAdapter_friends = new ArrayAdapter<String>(mContext,
+                android.R.layout.simple_spinner_item, friends);
 
 // Specify the layout to use when the list of choices appears
-        dataAdapter_competition.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dataAdapter_friends.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 // Apply the adapter to the spinner
-        standart_profile.Competition.setAdapter(dataAdapter_competition);
+        standart_profile.Friends.setAdapter(dataAdapter_friends);
     }
 
     private void set_spinner_follower(standart_profile standart_profile) {
@@ -568,7 +568,7 @@ public class Profile_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         TextView Height;
         Spinner Follower;
         Spinner Following;
-        Spinner Competition;
+        Spinner Friends;
         TextView Follower_number;
         TextView Following_number;
 
@@ -584,7 +584,7 @@ public class Profile_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             Height = itemView.findViewById(R.id.height_txt_profile);
             Follower = itemView.findViewById(R.id.spinner_followers_profile);
             Following = itemView.findViewById(R.id.spinner_following_profile);
-            Competition = itemView.findViewById(R.id.spinner_competition_profile);
+            Friends= itemView.findViewById(R.id.spinner_friends_profile);
             Follower_number = itemView.findViewById(R.id.number_followers_profile);
             Following_number = itemView.findViewById(R.id.number_following_profile);
 
@@ -617,7 +617,7 @@ public class Profile_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         EditText height;
         AutoCompleteTextView country;
         EditText info;
-        AutoCompleteTextView input_competition;
+        AutoCompleteTextView input_friends;
         RecyclerView recyclerView;
         LinearLayout recyclerview_holder;
         ConstraintLayout constraintLayout;
@@ -632,8 +632,8 @@ public class Profile_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             info = itemView.findViewById(R.id.profile_edit_info);
             recyclerview_holder = itemView.findViewById(R.id.linear_rec_holder_profile);
             constraintLayout = itemView.findViewById(R.id.standart_profile_page_layout_b);
-            recyclerView = itemView.findViewById(R.id.rec_competition_profile_edit);
-            input_competition = itemView.findViewById(R.id.competition_input_profile);
+            recyclerView = itemView.findViewById(R.id.rec_friends_profile_edit);
+            input_friends = itemView.findViewById(R.id.friends_input_profile);
 
 
 

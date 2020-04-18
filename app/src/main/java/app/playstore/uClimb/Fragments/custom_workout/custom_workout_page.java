@@ -18,7 +18,7 @@ import com.flarebit.flarebarlib.TabEventObject;
 
 import java.util.ArrayList;
 
-import app.playstore.uClimb.Fragments.Community_Fragment;
+import app.playstore.uClimb.Fragments.Friends_fragment;
 import app.playstore.uClimb.Fragments.Home.Home_Fragment;
 import app.playstore.uClimb.Fragments.Profile.Profile_Fragment;
 import app.playstore.uClimb.Fragments.Search.Search_Fragment;
@@ -77,7 +77,7 @@ public class custom_workout_page extends Fragment {
                 }
 
                 if (selectedIndex == 2) {
-                    Community_Fragment mFragment_Community = new Community_Fragment();
+                    Friends_fragment mFragment_Community = new Friends_fragment();
                     FragmentManager fragmentManager_community = getChildFragmentManager();
                     fragmentManager_community.beginTransaction()
                             .replace(R.id.container_fragment, mFragment_Community).commit();

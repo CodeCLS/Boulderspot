@@ -5,6 +5,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -12,23 +13,31 @@ import androidx.fragment.app.FragmentManager;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.danikula.videocache.CacheListener;
 import com.flarebit.flarebarlib.FlareBar;
 import com.flarebit.flarebarlib.Flaretab;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.yayandroid.locationmanager.LocationConfiguration;
+import com.yayandroid.locationmanager.LocationManager;
 
+import java.io.File;
 import java.util.ArrayList;
 
-import app.playstore.uClimb.Fragments.Community_Fragment;
-import app.playstore.uClimb.Fragments.Profile.Profile_Fragment;
+import app.playstore.uClimb.Fragments.Friends_fragment;
+import app.playstore.uClimb.Fragments.Settings_Fragment;
 import app.playstore.uClimb.Fragments.Statistics_fragment;
+import app.playstore.uClimb.LocationService;
 import app.playstore.uClimb.Notifaction.Base_Internet;
 import app.playstore.uClimb.DB.FeedReaderDBHelper;
 import app.playstore.uClimb.Fragments.Search.Search_Fragment;
 import app.playstore.uClimb.Fragments.Home.Home_Fragment;
 import app.playstore.uClimb.R;
 
-public class MainActivity extends Base_Internet  {
+public class MainActivity extends Base_Internet implements CacheListener {
 
     private static final String TAG = "Main";
     private static final String COLUMN_NAME_TITLE = "Caleb";
@@ -47,6 +56,8 @@ public class MainActivity extends Base_Internet  {
     private ArrayList<String> seen_by = new ArrayList<>();
     private ArrayList<String> name = new ArrayList<>();
     private ArrayList<String> info = new ArrayList<>();
+    private FusedLocationProviderClient fusedLocationClient;
+
 
     private ArrayList<String> video_url = new ArrayList<>();
     private ArrayList<String> ID_User = new ArrayList<>();
@@ -69,6 +80,8 @@ public class MainActivity extends Base_Internet  {
     @Override
     protected void onStart() {
         super.onStart();
+
+
     }
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -77,6 +90,8 @@ public class MainActivity extends Base_Internet  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+
 
         // if (savedInstanceState == null) {
        //     getSupportFragmentManager().beginTransaction()
@@ -131,11 +146,11 @@ public class MainActivity extends Base_Internet  {
         final FlareBar bottomBar = findViewById(R.id.bottomBar);
         bottomBar.setBarBackgroundColor(Color.parseColor("#FFFFFF"));
         ArrayList<Flaretab> tabs = new ArrayList<>();
-        tabs.add(new Flaretab(getResources().getDrawable(R.drawable.inboxb),"Home","#FFECB3"));
-        tabs.add(new Flaretab(getResources().getDrawable(R.drawable.searchb),"Search","#80DEEA"));
-        tabs.add(new Flaretab(getResources().getDrawable(R.drawable.phoneb),"Community","#B39DDB"));
-        tabs.add(new Flaretab(getResources().getDrawable(R.drawable.avatarb),"Training","#EF9A9A"));
-        tabs.add(new Flaretab(getResources().getDrawable(R.drawable.settingsb),"Settings","#B2DFDB"));
+        tabs.add(new Flaretab(getResources().getDrawable(R.mipmap.house_ui_icon),"Home","#FFECB3"));
+        tabs.add(new Flaretab(getResources().getDrawable(R.mipmap.search_ui_icon_a),"Search","#80DEEA"));
+        tabs.add(new Flaretab(getResources().getDrawable(R.mipmap.communityicon),"Community","#B39DDB"));
+        tabs.add(new Flaretab(getResources().getDrawable(R.mipmap.user_icon_blue),"Profile","#EF9A9A"));
+        tabs.add(new Flaretab(getResources().getDrawable(R.mipmap.settingsicon),"Settings","#B2DFDB"));
 
         bottomBar.setTabList(tabs);
         bottomBar.attachTabs(this);
@@ -158,7 +173,7 @@ public class MainActivity extends Base_Internet  {
             }
 
             if (selectedIndex == 2) {
-                Community_Fragment mFragment_Community = new Community_Fragment();
+                Friends_fragment mFragment_Community = new Friends_fragment();
                 FragmentManager fragmentManager_community = getSupportFragmentManager();
                 fragmentManager_community.beginTransaction()
                         .replace(R.id.container_fragment, mFragment_Community).commit();
@@ -167,6 +182,13 @@ public class MainActivity extends Base_Internet  {
 
             if (selectedIndex == 3) {
                 Statistics_fragment mFragment_profile = new Statistics_fragment();
+                FragmentManager fragmentManager_profile = getSupportFragmentManager();
+                fragmentManager_profile.beginTransaction()
+                        .replace(R.id.container_fragment, mFragment_profile).commit();
+
+            }
+            if (selectedIndex == 4) {
+                Settings_Fragment mFragment_profile = new Settings_Fragment();
                 FragmentManager fragmentManager_profile = getSupportFragmentManager();
                 fragmentManager_profile.beginTransaction()
                         .replace(R.id.container_fragment, mFragment_profile).commit();
@@ -197,6 +219,7 @@ public class MainActivity extends Base_Internet  {
 
     }
 
+
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
@@ -214,5 +237,8 @@ public class MainActivity extends Base_Internet  {
     }
 
 
+    @Override
+    public void onCacheAvailable(File cacheFile, String url, int percentsAvailable) {
 
+    }
 }

@@ -2,6 +2,7 @@ package app.playstore.uClimb.Fragments;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -64,12 +65,15 @@ import app.playstore.uClimb.LocationService;
 import app.playstore.uClimb.Models.Locate_Model;
 import app.playstore.uClimb.ParserTask;
 import app.playstore.uClimb.R;
+import app.playstore.uClimb.ViewModelPresenters.friends_presenter;
+import app.playstore.uClimb.ViewModelPresenters.location_presenter;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
 public class Location_fragment extends Fragment implements OnMapReadyCallback  {
     private JSONObject callbackjson;
     private PlacesClient placesClient;
+    private SupportMapFragment mapFragment = null;
 
     public static GoogleMap mMap;
 
@@ -86,34 +90,32 @@ public class Location_fragment extends Fragment implements OnMapReadyCallback  {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        final SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
+        ActivityCompat.requestPermissions((Activity) Objects.requireNonNull(this.getContext()),new String[]{ACCESS_FINE_LOCATION}, 1);
+        Places.initialize(getContext(), "AIzaSyCBG4HfWkuFX4MYM-7589gNw6hFbQiS8VM");
+        mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
-        Objects.requireNonNull(mapFragment).getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(GoogleMap googleMap) {
-                mMap = googleMap;
-                LocationService.performOnBackgroundThread(new Runnable() {
-                    @Override
-                    public void run() {
+
+        // Create a new Places client instance
+        this.placesClient = Places.createClient(getContext());
 
 
-                    }
-                });
-
-
+location_presenter location_presenter = new location_presenter(getContext(),view,mapFragment);
+location_presenter.getData();
+friends_presenter friends_presenter = new friends_presenter(view,getContext());
+friends_presenter.initViews();
+location_presenter.getLocation();
 
 
                         //ok - proceed
 
 
 
-                }
+           //     }
 
 
 
 
-        });
+      //  });
 
 
 

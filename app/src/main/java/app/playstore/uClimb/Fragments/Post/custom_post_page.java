@@ -94,7 +94,7 @@ public class custom_post_page extends Fragment {
                             if (dataSnapshot.child("User").child(id).child("liked").child(post_id).exists()){
                                 databaseReference.child("Posts").child(post_id).child("likes").child(id).removeValue();
                                 databaseReference.child("User").child(id).child("liked").child(post_id).removeValue();
-                                img_like.setImageDrawable(getResources().getDrawable(R.mipmap.like_btn_empty)); //TODO change Image
+                                img_like.setImageDrawable(getResources().getDrawable(R.mipmap.icon_user)); //TODO change Image
                                 liked = true;
                                 return;
 
@@ -108,7 +108,7 @@ public class custom_post_page extends Fragment {
                             if (!dataSnapshot.child("User").child(id).child("liked").child(post_id).exists()){
                             databaseReference.child("Posts").child(post_id).child("likes").child(id).setValue(id);
                             databaseReference.child("User").child(id).child("liked").child(post_id).setValue(post_id);
-                            img_like.setImageDrawable(getResources().getDrawable(R.mipmap.like_btn_empty)); //TODO change Image
+                            img_like.setImageDrawable(getResources().getDrawable(R.mipmap.icon_user)); //TODO change Image
                             return;
 
                             }

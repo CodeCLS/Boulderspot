@@ -18,11 +18,11 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
-        <ImageView
+s        <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
-            android:src="@mipmap/statistics_icon" />
+            android:src="@mipmap/statistics_icon_a" />
 
         <TextView
             android:layout_width="match_parent"
@@ -60,7 +60,7 @@
             android:layout_height="match_parent"
             android:layout_margin="20dp"
             android:layout_weight="1"
-            android:src="@mipmap/user_icon" />
+            android:src="@mipmap/icon_user" />
 
     </LinearLayout>
 </LinearLayout>

@@ -8,19 +8,14 @@
 
     <Button
         android:id="@+id/btn_search_search"
-        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
+        android:background="@mipmap/searchbar"
         android:elevation="10dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        android:text="@android:string/search_go" />
-
+/>
     <AutoCompleteTextView
         android:id="@+id/edit_search_nav"
         android:layout_width="wrap_content"

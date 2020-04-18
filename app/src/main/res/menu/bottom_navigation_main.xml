@@ -5,13 +5,13 @@
     <item
         android:id="@+id/menu_1"
         android:enabled="true"
-        android:icon="@mipmap/home"
+        android:icon="@mipmap/icon_user"
         android:title="home"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/menu_2"
         android:enabled="true"
-        android:icon="@mipmap/home"
+        android:icon="@mipmap/icon_user"
         android:title="home"
         app:showAsAction="ifRoom" />
 </menu>

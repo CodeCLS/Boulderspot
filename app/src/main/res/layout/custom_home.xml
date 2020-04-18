@@ -107,7 +107,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    app:srcCompat="@mipmap/like_btn_empty" />
+                    app:srcCompat="@mipmap/like_passive" />
 
                 <ImageView
                     android:id="@+id/img_home_share"
@@ -191,7 +191,7 @@
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:src="@mipmap/testimg"
+        android:src="@mipmap/icon_user"
         app:layout_constraintStart_toEndOf="@+id/abaf"
 
         app:layout_constraintStart_toStartOf="parent"

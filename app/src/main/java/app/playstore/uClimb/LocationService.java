@@ -15,15 +15,25 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import app.playstore.uClimb.ViewModelPresenters.login.login_presenter;
+
 public class LocationService extends Service {
     public static final String BROADCAST_ACTION = "Hello World";
     private static final int TWO_MINUTES = 1000 * 60 * 2;
     public LocationManager locationManager;
     public MyLocationListener listener;
     public Location previousBestLocation = null;
+    public Context mContext;
 
     Intent intent;
     int counter = 0;
+
+    public LocationService(Context mContext) {
+        this.mContext = mContext;
+    }
 
     @Override
     public void onCreate() {
@@ -148,8 +158,12 @@ public class LocationService extends Service {
         public void onLocationChanged(final Location loc) {
             Log.i("*****", "Location changed");
             if (isBetterLocation(loc, previousBestLocation)) {
+
                 loc.getLatitude();
                 loc.getLongitude();
+
+
+
                 intent.putExtra("Latitude", loc.getLatitude());
                 intent.putExtra("Longitude", loc.getLongitude());
                 intent.putExtra("Provider", loc.getProvider());

@@ -3,4 +3,12 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Switch
+        android:id="@+id/switch_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Permission to show Location to friends"
+        android:textOff="Not Showing Location"
+        android:textOn="Showing Location" />
 </LinearLayout>
