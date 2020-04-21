@@ -2,6 +2,7 @@ package app.playstore.uClimb.Adapters;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentManager;
@@ -12,11 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -34,9 +38,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.dynamiclinks.DynamicLink;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
+import com.jarvanmo.exoplayerview.media.SimpleMediaSource;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import javax.xml.transform.ErrorListener;
 
 import app.playstore.uClimb.Fragments.Training_list_fragment;
 import app.playstore.uClimb.Fragments.video_upload_fragment;
@@ -61,7 +68,7 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private int weight_linear_text = 1;
 
 
-    private ArrayList<String> likes;
+    private ArrayList< String> likes;
     private int clicked = 0;
     private String auth;
     private String UID;
@@ -137,6 +144,7 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, int i) {
         if (viewHolder.getItemViewType() == 0) {
@@ -168,20 +176,25 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         return new HttpProxyCacheServer(mContext);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void setWidgets(ViewHolder viewHolder, int i) {
-       // viewHolder.video_view.setDrawingCacheEnabled(true);
+        viewHolder.video_view.setBackgroundResource(android.R.color.transparent);
+         viewHolder.video_view.setDrawingCacheEnabled(true);
         viewHolder.info_txt.setText(array_info.get(i));
-        pause_play_video(viewHolder);
         Picasso.get().load(array_source_img.get(i)).fit().centerCrop().into(viewHolder.IMG_img_profile_pic);
-        HttpProxyCacheServer proxy = getProxy(mContext);
-        proxy.registerCacheListener((CacheListener) mContext, array_source.get(i));
-        String proxyUrl = proxy.getProxyUrl(array_source.get(i));
-        viewHolder.video_view.setVideoPath(proxyUrl);
+        //HttpProxyCacheServer proxy = getProxy(mContext);
+        //proxy.registerCacheListener((CacheListener) mContext, array_source.get(i));
+        //String proxyUrl = proxy.getProxyUrl(array_source.get(i));
+        //Log.d(TAG,"videosource: " + proxyUrl);
+        SimpleMediaSource mediaSource = new SimpleMediaSource(array_source.get(i));//uri also supported
+        viewHolder.video_view.play(mediaSource);
 
 
-        viewHolder.video_view.seekTo(2);
-        viewHolder.video_view.start();
         viewHolder.name_txt.setText(array_name.get(i));
+
+        pause_play_video(viewHolder,i);
+        viewHolder.video_view.releasePlayer();
+
     }
 
     @Override
@@ -201,7 +214,7 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         ImageView img_view;
         de.hdodenhof.circleimageview.CircleImageView IMG_img_profile_pic;
         TextView info_txt;
-        VideoView video_view;
+        com.jarvanmo.exoplayerview.ui.ExoVideoView video_view;
         LinearLayout text_inside;
         ConstraintLayout home_custom;
         ImageView like_btn;
@@ -349,11 +362,12 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
 
 
-    private void pause_play_video(@NonNull final ViewHolder viewHolder) {
+    private void pause_play_video(@NonNull final ViewHolder viewHolder,int i) {
         viewHolder.video_view.setOnClickListener(v -> {
 
             if (clicked == 0) {
-                viewHolder.video_view.start();
+                SimpleMediaSource mediaSource = new SimpleMediaSource(array_source.get(i));//uri also supported
+                viewHolder.video_view.play(mediaSource);
                 clicked = 1;
             } else {
                 viewHolder.video_view.pause();

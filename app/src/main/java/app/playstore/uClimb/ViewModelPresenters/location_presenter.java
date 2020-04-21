@@ -10,12 +10,14 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Database;
 
 import com.anychart.core.annotations.Line;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -25,7 +27,9 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.libraries.places.api.Places;
@@ -36,7 +40,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 import app.playstore.uClimb.Adapters.friend_location_list_adapter;
@@ -120,6 +127,7 @@ public class location_presenter extends Fragment implements OnMapReadyCallback ,
 
                 }
                 setRec();
+                initMarkers();
             }
 
             @Override
@@ -146,6 +154,33 @@ public class location_presenter extends Fragment implements OnMapReadyCallback ,
         Log.d(TAG,"Locationgooglepls: " + location.getLatitude());
         Log.d(TAG,"Locationgooglepls: " + location.getLongitude());
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, this);
+        Button button = view.findViewById(R.id.btn_publish_position);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG,"time: " + getTime());
+                login_presenter login_presenter = new login_presenter();
+                String uid = login_presenter.getUID(mContext);
+                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                DatabaseReference databaseReference = firebaseDatabase.getReference("");
+                databaseReference.child("User").child(uid).child("Position").child("Position_lat").setValue(location.getLatitude());
+                databaseReference.child("User").child(uid).child("Position").child("Position_lon").setValue(location.getLongitude());
+                databaseReference.child("User").child(uid).child("Position").child("Position_last_Time_updated").setValue(getTime());
+                databaseReference.child("User").child(uid).child("Position").child("position_status").setValue("Online");
+
+
+
+
+
+
+            }
+        });
+    }
+
+    private String getTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
+        String currentDateandTime = sdf.format(new Date());
+        return currentDateandTime;
     }
 
     private void initMarkers() {
@@ -160,6 +195,10 @@ public class location_presenter extends Fragment implements OnMapReadyCallback ,
                         String lat = friend_location_latitude.get(i);
                         String longitude = friend_location_longitude.get(i);
                         String name = friend_name.get(i);
+                        String time = friend_location_time.get(i);
+                        String status = friend_location_status.get(i);
+
+
                         // Add a marker in Sydney, Australia,
                         // and move the map's camera to the same location.
                         double latitude = Double.parseDouble(lat);
@@ -167,9 +206,21 @@ public class location_presenter extends Fragment implements OnMapReadyCallback ,
                         Log.d(TAG,"latitudelongitude" + latitude + " " + longitude_final);
                         LatLng location = new LatLng(latitude, longitude_final);
                         LatLng europe = new LatLng(53.0000, 9.0000);
-                        googleMap.addMarker(new MarkerOptions().position(location)
-                                .title(name + " is here."));
-                        googleMap.moveCamera(CameraUpdateFactory.newLatLng(europe));
+                        if (status.equals("Online")){
+                            googleMap.addMarker(new MarkerOptions().position(location)
+                                    .title(name + " is here.")).setIcon(BitmapDescriptorFactory
+                                    .defaultMarker(BitmapDescriptorFactory.HUE_RED));
+
+
+                        }
+                        else {
+                            googleMap.addMarker(new MarkerOptions().position(location)
+                                    .title(name + " is here.")).setIcon(BitmapDescriptorFactory
+                                    .defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+
+                            googleMap.moveCamera(CameraUpdateFactory.newLatLng(europe));
+                        }
+
                     }
 
 

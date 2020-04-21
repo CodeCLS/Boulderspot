@@ -80,6 +80,7 @@ dependencies {
     implementation 'com.ramotion.circlemenu:circle-menu:0.3.2'
     implementation 'com.sdsmdg.harjot:materialshadows:1.2.5'
     implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
+    compile 'com.sprylab.android.texturevideoview:texturevideoview:1.2.1'
 
     implementation 'com.mikhaellopez:circularimageview:3.2.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
@@ -92,6 +93,7 @@ dependencies {
     implementation 'com.vincan:medialoader:1.0.0'
     implementation 'org.tensorflow:tensorflow-lite:0.0.0-nightly'
     implementation 'com.yayandroid:LocationManager:1.0.0'
+    implementation 'com.jarvanmo:exoplayerview:2.1.5'
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     androidTestImplementation 'androidx.test:runner:1.2.0'

@@ -76,6 +76,10 @@
         "source": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/res/mipmap-xxxhdpi/settings_icon.png"
     },
     {
+        "merged": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/build/intermediates/res/merged/debug/xml_network_security_config.xml.flat",
+        "source": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/res/xml/network_security_config.xml"
+    },
+    {
         "merged": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_share_icon.png.flat",
         "source": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/res/mipmap-xxxhdpi/share_icon.png"
     },

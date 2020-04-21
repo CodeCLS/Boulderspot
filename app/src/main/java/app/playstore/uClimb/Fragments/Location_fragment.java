@@ -5,6 +5,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -15,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -90,6 +93,10 @@ public class Location_fragment extends Fragment implements OnMapReadyCallback  {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Button publish_position = view.findViewById(R.id.btn_publish_position);
+        Drawable drawable = publish_position.getBackground();
+        drawable.setTint(getResources().getColor(R.color.blue_pressed_btn));
+
         ActivityCompat.requestPermissions((Activity) Objects.requireNonNull(this.getContext()),new String[]{ACCESS_FINE_LOCATION}, 1);
         Places.initialize(getContext(), "AIzaSyCBG4HfWkuFX4MYM-7589gNw6hFbQiS8VM");
         mapFragment = (SupportMapFragment) getChildFragmentManager()

@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="Gradle: com.jarvanmo:exoplayerview:2.1.5@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5d5b91bab97848611d314a7997e6df32/jetified-exoplayerview-2.1.5/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5d5b91bab97848611d314a7997e6df32/jetified-exoplayerview-2.1.5/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5d5b91bab97848611d314a7997e6df32/jetified-exoplayerview-2.1.5/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jarvanmo/exoplayerview/2.1.5/dcc08a006304a39c017496e0f175816d68a698f2/exoplayerview-2.1.5-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jarvanmo/exoplayerview/2.1.5/ce3a8e3b78f993492f2f69e22b9d1d906a11ea63/exoplayerview-2.1.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
