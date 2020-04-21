@@ -127,11 +127,12 @@ public class login_presenter {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot dataSnapshot1: dataSnapshot.child("Statistic").child(getStatisticsID(mContext)).child("CompetingFriends").getChildren()){
+                for (DataSnapshot dataSnapshot1: dataSnapshot.child("User").child(getUID(mContext)).child("Friends").getChildren()){
                     friends.add(dataSnapshot1.getKey());
+                    Log.d(TAG,"login_presenter");
                 }
             }
 

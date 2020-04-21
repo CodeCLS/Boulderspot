@@ -62,17 +62,12 @@ public class statistics_presenter {
     }
     public void setData(View view, Context mContext){
         addDatatostatistic(mContext);
-        RecyclerView recyclerView = view.findViewById(R.id.statistic_rec);
-        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        recyclerView.setAdapter(adapter_statistic);
 
 
     }
 
     private void addDatatostatistic(Context mContext) {
-        getFireDataSessions(mContext);
-        getFireDataBoulders(mContext);
-        getFireDataCompetition(mContext);
+        getFireData(mContext);
 
         //training_sessions_time.add("6:00");
         //training_sessions_types.add("Liegestütze");
@@ -91,137 +86,126 @@ public class statistics_presenter {
 
     }
 
-    private void getFireDataCompetition(Context mContext) {
+    private void getFireData(Context mContext) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("");
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 login_presenter login_presenter = new login_presenter();
                 String statistics_id = login_presenter.getStatisticsID(mContext);
                 String uid = login_presenter.getUID(mContext);
                 ArrayList friendscompeting= login_presenter.getFriendsCompeting(mContext);
-                for (int i = 0; i < friendscompeting.size();i++){
-                    int p = 0;
-                    String uid_friends = friendscompeting.get(i).toString();
-                    for (DataSnapshot postSnapshot: dataSnapshot.child("User").child(uid_friends).child("Accomplished_Boulder").getChildren()){
-                        String boulder = postSnapshot.getKey();
-                        String times = postSnapshot.getValue().toString();
-                        int points = points_system(boulder);
-                        points =points*Integer.parseInt(times);
-                        p = p+ points;
+                Log.d(TAG,"friends_competing"+friendscompeting);
+
+                for (int i = 0; i < friendscompeting.size();i++) {
+                   int p = 0;
+                   int amount = 0;
+                   String uid_friends = friendscompeting.get(i).toString();
+                   Log.d(TAG,"friends_competing"+friendscompeting);
+
+                   String statistics_ID = dataSnapshot.child("User").child(uid_friends).child("Statistics_ID").getValue().toString();
+                   for (DataSnapshot postSnapshot : dataSnapshot.child("Statistics").child(statistics_ID).child("Boulder_problem").getChildren()) {
+                       String boulder = postSnapshot.child("difficulty").getValue().toString();
+                       String times = postSnapshot.child("num_value").getValue().toString();
+                       int points = points_system(boulder);
+                       points = points * Integer.parseInt(times);
+                       p = p + points;
+                       amount++;
+
+                   }
+                   competition_array_uid.add(uid_friends);
+                   competition_array_names.add(dataSnapshot.child("User").child(uid_friends).child("Name").getValue().toString());
+                   competition_array_boulder.add(amount+"");
+                   competition_array_boulderpoints.add(p);
+
+               }
+
+                    for (DataSnapshot posSnapshot : dataSnapshot.child("Statistics").child(statistics_id).child("Boulder_problem").getChildren()) {
+                        String grade = posSnapshot.child("difficulty").getValue().toString();
+                        String time = posSnapshot.child("Time").getValue().toString();
+                        String tries_num = posSnapshot.child("tries_num").getValue().toString();
+                        String notes = posSnapshot.child("Info").getValue().toString();
+                        boulder_notes.add(notes);
+
+
+                        boulders_grade.add(grade);
+                        boulders_time.add(time);
+                        boulders_tries.add(tries_num);
+
 
                     }
-                    competition_array_boulderpoints.add(p);
-                    competition_array_uid.add(uid_friends);
 
-
-
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-
-    }
-
-    private void getFireDataBoulders(Context mContext) {
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = firebaseDatabase.getReference("Statistics");
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                login_presenter login_presenter = new login_presenter();
-                String statistics_id = login_presenter.getStatisticsID(mContext);
-                for (DataSnapshot posSnapshot : dataSnapshot.child(statistics_id).child("Boulder_problem").getChildren()) {
-                    String grade = posSnapshot.child("difficulty").getValue().toString();
-                    String time = posSnapshot.child("Time").getValue().toString();
-                    String tries_num = posSnapshot.child("tries_num").getValue().toString();
-                    String notes = posSnapshot.child("Notes").getValue().toString();
-                    boulder_notes.add(notes);
-
-
-                    boulders_grade.add(grade);
-                    boulders_time.add(time);
-                    boulders_tries.add(tries_num);
-
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-            private void getFireDataSessions(Context mContext) {
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = firebaseDatabase.getReference("Statistics");
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                login_presenter login_presenter = new login_presenter();
-                String statistics_id = login_presenter.getStatisticsID(mContext);
-                Log.d(TAG,"statistics_id" + statistics_id);
-                Log.d(TAG,"dataworkout" + dataSnapshot.child(statistics_id).child("Workouts").getChildrenCount()) ;
-                if (dataSnapshot.child(statistics_id).child("Workouts").getChildrenCount() == 0){
-                    Snackbar snackbar = Snackbar.make(view,"No progress posted yet", BaseTransientBottomBar.LENGTH_SHORT);
-                    snackbar.setBackgroundTint(mContext.getResources().getColor(R.color.colorPrimaryDark));
-                    snackbar.show();
-
-                }
-
-                for (DataSnapshot postSnapshot : dataSnapshot.child(statistics_id).child("Workouts").getChildren()) {
-                    Log.d(TAG,"dataworkout2" + postSnapshot) ;
-
-
-                    String notes = postSnapshot.child("Notes").getValue().toString();
-                    String train = postSnapshot.child("Train").getValue().toString();
-                    String pause = postSnapshot.child("Pause").getValue().toString();
-                    String rest =postSnapshot.child("Rest").getValue().toString();
-                    String set =postSnapshot.child("Sets").getValue().toString();
-                    String round =postSnapshot.child("Rows").getValue().toString();
-                    sesssions_train_time.add(train);
-                    sesssions_pause_time.add(pause);
-                    sesssions_rest_time.add(rest);
-                    sesssions_rounds_time.add(round);
-                    sesssions_sets_time.add(set);
-                    training_sessions_notes.add(notes);
-                    if (training_sessions_types.contains(postSnapshot.child("Title").getValue().toString())) {
-                        int index = training_sessions_types.indexOf(postSnapshot.child("Title").getValue().toString());
-                        int amount = Integer.parseInt(training_sessions_amount.get(index)) + 1;
-                        training_sessions_amount.add(index, String.valueOf(amount));
-
-                    } else {
-                        String name_from_workout = postSnapshot.child("Title").getValue().toString();
-                        String amount = "1";
-                        String time = postSnapshot.child("Time").getValue().toString();
-                        training_sessions_amount.add(amount);
-                        training_sessions_types.add(name_from_workout);
-                        training_sessions_time.add(time);
+                    if (dataSnapshot.child("Statistics").child(statistics_id).child("Workouts").getChildrenCount() == 0){
+                        Snackbar snackbar = Snackbar.make(view,"No workout progress posted yet", BaseTransientBottomBar.LENGTH_SHORT);
+                        snackbar.setBackgroundTint(mContext.getResources().getColor(R.color.colorPrimaryDark));
+                        snackbar.show();
 
                     }
+
+                    for (DataSnapshot postSnapshot : dataSnapshot.child("Statistics").child(statistics_id).child("Workouts").getChildren()) {
+                        Log.d(TAG,"dataworkout2" + postSnapshot) ;
+
+
+                        String notes = postSnapshot.child("Info").getValue().toString();
+                        String train = postSnapshot.child("Train").getValue().toString();
+                        String pause = postSnapshot.child("Pause").getValue().toString();
+                        String rest =postSnapshot.child("Rest").getValue().toString();
+                        String set =postSnapshot.child("Sets").getValue().toString();
+                        String round =postSnapshot.child("Rows").getValue().toString();
+                        sesssions_train_time.add(train);
+                        sesssions_pause_time.add(pause);
+                        sesssions_rest_time.add(rest);
+                        sesssions_rounds_time.add(round);
+                        sesssions_sets_time.add(set);
+                        training_sessions_notes.add(notes);
+                        if (training_sessions_types.contains(postSnapshot.child("Title").getValue().toString())) {
+                            int index = training_sessions_types.indexOf(postSnapshot.child("Title").getValue().toString());
+                            int amount = Integer.parseInt(training_sessions_amount.get(index)) + 1;
+                            training_sessions_amount.add(index, String.valueOf(amount));
+
+                        } else {
+                            String name_from_workout = postSnapshot.child("Title").getValue().toString();
+                            String amount = "1";
+                            String time = postSnapshot.child("Time").getValue().toString();
+                            training_sessions_amount.add(amount);
+                            training_sessions_types.add(name_from_workout);
+                            training_sessions_time.add(time);
+
+                        }
+                    }
+                    Log.d(TAG,"sessions"+boulders_tries);
+                   //competition_array_boulderpoints.add(p);
+                   //competition_array_uid.add(uid_friends);
+
+                   RecyclerView recyclerView = view.findViewById(R.id.statistic_rec);
+                   recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+                   recyclerView.setAdapter(adapter_statistic);
+
+
+
+
+
+
+
                 }
 
 
-            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
+
+
+
     }
+
+
+
+
 
 
     private int points_system(String competition_grade_s){

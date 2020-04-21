@@ -257,6 +257,7 @@ public class video_upload_fragment extends Fragment {
                         if (selected_img){
                             String random_hash =random(20);
                             login_presenter login_presenter = new login_presenter();
+                            String statistics_id = login_presenter.getStatisticsID(getContext());
                             String uid = login_presenter.getUID(getContext());
                             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
                             DatabaseReference databaseReference = firebaseDatabase.getReference("");
@@ -276,13 +277,14 @@ public class video_upload_fragment extends Fragment {
                             databaseReference.child("Posts").child(random_hash).child("likes").setValue("likes");
                             databaseReference.child("Posts").child(random_hash).child("saved").setValue("saved");
                             databaseReference.child("Posts").child(random_hash).child("shared").setValue("shared");
-                            databaseReference.child("Statistics").child("Statistics_ID").child("Boulder_problem").child(random_hash).setValue(random_hash);
-                            databaseReference.child("Statistics").child("Statistics_ID").child("Boulder_problem").child(random_hash).child("Location").setValue(place_id);
-                            databaseReference.child("Statistics").child("Statistics_ID").child("Boulder_problem").child(random_hash).child("route_type").setValue(spinner_route_type.getSelectedItem().toString());
-                            databaseReference.child("Statistics").child("Statistics_ID").child("Boulder_problem").child(random_hash).child("tries_num").setValue(spinner_tries.getSelectedItem().toString());
-                            databaseReference.child("Statistics").child("Statistics_ID").child("Boulder_problem").child(random_hash).child("difficulty").setValue(spinner_grade.getSelectedItem().toString());
-                            databaseReference.child("Statistics").child("Statistics_ID").child("Boulder_problem").child(random_hash).child("difficulty_impression").setValue(spinner_impression_grade.getSelectedItem().toString());
-                            databaseReference.child("Statistics").child("Statistics_ID").child("Boulder_problem").child(random_hash).child("Place_name").setValue(place_Name);
+                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).setValue(random_hash);
+                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("Location").setValue(place_id);
+                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("route_type").setValue(spinner_route_type.getSelectedItem().toString());
+                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("tries_num").setValue(spinner_tries.getSelectedItem().toString());
+                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("difficulty").setValue(spinner_grade.getSelectedItem().toString());
+                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("difficulty_impression").setValue(spinner_impression_grade.getSelectedItem().toString());
+                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("Place_name").setValue(place_Name);
+                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("Time").setValue(currentDateandTime);
 
 
 
@@ -299,8 +301,9 @@ public class video_upload_fragment extends Fragment {
 
                         }
                         if (selected_video){
-                            String random_hash =random(20);
                             login_presenter login_presenter = new login_presenter();
+                            String statistics_id = login_presenter.getStatisticsID(getContext());
+                            String random_hash =random(20);
                             String uid = login_presenter.getUID(getContext());
                             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
                             DatabaseReference databaseReference = firebaseDatabase.getReference("");
@@ -320,13 +323,14 @@ public class video_upload_fragment extends Fragment {
                             databaseReference.child("Posts").child(random_hash).child("likes").setValue("likes");
                             databaseReference.child("Posts").child(random_hash).child("saved").setValue("saved");
                             databaseReference.child("Posts").child(random_hash).child("shared").setValue("shared");
-                            databaseReference.child("Statistics_ID").child("boulder_problem").child(random_hash).setValue(random_hash);
-                            databaseReference.child("Statistics_ID").child("boulder_problem").child(random_hash).child("Location").setValue(place_id);
-                            databaseReference.child("Statistics_ID").child("boulder_problem").child(random_hash).child("route_type").setValue(spinner_route_type.getSelectedItem().toString());
-                            databaseReference.child("Statistics_ID").child("boulder_problem").child(random_hash).child("tries_num").setValue(spinner_tries.getSelectedItem().toString());
-                            databaseReference.child("Statistics_ID").child("boulder_problem").child(random_hash).child("difficulty").setValue(spinner_grade.getSelectedItem().toString());
-                            databaseReference.child("Statistics_ID").child("boulder_problem").child(random_hash).child("difficulty_impression").setValue(spinner_impression_grade.getSelectedItem().toString());
-                            databaseReference.child("Statistics_ID").child("boulder_problem").child(random_hash).child("Place_name").setValue(place_Name);
+                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).setValue(random_hash);
+                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("Location").setValue(place_id);
+                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("route_type").setValue(spinner_route_type.getSelectedItem().toString());
+                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("tries_num").setValue(spinner_tries.getSelectedItem().toString());
+                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("difficulty").setValue(spinner_grade.getSelectedItem().toString());
+                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("difficulty_impression").setValue(spinner_impression_grade.getSelectedItem().toString());
+                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("Place_name").setValue(place_Name);
+                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("Time").setValue(currentDateandTime);
 
 
 

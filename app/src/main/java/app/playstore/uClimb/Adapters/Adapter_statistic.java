@@ -90,6 +90,7 @@ public class Adapter_statistic extends RecyclerView.Adapter<RecyclerView.ViewHol
         this.adapter_statistics_boulder = adapter_statistics_boulder;
         this.adapter_statistics_sessions = adapter_statistics_sessions;
         this.boulder_notes = boulder_notes;
+        Log.d(TAG,"trainingseession"+boulder_notes);
     }
 
     @NonNull
@@ -155,7 +156,8 @@ public class Adapter_statistic extends RecyclerView.Adapter<RecyclerView.ViewHol
 
             for(int i = 0;i<boulders_times.size();i++){
                 String boulder_grade_s= boulders_grade.get(i);
-                int boulder_times_i = Integer.parseInt(boulders_times.get(i));
+                //int boulder_times_i = Integer.parseInt(boulders_times.get(i));
+                int boulder_times_i = 2;
 
                 data_grade.add(new ValueDataEntry(boulder_grade_s,boulder_times_i));
 
