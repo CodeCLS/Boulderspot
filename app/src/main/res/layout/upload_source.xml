@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+
+
     android:layout_height="match_parent"
 
     android:orientation="vertical">
@@ -37,14 +39,18 @@
                     android:layout_marginStart="10dp"
                     android:textSize="30sp"
                     android:layout_weight="1" />
-
                 <Button
+                    android:id="@+id/upload_location"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/round_login_button"
-                    android:text="Load image/video"
+                    android:text="Add Location"
+                    android:elevation="10dp"
                     android:layout_margin="10dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    />
+
+
 
 
             </LinearLayout>
@@ -55,14 +61,24 @@
                 android:orientation="vertical"
                 android:padding="20dp">
                 <Button
-                    android:id="@+id/upload_location"
+                    android:id="@+id/upload_source_btn"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Add Location"
-                    android:layout_weight="4"
-                    />
-                <RadioButton
-                    android:id="@+id/upload_log_radio"
+                    android:background="@drawable/round_login_button"
+                    android:text="Load image/video"
+                    android:layout_margin="10dp"
+                    android:translationZ="10dp"
+                    android:elevation="30dp"
+
+                    android:layout_weight="3" />
+
+                <Spinner
+                    android:id="@+id/spinner_choose_type_source"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4" />
+                <CheckBox
+                    android:id="@+id/checkbox_statistic"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Log this climb into statistics"
@@ -81,14 +97,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1.2">
+            android:layout_weight="1.4">
 
             <EditText
                 android:id="@+id/upload_info_edit"
                 android:hint="Info"
-                android:elevation="10dp"
                 android:singleLine="false"
                 android:maxLines="20"
+                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
@@ -159,6 +175,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/submit_upload_source"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Submit"
