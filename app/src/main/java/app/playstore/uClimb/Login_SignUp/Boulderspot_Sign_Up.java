@@ -54,6 +54,14 @@ public class Boulderspot_Sign_Up extends AppCompatActivity {
         initViews();
         btn();
         textwatcher();
+        log_in.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Boulderspot_Sign_Up.this, Boulderspot_Log_In.class);
+                startActivity(intent);
+
+            }
+        });
 
 
 
@@ -298,6 +306,7 @@ public class Boulderspot_Sign_Up extends AppCompatActivity {
     }
 
     private void initViews() {
+        log_in= findViewById(R.id.login_Register);
         btn_sign_up = findViewById(R.id.btn_register);
         edit_email = findViewById(R.id.edit_email_register);
         edit_user = findViewById(R.id.edit_user_register);

@@ -32,7 +32,7 @@ public class Statistics_fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        statistics_presenter statistics_presenter = new statistics_presenter(getView());
+        statistics_presenter statistics_presenter = new statistics_presenter(view);
         statistics_presenter.setData(view,getContext());
         initviews(view);
         nav();

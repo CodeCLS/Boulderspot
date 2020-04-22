@@ -147,6 +147,7 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, int i) {
+         i = i-1;
         if (viewHolder.getItemViewType() == 0) {
             ViewHolder_training viewHolder_training = (ViewHolder_training) viewHolder;
             training_and_post_onClick(viewHolder_training);
@@ -164,7 +165,7 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return array_source.size();
+        return array_source.size()+1;
     }
     private HttpProxyCacheServer proxy;
 

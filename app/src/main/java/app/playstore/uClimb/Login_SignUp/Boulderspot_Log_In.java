@@ -333,7 +333,7 @@ public class Boulderspot_Log_In extends AppCompatActivity implements GoogleApiCl
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child(Objects.requireNonNull(mAuth.getUid())).exists()){
+                    if (dataSnapshot.child(mAuth.getUid().toString()).exists()){
                         Log.d(TAG,"mauthexists");
 
                         Intent intent = new Intent(Boulderspot_Log_In.this, MainActivity.class);

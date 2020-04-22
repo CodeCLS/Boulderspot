@@ -152,7 +152,7 @@ public class home_posts_presenter  {
         else {
             Log.d(TAG,"ViewPresenter" + view);
 
-           Snackbar snackbar = Snackbar.make(view, "Go and follow some people on the search page to see things in your feed. : )", Snackbar.LENGTH_SHORT);
+           Snackbar snackbar = Snackbar.make(view.getRootView(), "Go and follow some people on the search page to see things in your feed. : )", Snackbar.LENGTH_SHORT);
            snackbar.setBackgroundTint(context.getResources().getColor(R.color.colorPrimaryDark));
            snackbar.show();
         }

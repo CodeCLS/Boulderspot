@@ -27,6 +27,7 @@ public class statistics_presenter {
     private static final String TAG = "statistics_presenter";
     private String Statistics_ID;
     private String UID;
+    private static ArrayList<String> friends = new ArrayList<>();
     private ArrayList<String> training_sessions_time = new ArrayList<>();
     private ArrayList<String> training_sessions_types = new ArrayList<>();
     private ArrayList<String> training_sessions_amount = new ArrayList<>();
@@ -42,6 +43,7 @@ public class statistics_presenter {
     private ArrayList<String> sesssions_rest_time = new ArrayList<>();
     private ArrayList<String> sesssions_sets_time = new ArrayList<>();
     private ArrayList<String> sesssions_rounds_time = new ArrayList<>();
+    private static Boolean callback = false;
 
 
     private ArrayList<String> competition_array_uid = new ArrayList<>();
@@ -60,15 +62,13 @@ public class statistics_presenter {
         statistics_model = new statistics_model();
         this.view = view;
     }
-    public void setData(View view, Context mContext){
-        addDatatostatistic(mContext);
 
-
+    public statistics_presenter() {
     }
 
-    private void addDatatostatistic(Context mContext) {
-        getFireData(mContext);
-
+    public void setData(View view, Context mContext){
+        login_presenter login_presenter = new login_presenter();
+        login_presenter.getFriendsCompeting(mContext,view);
         //training_sessions_time.add("6:00");
         //training_sessions_types.add("Liegestütze");
         //training_sessions_amount.add("5");
@@ -79,14 +79,10 @@ public class statistics_presenter {
         //competition_array_boulder.add("V5");
 
 
-
-
-
-
-
     }
 
-    private void getFireData(Context mContext) {
+
+    public void getFireData(Context mContext, ArrayList value,View view_main) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("");
 
@@ -96,31 +92,38 @@ public class statistics_presenter {
                 login_presenter login_presenter = new login_presenter();
                 String statistics_id = login_presenter.getStatisticsID(mContext);
                 String uid = login_presenter.getUID(mContext);
-                ArrayList friendscompeting= login_presenter.getFriendsCompeting(mContext);
-                Log.d(TAG,"friends_competing"+friendscompeting);
+                Log.d(TAG,"friends" + friends);
+                friends = value;
 
-                for (int i = 0; i < friendscompeting.size();i++) {
-                   int p = 0;
-                   int amount = 0;
-                   String uid_friends = friendscompeting.get(i).toString();
-                   Log.d(TAG,"friends_competing"+friendscompeting);
 
-                   String statistics_ID = dataSnapshot.child("User").child(uid_friends).child("Statistics_ID").getValue().toString();
-                   for (DataSnapshot postSnapshot : dataSnapshot.child("Statistics").child(statistics_ID).child("Boulder_problem").getChildren()) {
-                       String boulder = postSnapshot.child("difficulty").getValue().toString();
-                       String times = postSnapshot.child("num_value").getValue().toString();
-                       int points = points_system(boulder);
-                       points = points * Integer.parseInt(times);
-                       p = p + points;
-                       amount++;
+                    for (int i = 0; i < friends.size(); i++) {
+                        int p = 0;
+                        int amount = 0;
+                        String uid_friends = friends.get(i).toString();
+                        Log.d(TAG, "friends1" + friends.get(i));
 
-                   }
-                   competition_array_uid.add(uid_friends);
-                   competition_array_names.add(dataSnapshot.child("User").child(uid_friends).child("Name").getValue().toString());
-                   competition_array_boulder.add(amount+"");
-                   competition_array_boulderpoints.add(p);
 
-               }
+                        String statistics_ID = dataSnapshot.child("User").child(uid_friends).child("StatisticsID").getValue().toString();
+                        Log.d(TAG,"statistics"+statistics_ID);
+                        Log.d(TAG, "points" + statistics_ID);
+                        for (DataSnapshot postSnapshot : dataSnapshot.child("Statistics").child(statistics_ID).child("Boulder_problem").getChildren()) {
+                            String boulder = postSnapshot.child("difficulty").getValue().toString();
+                            String times = postSnapshot.child("num_value").getValue().toString();
+                            int points = points_system(boulder);
+                            points = points * Integer.parseInt(times);
+                            Log.d(TAG, "points");
+                            p = p + points;
+                            amount++;
+
+                        }
+                        competition_array_uid.add(uid_friends);
+                        competition_array_names.add(dataSnapshot.child("User").child(uid_friends).child("Name").getValue().toString());
+                        competition_array_boulder.add(amount + "");
+                        competition_array_boulderpoints.add(p);
+
+                    }
+
+
 
                     for (DataSnapshot posSnapshot : dataSnapshot.child("Statistics").child(statistics_id).child("Boulder_problem").getChildren()) {
                         String grade = posSnapshot.child("difficulty").getValue().toString();
@@ -138,7 +141,7 @@ public class statistics_presenter {
                     }
 
                     if (dataSnapshot.child("Statistics").child(statistics_id).child("Workouts").getChildrenCount() == 0){
-                        Snackbar snackbar = Snackbar.make(view,"No workout progress posted yet", BaseTransientBottomBar.LENGTH_SHORT);
+                        Snackbar snackbar = Snackbar.make(view_main,"No workout progress posted yet", BaseTransientBottomBar.LENGTH_SHORT);
                         snackbar.setBackgroundTint(mContext.getResources().getColor(R.color.colorPrimaryDark));
                         snackbar.show();
 
@@ -178,8 +181,8 @@ public class statistics_presenter {
                     Log.d(TAG,"sessions"+boulders_tries);
                    //competition_array_boulderpoints.add(p);
                    //competition_array_uid.add(uid_friends);
-
-                   RecyclerView recyclerView = view.findViewById(R.id.statistic_rec);
+                    Log.d(TAG,"view"+view);
+                   RecyclerView recyclerView = view_main.findViewById(R.id.statistic_rec);
                    recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
                    recyclerView.setAdapter(adapter_statistic);
 
@@ -242,4 +245,5 @@ public class statistics_presenter {
        return points;
 
     }
+
 }

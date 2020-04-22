@@ -1,22 +1,23 @@
 package app.playstore.uClimb.Fragments;
 
-import android.app.AlertDialog;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,8 +27,8 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.libraries.places.api.Places;
@@ -40,19 +41,18 @@ import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRe
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
-import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
-import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
-import com.google.android.material.snackbar.BaseTransientBottomBar;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,11 +64,10 @@ import java.util.Random;
 
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.ViewModelPresenters.login.login_presenter;
-import app.playstore.uClimb.ViewModelPresenters.upload_presenter;
 
 public class video_upload_fragment extends Fragment {
     private static final int REQUEST_TAKE_GALLERY_VIDEO = 222;
-    private static final int RESULT_OK = -1;
+    private static final int RESULT_OK = 2;
     private static final int AUTOCOMPLETE_REQUEST_CODE = 1;
 
     private static final String TAG = "Video_Upload";
@@ -84,6 +83,7 @@ public class video_upload_fragment extends Fragment {
     private Button name_of_location;
     private Button upload_btn;
     private Boolean selected_video = false;
+
     private Boolean selected_img = true;
     private Boolean selected_source= true;
     private Button import_btn;
@@ -113,7 +113,6 @@ public class video_upload_fragment extends Fragment {
         name_of_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int AUTOCOMPLETE_REQUEST_CODE = 1;
 
 // Set the fields to specify which types of place data to
 // return after the user has made a selection.
@@ -212,7 +211,7 @@ public class video_upload_fragment extends Fragment {
           @Override
           public void onClick(View v) {
               if (spinner_source_type.getSelectedItem().toString().equals("Video")) {
-                  Log.d(TAG, "Clicked");
+                  Log.d(TAG, "Clicked1");
                   Intent intent = new Intent();
                   intent.setType("video/*");
                   intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -221,7 +220,7 @@ public class video_upload_fragment extends Fragment {
 
               }
               if (spinner_source_type.getSelectedItem().toString().equals("Image")){
-                  Log.d(TAG, "Clicked");
+                  Log.d(TAG, "Clicked2");
                   Intent intent = new Intent();
                   intent.setType("image/*");
                   intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -252,188 +251,8 @@ public class video_upload_fragment extends Fragment {
         upload_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (info_edit.getText().toString().length() > 10 &&selected_source&& place_id != null ){
-                    if (!checkbox_statistics.isSelected()){
-                        if (selected_img){
-                            String random_hash =random(20);
-                            login_presenter login_presenter = new login_presenter();
-                            String statistics_id = login_presenter.getStatisticsID(getContext());
-                            String uid = login_presenter.getUID(getContext());
-                            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                            DatabaseReference databaseReference = firebaseDatabase.getReference("");
-                            databaseReference.child("User").child(uid).child("Posts").child(random_hash).setValue(random_hash);
-                            databaseReference.child("Posts").child(random_hash).child("Info").setValue(info_edit.getText().toString());
-                            databaseReference.child("Posts").child(random_hash).child("Place").setValue(place_id);
-                            databaseReference.child("Posts").child(random_hash).child("Place_name").setValue(place_Name);
-                            databaseReference.child("Posts").child(random_hash).child("type").setValue("IMG");
+                datawork();
 
-
-                            databaseReference.child("Posts").child(random_hash).child("Source").setValue(selected_IMG_source);
-                            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
-                            String currentDateandTime = sdf.format(new Date());
-                            databaseReference.child("Posts").child(random_hash).child("Time").setValue(currentDateandTime);
-                            databaseReference.child("Posts").child(random_hash).child("User_ID").setValue(uid);
-                            databaseReference.child("Posts").child(random_hash).child("comments").setValue("comments");
-                            databaseReference.child("Posts").child(random_hash).child("likes").setValue("likes");
-                            databaseReference.child("Posts").child(random_hash).child("saved").setValue("saved");
-                            databaseReference.child("Posts").child(random_hash).child("shared").setValue("shared");
-                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).setValue(random_hash);
-                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("Location").setValue(place_id);
-                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("route_type").setValue(spinner_route_type.getSelectedItem().toString());
-                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("tries_num").setValue(spinner_tries.getSelectedItem().toString());
-                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("difficulty").setValue(spinner_grade.getSelectedItem().toString());
-                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("difficulty_impression").setValue(spinner_impression_grade.getSelectedItem().toString());
-                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("Place_name").setValue(place_Name);
-                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("Time").setValue(currentDateandTime);
-
-
-
-
-
-
-
-
-                            databaseReference.child("Posts").child(random_hash).child("type").setValue("IMG");
-
-
-
-
-
-                        }
-                        if (selected_video){
-                            login_presenter login_presenter = new login_presenter();
-                            String statistics_id = login_presenter.getStatisticsID(getContext());
-                            String random_hash =random(20);
-                            String uid = login_presenter.getUID(getContext());
-                            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                            DatabaseReference databaseReference = firebaseDatabase.getReference("");
-                            databaseReference.child("User").child(uid).child("Posts").child(random_hash).setValue(random_hash);
-                            databaseReference.child("Posts").child(random_hash).child("Info").setValue(info_edit.getText().toString());
-                            databaseReference.child("Posts").child(random_hash).child("Place").setValue(place_id);
-                            databaseReference.child("Posts").child(random_hash).child("Place_name").setValue(place_Name);
-                            databaseReference.child("Posts").child(random_hash).child("type").setValue("Video");
-
-
-                            databaseReference.child("Posts").child(random_hash).child("Source").setValue(selected_IMG_source);
-                            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
-                            String currentDateandTime = sdf.format(new Date());
-                            databaseReference.child("Posts").child(random_hash).child("Time").setValue(currentDateandTime);
-                            databaseReference.child("Posts").child(random_hash).child("User_ID").setValue(uid);
-                            databaseReference.child("Posts").child(random_hash).child("comments").setValue("comments");
-                            databaseReference.child("Posts").child(random_hash).child("likes").setValue("likes");
-                            databaseReference.child("Posts").child(random_hash).child("saved").setValue("saved");
-                            databaseReference.child("Posts").child(random_hash).child("shared").setValue("shared");
-                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).setValue(random_hash);
-                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("Location").setValue(place_id);
-                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("route_type").setValue(spinner_route_type.getSelectedItem().toString());
-                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("tries_num").setValue(spinner_tries.getSelectedItem().toString());
-                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("difficulty").setValue(spinner_grade.getSelectedItem().toString());
-                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("difficulty_impression").setValue(spinner_impression_grade.getSelectedItem().toString());
-                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("Place_name").setValue(place_Name);
-                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("Time").setValue(currentDateandTime);
-
-
-
-
-
-
-
-
-                            databaseReference.child("Posts").child(random_hash).child("type").setValue("IMG");
-
-
-
-
-
-
-
-                        }
-                        if (selected_video){
-                            Toast.makeText(getContext(), "Selected video", Toast.LENGTH_SHORT).show();
-
-                        }
-
-
-                    }
-                    else{
-                        if (selected_img){
-                            String random_hash =random(20);
-                            login_presenter login_presenter = new login_presenter();
-                            String uid = login_presenter.getUID(getContext());
-                            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                            DatabaseReference databaseReference = firebaseDatabase.getReference("");
-                            databaseReference.child("User").child(uid).child("Posts").child(random_hash).setValue(random_hash);
-                            databaseReference.child("Posts").child(random_hash).child("Info").setValue(info_edit.getText().toString());
-                            databaseReference.child("Posts").child(random_hash).child("Place").setValue(place_id);
-                            databaseReference.child("Posts").child(random_hash).child("Place_name").setValue(place_Name);
-                            databaseReference.child("Posts").child(random_hash).child("type").setValue("IMG");
-
-
-                            databaseReference.child("Posts").child(random_hash).child("Source").setValue(selected_IMG_source);
-                            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
-                            String currentDateandTime = sdf.format(new Date());
-                            databaseReference.child("Posts").child(random_hash).child("Time").setValue(currentDateandTime);
-                            databaseReference.child("Posts").child(random_hash).child("User_ID").setValue(uid);
-                            databaseReference.child("Posts").child(random_hash).child("comments").setValue("comments");
-                            databaseReference.child("Posts").child(random_hash).child("likes").setValue("likes");
-                            databaseReference.child("Posts").child(random_hash).child("saved").setValue("saved");
-                            databaseReference.child("Posts").child(random_hash).child("shared").setValue("shared");
-
-
-
-
-
-
-                            databaseReference.child("Posts").child(random_hash).child("type").setValue("IMG");
-
-
-
-
-
-                        }
-                        if (selected_video){
-                            String random_hash =random(20);
-                            login_presenter login_presenter = new login_presenter();
-                            String uid = login_presenter.getUID(getContext());
-                            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                            DatabaseReference databaseReference = firebaseDatabase.getReference("");
-                            databaseReference.child("User").child(uid).child("Posts").child(random_hash).setValue(random_hash);
-                            databaseReference.child("Posts").child(random_hash).child("Info").setValue(info_edit.getText().toString());
-                            databaseReference.child("Posts").child(random_hash).child("Place").setValue(place_id);
-                            databaseReference.child("Posts").child(random_hash).child("Place_name").setValue(place_Name);
-                            databaseReference.child("Posts").child(random_hash).child("type").setValue("Video");
-
-
-                            databaseReference.child("Posts").child(random_hash).child("Source").setValue(selected_IMG_source);
-                            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
-                            String currentDateandTime = sdf.format(new Date());
-                            databaseReference.child("Posts").child(random_hash).child("Time").setValue(currentDateandTime);
-                            databaseReference.child("Posts").child(random_hash).child("User_ID").setValue(uid);
-                            databaseReference.child("Posts").child(random_hash).child("comments").setValue("comments");
-                            databaseReference.child("Posts").child(random_hash).child("likes").setValue("likes");
-                            databaseReference.child("Posts").child(random_hash).child("saved").setValue("saved");
-                            databaseReference.child("Posts").child(random_hash).child("shared").setValue("shared");
-
-                            databaseReference.child("Posts").child(random_hash).child("type").setValue("IMG");
-
-
-
-
-
-
-
-                        }
-
-                    }
-
-
-                    
-                    //databaseReference
-
-                }
-                else{
-                    Toast.makeText(getContext(), "You either havent written more than 10 characters, didn't enter a location or entered a video/image. Please resolve", Toast.LENGTH_LONG).show();
-                }
             }
         });
 
@@ -469,6 +288,53 @@ public class video_upload_fragment extends Fragment {
 
     }
 
+    private void datawork() {
+        if (info_edit.getText().toString().length() > 10 &&selected_source&& place_id != null ){
+            if (!checkbox_statistics.isSelected()){
+                if (selected_img){
+                    uploadProgress(selected_IMG_source,initStorage(),true,true);
+
+                }
+                if (selected_video){
+                    uploadProgress(selected_video_source,initStorage(),false,true);
+
+
+
+
+
+
+                }
+
+
+
+            }
+            else{
+                if (selected_img){
+                    uploadProgress(selected_IMG_source,initStorage(),true,false);
+
+
+
+                }
+                if (selected_video){
+                    uploadProgress(selected_video_source,initStorage(),false,false);
+
+
+
+
+                }
+
+            }
+
+
+
+            //databaseReference
+
+        }
+        else{
+            Toast.makeText(getContext(), "You either havent written more than 10 characters, didn't enter a location or entered a video/image. Please resolve", Toast.LENGTH_LONG).show();
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -481,19 +347,22 @@ public class video_upload_fragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d(TAG,"META:" + resultCode);
+        Log.d(TAG,"META:" + requestCode + "OK? " + resultCode);
 
-        if (resultCode == REQUEST_TAKE_GALLERY_VIDEO) {
+        if (requestCode == REQUEST_TAKE_GALLERY_VIDEO&& resultCode == resultCode) {
             final Uri selectedVideoUri = data.getData();
+            Log.d(TAG,"metadata" + selectedVideoUri);
             StorageMetadata metadata = new StorageMetadata.Builder()
                     .setContentType("video/*")
                     .build();
             Log.d(TAG,"META:" + metadata);
             if (selectedVideoUri == null) {
-                Log.e("selected video path", "null");
+                Log.d("selected video path", "null");
             } else {
-                Log.v("selectedVideoPath", selectedVideoUri.toString());
+                Log.d("selectedVideoPath", selectedVideoUri.toString());
                 if (selectedVideoUri != null) {
+                    Log.d(TAG,"selected1");
+
 
                     //file_name.setText(selectedVideoUri.toString());
 
@@ -501,12 +370,15 @@ public class video_upload_fragment extends Fragment {
                     selected_source = true;
                     selected_video = true;
                     selected_video_source = selectedVideoUri.toString();
+                    selected_img = false;
+
 
 
                 }
             }
         }
-        if (requestCode == IMG_REQUEST_CODE){
+
+        if (requestCode == IMG_REQUEST_CODE&& resultCode == resultCode){
             final Uri selectedIMGUri = data.getData();
             StorageMetadata metadata = new StorageMetadata.Builder()
                     .setContentType("image/*")
@@ -517,11 +389,13 @@ public class video_upload_fragment extends Fragment {
             } else {
                 Log.d("selectedVideoPath", selectedIMGUri.toString());
                 if (selectedIMGUri != null) {
+                    Log.d(TAG,"selected1");
 
 
                     selected_source = true;
                     selected_img = true;
                     selected_IMG_source = selectedIMGUri.toString();
+                    selected_video= false;
 
 
                 }
@@ -545,60 +419,88 @@ public class video_upload_fragment extends Fragment {
         }
     }
 
-    private void uploadBtn(Uri selectedVideoUri) {
-        //if (info_edit.getText().toString().equals("") || grade.getText().toString().equals("") || name_of_location.getText().toString().equals("")){
-        //    Toast.makeText(getContext(), "Enter all fields", Toast.LENGTH_SHORT).show();
-        //}
-        //else{
-        //    if (info_edit.getText().toString().length() < 10){
-        //        Toast.makeText(getContext(), "Please inform your fans more", Toast.LENGTH_SHORT).show();
-        //    }
-        //    else{
-        //        final StorageReference photoRef = initStorage();
-        //        uploadProgress(selectedVideoUri, photoRef);
-//
-//
-        //    }
-        //}
-//
-    }
+
 
     private StorageReference initStorage() {
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        login_presenter login_presenter = new login_presenter();
+        String uid = login_presenter.getUID(getContext());
         // add File/URI
-        return storageRef.child("FolderToCreate").child("NameYoWantToAdd");
+        return storageRef.child("Sources_Users_Uploads").child(uid).child("_#"+random(10));
     }
 
-    private void uploadProgress(Uri selectedVideoUri, final StorageReference photoRef) {
-        photoRef.putFile(selectedVideoUri)
+    private void uploadProgress(String selectedUri, final StorageReference ref, boolean source_status, boolean statistics_status) {
+        Log.d(TAG,"selectedURI1"+selectedUri);
+        ref.putFile(Uri.parse(selectedUri))
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Log.e(TAG,"Upload2" + taskSnapshot.getUploadSessionUri());
 
-                        Log.d(TAG,"StorageReference" + photoRef);
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
+                        String currentDateandTime = sdf.format(new Date());
+                        Log.d(TAG,"source_status"+source_status);
+                        String random_hash = random(20);
+                        login_presenter login_presenter = new login_presenter();
+                        String statistics_id = login_presenter.getStatisticsID(getContext());
+                        Log.d(TAG, "statistics_id" + statistics_id);
+                        String uid = login_presenter.getUID(getContext());
+                        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                        DatabaseReference databaseReference = firebaseDatabase.getReference("");
+                        if (source_status) {
+                            databaseReference.child("Posts").child(random_hash).child("type").setValue("IMG");
+
+
+                        }
+                        else{
+                            Log.d(TAG,"sourc1e_statu"+source_status);
+
+                            databaseReference.child("Posts").child(random_hash).child("type").setValue("Video");
+
+
+                        }
+
+
+
+
+                        if (statistics_status) {
+                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).setValue(random_hash);
+                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("Location").setValue(place_id);
+                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("route_type").setValue(spinner_route_type.getSelectedItem().toString());
+                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("tries_num").setValue(spinner_tries.getSelectedItem().toString());
+                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("difficulty").setValue(spinner_grade.getSelectedItem().toString());
+                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("difficulty_impression").setValue(spinner_impression_grade.getSelectedItem().toString());
+                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("Place_name").setValue(place_Name);
+                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("Time").setValue(currentDateandTime);
+                        }
+                        databaseReference.child("User").child(uid).child("Posts").child(random_hash).setValue(random_hash);
+                        databaseReference.child("Posts").child(random_hash).child("Info").setValue(info_edit.getText().toString());
+                        databaseReference.child("Posts").child(random_hash).child("Place").setValue(place_id);
+                        databaseReference.child("Posts").child(random_hash).child("Place_name").setValue(place_Name);
+
+
+                        databaseReference.child("Posts").child(random_hash).child("Time").setValue(currentDateandTime);
+                        databaseReference.child("Posts").child(random_hash).child("User_ID").setValue(uid);
+                        databaseReference.child("Posts").child(random_hash).child("Source").setValue(taskSnapshot.getUploadSessionUri().toString());
+                        databaseReference.child("Posts").child(random_hash).child("comments").setValue("comments");
+                        databaseReference.child("Posts").child(random_hash).child("likes").setValue("likes");
+                        databaseReference.child("Posts").child(random_hash).child("saved").setValue("saved");
+                        databaseReference.child("Posts").child(random_hash).child("shared").setValue("shared");
+
+
+
+
+                        Log.e(TAG,"Upload3" + taskSnapshot.getUploadSessionUri());
 
                         // Upload succeeded
-                        Toast.makeText(getContext(), "Upload Success...", Toast.LENGTH_SHORT).show();
 
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Upload failed
-                        Toast.makeText(getContext(), "Upload failed...", Toast.LENGTH_SHORT).show();
-                    }
-                }).addOnProgressListener(
-                new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                        //calculating progress percentage
-                        double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
 
-                        //displaying percentage in progress dialog
                     }
                 });
+
+
     }
+
 
     @Override
     public void onAttach(Context context) {
@@ -629,6 +531,7 @@ public class video_upload_fragment extends Fragment {
             sb.append(ALLOWED_CHARACTERS.charAt(random.nextInt(ALLOWED_CHARACTERS.length())));
         return sb.toString();
     }
+
 
 
 

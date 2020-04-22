@@ -30,6 +30,7 @@ import java.util.Objects;
 import java.util.Random;
 
 import app.playstore.uClimb.Login_SignUp.Boulderspot_Sign_Up;
+import app.playstore.uClimb.Login_SignUp.extra_questions_register;
 import app.playstore.uClimb.Main.MainActivity;
 import app.playstore.uClimb.R;
 
@@ -67,9 +68,11 @@ public class register_presenter {
                                 Log.d(TAG, "createUserWithEmail:success");
                                 createSnackbar(true, mContext,v);
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                updateUI(user, mContext,"null");
                                 createfiredata(bundle,mContext);
+
+                                updateUI(user, mContext,"null");
                             } else {
+                                Log.d(TAG,"hey");
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "createUserWithEmail2:failure", task.getException());
                                 createSnackbar(false, mContext,v);
@@ -99,6 +102,7 @@ public class register_presenter {
         String Info = "Just the usual climber";
         String Subscription ="Standart";
         String Name = bundle.getString("Name");
+        String email = bundle.getString("Email");
 
         if (Name == null){
             Toast.makeText(mContext, "Your Username wasn't added... Change it in the settings", Toast.LENGTH_SHORT).show();
@@ -123,6 +127,8 @@ public class register_presenter {
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("Height").setValue(Height);
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("Info").setValue(Info);
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("Subscription").setValue(Subscription);
+        myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("Email").setValue(email);
+
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("Name").setValue(Name);
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("IMG").setValue(IMG);
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("boulder_centre_default").setValue(boulder_centre_default);
@@ -152,6 +158,10 @@ public class register_presenter {
         SharedPreferences.Editor shared_edit = sharedPreferences.edit();
         shared_edit.putString("uid" , mAuth.getUid());
         shared_edit.apply();
+        Log.d(TAG,"12423");
+
+        updateUI(mAuth.getCurrentUser(),mContext,"null");
+
 
 
 

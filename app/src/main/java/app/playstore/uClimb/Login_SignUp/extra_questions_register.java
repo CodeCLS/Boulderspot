@@ -335,19 +335,26 @@ public class extra_questions_register extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.P)
     private void succesfully_registered() {
         Snackbar snackbar = Snackbar.make(extra_questions_register.this.getWindow().getDecorView(),"Succesfully registered", BaseTransientBottomBar.LENGTH_SHORT);
+        snackbar.show();
         snackbar.setBackgroundTint(getResources().getColor(R.color.colorPrimaryDark));
         Bundle bundle = new Bundle();
         bundle.putString("age",edit_age.getText().toString());
         bundle.putString("country",edit_country.getText().toString());
         bundle.putString("Grade",edit_grade.getText().toString());
         bundle.putString("Height",edit_height.getText().toString());
+        bundle.putString("Name",username);
+        bundle.putString("Email",email);
+        Log.d(TAG,"1212");
+
 
         register_presenter register_presenter = new register_presenter();
+        Log.d(TAG,"username1"+username);
+
         register_presenter.RegisterNewUser(pwd, email, username,extra_questions_register.this,bundle,extra_questions_register.this.getWindow().getCurrentFocus());
 
-        //Intent intent = new Intent(extra_questions_register.this, MainActivity.class);
-        //startActivity(intent);
-        //finish();
+        Intent intent = new Intent(extra_questions_register.this, MainActivity.class);
+        startActivity(intent);
+
         finish();
     }
 
@@ -422,12 +429,15 @@ public class extra_questions_register extends AppCompatActivity {
         pwd = intent.getStringExtra("pwd");
         email = intent.getStringExtra("email");
         username = intent.getStringExtra("username");
+        Log.d(TAG,"username"+username);
     }
 
     private void updateUI(FirebaseUser currentUser) {
         if (currentUser == null){
             Log.d(TAG,"currentsuer" + currentUser);
             return;
+        }
+        else{
         }
     }
 }

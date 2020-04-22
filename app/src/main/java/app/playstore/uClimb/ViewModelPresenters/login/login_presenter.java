@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 
 import app.playstore.uClimb.Main.MainActivity;
 import app.playstore.uClimb.R;
+import app.playstore.uClimb.ViewModelPresenters.statistics_presenter;
 
 public class login_presenter {
     private static final String TAG = "login_presenter";
@@ -113,26 +115,18 @@ public class login_presenter {
     public String getStatisticsID(Context mContext) {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences("statuid" , Context.MODE_PRIVATE);
 
-
-        return sharedPreferences.getString("statuid",null);
-    }
-
-    public String getUID(Context mContext) {
-        SharedPreferences sharedPreferences = mContext.getSharedPreferences("uid",Context.MODE_PRIVATE);
-        return sharedPreferences.getString("uid",null);
-    }
-
-    public ArrayList getFriendsCompeting(Context mContext) {
-        ArrayList friends = new ArrayList();
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
-
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot dataSnapshot1: dataSnapshot.child("User").child(getUID(mContext)).child("Friends").getChildren()){
-                    friends.add(dataSnapshot1.getKey());
-                    Log.d(TAG,"login_presenter");
+                String stat_uid = dataSnapshot.child("User").child(getUID(mContext)).getKey();
+                if (stat_uid.equals(sharedPreferences.getString("statuid",null))){
+                }
+                else{
+                    SharedPreferences.Editor editor= sharedPreferences.edit();
+                    editor.putString("statuid",stat_uid);
+                    editor.apply();
                 }
             }
 
@@ -142,6 +136,48 @@ public class login_presenter {
             }
         });
 
-        return friends;
+
+
+        return sharedPreferences.getString("statuid",null);
     }
+
+    public String getUID(Context mContext) {
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences("uid",Context.MODE_PRIVATE);
+        return sharedPreferences.getString("uid",null);
+    }
+
+    public void getFriendsCompeting(Context mContext, View view) {
+        ArrayList friends = new ArrayList();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference();
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot dataSnapshot1: dataSnapshot.child("User").child(getUID(mContext)).child("Friends").getChildren()){
+                    friends.add(dataSnapshot1.getKey());
+                    Log.d(TAG,"login_presenter"+friends);
+                    Firebase_friends_callback.onCallback(friends,mContext,view);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+    public interface Firebase_friends_callback {
+        static void onCallback(ArrayList value,Context mContext,View view) {
+            statistics_presenter statistics_presenter = new statistics_presenter();
+            statistics_presenter.getFireData(mContext,value,view);
+
+
+        }
+    }
+
 }
+
