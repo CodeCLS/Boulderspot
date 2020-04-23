@@ -25,7 +25,9 @@ import com.anychart.enums.TooltipPositionMode;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import app.playstore.uClimb.R;
 
@@ -39,6 +41,7 @@ public class Adapter_statistic extends RecyclerView.Adapter<RecyclerView.ViewHol
     private ArrayList<String> boulders_tries = new ArrayList<>();
     private ArrayList<Integer> competition_array_boulderpoints = new ArrayList<>();
     private ArrayList<String> competition_array_uid = new ArrayList<>();
+    private HashMap<String,Integer> bouldermap = new HashMap<>();
 
     private ArrayList<String> competition_array_names = new ArrayList<>();
 
@@ -71,12 +74,12 @@ public class Adapter_statistic extends RecyclerView.Adapter<RecyclerView.ViewHol
     private List<DataEntry> data_competition;
     private Context mContext;
 
-    public Adapter_statistic(ArrayList<String> training_sessions_time, ArrayList<String> training_sessions_types, ArrayList<String> training_sessions_amount, ArrayList<String> boulders_times, ArrayList<String> boulders_grade, ArrayList<String> boulders_tries, ArrayList<Integer> competition_array_boulderpoints, ArrayList<String> competition_array_uid, ArrayList<String> competition_array_names, ArrayList<String> sesssions_train_time, ArrayList<String> sesssions_pause_time, ArrayList<String> sesssions_rest_time, ArrayList<String> sesssions_sets_time, ArrayList<String> sesssions_rounds_time, ArrayList<String> training_sessions_notes, ArrayList<String> boulder_notes ) {
+    public Adapter_statistic(ArrayList<String> training_sessions_time, ArrayList<String> training_sessions_types, ArrayList<String> training_sessions_amount, ArrayList<String> boulders_times, HashMap boulders_grade, ArrayList<String> boulders_tries, ArrayList<Integer> competition_array_boulderpoints, ArrayList<String> competition_array_uid, ArrayList<String> competition_array_names, ArrayList<String> sesssions_train_time, ArrayList<String> sesssions_pause_time, ArrayList<String> sesssions_rest_time, ArrayList<String> sesssions_sets_time, ArrayList<String> sesssions_rounds_time, ArrayList<String> training_sessions_notes, ArrayList<String> boulder_notes ) {
         this.training_sessions_time = training_sessions_time;
         this.training_sessions_types = training_sessions_types;
         this.training_sessions_amount = training_sessions_amount;
         this.boulders_times = boulders_times;
-        this.boulders_grade = boulders_grade;
+        this.bouldermap = boulders_grade;
         this.boulders_tries = boulders_tries;
         this.competition_array_boulderpoints = competition_array_boulderpoints;
         this.competition_array_uid = competition_array_uid;
@@ -153,20 +156,44 @@ public class Adapter_statistic extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         }
         if (holder.getItemViewType() == 1){
+
+
             Grades_View_holder view_holder = (Grades_View_holder) holder;
-            int times = 0;
-            for(int i = 0;i<boulders_grade.size();i++) {
-                if ((Collections.frequency(boulders_grade, boulders_grade.get(i))) > 1) {
-                    times++;
-                    boulders_grade.remove(position);
+            view_holder.rec.setLayoutManager(new LinearLayoutManager(mContext));
+            Log.d(TAG,"Hallo123");
+
+            view_holder.rec.setAdapter(adapter_statistics_boulder);
+            for (int i = 0;i<16;i++){
+                Log.d(TAG,"data3: "  + "bouldermap: " + bouldermap +"position" + i);
+
+                Integer boulder = bouldermap.get("V"+i);
+                if (boulder==null){
+                    Log.d(TAG,"data2: " + boulder + "bouldermap: " + bouldermap +"position" + position);
+
+
                 }
+                else{
+                    Log.d(TAG,"data1: " + boulder + "bouldermap: " + bouldermap +"position" + i);
+                    String boulder_grade = "V"+i;
+                    data_grade.add(new ValueDataEntry(boulder_grade,boulder));
+
+
+
+                }
+
+
+
             }
-            Log.d(TAG,"data"+boulders_grade.get(position));
+            pie_grade.data(data_grade);
+
+
+            view_holder.anyChartView.setChart(pie_grade);
 
 
 
 
-                data_grade.add(new ValueDataEntry(boulders_grade.get(position),times));
+
+
 
 
 
@@ -175,10 +202,7 @@ public class Adapter_statistic extends RecyclerView.Adapter<RecyclerView.ViewHol
             //boulders_grade.get(position), Integer.valueOf(training_sessions_amount.get(position))
 
 
-                pie_grade.data(data_grade);
 
-
-                view_holder.anyChartView.setChart(pie_grade);
 
         }
         if (holder.getItemViewType() == 2){
@@ -299,7 +323,7 @@ public class Adapter_statistic extends RecyclerView.Adapter<RecyclerView.ViewHol
         AnyChartView anyChartView;
         RecyclerView rec;
 
-        public competition_View_holder(View view) {
+        public competition_View_holder(View view) {git
             super(view);
             anyChartView = view.findViewById(R.id.competition_statistic);
 

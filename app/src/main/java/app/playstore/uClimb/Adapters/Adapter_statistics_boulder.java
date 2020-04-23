@@ -1,6 +1,7 @@
 package app.playstore.uClimb.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,10 @@ import java.util.ArrayList;
 
 import app.playstore.uClimb.R;
 
+import static androidx.constraintlayout.motion.widget.MotionScene.TAG;
+
 public class Adapter_statistics_boulder extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private static final String TAG = "Adapter_boulder";
     private ArrayList training_boulder_tries;
     private ArrayList training_boulder_time;
     private ArrayList training_boulder_grade;
@@ -34,12 +38,15 @@ public class Adapter_statistics_boulder extends RecyclerView.Adapter<RecyclerVie
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Log.d(TAG,"123123");
         mContext = parent.getContext();
         View view = null;
+        RecyclerView.ViewHolder viewHolder = null;
         if (viewType==0) {
             view = LayoutInflater.from(mContext).inflate(R.layout.boulder_item, parent);
+            viewHolder = new standart_boulder_view(view);
         }
-        return new standart_boulder_view(view);
+        return viewHolder;
     }
 
     @Override

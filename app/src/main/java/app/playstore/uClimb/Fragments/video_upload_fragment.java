@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +46,7 @@ import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -84,6 +86,7 @@ public class video_upload_fragment extends Fragment {
     private Button name_of_location;
     private Button upload_btn;
     private Boolean selected_video = false;
+    private ProgressBar progressBar;
 
     private Boolean selected_img = true;
     private Boolean selected_source= true;
@@ -235,6 +238,7 @@ public class video_upload_fragment extends Fragment {
     }
 
     private void initViews(View view) {
+        progressBar = view.findViewById(R.id.loading_progressbar_uploading);
         info_edit = view.findViewById(R.id.upload_info_edit);
         checkbox_statistics = view.findViewById(R.id.checkbox_statistic);
         name_of_location = view.findViewById(R.id.upload_location);
@@ -438,10 +442,21 @@ public class video_upload_fragment extends Fragment {
 
     private void uploadProgress(String selectedUri, final StorageReference ref, boolean source_status, boolean statistics_status) {
         Log.d(TAG,"selectedURI1"+selectedUri);
-        ref.putFile(Uri.parse(selectedUri))
+        ref.putFile(Uri.parse(selectedUri)).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+
+                progressBar.setVisibility(View.VISIBLE);
+                progressBar.setProgress((int) progress);
+
+            }
+        })
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        progressBar.setVisibility(View.GONE);
+
                         ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
@@ -454,7 +469,14 @@ public class video_upload_fragment extends Fragment {
                         });
 
                     }
-                });
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(getContext(), "Error: " + e, Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
 
     }

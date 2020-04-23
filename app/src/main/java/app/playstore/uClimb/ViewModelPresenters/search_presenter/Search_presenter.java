@@ -82,7 +82,7 @@ public class Search_presenter {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("");
 
-        myRef.child("Posts").addValueEventListener(new ValueEventListener() {
+        myRef.child("Posts").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 clearArrays();

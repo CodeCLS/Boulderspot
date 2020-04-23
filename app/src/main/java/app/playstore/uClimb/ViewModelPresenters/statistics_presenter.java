@@ -16,7 +16,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.AbstractCollection;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import app.playstore.uClimb.Adapters.Adapter_statistic;
 import app.playstore.uClimb.Main.MainActivity;
@@ -50,12 +53,13 @@ public class statistics_presenter {
     private String average_grade;
 
     private statistics_model statistics_model;
+    private HashMap<String,Integer> boulders_boulder_final = new HashMap<>();
+
 
     private ArrayList<String> training_sessions_notes = new ArrayList<>();
     private ArrayList<String> boulder_notes = new ArrayList<>();
-    private Adapter_statistic adapter_statistic = new Adapter_statistic(training_sessions_time,training_sessions_types,training_sessions_amount,boulders_time,boulders_grade,boulders_tries,competition_array_boulderpoints,competition_array_uid,competition_array_names,sesssions_train_time,sesssions_pause_time,sesssions_rest_time,sesssions_sets_time,sesssions_rounds_time,training_sessions_notes,boulder_notes);
+    private Adapter_statistic adapter_statistic = new Adapter_statistic(training_sessions_time,training_sessions_types,training_sessions_amount,boulders_time,boulders_boulder_final,boulders_tries,competition_array_boulderpoints,competition_array_uid,competition_array_names,sesssions_train_time,sesssions_pause_time,sesssions_rest_time,sesssions_sets_time,sesssions_rounds_time,training_sessions_notes,boulder_notes);
     private View view;
-
 
 
     public statistics_presenter(View view) {
@@ -130,20 +134,39 @@ public class statistics_presenter {
 
 
 
-                    for (DataSnapshot posSnapshot : dataSnapshot.child("Statistics").child(statistics_id).child("Boulder_problem").getChildren()) {
-                        String grade = posSnapshot.child("difficulty").getValue().toString();
+
+                for (DataSnapshot posSnapshot : dataSnapshot.child("Statistics").child(statistics_id).child("Boulder_problem").getChildren()) {
+                    String grade = posSnapshot.child("difficulty").getValue().toString();
                         String time = posSnapshot.child("Time").getValue().toString();
                         String tries_num = posSnapshot.child("tries_num").getValue().toString();
                         String notes = posSnapshot.child("Info").getValue().toString();
                         boulder_notes.add(notes);
 
 
-                        boulders_grade.add(grade);
                         boulders_time.add(time);
                         boulders_tries.add(tries_num);
 
+                        boulders_grade.add(grade);
+
+
+
+
 
                     }
+                for (int i = 0; i< boulders_grade.size();i++){
+                    if (boulders_boulder_final.containsKey(boulders_grade.get(i))){
+                        Integer integer = Integer.parseInt(boulders_boulder_final.get(boulders_grade.get(i)).toString());
+                        integer++;
+                        boulders_boulder_final.put(boulders_grade.get(i),integer);
+
+                    }
+                    else{
+
+                        boulders_boulder_final.put(boulders_grade.get(i),1);
+
+                    }
+                }
+
                     Log.d(TAG,"workoutssize"+dataSnapshot.child("Statistics").child(statistics_id).child("Workouts").getChildrenCount());
 
                     if (dataSnapshot.child("Statistics").child(statistics_id).child("Workouts").getChildrenCount() == 0){
