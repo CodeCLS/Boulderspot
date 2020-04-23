@@ -161,6 +161,8 @@ public class login_presenter {
                     Firebase_friends_callback.onCallback(friends,mContext,view);
 
                 }
+                Firebase_friends_callback.onCallback(friends,mContext,view);
+
             }
 
             @Override

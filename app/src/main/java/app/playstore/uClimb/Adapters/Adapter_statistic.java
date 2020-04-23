@@ -24,6 +24,7 @@ import com.anychart.enums.Position;
 import com.anychart.enums.TooltipPositionMode;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import app.playstore.uClimb.R;
@@ -153,16 +154,22 @@ public class Adapter_statistic extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
         if (holder.getItemViewType() == 1){
             Grades_View_holder view_holder = (Grades_View_holder) holder;
-
-            for(int i = 0;i<boulders_times.size();i++){
-                String boulder_grade_s= boulders_grade.get(i);
-                //int boulder_times_i = Integer.parseInt(boulders_times.get(i));
-                int boulder_times_i = 2;
-
-                data_grade.add(new ValueDataEntry(boulder_grade_s,boulder_times_i));
-
-
+            int times = 0;
+            for(int i = 0;i<boulders_grade.size();i++) {
+                if ((Collections.frequency(boulders_grade, boulders_grade.get(i))) > 1) {
+                    times++;
+                    boulders_grade.remove(position);
+                }
             }
+            Log.d(TAG,"data"+boulders_grade.get(position));
+
+
+
+
+                data_grade.add(new ValueDataEntry(boulders_grade.get(position),times));
+
+
+
 
 
             //boulders_grade.get(position), Integer.valueOf(training_sessions_amount.get(position))

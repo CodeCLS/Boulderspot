@@ -64,9 +64,12 @@ public class statistics_presenter {
     }
 
     public statistics_presenter() {
+        Log.d(TAG,"firends1");
+
     }
 
     public void setData(View view, Context mContext){
+        Log.d(TAG,"firends2");
         login_presenter login_presenter = new login_presenter();
         login_presenter.getFriendsCompeting(mContext,view);
         //training_sessions_time.add("6:00");
@@ -85,6 +88,8 @@ public class statistics_presenter {
     public void getFireData(Context mContext, ArrayList value,View view_main) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("");
+        Log.d(TAG,"friends3" + friends);
+
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -139,6 +144,7 @@ public class statistics_presenter {
 
 
                     }
+                    Log.d(TAG,"workoutssize"+dataSnapshot.child("Statistics").child(statistics_id).child("Workouts").getChildrenCount());
 
                     if (dataSnapshot.child("Statistics").child(statistics_id).child("Workouts").getChildrenCount() == 0){
                         Snackbar snackbar = Snackbar.make(view_main,"No workout progress posted yet", BaseTransientBottomBar.LENGTH_SHORT);

@@ -183,18 +183,41 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
          viewHolder.video_view.setDrawingCacheEnabled(true);
         viewHolder.info_txt.setText(array_info.get(i));
         Picasso.get().load(array_source_img.get(i)).fit().centerCrop().into(viewHolder.IMG_img_profile_pic);
+
+        if (array_type.get(i).equals("Video")){
+            viewHolder.img_view.setVisibility(View.GONE);
+            viewHolder.video_view.setVisibility(View.VISIBLE);
+            Log.d(TAG,"array_source"+array_source.get(i));
+           String s = array_source.get(i);
+           viewHolder.video_view.setVideoPath(s);
+           viewHolder.video_view.seekTo(2);
+
+            Log.d(TAG,"videosource: " + s);
+            viewHolder.video_view.start();
+
+
+        }
+        else{
+            viewHolder.video_view.setVisibility(View.GONE);
+            viewHolder.img_view.setVisibility(View.VISIBLE);
+            Picasso.get().load(array_source.get(i)).fit().centerCrop().into(viewHolder.img_view);
+
+
+
+
+        }
         //HttpProxyCacheServer proxy = getProxy(mContext);
         //proxy.registerCacheListener((CacheListener) mContext, array_source.get(i));
         //String proxyUrl = proxy.getProxyUrl(array_source.get(i));
-        //Log.d(TAG,"videosource: " + proxyUrl);
-        SimpleMediaSource mediaSource = new SimpleMediaSource(array_source.get(i));//uri also supported
-        viewHolder.video_view.play(mediaSource);
+
+
+
 
 
         viewHolder.name_txt.setText(array_name.get(i));
 
         pause_play_video(viewHolder,i);
-        viewHolder.video_view.releasePlayer();
+
 
     }
 
@@ -215,7 +238,7 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         ImageView img_view;
         de.hdodenhof.circleimageview.CircleImageView IMG_img_profile_pic;
         TextView info_txt;
-        com.jarvanmo.exoplayerview.ui.ExoVideoView video_view;
+        VideoView video_view;
         LinearLayout text_inside;
         ConstraintLayout home_custom;
         ImageView like_btn;
@@ -368,7 +391,7 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
             if (clicked == 0) {
                 SimpleMediaSource mediaSource = new SimpleMediaSource(array_source.get(i));//uri also supported
-                viewHolder.video_view.play(mediaSource);
+                viewHolder.video_view.start();
                 clicked = 1;
             } else {
                 viewHolder.video_view.pause();

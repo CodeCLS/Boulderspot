@@ -1,6 +1,7 @@
 package app.playstore.uClimb.Fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +22,13 @@ import app.playstore.uClimb.R;
 import app.playstore.uClimb.ViewModelPresenters.statistics_presenter;
 
 public class Statistics_fragment extends Fragment {
+    private static final String TAG = "statistics_fragment";
     private FrameLayout stat;
     private LinearLayout profile;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d(TAG,"statistics");
         return LayoutInflater.from(getContext()).inflate(R.layout.statistics_page,container,false);
     }
 
@@ -49,13 +52,10 @@ public class Statistics_fragment extends Fragment {
     }
 
     private void nav() {
-        stat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.detach(Statistics_fragment.this).attach(Statistics_fragment.this).commit();
-                //TODO Fragmennt transaction
-            }
+        stat.setOnClickListener(v -> {
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.detach(Statistics_fragment.this).attach(Statistics_fragment.this).commit();
+            //TODO Fragmennt transaction
         });
         profile.setOnClickListener(new View.OnClickListener() {
             @Override

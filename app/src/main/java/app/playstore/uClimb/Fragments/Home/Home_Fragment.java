@@ -115,6 +115,7 @@ public class Home_Fragment extends Fragment implements home_posts_presenter.disp
 
         fragmentManager.beginTransaction().addToBackStack("video").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .replace(R.id.container_fragment, mFragment).commit();
+        getActivity().getFragmentManager().popBackStack();
     }
 
 

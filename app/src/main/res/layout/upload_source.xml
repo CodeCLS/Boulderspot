@@ -124,6 +124,12 @@
 
                 android:orientation="vertical"
                 android:padding="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:text="What is the grade of the route?" />
 
                 <Spinner
                     android:id="@+id/spinner_grade_upload"
@@ -132,6 +138,12 @@
 
                     android:layout_height="match_parent"
                     android:layout_weight="1" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:text="How difficult was it for you?" />
 
                 <Spinner
                     android:id="@+id/spinner_impression_grade_upload"
@@ -152,6 +164,12 @@
                 android:orientation="vertical"
                 android:padding="10dp">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:text="How many tries did it take?" />
                 <Spinner
                     android:id="@+id/spinner_tries_upload"
                     android:layout_width="match_parent"
@@ -159,6 +177,12 @@
                     android:elevation="10dp"
 
                     android:layout_weight="1" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:text="Which type of climbing?" />
 
                 <Spinner
                     android:id="@+id/spinner_route_type_upload"

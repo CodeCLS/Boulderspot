@@ -130,7 +130,8 @@ public class register_presenter {
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("Email").setValue(email);
 
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("Name").setValue(Name);
-        myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("IMG").setValue(IMG);
+        String string_standart_url_img = "https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Project_data%2Ficon_user.png?alt=media&token=940b16a7-d7ec-40aa-82ef-eb3f2d4f4e0e";
+        myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("IMG").setValue(string_standart_url_img);
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("boulder_centre_default").setValue(boulder_centre_default);
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("account_type").setValue(account_type);
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("close_friends_competitiors").setValue(close_friends_competitiors);

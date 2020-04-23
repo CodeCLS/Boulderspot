@@ -64,10 +64,11 @@ import java.util.Random;
 
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.ViewModelPresenters.login.login_presenter;
+import app.playstore.uClimb.ViewModelPresenters.video.video_presenter;
 
 public class video_upload_fragment extends Fragment {
     private static final int REQUEST_TAKE_GALLERY_VIDEO = 222;
-    private static final int RESULT_OK = 2;
+    private static final int RESULT_OK = -1;
     private static final int AUTOCOMPLETE_REQUEST_CODE = 1;
 
     private static final String TAG = "Video_Upload";
@@ -92,8 +93,8 @@ public class video_upload_fragment extends Fragment {
     private Spinner spinner_source_type;
     private String selected_video_source;
     private String selected_IMG_source = "sdiufnospiufosnfu";
-    private String place_id="kjsdf";
-    private String place_Name = "Hallo";
+    private String place_id;
+    private String place_Name;
     private CheckBox checkbox_statistics;
 
 
@@ -155,6 +156,7 @@ public class video_upload_fragment extends Fragment {
                 placesClient.findAutocompletePredictions(request).addOnSuccessListener((response) -> {
                     for (AutocompletePrediction prediction : response.getAutocompletePredictions()) {
                         Log.i(TAG, prediction.getPlaceId());
+                        Log.d(TAG,"video_prediction"+prediction.getPlaceId());
                         Log.i(TAG, prediction.getPrimaryText(null).toString());
                     }
                 }).addOnFailureListener((exception) -> {
@@ -271,15 +273,20 @@ public class video_upload_fragment extends Fragment {
         for (int i = 0; i <17;i++){
             grades.add("V" + i);
         }
+        ArrayAdapter<String> adapter_grades1 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, grades);
+        adapter_grades1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_grade.setAdapter(adapter_grades1);
+
         ArrayAdapter<String> adapter_grades = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, grades);
         adapter_grades.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_grade.setAdapter(adapter_grades);
         spinner_impression_grade.setAdapter(adapter_grades);
 
-        String[] tries = { "Bouldering", "Lead climbing", "Top rope", "Trad climbing", "Free solo" };
+        String[] tries = { "1","2","3","4","5","6","7","8","9","10","11+" };
         ArrayAdapter<String> adapter_tries = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, tries);
         adapter_tries.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_tries.setAdapter(adapter);
+        spinner_tries.setAdapter(adapter_tries);
+
 
 
 
@@ -435,65 +442,16 @@ public class video_upload_fragment extends Fragment {
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Log.e(TAG,"Upload2" + taskSnapshot.getUploadSessionUri());
-
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
-                        String currentDateandTime = sdf.format(new Date());
-                        Log.d(TAG,"source_status"+source_status);
-                        String random_hash = random(20);
-                        login_presenter login_presenter = new login_presenter();
-                        String statistics_id = login_presenter.getStatisticsID(getContext());
-                        Log.d(TAG, "statistics_id" + statistics_id);
-                        String uid = login_presenter.getUID(getContext());
-                        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                        DatabaseReference databaseReference = firebaseDatabase.getReference("");
-                        if (source_status) {
-                            databaseReference.child("Posts").child(random_hash).child("type").setValue("IMG");
+                        ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                Log.d(TAG,"Success"+uri.equals(uri + ""));
+                                video_presenter video_presenter = new video_presenter(place_id,spinner_grade.getSelectedItem().toString(),spinner_impression_grade.getSelectedItem().toString(),spinner_route_type.getSelectedItem().toString(),spinner_tries.getSelectedItem().toString(),place_Name,info_edit.getText().toString());
+                                video_presenter.addSuccess(getContext(),random(10),source_status,statistics_status,uri);
 
 
-                        }
-                        else{
-                            Log.d(TAG,"sourc1e_statu"+source_status);
-
-                            databaseReference.child("Posts").child(random_hash).child("type").setValue("Video");
-
-
-                        }
-
-
-
-
-                        if (statistics_status) {
-                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).setValue(random_hash);
-                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("Location").setValue(place_id);
-                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("route_type").setValue(spinner_route_type.getSelectedItem().toString());
-                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("tries_num").setValue(spinner_tries.getSelectedItem().toString());
-                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("difficulty").setValue(spinner_grade.getSelectedItem().toString());
-                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("difficulty_impression").setValue(spinner_impression_grade.getSelectedItem().toString());
-                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("Place_name").setValue(place_Name);
-                            databaseReference.child("Statistics").child(statistics_id).child("Boulder_problem").child(random_hash).child("Time").setValue(currentDateandTime);
-                        }
-                        databaseReference.child("User").child(uid).child("Posts").child(random_hash).setValue(random_hash);
-                        databaseReference.child("Posts").child(random_hash).child("Info").setValue(info_edit.getText().toString());
-                        databaseReference.child("Posts").child(random_hash).child("Place").setValue(place_id);
-                        databaseReference.child("Posts").child(random_hash).child("Place_name").setValue(place_Name);
-
-
-                        databaseReference.child("Posts").child(random_hash).child("Time").setValue(currentDateandTime);
-                        databaseReference.child("Posts").child(random_hash).child("User_ID").setValue(uid);
-                        databaseReference.child("Posts").child(random_hash).child("Source").setValue(taskSnapshot.getUploadSessionUri().toString());
-                        databaseReference.child("Posts").child(random_hash).child("comments").setValue("comments");
-                        databaseReference.child("Posts").child(random_hash).child("likes").setValue("likes");
-                        databaseReference.child("Posts").child(random_hash).child("saved").setValue("saved");
-                        databaseReference.child("Posts").child(random_hash).child("shared").setValue("shared");
-
-
-
-
-                        Log.e(TAG,"Upload3" + taskSnapshot.getUploadSessionUri());
-
-                        // Upload succeeded
-
+                            }
+                        });
 
                     }
                 });

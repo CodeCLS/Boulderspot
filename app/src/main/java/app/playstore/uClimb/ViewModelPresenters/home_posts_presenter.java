@@ -92,7 +92,7 @@ public class home_posts_presenter  {
     public void setData(View view, Context mContext){
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference("");
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot: dataSnapshot.child("Posts").getChildren()){
@@ -216,7 +216,7 @@ public class home_posts_presenter  {
     private void getcommentdata(Context mContext,RecyclerView rec,ArrayList<String> array_name, ArrayList<String> array_time, ArrayList<String> array_comment_id, ArrayList<String> array_comment, ArrayList<String> array_User_ID) {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference myRef = firebaseDatabase.getReference("");
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot: dataSnapshot.child("Comments").getChildren()){
@@ -259,7 +259,7 @@ public class home_posts_presenter  {
 
 
         // Read from the database
-        myRef_null.child("User").addValueEventListener(new ValueEventListener() {
+        myRef_null.child("User").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d(TAG,"mAuth2"+ mAuth);
@@ -275,7 +275,7 @@ public class home_posts_presenter  {
                 for(int i= 0;i<following.size();i++){
                     final String ID_instance = following.get(i);
 
-                    myRef.addValueEventListener(new ValueEventListener() {
+                    myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             for(DataSnapshot postSnapshot: dataSnapshot.child(ID_instance).child("Posts").getChildren()){
@@ -349,7 +349,7 @@ public class home_posts_presenter  {
     private void for_loop_posts(DatabaseReference myRef_posts) {
         for (int i = 0;i < posts.size();i++){
             String postID = posts.get(i);
-            myRef_posts.child("Posts").child(postID).addValueEventListener(new ValueEventListener() {
+            myRef_posts.child("Posts").child(postID).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     String time_val_current = dataSnapshot.child(postID).child("Time").getValue().toString();
