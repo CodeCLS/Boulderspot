@@ -2372,7 +2372,6 @@ id clear_text
 id clip_horizontal
 id clip_vertical
 id collapseActionView
-id comments_txt
 id competition_statistic
 id competition_statistic_rec
 id confirm_button
@@ -2746,6 +2745,7 @@ id profile_img_custom_home
 id profile_rec
 id progress_bar
 id progress_circular
+id progress_custom_home
 id progress_horizontal
 id progress_seek_bar
 id pwd_edit_change_profile

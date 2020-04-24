@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.Map;
 
 import app.playstore.uClimb.R;
+import app.playstore.uClimb.ViewModelPresenters.statistics_presenter;
 
 public class Adapter_statistic extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -90,11 +91,9 @@ public class Adapter_statistic extends RecyclerView.Adapter<RecyclerView.ViewHol
         this.sesssions_sets_time = sesssions_sets_time;
         this.sesssions_rounds_time = sesssions_rounds_time;
         this.training_sessions_notes = training_sessions_notes;
-        this.adapter_statistics_competition = adapter_statistics_competition;
-        this.adapter_statistics_boulder = adapter_statistics_boulder;
-        this.adapter_statistics_sessions = adapter_statistics_sessions;
+
         this.boulder_notes = boulder_notes;
-        Log.d(TAG,"trainingseession"+boulder_notes);
+        Log.d(TAG,"trainingseession"+boulders_times + boulder_notes+boulders_times+boulders_tries);
     }
 
     @NonNull
@@ -102,7 +101,7 @@ public class Adapter_statistic extends RecyclerView.Adapter<RecyclerView.ViewHol
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         mContext = parent.getContext();
-        View view=null;
+        View view;
         RecyclerView.ViewHolder viewHolder = null;
         if (viewType == 0){
             view = LayoutInflater.from(mContext).inflate(R.layout.sessions,parent,false);
@@ -159,10 +158,8 @@ public class Adapter_statistic extends RecyclerView.Adapter<RecyclerView.ViewHol
 
 
             Grades_View_holder view_holder = (Grades_View_holder) holder;
-            view_holder.rec.setLayoutManager(new LinearLayoutManager(mContext));
-            Log.d(TAG,"Hallo123");
-
-            view_holder.rec.setAdapter(adapter_statistics_boulder);
+            statistics_presenter statistics_presenter = new statistics_presenter();
+            statistics_presenter.setBoulderRec(view_holder.rec,mContext,adapter_statistics_boulder);
             for (int i = 0;i<16;i++){
                 Log.d(TAG,"data3: "  + "bouldermap: " + bouldermap +"position" + i);
 
@@ -210,6 +207,7 @@ public class Adapter_statistic extends RecyclerView.Adapter<RecyclerView.ViewHol
             competition_View_holder view_holder = (competition_View_holder) holder;
             view_holder.rec.setLayoutManager(new LinearLayoutManager(mContext));
             view_holder.rec.setAdapter(adapter_statistics_competition);
+
             int points = 0;
             Log.d(TAG,"points_adapter" + competition_array_uid);
 
@@ -323,7 +321,7 @@ public class Adapter_statistic extends RecyclerView.Adapter<RecyclerView.ViewHol
         AnyChartView anyChartView;
         RecyclerView rec;
 
-        public competition_View_holder(View view) {git
+        public competition_View_holder(View view) {
             super(view);
             anyChartView = view.findViewById(R.id.competition_statistic);
 

@@ -27,6 +27,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -190,9 +191,30 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             Log.d(TAG,"array_source"+array_source.get(i));
            String s = array_source.get(i);
            viewHolder.video_view.setVideoPath(s);
+           viewHolder.progressBar.setVisibility(View.VISIBLE);
+           viewHolder.progressBar.getProgressBack
+           viewHolder.video_view.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+               @Override
+               public void onPrepared(MediaPlayer mp) {
+                   mp.setOnBufferingUpdateListener(new MediaPlayer.OnBufferingUpdateListener() {
+                       @Override
+                       public void onBufferingUpdate(MediaPlayer mp, int percent) {
+                           if (percent < 100){
+                               viewHolder.progressBar.setVisibility(View.VISIBLE);
+
+
+                           }
+                           else{
+                               viewHolder.progressBar.setVisibility(View.GONE);
+                           }
+                       }
+                   });
+               }
+           });
            viewHolder.video_view.seekTo(2);
 
             Log.d(TAG,"videosource: " + s);
+            viewHolder.video_view.setZOrderOnTop(true);//this line solve the problem
             viewHolder.video_view.start();
 
 
@@ -248,6 +270,7 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         EditText comment_edit;
         Button comment_btn;
         LinearLayout constraing_num1231q321;
+        ProgressBar progressBar;
         //RecyclerView comment_rec;
 
 
@@ -262,7 +285,7 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             comment_edit = view.findViewById(R.id.edit_comment_home_custom);
             //comment_rec = view.findViewById(R.id.rec_home_custom);
             abc = view.findViewById(R.id.abc);
-            comments_txt = view.findViewById(R.id.comments_txt);
+            progressBar = view.findViewById(R.id.progress_custom_home);
             tools_btn_layout = view.findViewById(R.id.tools_btn_layout_home);
             like_btn = view.findViewById(R.id.img_home_like);
             share_btn = view.findViewById(R.id.img_home_share);
@@ -390,7 +413,6 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         viewHolder.video_view.setOnClickListener(v -> {
 
             if (clicked == 0) {
-                SimpleMediaSource mediaSource = new SimpleMediaSource(array_source.get(i));//uri also supported
                 viewHolder.video_view.start();
                 clicked = 1;
             } else {

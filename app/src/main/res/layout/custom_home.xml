@@ -10,8 +10,6 @@
     android:layout_height="500dp">
 
 
-
-
     <LinearLayout
         android:id="@+id/abaf"
         android:layout_width="match_parent"
@@ -135,20 +133,6 @@
                     android:padding="10dp"
                     android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet." />
 
-                <TextView
-                    android:id="@+id/comments_txt"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="1.5"
-                    android:gravity="center"
-                    android:autoSizeTextType="uniform"
-                    android:padding="5dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="Comments"
-
-                    android:textAlignment="center" />
-
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rec_home_custom"
@@ -198,6 +182,19 @@
         app:layout_constraintTop_toTopOf="@+id/abaf"
         tools:ignore="NotSibling" />
 
+    <ProgressBar
+        android:id="@+id/progress_custom_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="120dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

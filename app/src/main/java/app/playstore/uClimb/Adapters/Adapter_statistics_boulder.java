@@ -29,29 +29,35 @@ public class Adapter_statistics_boulder extends RecyclerView.Adapter<RecyclerVie
     private Context mContext;
 
     public Adapter_statistics_boulder(ArrayList training_boulder_tries, ArrayList training_boulder_time, ArrayList training_boulder_grade, ArrayList training_boulder_notes) {
+        Log.d(TAG,"adapter_notes"+this.training_boulder_grade + training_boulder_tries+training_boulder_time+training_boulder_grade+training_boulder_notes);
         this.training_boulder_tries = training_boulder_tries;
         this.training_boulder_time = training_boulder_time;
         this.training_boulder_grade = training_boulder_grade;
         this.training_boulder_notes = training_boulder_notes;
+
+
     }
+
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Log.d(TAG,"123123");
         mContext = parent.getContext();
-        View view = null;
+        View view;
         RecyclerView.ViewHolder viewHolder = null;
         if (viewType==0) {
-            view = LayoutInflater.from(mContext).inflate(R.layout.boulder_item, parent);
+            view = LayoutInflater.from(mContext).inflate(R.layout.boulder_item,parent,false);
             viewHolder = new standart_boulder_view(view);
         }
         return viewHolder;
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder.getItemViewType() == 0){
+            Log.d(TAG,"128472");
             standart_boulder_view standart_boulder_view = (standart_boulder_view) holder;
             standart_boulder_view.accomplishment_boulder_txt.setText(training_boulder_tries.get(position).toString());
             standart_boulder_view.info_boulder__txt.setText(training_boulder_notes.get(position).toString());
@@ -64,7 +70,8 @@ public class Adapter_statistics_boulder extends RecyclerView.Adapter<RecyclerVie
 
     @Override
     public int getItemCount() {
-        return training_boulder_notes.size();
+
+        return training_boulder_grade.size();
     }
     public static class standart_boulder_view extends RecyclerView.ViewHolder{
         private TextView accomplishment_boulder_txt;

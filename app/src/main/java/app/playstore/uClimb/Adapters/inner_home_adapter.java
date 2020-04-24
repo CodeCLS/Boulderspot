@@ -135,7 +135,6 @@ public class inner_home_adapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             comment_edit = view.findViewById(R.id.edit_comment_home_custom);
             //comment_rec = view.findViewById(R.id.rec_home_custom);
             abc = view.findViewById(R.id.abc);
-            comments_txt = view.findViewById(R.id.comments_txt);
             tools_btn_layout = view.findViewById(R.id.tools_btn_layout_home);
             like_btn = view.findViewById(R.id.img_home_like);
             share_btn = view.findViewById(R.id.img_home_share);

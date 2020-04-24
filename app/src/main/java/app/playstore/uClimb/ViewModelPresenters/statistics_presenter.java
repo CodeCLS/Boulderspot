@@ -37,7 +37,6 @@ public class statistics_presenter {
     private ArrayList<String> boulders_time = new ArrayList<>();
     private ArrayList<String> boulders_grade = new ArrayList<>();
     private ArrayList<String> boulders_tries = new ArrayList<>();
-    private ArrayList<String> competition_array_boulder = new ArrayList<>();
     private ArrayList<Integer> competition_array_boulderpoints = new ArrayList<>();
     private ArrayList<String> competition_array_names = new ArrayList<>();
 
@@ -115,20 +114,10 @@ public class statistics_presenter {
                         String statistics_ID = dataSnapshot.child("User").child(uid_friends).child("StatisticsID").getValue().toString();
                         Log.d(TAG,"statistics"+statistics_ID);
                         Log.d(TAG, "points" + statistics_ID);
-                        for (DataSnapshot postSnapshot : dataSnapshot.child("Statistics").child(statistics_ID).child("Boulder_problem").getChildren()) {
-                            String boulder = postSnapshot.child("difficulty").getValue().toString();
-                            String times = postSnapshot.child("num_value").getValue().toString();
-                            int points = points_system(boulder);
-                            points = points * Integer.parseInt(times);
-                            Log.d(TAG, "points");
-                            p = p + points;
-                            amount++;
-
-                        }
+                        int points =Integer.parseInt(dataSnapshot.child("User").child(uid_friends).child("Points").getValue().toString());
                         competition_array_uid.add(uid_friends);
                         competition_array_names.add(dataSnapshot.child("User").child(uid_friends).child("Name").getValue().toString());
-                        competition_array_boulder.add(amount + "");
-                        competition_array_boulderpoints.add(p);
+                        competition_array_boulderpoints.add(points);
 
                     }
 
@@ -213,7 +202,9 @@ public class statistics_presenter {
                     Log.d(TAG,"view"+view);
                    RecyclerView recyclerView = view_main.findViewById(R.id.statistic_rec);
                    recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+                   Log.d(TAG,"ADAPTER:" + training_sessions_time+training_sessions_notes+training_sessions_types+training_sessions_amount+boulders_time+boulders_grade);
                    recyclerView.setAdapter(adapter_statistic);
+                    Log.d(TAG,"sessions"+boulders_tries);
 
 
 
@@ -221,7 +212,9 @@ public class statistics_presenter {
 
 
 
-                }
+
+
+            }
 
 
 
@@ -275,4 +268,9 @@ public class statistics_presenter {
 
     }
 
+    public void setBoulderRec(RecyclerView rec, Context mContext, RecyclerView.Adapter adapter_statistics_boulder) {
+        rec.setLayoutManager(new LinearLayoutManager(mContext));
+        Log.d(TAG,"Hallo123");
+        rec.setAdapter(adapter_statistics_boulder);
+    }
 }
