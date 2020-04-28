@@ -2,9 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/nav_search"
         android:layout_width="match_parent"
+        android:layout_margin="10dp"
         android:layout_height="75dp"
+        android:padding="5dp"
+        android:elevation="10dp"
 
-        android:background="#fff" >
+
+    android:background="@drawable/all_round" >
 
     <Button
         android:id="@+id/btn_search_search"

@@ -143,6 +143,7 @@ public class login_presenter {
 
     public String getUID(Context mContext) {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences("uid",Context.MODE_PRIVATE);
+        Log.d(TAG,"userid"+sharedPreferences.getString("uid",null));
         return sharedPreferences.getString("uid",null);
     }
 

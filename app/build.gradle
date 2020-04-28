@@ -53,6 +53,9 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.11.0'
+    implementation 'com.google.android.exoplayer:exoplayer-dash:2.11.0'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.11.0'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'com.google.firebase:firebase-dynamic-links:19.1.0'

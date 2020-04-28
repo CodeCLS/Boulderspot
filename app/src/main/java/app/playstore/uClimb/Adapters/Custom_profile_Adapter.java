@@ -55,7 +55,6 @@ public class Custom_profile_Adapter extends RecyclerView.Adapter<RecyclerView.Vi
     private ArrayList<String> time = new ArrayList<>();
     private ArrayList<String> place = new ArrayList<>();
 
-
     private inner_profile_adapter inner_profile_adapter = new inner_profile_adapter(source,type,posts,info,uid_inner,time,place);
 
     private Context mContext;
@@ -101,6 +100,7 @@ public class Custom_profile_Adapter extends RecyclerView.Adapter<RecyclerView.Vi
 
         }
         if (viewType == 2){
+            Log.d(TAG,"post1" + posts);
             view = LayoutInflater.from(mContext).inflate(R.layout.custom_viewholder_custom_profile_2,parent,false);
             viewHolder = new uploads_viewholder_profile_custom(view);
 
@@ -143,11 +143,16 @@ public class Custom_profile_Adapter extends RecyclerView.Adapter<RecyclerView.Vi
 
         }
         if (holder.getItemViewType() == 2){
+            uploads_viewholder_profile_custom uploads_viewholder_profile_custom = (uploads_viewholder_profile_custom) holder;
+            custom_profile_presenter custom_profile_presenter = new custom_profile_presenter();
 
-            uploads_viewholder_profile_custom profile_custom = (uploads_viewholder_profile_custom) holder;
-            int numb_columns = 2;
-            profile_custom.recyclerView.setLayoutManager(new GridLayoutManager(mContext,numb_columns));
-            profile_custom.recyclerView.setAdapter(inner_profile_adapter);
+            custom_profile_presenter.setRec_inner(uploads_viewholder_profile_custom.recyclerView,mContext,uid);
+
+
+
+
+
+
 
 
         }

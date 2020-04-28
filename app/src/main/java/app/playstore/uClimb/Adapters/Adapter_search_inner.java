@@ -7,8 +7,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Bitmap;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
+import android.media.ThumbnailUtils;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +25,7 @@ import android.widget.VideoView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import app.playstore.uClimb.Fragments.Post.custom_post_page;
 import app.playstore.uClimb.R;
@@ -57,7 +63,6 @@ public class Adapter_search_inner extends RecyclerView.Adapter<RecyclerView.View
         Log.d(TAG,"UID_inner" + uid);
         View view =null;
         RecyclerView.ViewHolder viewHolder = null;
-        Log.d("adapter_search_final" , "type_array" + type_array.get(i)+ "number..." + i);
 
 
 
@@ -83,7 +88,7 @@ public class Adapter_search_inner extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public int getItemViewType(final int position) {
         int i = 0;
-        if (type_array.get(position).equals("img")){
+        if (type_array.get(position).equals("IMG")){
             Log.d("Adapter_home","POSITION0: "+position);
             i = 1;
         }
@@ -102,24 +107,33 @@ public class Adapter_search_inner extends RecyclerView.Adapter<RecyclerView.View
         //TODO create threads to fight against laggy pages
 
         if (viewHolder.getItemViewType()== 0) {
-            ViewHolder_video viewHolder_video = (ViewHolder_video) viewHolder;
-            viewHolder_video.videoView.setVideoPath(URL.get(i));
-            viewHolder_video.videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
-                @Override
-                public boolean onError(MediaPlayer mp, int what, int extra) {
-                    return true;
-                }
-            });
+           ViewHolder_video viewHolder_video = (ViewHolder_video) viewHolder;
+           viewHolder_video.videoView.setVideoPath(URL.get(i));
+           Log.d(TAG,"videouri"+URL.get(i));
+           viewHolder_video.videoView.seekTo(2);
+         //  viewHolder_video.videoView.setVideoPath(URL.get(i));
+         //  viewHolder_video.videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+         //      @Override
+         //      public boolean onError(MediaPlayer mp, int what, int extra) {
+         //          return true;
+         //      }
+         //  });
 
-            viewHolder_video.videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    Log.d(TAG,"loaded_video");
-                }
-            });
-            viewHolder_video.videoView.seekTo(2);
+         //  viewHolder_video.videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+         //      @Override
+         //      public void onCompletion(MediaPlayer mp) {
+         //          Log.d(TAG,"loaded_video");
+         //      }
+         //  });
+         //  viewHolder_video.videoView.seekTo(2);
+            try {
+                //viewHolder_video.image_video.URL.get(i)));
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
+            }
 
-            ((ViewHolder_video) viewHolder).videoView.setOnClickListener(new View.OnClickListener() {
+
+            viewHolder_video.videoView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.d(TAG,"cliockedonce");
@@ -228,7 +242,7 @@ public class Adapter_search_inner extends RecyclerView.Adapter<RecyclerView.View
 
         public ViewHolder_video(View view) {
             super(view);
-            videoView = view.findViewById(R.id.videoView_search_item);
+            videoView = view.findViewById(R.id.video_search_item);
             //   date_txt = (TextView) view.findViewById(R.id.event_custom_txt);
             //   Title_boulderhalle_txt = (TextView) view.findViewById(R.id.event_custom_txt);
             //   Location_txt = (TextView) view.findViewById(R.id.event_custom_txt);
@@ -246,4 +260,5 @@ public class Adapter_search_inner extends RecyclerView.Adapter<RecyclerView.View
 
 
     }
+
 }

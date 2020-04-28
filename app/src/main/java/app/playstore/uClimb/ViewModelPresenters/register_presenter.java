@@ -112,7 +112,7 @@ public class register_presenter {
         String IMG = "IMG";//TODO IMG
         String boulder_centre_default = "";
         String account_type = "person";
-        String close_friends_competitiors = "close_friends_competitiors";
+        String close_friends_competitiors = "Friends";
         String Follower = "Follower";
         String Following = "Following";
         String Position = "Position";
@@ -134,7 +134,7 @@ public class register_presenter {
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("IMG").setValue(string_standart_url_img);
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("boulder_centre_default").setValue(boulder_centre_default);
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("account_type").setValue(account_type);
-        myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("close_friends_competitiors").setValue(close_friends_competitiors);
+        myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("Friends").setValue(close_friends_competitiors);
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("Follower").setValue(Follower);
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("Following").setValue(Following);
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("Position").setValue(Position);
@@ -208,8 +208,8 @@ public class register_presenter {
     private void updateUI(FirebaseUser user,Context mContext,String message) {
         if (user != null){
             Log.d(TAG,"activatedregistered");
-            Intent intent = new Intent(mContext, MainActivity.class);
-            mContext.startActivity(intent);
+            //Intent intent = new Intent(mContext, MainActivity.class);
+            //mContext.startActivity(intent);
 
         }
         else{

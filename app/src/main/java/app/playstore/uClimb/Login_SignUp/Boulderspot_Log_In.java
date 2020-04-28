@@ -330,14 +330,16 @@ public class Boulderspot_Log_In extends AppCompatActivity implements GoogleApiCl
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myRef = database.getReference("User");
 
-            myRef.addValueEventListener(new ValueEventListener() {
+            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child(mAuth.getUid().toString()).exists()){
+                    if (dataSnapshot.child(mAuth.getUid()).exists()){
                         Log.d(TAG,"mauthexists");
 
                         Intent intent = new Intent(Boulderspot_Log_In.this, MainActivity.class);
-                        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(Boulderspot_Log_In.this).toBundle());
+                        //startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(Boulderspot_Log_In.this).toBundle());
+                        startActivity(intent);
+
                         finish();
 
                     }
@@ -385,7 +387,7 @@ public class Boulderspot_Log_In extends AppCompatActivity implements GoogleApiCl
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), "Anmeldung");
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -404,7 +406,7 @@ public class Boulderspot_Log_In extends AppCompatActivity implements GoogleApiCl
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 DatabaseReference myRef = database.getReference("");
 
-                                myRef.addValueEventListener(new ValueEventListener() {
+                                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         if (dataSnapshot.child(Objects.requireNonNull(mAuth.getUid())).exists()){
@@ -452,5 +454,6 @@ public class Boulderspot_Log_In extends AppCompatActivity implements GoogleApiCl
         intent.putExtra("username" , user.getDisplayName());
         intent.putExtra("email", user.getEmail());
         startActivity(intent);
+        finish();
     }
 }

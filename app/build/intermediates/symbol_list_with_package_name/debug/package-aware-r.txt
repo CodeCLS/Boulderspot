@@ -2949,11 +2949,11 @@ id upload_info_edit
 id upload_location
 id upload_source_btn
 id useLogo
-id videoView_search_item
 id video_controller
 id video_custom
 id video_custom_home
 id video_custom_profile_2
+id video_search_item
 id view_for_traiing_item
 id view_offset_helper
 id visible

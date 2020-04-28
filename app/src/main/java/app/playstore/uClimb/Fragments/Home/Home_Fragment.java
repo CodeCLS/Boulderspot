@@ -105,18 +105,7 @@ public class Home_Fragment extends Fragment implements home_posts_presenter.disp
 
 
 
-    private void fragmentTransactiontoUpload() {
-        video_upload_fragment mFragment = new video_upload_fragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        Scene mScene;
 
-        assert fragmentManager != null;
-
-
-        fragmentManager.beginTransaction().addToBackStack("video").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .replace(R.id.container_fragment, mFragment).commit();
-        getActivity().getFragmentManager().popBackStack();
-    }
 
 
 

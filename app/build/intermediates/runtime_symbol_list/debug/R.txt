@@ -2948,11 +2948,11 @@ int id upload_info_edit 0x7f0902c5
 int id upload_location 0x7f0902c6
 int id upload_source_btn 0x7f0902c7
 int id useLogo 0x7f0902c8
-int id videoView_search_item 0x7f0902c9
-int id video_controller 0x7f0902ca
-int id video_custom 0x7f0902cb
-int id video_custom_home 0x7f0902cc
-int id video_custom_profile_2 0x7f0902cd
+int id video_controller 0x7f0902c9
+int id video_custom 0x7f0902ca
+int id video_custom_home 0x7f0902cb
+int id video_custom_profile_2 0x7f0902cc
+int id video_search_item 0x7f0902cd
 int id view_for_traiing_item 0x7f0902ce
 int id view_offset_helper 0x7f0902cf
 int id visible 0x7f0902d0

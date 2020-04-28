@@ -159,7 +159,7 @@ public class statistics_presenter {
                     Log.d(TAG,"workoutssize"+dataSnapshot.child("Statistics").child(statistics_id).child("Workouts").getChildrenCount());
 
                     if (dataSnapshot.child("Statistics").child(statistics_id).child("Workouts").getChildrenCount() == 0){
-                        Snackbar snackbar = Snackbar.make(view_main,"No workout progress posted yet", BaseTransientBottomBar.LENGTH_SHORT);
+                        Snackbar snackbar = Snackbar.make(view_main.getRootView(),"No workout progress posted yet", BaseTransientBottomBar.LENGTH_SHORT);
                         snackbar.setBackgroundTint(mContext.getResources().getColor(R.color.colorPrimaryDark));
                         snackbar.show();
 

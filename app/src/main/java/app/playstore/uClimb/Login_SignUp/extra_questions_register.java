@@ -352,8 +352,7 @@ public class extra_questions_register extends AppCompatActivity {
 
         register_presenter.RegisterNewUser(pwd, email, username,extra_questions_register.this,bundle,extra_questions_register.this.getWindow().getCurrentFocus());
 
-        Intent intent = new Intent(extra_questions_register.this, MainActivity.class);
-        startActivity(intent);
+       MainIntent();
 
         finish();
     }

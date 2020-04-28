@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import app.playstore.uClimb.Adapters.Profile_Adapter;
+import app.playstore.uClimb.Adapters.inner_profile_adapter;
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.ViewModelPresenters.login.login_presenter;
 
@@ -48,6 +50,15 @@ public class profile_presenter {
     private app.playstore.uClimb.ViewModelPresenters.login.login_presenter login_presenter;
     private Context mContext;
     private Profile_Adapter profile_adapter;
+    private ArrayList<String> arrayList_Source = new ArrayList<>();
+    private ArrayList<String> arrayList_type = new ArrayList<>();
+    private ArrayList<String> arrayList_info = new ArrayList<>();
+    private ArrayList<String> arrayList_place = new ArrayList<>();
+    private ArrayList<String> arrayList_uid = new ArrayList<>();
+    private ArrayList<String> arrayList_post_id = new ArrayList<>();
+    private ArrayList<String> arrayList_time = new ArrayList<>();
+
+
     public profile_presenter(Context mContext) {
         this.profile_model = new profile_model();
         this.mContext = mContext;
@@ -79,6 +90,57 @@ public class profile_presenter {
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         setData(recyclerView);
         Log.d(TAG,"profile_img2" + profile_img);
+
+
+    }
+    public void setRecyclerView(RecyclerView recyclerView,Context mContext){
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference();
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<String> post_id = new ArrayList<>();
+                for (DataSnapshot postSnapshot: dataSnapshot.child("User").child("Posts").getChildren()){
+                    post_id.add(postSnapshot.getKey());
+
+
+
+                }
+                for (int i = 0;i< post_id.size();i++){
+                    String id = post_id.get(i).toString();
+                    String Source = dataSnapshot.toString();
+                    String type = dataSnapshot.child("Posts").child("type").getValue().toString();
+                    String info = dataSnapshot.child("Posts").child("Info").getValue().toString();
+                    String place = dataSnapshot.child("Posts").child("Place_name").getValue().toString();
+                    String time =dataSnapshot.child("Posts").child("Time").getValue().toString();
+                    String u_id =dataSnapshot.child("Posts").child("User_ID").getValue().toString();
+                    arrayList_info.add(info);
+                    arrayList_post_id.add(id);
+                    arrayList_uid.add(u_id);
+                    arrayList_type.add(type);
+                    arrayList_Source.add(Source);
+                    arrayList_time.add(time);
+                    arrayList_place.add(place);
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        inner_profile_adapter inner_profile_adapter = new inner_profile_adapter(arrayList_Source,arrayList_type,arrayList_post_id,arrayList_info,arrayList_uid,arrayList_time,arrayList_place);
+        recyclerView.setLayoutManager(new GridLayoutManager(mContext,2));
+        recyclerView.setAdapter(inner_profile_adapter);
+
+
+    }
+
+    private void getDataPosts(RecyclerView recyclerView) {
+
+
 
 
     }

@@ -1,6 +1,7 @@
 package app.playstore.uClimb.ViewModelPresenters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -30,6 +31,8 @@ import app.playstore.uClimb.Fragments.Statistics_fragment;
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.ViewModelPresenters.login.login_presenter;
 
+import static androidx.constraintlayout.motion.widget.MotionScene.TAG;
+
 public class friends_presenter {
     private ArrayList<String> friends_id = new ArrayList<>();
     private ArrayList<String> friends_name = new ArrayList<>();
@@ -55,6 +58,8 @@ public class friends_presenter {
                 clearArray();
                 login_presenter login_presenter = new login_presenter();
                 String id = login_presenter.getUID(mContext);
+                Log.d(TAG,"uid"+id);
+                Log.d(TAG,"friends"+dataSnapshot.child("User").child(id).child("Friends").getChildren());
                 for (DataSnapshot postSnapshot: dataSnapshot.child("User").child(id).child("Friends").getChildren()){
                     friends_id.add(postSnapshot.getKey());
                     String name = dataSnapshot.child("User").child(postSnapshot.getKey()).child("Name").getValue().toString();

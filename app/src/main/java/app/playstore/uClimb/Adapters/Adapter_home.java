@@ -2,6 +2,7 @@ package app.playstore.uClimb.Adapters;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -13,10 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,6 +37,14 @@ import android.widget.VideoView;
 
 import com.danikula.videocache.CacheListener;
 import com.danikula.videocache.HttpProxyCacheServer;
+import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.source.MediaSourceEventListener;
+import com.google.android.exoplayer2.source.ProgressiveMediaSource;
+import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
+import com.google.android.exoplayer2.upstream.DataSource;
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
+import com.google.android.exoplayer2.util.Util;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -42,7 +53,9 @@ import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.jarvanmo.exoplayerview.media.SimpleMediaSource;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.EventListener;
 
 import javax.xml.transform.ErrorListener;
 
@@ -50,6 +63,7 @@ import app.playstore.uClimb.Fragments.Training_list_fragment;
 import app.playstore.uClimb.Fragments.video_upload_fragment;
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.ViewModelPresenters.home_posts_presenter;
+import app.playstore.uClimb.ViewModelPresenters.login.login_presenter;
 
 public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements home_posts_presenter.display {
     private ArrayList<String> array_time = new ArrayList();
@@ -190,39 +204,94 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             viewHolder.video_view.setVisibility(View.VISIBLE);
             Log.d(TAG,"array_source"+array_source.get(i));
            String s = array_source.get(i);
-           viewHolder.video_view.setVideoPath(s);
-           viewHolder.progressBar.setVisibility(View.VISIBLE);
-           viewHolder.progressBar.getProgressBack
-           viewHolder.video_view.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-               @Override
-               public void onPrepared(MediaPlayer mp) {
-                   mp.setOnBufferingUpdateListener(new MediaPlayer.OnBufferingUpdateListener() {
-                       @Override
-                       public void onBufferingUpdate(MediaPlayer mp, int percent) {
-                           if (percent < 100){
-                               viewHolder.progressBar.setVisibility(View.VISIBLE);
+           Uri uri = Uri.parse(array_source.get(i));
+            // Produces DataSource instances through which media data is loaded.
+            DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(mContext,
+                    Util.getUserAgent(mContext, "uClimb"));
+// This is the MediaSource representing the media to be played.
+            MediaSource videoSource =
+                    new ProgressiveMediaSource.Factory(dataSourceFactory)
+                            .createMediaSource(uri);
+// Prepare the player with the source.
+
+            SimpleExoPlayer player = new SimpleExoPlayer.Builder(mContext).build();
+            player.prepare(videoSource);
+            viewHolder.video_view.setPlayer(player);
+            Handler handler = new Handler();
+            videoSource.addEventListener(handler, new MediaSourceEventListener() {
+                @Override
+                public void onMediaPeriodCreated(int windowIndex, MediaSource.MediaPeriodId mediaPeriodId) {
+                    player.seekTo(2);
+
+                }
+
+                @Override
+                public void onMediaPeriodReleased(int windowIndex, MediaSource.MediaPeriodId mediaPeriodId) {
+
+                }
+
+                @Override
+                public void onLoadStarted(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData) {
+                    viewHolder.progressBar.setVisibility(View.VISIBLE);
 
 
-                           }
-                           else{
-                               viewHolder.progressBar.setVisibility(View.GONE);
-                           }
-                       }
-                   });
-               }
-           });
-           viewHolder.video_view.seekTo(2);
+                }
 
-            Log.d(TAG,"videosource: " + s);
-            viewHolder.video_view.setZOrderOnTop(true);//this line solve the problem
-            viewHolder.video_view.start();
+                @Override
+                public void onLoadCompleted(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData) {
+                    viewHolder.progressBar.setVisibility(View.GONE);
+
+                }
+
+                @Override
+                public void onLoadCanceled(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData) {
+
+                }
+
+                @Override
+                public void onLoadError(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData, IOException error, boolean wasCanceled) {
+
+                }
+
+                @Override
+                public void onReadingStarted(int windowIndex, MediaSource.MediaPeriodId mediaPeriodId) {
+
+                }
+
+                @Override
+                public void onUpstreamDiscarded(int windowIndex, MediaSource.MediaPeriodId mediaPeriodId, MediaLoadData mediaLoadData) {
+
+                }
+
+                @Override
+                public void onDownstreamFormatChanged(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, MediaLoadData mediaLoadData) {
+
+                }
+            });
+            likedonCLick(i,viewHolder);
+
 
 
         }
         else{
+            viewHolder.progressBar.setVisibility(View.VISIBLE);
             viewHolder.video_view.setVisibility(View.GONE);
             viewHolder.img_view.setVisibility(View.VISIBLE);
-            Picasso.get().load(array_source.get(i)).fit().centerCrop().into(viewHolder.img_view);
+            Picasso.get().load(array_source.get(i)).fit().centerCrop().into(viewHolder.img_view, new com.squareup.picasso.Callback() {
+                @Override
+                public void onSuccess() {
+                    viewHolder.progressBar.setVisibility(View.INVISIBLE);
+
+
+                }
+
+                @Override
+                public void onError(Exception e) {
+
+                }
+            });
+            likedonCLick(i,viewHolder);
+
 
 
 
@@ -260,7 +329,7 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         ImageView img_view;
         de.hdodenhof.circleimageview.CircleImageView IMG_img_profile_pic;
         TextView info_txt;
-        VideoView video_view;
+        SimpleExoPlayerView video_view;
         LinearLayout text_inside;
         ConstraintLayout home_custom;
         ImageView like_btn;
@@ -350,24 +419,33 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     }
 
-    private void likedonCLick(int i, ViewHolder viewHolder_normal) {
+    private void likedonCLick(int i, ImageView like_btn) {
         int finalI = i;
-        viewHolder_normal.like_btn.setOnClickListener(new View.OnClickListener() {
+        like_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 home_posts_presenter home_posts_presenter = new home_posts_presenter(Adapter_home.this,mContext);
-                Boolean boolean_status =home_posts_presenter.liked(array_post_id.get(finalI));//TODO presenter like method
-                if (boolean_status== false){
-                    Toast.makeText(mContext, "Something went wrong", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    viewHolder_normal.like_btn.setImageDrawable(mContext.getDrawable(R.mipmap.boulderspot_logo));//TODO change to like_btn_full
-
+                login_presenter login_presenter = new login_presenter();
+                String id = login_presenter.getUID(mContext);
+                home_posts_presenter.isLiked(array_post_id.get(i),id);
 
                 }
 
-            }
+
+
         });
+    }
+    private void liked(Boolean status,ImageView like_btn){
+        //TODO liked 28.4.20
+
+
+
+           like_btn.setImageDrawable(mContext.getDrawable(R.mipmap.like_active));//TODO change to like_btn_full
+
+
+
+
     }
 
 
@@ -413,11 +491,11 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         viewHolder.video_view.setOnClickListener(v -> {
 
             if (clicked == 0) {
-                viewHolder.video_view.start();
-                clicked = 1;
+                //viewHolder.video_view.pl
+                //clicked = 1;
             } else {
-                viewHolder.video_view.pause();
-                clicked = 0;
+                //viewHolder.video_view.pause();
+                //clicked = 0;
 
 
             }

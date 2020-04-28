@@ -86,7 +86,7 @@ public class home_posts_presenter  {
         login_presenter login_presenter = new login_presenter();
         this.mAuth = login_presenter.getUID(mContext);
         Log.d(TAG,"mAuth3" + this.mAuth);
-        //TODO mAUth nbull
+        //TODO mAUth null
 
     }
     public void setData(View view, Context mContext){
@@ -367,7 +367,23 @@ public class home_posts_presenter  {
         }
     }
 
+    public void isLiked(String s,String d) {
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference();
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Boolean return_status = dataSnapshot.child("Posts").child(s).child("likes").child(d).exists();
 
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
 
 
     public interface display{

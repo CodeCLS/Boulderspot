@@ -26,6 +26,7 @@ import app.playstore.uClimb.Fragments.Post.custom_post_page;
 import app.playstore.uClimb.R;
 
 public class inner_profile_adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private static final String TAG = "inner_profile_adapter";
     private ArrayList<String> source = new ArrayList<>();
     private ArrayList<String> type = new ArrayList<>();
     private ArrayList<String> post_id = new ArrayList<>();
@@ -50,6 +51,12 @@ public class inner_profile_adapter extends RecyclerView.Adapter<RecyclerView.Vie
         this.u_id = u_id;
         this.time = time;
         this.place = place;
+        Log.d(TAG,"source" + source);
+        Log.d(TAG,"type" + type);
+        Log.d(TAG,"info" + info);
+
+        Log.d(TAG,"post" + post_id);
+
     }
 
 
@@ -60,14 +67,18 @@ public class inner_profile_adapter extends RecyclerView.Adapter<RecyclerView.Vie
         View view ;
         RecyclerView.ViewHolder viewholder= null;
 
+
         if (viewType == 0){
             view = LayoutInflater.from(mContext).inflate(R.layout.video_profile_uploads,parent,false);
-            viewholder = new standart_holder_img(view);
+            viewholder = new standart_holder_video(view);
 
         }
         if (viewType== 1){
             view = LayoutInflater.from(mContext).inflate(R.layout.img_profile_uploads,parent,false);
-            viewholder = new standart_holder_video(view);
+            viewholder = new standart_holder_img(view);
+
+        }
+        if (viewType==2) {
 
         }
         return viewholder;
@@ -108,7 +119,7 @@ public class inner_profile_adapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         }
         if (holder.getItemViewType() == 1){
-            standart_holder_img  standart_holder_img = (inner_profile_adapter.standart_holder_img) holder;
+            standart_holder_img  standart_holder_img = (standart_holder_img) holder;
             Picasso.get().load(source.get(position)).fit().into(standart_holder_img.img);
             standart_holder_img.img.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -162,7 +173,7 @@ public class inner_profile_adapter extends RecyclerView.Adapter<RecyclerView.Vie
         if (type.get(position).equals("IMG")){
             i = 1;
         }
-        if (type.get(position).equals("video")){
+        if (type.get(position).equals("Video")){
             i = 0;
         }
         return i;

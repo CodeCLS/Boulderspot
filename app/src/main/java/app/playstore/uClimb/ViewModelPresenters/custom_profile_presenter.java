@@ -17,13 +17,18 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.logging.Logger;
+
+import javax.xml.transform.Source;
 
 import app.playstore.uClimb.Adapters.Custom_profile_Adapter;
+import app.playstore.uClimb.Adapters.inner_profile_adapter;
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.ViewModelPresenters.login.login_presenter;
 
 public class custom_profile_presenter {
     private static final String TAG = "custom_profile_prese";
+
     private String uid;
     private String stat_uid;
     private String Age;
@@ -40,8 +45,20 @@ public class custom_profile_presenter {
     private String time_created;
     private ArrayList<String> posts = new ArrayList<>();
 
+
     private int columns = 2;
     custom_profile_model custom_profile_model;
+    private ArrayList<String> Source = new ArrayList<String>();
+    private ArrayList<String> type = new ArrayList<String>();
+    private ArrayList<String> info = new ArrayList<String>();
+    private ArrayList<String> posts_inner = new ArrayList<String>();
+    private ArrayList<String> uid_inner = new ArrayList<String>();
+    private ArrayList<String> time = new ArrayList<String>();
+    private ArrayList<String> place = new ArrayList<String>();
+
+
+
+
 
     public custom_profile_presenter(String uid) {
         this.custom_profile_model = new custom_profile_model();
@@ -60,6 +77,50 @@ public class custom_profile_presenter {
         fetchData(mContext,view);
 
 
+
+
+    }
+    public void setRec_inner(RecyclerView recyclerView,Context mContext,String uid){
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference("");
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<String> post_id = new ArrayList<String>();
+                for (DataSnapshot postSnapshot: dataSnapshot.child("User").child(uid).child("Posts").getChildren()){
+                    post_id.add(postSnapshot.getKey());
+
+
+                }
+                for (int i = 0; i < post_id.size();i++){
+                    String id = post_id.get(i).toString();
+                    DataSnapshot dataSnapshot1 = dataSnapshot.child("Posts").child(id);
+
+                    Log.d(TAG,"datasnapshot"+dataSnapshot1);
+                    Source.add(dataSnapshot1.child("Source").getValue().toString());
+                    time.add(dataSnapshot1.child("Time").getValue().toString());
+                    type.add(dataSnapshot1.child("type").getValue().toString());
+                    posts_inner.add(id);
+                    info.add(dataSnapshot1.child("Info").getValue().toString());
+                    uid_inner.add(dataSnapshot1.child("User_ID").getValue().toString());
+                    place.add(dataSnapshot1.child("Place_name").getValue().toString());
+                    Log.d(TAG,"Ource" + Source);
+
+                }
+                int numb_columns = 2;
+                Log.d(TAG,"Ource" + post_id);
+                inner_profile_adapter inner_profile_adapter = new inner_profile_adapter(Source,type,posts_inner,info,uid_inner,time,place);
+
+                recyclerView.setLayoutManager(new GridLayoutManager(mContext,numb_columns));
+                recyclerView.setAdapter(inner_profile_adapter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
     }
@@ -83,21 +144,20 @@ public class custom_profile_presenter {
                     follower.add(Objects.requireNonNull(postSnapshot.getValue()).toString());
 
                 }
-                for (DataSnapshot postSnapshot: dataSnapshot.child("Following").getChildren()){
+                for (DataSnapshot postSnapshot: dataSnapshot.child(uid).child("Following").getChildren()){
                     following.add(Objects.requireNonNull(postSnapshot.getValue()).toString());
 
                 }
-                for (DataSnapshot postSnapshot: dataSnapshot.child("Posts").getChildren()){
+                for (DataSnapshot postSnapshot: dataSnapshot.child(uid).child("Posts").getChildren()){
                     posts.add(postSnapshot.getValue().toString());
+                    Log.d(TAG,"post3" + posts);
 
                 }
                 Height = Objects.requireNonNull(dataSnapshot.child(uid).child("Height").getValue()).toString();
                 time_created = Objects.requireNonNull(dataSnapshot.child(uid).child("Time_created").getValue()).toString();
                 account_type = Objects.requireNonNull(dataSnapshot.child(uid).child("account_type").getValue()).toString();
-                Log.d(TAG,"Height" + Height);
+                Log.d(TAG,"post2" + posts);
                 Custom_profile_Adapter profile_adapter = new Custom_profile_Adapter(uid,stat_uid,Age,Name,profile_img,Info,Subscription,grade,country,follower,following,Height,account_type,time_created,posts);
-
-
                 RecyclerView rec = view.findViewById(R.id.custom_profile_rec);
                 rec.setLayoutManager(new LinearLayoutManager(mContext));
                 rec.setAdapter(profile_adapter);
@@ -122,6 +182,10 @@ public class custom_profile_presenter {
         DatabaseReference databaseReference = firebaseDatabase.getReference("");
         login_presenter login_presenter = new login_presenter();
         String id = login_presenter.getUID(mContext);
+        Log.d(TAG,"uid"+id);
+        Log.d(TAG,"id_user"+id_user);
+
+
         databaseReference.child("User").child(id).child("Following").child(id_user).setValue(id_user);
     }
 }
