@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -367,13 +368,16 @@ public class home_posts_presenter  {
         }
     }
 
-    public void isLiked(String s,String d) {
+    public static void isLiked(String s, String d,ImageView like_btn) {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Boolean return_status = dataSnapshot.child("Posts").child(s).child("likes").child(d).exists();
+                Adapter_home adapter_home = new Adapter_home();
+
+                adapter_home.isLikedAction(return_status,like_btn);
 
             }
 
@@ -382,6 +386,38 @@ public class home_posts_presenter  {
 
             }
         });
+
+    }
+
+    public void like(String id, String s, ImageView like_btn,Context mContext) {
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference();
+        //databaseReference.child("Posts").child(s).child("likes").child(id).setValue(id);
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child("Posts").child(s).child("likes").child(id).exists()){
+                    databaseReference.child("Posts").child(s).child("likes").child(id).removeValue();
+                    like_btn.setImageResource(R.mipmap.like_passive);
+
+
+                }
+                else{
+                    databaseReference.child("Posts").child(s).child("likes").child(id).setValue(id);
+
+                    like_btn.setImageResource(R.mipmap.like_active);
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
 
     }
 

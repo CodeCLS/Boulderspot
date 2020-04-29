@@ -278,7 +278,7 @@ ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulder
 		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:45:13-45
 	android:name
 		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:42:13-80
-intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:example.com+data:scheme:https
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:app.playstore.uclimb+data:scheme:uclimb
 ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:46:13-53:29
 action#android.intent.action.VIEW
 ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:47:17-68
@@ -293,11 +293,11 @@ ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulder
 	android:name
 		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:49:27-75
 data
-ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:50:17-52:45
+ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:50:17-52:46
 	android:host
-		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:51:21-47
+		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:51:21-56
 	android:scheme
-		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:52:21-43
+		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:52:21-44
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
 ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:54:13-58:29
 action#android.intent.action.MAIN

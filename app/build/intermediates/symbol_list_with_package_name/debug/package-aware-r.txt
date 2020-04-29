@@ -2574,7 +2574,6 @@ id id_text
 id ifRoom
 id ignore
 id image
-id imageView2
 id imageview_item_search_page
 id img_home_like
 id img_home_share
@@ -2747,6 +2746,8 @@ id progress_bar
 id progress_circular
 id progress_custom_home
 id progress_horizontal
+id progress_item_search_img
+id progress_item_search_video
 id progress_seek_bar
 id pwd_edit_change_profile
 id pwd_old_profile
@@ -2762,6 +2763,8 @@ id rec_friends_profile_edit
 id rec_home
 id rec_home_custom
 id rec_inner_home
+id rec_item_btn_view
+id rec_item_upload_btn_view
 id rec_location
 id rec_location_people
 id rec_profile_images_and_videos_uploads
@@ -2930,7 +2933,6 @@ id txt_info_session
 id txt_item_list_training
 id txt_name_custom_course
 id txt_name_item_friend
-id txt_post_success
 id txt_session_type
 id txt_start_training
 id txt_time_boulder
@@ -3029,6 +3031,7 @@ layout abc_tooltip
 layout activity_main_page
 layout bar_post_user
 layout boulder_item
+layout btn_add_upload
 layout card_view_search
 layout card_view_search_video
 layout chat_list

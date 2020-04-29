@@ -279,6 +279,8 @@ public class Boulderspot_Log_In extends AppCompatActivity implements GoogleApiCl
 
     }
 
+
+
     private void createsnackbar() {
         Snackbar snackbar = Snackbar.make(getWindow().getDecorView(),"Please fill all the fields",Snackbar.LENGTH_SHORT);
         snackbar.setBackgroundTint(getResources().getColor(R.color.colorPrimaryDark));

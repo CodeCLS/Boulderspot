@@ -7,7 +7,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.media.ThumbnailUtils;
@@ -19,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -109,8 +112,25 @@ public class Adapter_search_inner extends RecyclerView.Adapter<RecyclerView.View
         if (viewHolder.getItemViewType()== 0) {
            ViewHolder_video viewHolder_video = (ViewHolder_video) viewHolder;
            viewHolder_video.videoView.setVideoPath(URL.get(i));
+           viewHolder_video.videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+               @Override
+               public void onCompletion(MediaPlayer mp) {
+                   viewHolder_video.progressBar.setVisibility(View.GONE);
+
+               }
+           });
            Log.d(TAG,"videouri"+URL.get(i));
            viewHolder_video.videoView.seekTo(2);
+           viewHolder_video.progressBar.setVisibility(View.VISIBLE);
+           viewHolder_video.videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+               @Override
+               public boolean onError(MediaPlayer mp, int what, int extra) {
+                   viewHolder_video.progressBar.setVisibility(View.VISIBLE);
+                   viewHolder_video.progressBar.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+                   return true;
+
+               }
+           });
          //  viewHolder_video.videoView.setVideoPath(URL.get(i));
          //  viewHolder_video.videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
          //      @Override
@@ -126,11 +146,12 @@ public class Adapter_search_inner extends RecyclerView.Adapter<RecyclerView.View
          //      }
          //  });
          //  viewHolder_video.videoView.seekTo(2);
-            try {
-                //viewHolder_video.image_video.URL.get(i)));
-            } catch (Throwable throwable) {
-                throwable.printStackTrace();
-            }
+           // try {
+           //     //viewHolder_video.image_video.URL.get(i)));
+           // } catch (Throwable throwable) {
+           //     throwable.printStackTrace();
+           // }
+
 
 
             viewHolder_video.videoView.setOnClickListener(new View.OnClickListener() {
@@ -145,16 +166,24 @@ public class Adapter_search_inner extends RecyclerView.Adapter<RecyclerView.View
         }
         if (viewHolder.getItemViewType() == 1){
             ViewHolder_img viewHolder_img = (ViewHolder_img) viewHolder;
+            viewHolder_img.progressBar.setVisibility(View.VISIBLE);
 
             Picasso.get().load(URL.get(i)).into(viewHolder_img.img_item_rec_search_page, new com.squareup.picasso.Callback() {
                 @Override
                 public void onSuccess() {
+                    viewHolder_img.progressBar.setVisibility(View.GONE);
+
+
                     Log.d(TAG,"loaded");
+
 
                 }
 
                 @Override
                 public void onError(Exception e) {
+                    viewHolder_img.progressBar.setVisibility(View.VISIBLE);
+                    viewHolder_img.progressBar.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+
 
                 }
             });
@@ -213,12 +242,14 @@ public class Adapter_search_inner extends RecyclerView.Adapter<RecyclerView.View
 
     public class ViewHolder_img extends RecyclerView.ViewHolder {
         ImageView img_item_rec_search_page;
+        ProgressBar progressBar;
 
 
 
         public ViewHolder_img(View view) {
             super(view);
             img_item_rec_search_page = view.findViewById(R.id.imageview_item_search_page);
+            progressBar = view.findViewById(R.id.progress_item_search_img);
         //   date_txt = (TextView) view.findViewById(R.id.event_custom_txt);
         //   Title_boulderhalle_txt = (TextView) view.findViewById(R.id.event_custom_txt);
         //   Location_txt = (TextView) view.findViewById(R.id.event_custom_txt);
@@ -237,12 +268,14 @@ public class Adapter_search_inner extends RecyclerView.Adapter<RecyclerView.View
 
     public class ViewHolder_video extends RecyclerView.ViewHolder {
         VideoView videoView;
+        ProgressBar progressBar;
 
 
 
         public ViewHolder_video(View view) {
             super(view);
             videoView = view.findViewById(R.id.video_search_item);
+            progressBar =view.findViewById(R.id.progress_item_search_video);
             //   date_txt = (TextView) view.findViewById(R.id.event_custom_txt);
             //   Title_boulderhalle_txt = (TextView) view.findViewById(R.id.event_custom_txt);
             //   Location_txt = (TextView) view.findViewById(R.id.event_custom_txt);

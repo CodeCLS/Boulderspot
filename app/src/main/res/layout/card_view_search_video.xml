@@ -18,6 +18,8 @@
 
 
 
+
+
     <VideoView
         android:id="@+id/video_search_item"
         android:layout_width="match_parent"
@@ -33,4 +35,11 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints"
         tools:srcCompat="@tools:sample/avatars" />
+    <ProgressBar
+        android:layout_margin="60dp"
+
+        android:id="@+id/progress_item_search_video"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="match_parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

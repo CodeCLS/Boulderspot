@@ -20,12 +20,12 @@
         "source": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/res/drawable/ic_dashboard_black_24dp.xml"
     },
     {
-        "merged": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/build/intermediates/res/merged/debug/layout_comment_layout.xml.flat",
-        "source": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/res/layout/comment_layout.xml"
-    },
-    {
         "merged": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/build/intermediates/res/merged/debug/layout_top_include_friends_and_locations.xml.flat",
         "source": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/res/layout/top_include_friends_and_locations.xml"
+    },
+    {
+        "merged": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/build/intermediates/res/merged/debug/layout_comment_layout.xml.flat",
+        "source": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/res/layout/comment_layout.xml"
     },
     {
         "merged": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/build/intermediates/res/merged/debug/layout_activity_main_page.xml.flat",
@@ -470,6 +470,10 @@
     {
         "merged": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/build/intermediates/res/merged/debug/drawable_background_box_search_full.xml.flat",
         "source": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/res/drawable/background_box_search_full.xml"
+    },
+    {
+        "merged": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/build/intermediates/res/merged/debug/layout_btn_add_upload.xml.flat",
+        "source": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/res/layout/btn_add_upload.xml"
     },
     {
         "merged": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher_round.png.flat",

@@ -1,5 +1,6 @@
 package app.playstore.uClimb.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +29,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -45,11 +47,17 @@ import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.dynamiclinks.DynamicLink;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
+import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
+import com.google.firebase.dynamiclinks.ShortDynamicLink;
 import com.jarvanmo.exoplayerview.media.SimpleMediaSource;
 import com.squareup.picasso.Picasso;
 
@@ -104,6 +112,9 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private final DatabaseReference myRef = database.getReference("Posts");
 
     private Context mContext;
+
+    public Adapter_home() {
+    }
 
     @Override
     public int getItemViewType(final int position) {
@@ -192,19 +203,23 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         return new HttpProxyCacheServer(mContext);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     private void setWidgets(ViewHolder viewHolder, int i) {
         viewHolder.video_view.setBackgroundResource(android.R.color.transparent);
-         viewHolder.video_view.setDrawingCacheEnabled(true);
+
+        viewHolder.video_view.setDrawingCacheEnabled(true);
         viewHolder.info_txt.setText(array_info.get(i));
         Picasso.get().load(array_source_img.get(i)).fit().centerCrop().into(viewHolder.IMG_img_profile_pic);
 
         if (array_type.get(i).equals("Video")){
+            shareonClick(i,viewHolder.share_btn);
             viewHolder.img_view.setVisibility(View.GONE);
             viewHolder.video_view.setVisibility(View.VISIBLE);
             Log.d(TAG,"array_source"+array_source.get(i));
            String s = array_source.get(i);
            Uri uri = Uri.parse(array_source.get(i));
+           login_presenter login_presenter = new login_presenter();
+           home_posts_presenter.isLiked(array_post_id.get(i),login_presenter.getUID(mContext).toString(),viewHolder.like_btn);
+
             // Produces DataSource instances through which media data is loaded.
             DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(mContext,
                     Util.getUserAgent(mContext, "uClimb"));
@@ -268,12 +283,15 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
                 }
             });
-            likedonCLick(i,viewHolder);
+            likedonCLick(i,viewHolder.like_btn);
 
 
 
         }
         else{
+            likedonCLick(i,viewHolder.like_btn);
+            shareonClick(i,viewHolder.share_btn);
+
             viewHolder.progressBar.setVisibility(View.VISIBLE);
             viewHolder.video_view.setVisibility(View.GONE);
             viewHolder.img_view.setVisibility(View.VISIBLE);
@@ -290,7 +308,7 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
                 }
             });
-            likedonCLick(i,viewHolder);
+            likedonCLick(i,viewHolder.like_btn);
 
 
 
@@ -317,9 +335,19 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     }
 
+    public void isLikedAction(Boolean return_status, ImageView like_btn) {
+        if (return_status){
+            like_btn.setImageResource(R.mipmap.like_active);
+        }
+        else{
+            like_btn.setImageResource(R.mipmap.like_passive);
+            Log.d(TAG,"passive");
 
 
 
+        }
+
+    }
 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -373,14 +401,14 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     static class ViewHolder_training extends RecyclerView.ViewHolder {
         LinearLayout layout;
         TextView start_training_txt;
-        TextView post_success_txt;
+        FrameLayout post_success_txt;
 
 
         ViewHolder_training(View view) {
             super(view);
             layout = view.findViewById(R.id.rec_training_item_layout);
             start_training_txt = view.findViewById(R.id.txt_start_training);
-            post_success_txt = view.findViewById(R.id.txt_post_success);
+            post_success_txt = view.findViewById(R.id.rec_item_btn_view);
 
 
         }
@@ -403,21 +431,47 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
 
 
-    private void shareonClick(ViewHolder viewHolder_normal) {
-        viewHolder_normal.share_btn.setOnClickListener(new View.OnClickListener() {
+    private void shareonClick(int position,ImageView share_btn) {
+      share_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                share_work();
+                share_work(position,(Activity)mContext);
+                Log.d(TAG,"dlin1k");
+
 
 
             }
         });
     }
 
-    private void share_work() {
-
-
+    private void share_work(int position,Activity activity) {
+        FirebaseDynamicLinks.getInstance()
+                .getDynamicLink(activity.getIntent())
+                .addOnSuccessListener(activity, new OnSuccessListener<PendingDynamicLinkData>() {
+                    @Override
+                    public void onSuccess(PendingDynamicLinkData pendingDynamicLinkData) {
+                        Uri deepLink = null;
+                        if (pendingDynamicLinkData != null) {
+                            deepLink = pendingDynamicLinkData.getLink();
+                        }
+                    }
+                })
+                .addOnFailureListener(activity, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("", "getDynamicLink:onFailure", e);
+                    }
+                });
     }
+
+                //.setLink(Uri.parse("post_link/"+array_post_id.get(position)))
+                //.setDomainUriPrefix("https://boulderspot.page.link")
+
+
+
+       // dynamicLinkUri = dynamicLink.getUri();
+
+
 
     private void likedonCLick(int i, ImageView like_btn) {
         int finalI = i;
@@ -428,7 +482,8 @@ public class Adapter_home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 home_posts_presenter home_posts_presenter = new home_posts_presenter(Adapter_home.this,mContext);
                 login_presenter login_presenter = new login_presenter();
                 String id = login_presenter.getUID(mContext);
-                home_posts_presenter.isLiked(array_post_id.get(i),id);
+                home_posts_presenter.like(id,array_post_id.get(i),like_btn,mContext);
+
 
                 }
 

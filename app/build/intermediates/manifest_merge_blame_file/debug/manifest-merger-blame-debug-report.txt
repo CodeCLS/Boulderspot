@@ -132,11 +132,11 @@
 64-->/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:49:27-75
 65
 66                <data
-66-->/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:50:17-52:45
-67                    android:host="example.com"
-67-->/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:51:21-47
-68                    android:scheme="https" />
-68-->/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:52:21-43
+66-->/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:50:17-52:46
+67                    android:host="app.playstore.uclimb"
+67-->/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:51:21-56
+68                    android:scheme="uclimb" />
+68-->/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:52:21-44
 69            </intent-filter>
 70            <intent-filter>
 70-->/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:54:13-58:29
