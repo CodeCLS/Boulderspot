@@ -2749,6 +2749,7 @@ id progress_horizontal
 id progress_item_search_img
 id progress_item_search_video
 id progress_seek_bar
+id progress_upload_profile_pic
 id pwd_edit_change_profile
 id pwd_old_profile
 id qualityDes

@@ -1,5 +1,6 @@
 package app.playstore.uClimb.Fragments.Post;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.source.ProgressiveMediaSource;
+import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
+import com.google.android.exoplayer2.upstream.DataSource;
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
+import com.google.android.exoplayer2.util.Util;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,11 +33,12 @@ import com.squareup.picasso.Picasso;
 import java.util.Objects;
 
 import app.playstore.uClimb.R;
+import app.playstore.uClimb.ViewModelPresenters.custom_posts_presenter;
 import app.playstore.uClimb.ViewModelPresenters.login.login_presenter;
 
 public class custom_post_page extends Fragment {
     private static final String TAG = "custom_post_page";
-    private VideoView videoView;
+    private SimpleExoPlayerView videoView;
     private ImageView img_post;
 
 
@@ -173,13 +183,15 @@ public class custom_post_page extends Fragment {
     }
 
     private void checkSource(String type,View view) {
-        if (type.equals("video")){
+        like_setup();
+        like_onClick();
+        if (type.equals("Video")){
             video_setup();
             video_player();
 
 
         }
-        if (type.equals("img")){
+        if (type.equals("IMG")){
             img_setup();
 
 
@@ -188,36 +200,60 @@ public class custom_post_page extends Fragment {
         }
     }
 
+    private void like_onClick() {
+        img_like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                custom_posts_presenter custom_posts_presenter = new custom_posts_presenter();
+                custom_posts_presenter.setupLike(getContext(),post_id,img_like);
+
+            }
+        });
+
+
+    }
+
     private void img_setup() {
         img_post.setVisibility(View.VISIBLE);
         videoView.setVisibility(View.GONE);
         Picasso.get().load(source).fit().centerCrop().into(img_post);
 
     }
+    private void like_setup(){
+        custom_posts_presenter custom_posts_presenter = new custom_posts_presenter();
+        custom_posts_presenter.initLike(getContext(),img_like,post_id);
+    }
 
     private void video_player() {
-        videoView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (video_state == 0){
-                    videoView.start();
-                    video_state = 1;
-                }
-                else{
-                    videoView.pause();
-                    video_state = 0;
 
-                }
-            }
-        });
+                    DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(getContext(),
+                            Util.getUserAgent(getContext(), "uClimb"));
+// This is the MediaSource representing the media to be played.
+                    MediaSource videoSource =
+                            new ProgressiveMediaSource.Factory(dataSourceFactory)
+                                    .createMediaSource(Uri.parse(source));
+                    SimpleExoPlayer player = new SimpleExoPlayer.Builder(getContext()).build();
+                    player.prepare(videoSource);
+                    videoView.setPlayer(player);
+                    video_state = 1;
+
+
+
 
     }
 
     private void video_setup() {
         videoView.setVisibility(View.VISIBLE);
         img_post.setVisibility(View.GONE);
-        videoView.setVideoPath(source);
-        videoView.seekTo(2);
+        DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(getContext(),
+                Util.getUserAgent(getContext(), "uClimb"));
+// This is the MediaSource representing the media to be played.
+        MediaSource videoSource =
+                new ProgressiveMediaSource.Factory(dataSourceFactory)
+                        .createMediaSource(Uri.parse(source));
+        SimpleExoPlayer player = new SimpleExoPlayer.Builder(getContext()).build();
+        player.prepare(videoSource);
+        videoView.setPlayer(player);
     }
 
     private void initViews(@NonNull View view) {

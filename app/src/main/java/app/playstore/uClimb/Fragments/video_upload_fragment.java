@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -51,10 +52,12 @@ import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -441,10 +444,11 @@ public class video_upload_fragment extends Fragment {
     }
 
     private void uploadProgress(String selectedUri, final StorageReference ref, boolean source_status, boolean statistics_status) {
-        Log.d(TAG,"selectedURI1"+selectedUri);
+
         ref.putFile(Uri.parse(selectedUri)).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+
                 double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
 
                 progressBar.setVisibility(View.VISIBLE);
@@ -455,7 +459,14 @@ public class video_upload_fragment extends Fragment {
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        selected_source = false;
+                        info_edit.setText("");
+                        selected_IMG_source = "";
+                        selected_video_source = "";
+                        selected_img = false;
+                        selected_video = false;
                         progressBar.setVisibility(View.GONE);
+
 
                         ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
@@ -473,7 +484,9 @@ public class video_upload_fragment extends Fragment {
             @Override
             public void onFailure(@NonNull Exception e) {
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(getContext(), "Error: " + e, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Error: " + e.getLocalizedMessage() + " ...File bigger than 10MB?", Toast.LENGTH_LONG).show();
+
+
 
             }
         });

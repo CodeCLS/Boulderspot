@@ -1,26 +1,44 @@
 package app.playstore.uClimb.ViewModelPresenters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Objects;
 
 import app.playstore.uClimb.Adapters.Profile_Adapter;
 import app.playstore.uClimb.Adapters.inner_profile_adapter;
+import app.playstore.uClimb.Fragments.Profile.Profile_Fragment;
+import app.playstore.uClimb.Main.MainActivity;
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.ViewModelPresenters.login.login_presenter;
 
@@ -28,6 +46,7 @@ public class profile_presenter {
     private static final String TAG = "Profile_presenter";
     private String uid;
     private String stat_uid;
+    private StorageReference mStorageRef;
     private String Age;
     private String Name;
     private String profile_img;
@@ -57,6 +76,7 @@ public class profile_presenter {
     private ArrayList<String> arrayList_uid = new ArrayList<>();
     private ArrayList<String> arrayList_post_id = new ArrayList<>();
     private ArrayList<String> arrayList_time = new ArrayList<>();
+    private ProgressBar progressBar;
 
 
     public profile_presenter(Context mContext) {
@@ -192,5 +212,75 @@ public class profile_presenter {
 
     }
 
+    public profile_presenter() {
+    }
+
+    public void setProfilePic(Context mContext, ProgressBar progressBar) {
+        Log.d(TAG,"mContext" + mContext);
+        ((MainActivity) mContext).img(progressBar);
+        Log.d(TAG,"progress2"+progressBar);
+        this.progressBar = progressBar;
+        Log.d(TAG,"progress1"+progressBar);
+
+
+
+
+    }
+
+
+    public void here_is_image(Uri path,Context mContext,ProgressBar progressBar) {
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+        login_presenter login_presenter = new login_presenter();
+        String uid = login_presenter.getUID(mContext);
+        Log.d(TAG,"321323");
+        StorageReference riversRef = mStorageRef.child("Sources_Users_Uploads").child(uid).child("PROFILE_PIC");
+
+        riversRef.putFile(path)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        riversRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                progressBar.setVisibility(View.GONE);
+                                Log.d(TAG,"32132423");
+
+                                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                                DatabaseReference databaseReference = firebaseDatabase.getReference("");
+                                databaseReference.child("User").child(uid).child("IMG").setValue(uri.toString());
+                                Toast.makeText(mContext, "Changed Image", Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+                        // Get a URL to the uploaded content
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        Log.d(TAG,"3212323");
+
+                        Toast.makeText(mContext, "Task Failed: " + exception.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        // Handle unsuccessful uploads
+                        // ...
+                    }
+                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+
+
+
+                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                Log.d(TAG,"progress4"+progressBar);
+
+
+                progressBar.setVisibility(View.VISIBLE);
+                progressBar.setProgress((int) progress);
+            }
+        });
+
+
+    }
 
 }
+

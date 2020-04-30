@@ -3,11 +3,17 @@ package app.playstore.uClimb.Main;
 import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.core.app.NotificationCompat;
@@ -25,6 +31,8 @@ import com.yayandroid.locationmanager.LocationConfiguration;
 import com.yayandroid.locationmanager.LocationManager;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import app.playstore.uClimb.Fragments.Friends_fragment;
@@ -36,6 +44,7 @@ import app.playstore.uClimb.DB.FeedReaderDBHelper;
 import app.playstore.uClimb.Fragments.Search.Search_Fragment;
 import app.playstore.uClimb.Fragments.Home.Home_Fragment;
 import app.playstore.uClimb.R;
+import app.playstore.uClimb.ViewModelPresenters.profile_presenter;
 
 public class MainActivity extends Base_Internet implements CacheListener {
 
@@ -43,6 +52,7 @@ public class MainActivity extends Base_Internet implements CacheListener {
     private static final String COLUMN_NAME_TITLE = "Caleb";
     private static final String COLUMN_NAME_SUBTITLE = "Info";
     private FirebaseAuth mAuth;
+    private ProgressBar progressBar;
     private FloatingActionButton plus_img;
     private ArrayList IMG   = new ArrayList();
     private ArrayList source= new ArrayList();
@@ -76,6 +86,28 @@ public class MainActivity extends Base_Internet implements CacheListener {
 
 
     private static final String CHANNEL_ID = "boulder";
+    private int CHANGE_PROFILE_PIC_CODE = 210;
+
+    public void img(ProgressBar progressBar) {
+        this.progressBar = progressBar;
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+        photoPickerIntent.setType("image/*");
+        startActivityForResult(photoPickerIntent, 210);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CHANGE_PROFILE_PIC_CODE) {
+            if (data != null){
+            final Uri imageUri = data.getData();
+            profile_presenter profile_presenter = new profile_presenter();
+            profile_presenter.here_is_image(imageUri,this,progressBar);
+
+        } }else {
+            Toast.makeText(this, "You haven't picked Image", Toast.LENGTH_LONG).show();
+        }
+    }
 
     @Override
     protected void onStart() {
@@ -220,6 +252,9 @@ public class MainActivity extends Base_Internet implements CacheListener {
     }
 
 
+
+
+
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
@@ -234,6 +269,7 @@ public class MainActivity extends Base_Internet implements CacheListener {
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
+
     }
 
 

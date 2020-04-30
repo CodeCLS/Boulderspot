@@ -46,7 +46,7 @@
         </LinearLayout>
 
 
-        <VideoView
+        <com.google.android.exoplayer2.ui.SimpleExoPlayerView
             android:id="@+id/video_custom"
             android:layout_width="match_parent"
             android:layout_gravity="center"
@@ -79,7 +79,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    app:srcCompat="@mipmap/icon_user" />
+                    app:srcCompat="@mipmap/like_passive" />
 
                 <ImageView
                     android:id="@+id/img_share_custom"
@@ -87,7 +87,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    app:srcCompat="@mipmap/icon_user" />
+                    app:srcCompat="@mipmap/share_icon" />
             </LinearLayout>
 
             <LinearLayout

@@ -1,5 +1,9 @@
 package app.playstore.uClimb.Fragments.Profile;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,13 +22,17 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Objects;
 
 import app.playstore.uClimb.Fragments.Statistics_fragment;
+import app.playstore.uClimb.Main.MainActivity;
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.ViewModelPresenters.profile_presenter;
 
 public class Profile_Fragment extends Fragment {
+    private static final int CHANGE_PROFILE_PIC_CODE = 210;
     private FrameLayout stat;
     private  RecyclerView recyclerView;
     private LinearLayout profile_img;
@@ -45,13 +53,17 @@ public class Profile_Fragment extends Fragment {
 
 
 
+
+
     }
+
 
     private void setRecyclerview(View view) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         profile_presenter profile_presenter = new profile_presenter(getContext());
         profile_presenter.setRecyclerview(getContext(),view);
     }
+
 
     private void nav() {
         stat.setOnClickListener(new View.OnClickListener() {

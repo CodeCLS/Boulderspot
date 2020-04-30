@@ -18,6 +18,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +55,7 @@ import app.playstore.uClimb.Fragments.custom_profile;
 import app.playstore.uClimb.Main.MainActivity;
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.ViewModelPresenters.login.login_presenter;
+import app.playstore.uClimb.ViewModelPresenters.profile_presenter;
 
 public class Profile_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final String TAG = "Profile_Adapter";
@@ -101,10 +103,10 @@ public class Profile_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private inner_profile_adapter custom_profile_adapter = new inner_profile_adapter(source,type,post_id,info,u_id,time,place);
     private int numbercolumns = 2;
 
+    public Profile_Adapter() {
+    }
 
-
-
-    public Profile_Adapter(String uid, String stat_uid, String age, String name, String profile_img, String info, String subscription, String grade, String country, ArrayList follower, ArrayList following, String height, ArrayList friends, String account_type, String time_created, String position_lat, String position_long, String position_last_updated, Boolean position_status,String email) {
+    public Profile_Adapter(String uid, String stat_uid, String age, String name, String profile_img, String info, String subscription, String grade, String country, ArrayList follower, ArrayList following, String height, ArrayList friends, String account_type, String time_created, String position_lat, String position_long, String position_last_updated, Boolean position_status, String email) {
         this.uid = uid;
         this.stat_uid = stat_uid;
         Age = age;
@@ -222,6 +224,14 @@ public class Profile_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private void viewHolder_0_code(@NonNull standart_profile holder) {
         standart_profile standart_profile = holder;
+        standart_profile.Imageview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                profile_presenter profile_presenter = new profile_presenter(mContext);
+                profile_presenter.setProfilePic(mContext,standart_profile.progressBar);
+
+            }
+        });
         Picasso.get().load(profile_img).into(standart_profile.Imageview);
         Log.d(TAG,"profile_img4" + profile_img);
         standart_profile.Email.setText(Email);
@@ -674,7 +684,7 @@ public class Profile_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public int getItemCount() {
         return 3;
     }
-    public class standart_profile extends RecyclerView.ViewHolder {
+    public static class standart_profile extends RecyclerView.ViewHolder {
         de.hdodenhof.circleimageview.CircleImageView Imageview;
         TextView Name;
         TextView Email;
@@ -688,9 +698,12 @@ public class Profile_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         Spinner Friends;
         TextView Follower_number;
         TextView Following_number;
+        ProgressBar progressBar;
+
 
         public standart_profile(@NonNull View itemView) {
             super(itemView);
+            progressBar = itemView.findViewById(R.id.progress_upload_profile_pic);
             uid = itemView.findViewById(R.id.uid_txt_profile);
             Imageview = itemView.findViewById(R.id.circle_profile_image);
             Name = itemView.findViewById(R.id.name_txt_profile);
@@ -708,6 +721,7 @@ public class Profile_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             Log.d(TAG,"uid" + uid);
         }
+
     }
     public class profile_a extends RecyclerView.ViewHolder {
         Button btn_change_pwd;
@@ -785,6 +799,7 @@ public class Profile_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return i;
     }
 
+
     private class standart_profile_c extends RecyclerView.ViewHolder {
         public RecyclerView rec;
 
@@ -793,4 +808,6 @@ public class Profile_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             rec = itemView.findViewById(R.id.rec_profile_images_and_videos_uploads);
         }
     }
+
+
 }
