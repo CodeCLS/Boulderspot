@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,12 +21,12 @@ import app.playstore.uClimb.Fragments.custom_profile;
 import app.playstore.uClimb.R;
 
 public class Adapter_Friends extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private ArrayList<String> url_img = new ArrayList<>();
-    private ArrayList<String> user_txt = new ArrayList<>();
-    private ArrayList<String> u_id = new ArrayList<>();
+    //Main ArrayLists for Data
+    private ArrayList<String> url_img;
+    private ArrayList<String> user_txt;
+    private ArrayList<String> u_id;
 
-
-    Context mContext;
+    private Context mContext;
 
     public Adapter_Friends(ArrayList<String> url_img, ArrayList<String> user_txt, ArrayList<String> u_id) {
         this.url_img = url_img;
@@ -37,9 +36,8 @@ public class Adapter_Friends extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemViewType(int position) {
-        int i = 0;
 
-        return i;
+        return 0;
     }
 
     @NonNull
@@ -56,33 +54,46 @@ public class Adapter_Friends extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         }
 
+        assert viewHolder != null;
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+
         if (holder.getItemViewType() == 0){
             ViewHolder_item_friend viewHolder_item_friend = (ViewHolder_item_friend) holder;
-            viewHolder_item_friend.username_txt.setText(user_txt.get(position));
-            Picasso.get().load(url_img.get(position)).into(viewHolder_item_friend.img);
-            viewHolder_item_friend.username_txt.setOnClickListener(v -> {
-                custom_profile custom_profile = new custom_profile();
-                Bundle bundle = new Bundle();
-                bundle.putString("uid", u_id.get(position));
-                custom_profile.setArguments(bundle);
 
+            setViews(position, viewHolder_item_friend);
 
-                FragmentManager fragmentManager = ((AppCompatActivity)mContext).getSupportFragmentManager();
-                fragmentManager.beginTransaction().addToBackStack("Fragment_custom_profile").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .replace(R.id.container_fragment,custom_profile).commit();
-
-            });
-
+            //transfer to user
+            username_onClick(position, viewHolder_item_friend);
 
 
         }
 
 
+    }
+
+    private void setViews(int position, ViewHolder_item_friend viewHolder_item_friend) {
+        viewHolder_item_friend.username_txt.setText(user_txt.get(position));
+
+        Picasso.get().load(url_img.get(position)).into(viewHolder_item_friend.img);
+    }
+
+    private void username_onClick(int position, ViewHolder_item_friend viewHolder_item_friend) {
+        viewHolder_item_friend.username_txt.setOnClickListener(v -> {
+            custom_profile custom_profile = new custom_profile();
+            Bundle bundle = new Bundle();
+            bundle.putString("uid", u_id.get(position));
+            custom_profile.setArguments(bundle);
+
+
+            FragmentManager fragmentManager = ((AppCompatActivity)mContext).getSupportFragmentManager();
+            fragmentManager.beginTransaction().addToBackStack("Fragment_custom_profile").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .replace(R.id.container_fragment,custom_profile).commit();
+
+        });
     }
 
     @Override
@@ -90,19 +101,12 @@ public class Adapter_Friends extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return u_id.size();
     }
 
-    private class ViewHolder_bar extends RecyclerView.ViewHolder {
-        LinearLayout friends_linear;
-        LinearLayout location_linear;
-        public ViewHolder_bar(View view) {
-            super(view);
 
-        }
-    }
 
-    private class ViewHolder_item_friend extends RecyclerView.ViewHolder {
+    private static class ViewHolder_item_friend extends RecyclerView.ViewHolder {
         de.hdodenhof.circleimageview.CircleImageView img;
         TextView username_txt;
-        public ViewHolder_item_friend(View view) {
+        private ViewHolder_item_friend(View view) {
             super(view);
             img = view.findViewById(R.id.img_item_friend);
             username_txt = view.findViewById(R.id.txt_name_item_friend);

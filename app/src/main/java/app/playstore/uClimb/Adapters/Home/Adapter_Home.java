@@ -1,5 +1,6 @@
 package app.playstore.uClimb.Adapters.Home;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import androidx.annotation.NonNull;
@@ -28,7 +29,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.danikula.videocache.HttpProxyCacheServer;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MediaSourceEventListener;
@@ -37,13 +37,7 @@ import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
-import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -56,42 +50,21 @@ import app.playstore.uClimb.MVP.MVP_Home.Presenter_Home_Posts;
 import app.playstore.uClimb.MVP.MVP_Login.Presenter_Login;
 
 public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Presenter_Home_Posts.display {
-    private ArrayList<String> array_time = new ArrayList();
-    private ArrayList<String> array_name = new ArrayList();
-    private ArrayList<String> array_source_img = new ArrayList();
-    private ArrayList<String> array_source = new ArrayList();
-    private ArrayList<String> array_info = new ArrayList();
-    private ArrayList<String> array_place = new ArrayList();
-    private ArrayList<String> array_user_id = new ArrayList();
-    private ArrayList<String> array_post_id = new ArrayList();
-    private ArrayList<String> array_type = new ArrayList();
-    private ArrayList<String> array_likes = new ArrayList();
+    //private ArrayList<String> array_time;
+    private ArrayList<String> array_name;
+    private ArrayList<String> array_source_img;
+    private ArrayList<String> array_source;
+    private ArrayList<String> array_info;
+    //private ArrayList<String> array_place;
+    //private ArrayList<String> array_user_id;
+    private ArrayList<String> array_post_id;
+    private ArrayList<String> array_type;
+    //private ArrayList<String> array_likes;
     private static final String TAG = "adapter_home";
-    private boolean anim_boolean_status = false;
-    private int weight_linear_name = 1;
-    private float weight_comment = (int) 1.5;
-    private int weight_linear_text = 1;
 
 
-    private ArrayList< String> likes;
-    private int clicked = 0;
-    private String auth;
-    private String UID;
-    private String String_post;
-    private Boolean exists;
-    private FirebaseAuth mAuth;
-    public static final int layout_one = 1;
-    private double tools_weight = (float) 3;
-    private double i_anim = (float) 1.5;
-    private double weight_text_inside = (float) 1;
-    private double constraing_num1231q321_weight = (float) 0.7;
-
-    private double abc_weight = (float) 1.2;
-    public static final int layout_two = 2;
 
 
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private final DatabaseReference myRef = database.getReference("Posts");
 
     private Context mContext;
 
@@ -100,7 +73,7 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public int getItemViewType(final int position) {
-        int i = 0;
+        int i;
 
         Log.d(TAG, "position" + position);
         if (position == 0) {
@@ -115,18 +88,33 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
 
-    public Adapter_Home(ArrayList<String> array_time, ArrayList<String> array_name, ArrayList<String> array_source_img, ArrayList<String> array_source, ArrayList<String> array_info, ArrayList<String> array_place, ArrayList<String> array_user_id, ArrayList<String> array_post_id, ArrayList<String> array_type, ArrayList<String> array_likes) {
-        this.array_time = array_time;
+   //public Adapter_Home(ArrayList<String> array_time, ArrayList<String> array_name, ArrayList<String> array_source_img, ArrayList<String> array_source, ArrayList<String> array_info, ArrayList<String> array_place, ArrayList<String> array_user_id, ArrayList<String> array_post_id, ArrayList<String> array_type, ArrayList<String> array_likes) {
+   //    this.array_time = array_time;
+   //    this.array_name = array_name;
+   //    this.array_source_img = array_source_img;
+   //    this.array_source = array_source;
+   //    this.array_info = array_info;
+   //    this.array_place = array_place;
+   //    this.array_user_id = array_user_id;
+   //    this.array_post_id = array_post_id;
+   //    this.array_type = array_type;
+   //    this.array_likes = array_likes;
+   //}
+
+
+    public Adapter_Home(ArrayList<String> array_name, ArrayList<String> array_source_img, ArrayList<String> array_source, ArrayList<String> array_info, ArrayList<String> array_post_id, ArrayList<String> array_type) {
+        //this.array_time = array_time;
         this.array_name = array_name;
         this.array_source_img = array_source_img;
         this.array_source = array_source;
         this.array_info = array_info;
-        this.array_place = array_place;
-        this.array_user_id = array_user_id;
+        //this.array_place = array_place;
+        //this.array_user_id = array_user_id;
         this.array_post_id = array_post_id;
         this.array_type = array_type;
-        this.array_likes = array_likes;
+        //this.array_likes = array_likes;
     }
+
 
 
     @NonNull
@@ -134,7 +122,6 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         RecyclerView.ViewHolder viewHolder = null;
         mContext = viewGroup.getContext();
-        mAuth = FirebaseAuth.getInstance();
         View view;
         if (i == 0) {
             view = LayoutInflater.from(mContext).inflate(R.layout.training_rec_item, viewGroup, false);
@@ -146,12 +133,14 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             viewHolder = new ViewHolder(view);
 
         }
+        assert viewHolder != null;
         return viewHolder;
 
 
     }
 
 
+    @SuppressLint("Assert")
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, int i) {
@@ -163,6 +152,7 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
         if (viewHolder.getItemViewType() == 1) {
 
+            assert viewHolder instanceof ViewHolder;
             ViewHolder viewHolder1 = (ViewHolder) viewHolder;
             setWidgets(viewHolder1, i);
 
@@ -175,15 +165,15 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public int getItemCount() {
         return array_source.size()+1;
     }
-    private HttpProxyCacheServer proxy;
+   // private HttpProxyCacheServer proxy;
+//
+   // public  HttpProxyCacheServer getProxy(Context context) {
+   //     return proxy == null ? (proxy = newProxy()) : proxy;
+   // }
 
-    public  HttpProxyCacheServer getProxy(Context context) {
-        return proxy == null ? (proxy = newProxy()) : proxy;
-    }
-
-    private HttpProxyCacheServer newProxy() {
-        return new HttpProxyCacheServer(mContext);
-    }
+   // private HttpProxyCacheServer newProxy() {
+   //     return new HttpProxyCacheServer(mContext);
+   // }
 
     private void setWidgets(ViewHolder viewHolder, int i) {
         viewHolder.video_view.setBackgroundResource(android.R.color.transparent);
@@ -193,14 +183,13 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         Picasso.get().load(array_source_img.get(i)).fit().centerCrop().into(viewHolder.IMG_img_profile_pic);
 
         if (array_type.get(i).equals("Video")){
-            shareonClick(i,viewHolder.share_btn);
+            share_onClick(viewHolder.share_btn);
             viewHolder.img_view.setVisibility(View.GONE);
             viewHolder.video_view.setVisibility(View.VISIBLE);
             Log.d(TAG,"array_source"+array_source.get(i));
-           String s = array_source.get(i);
            Uri uri = Uri.parse(array_source.get(i));
            Presenter_Login login_presenter = new Presenter_Login();
-           Presenter_Home_Posts.isLiked(array_post_id.get(i),login_presenter.getUID(mContext).toString(),viewHolder.like_btn);
+           Presenter_Home_Posts.isLiked(array_post_id.get(i), login_presenter.getUID(mContext),viewHolder.like_btn);
 
             // Produces DataSource instances through which media data is loaded.
             DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(mContext,
@@ -272,7 +261,7 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
         else{
             likedonCLick(i,viewHolder.like_btn);
-            shareonClick(i,viewHolder.share_btn);
+            share_onClick(viewHolder.share_btn);
 
             viewHolder.progressBar.setVisibility(View.VISIBLE);
             viewHolder.video_view.setVisibility(View.GONE);
@@ -307,7 +296,7 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         viewHolder.name_txt.setText(array_name.get(i));
 
-        pause_play_video(viewHolder,i);
+        pause_play_video(viewHolder);
 
 
     }
@@ -323,7 +312,6 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
         else{
             like_btn.setImageResource(R.mipmap.like_passive);
-            Log.d(TAG,"passive");
 
 
 
@@ -345,10 +333,9 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         ImageView like_btn;
         ImageView share_btn;
         LinearLayout tools_btn_layout;
-        TextView comments_txt;
         EditText comment_edit;
         Button comment_btn;
-        LinearLayout constraing_num1231q321;
+        LinearLayout constraint_num1231q321;
         ProgressBar progressBar;
         //RecyclerView comment_rec;
 
@@ -359,7 +346,7 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         ViewHolder(View view) {
             super(view);
-            constraing_num1231q321 = view.findViewById(R.id.constraing_num1231q321);
+            constraint_num1231q321 = view.findViewById(R.id.constraing_num1231q321);
             comment_btn = view.findViewById(R.id.btn_comment_home_custom);
             comment_edit = view.findViewById(R.id.edit_comment_home_custom);
             //comment_rec = view.findViewById(R.id.rec_home_custom);
@@ -413,37 +400,20 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
 
 
-    private void shareonClick(int position,ImageView share_btn) {
-      share_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                share_work(position,(Activity)mContext);
-                Log.d(TAG,"dlin1k");
-
-
-
-            }
-        });
+    private void share_onClick(ImageView share_btn) {
+      share_btn.setOnClickListener(v -> share_work((Activity)mContext));
     }
 
-    private void share_work(int position,Activity activity) {
+    private void share_work(Activity activity) {
         FirebaseDynamicLinks.getInstance()
                 .getDynamicLink(activity.getIntent())
-                .addOnSuccessListener(activity, new OnSuccessListener<PendingDynamicLinkData>() {
-                    @Override
-                    public void onSuccess(PendingDynamicLinkData pendingDynamicLinkData) {
-                        Uri deepLink = null;
-                        if (pendingDynamicLinkData != null) {
-                            deepLink = pendingDynamicLinkData.getLink();
-                        }
-                    }
+                .addOnSuccessListener(activity, pendingDynamicLinkData -> {
+                    //Uri deepLink = null;
+                    //if (pendingDynamicLinkData != null) {
+                    //    //deepLink = pendingDynamicLinkData.getLink();
+                    //}
                 })
-                .addOnFailureListener(activity, new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("", "getDynamicLink:onFailure", e);
-                    }
-                });
+                .addOnFailureListener(activity, e -> Log.w("", "getDynamicLink:onFailure", e));
     }
 
                 //.setLink(Uri.parse("post_link/"+array_post_id.get(position)))
@@ -456,44 +426,20 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
 
     private void likedonCLick(int i, ImageView like_btn) {
-        int finalI = i;
-        like_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        like_btn.setOnClickListener(v -> {
 
-                Presenter_Home_Posts home_posts_presenter = new Presenter_Home_Posts(Adapter_Home.this,mContext);
-                Presenter_Login login_presenter = new Presenter_Login();
-                String id = login_presenter.getUID(mContext);
-                home_posts_presenter.like(id,array_post_id.get(i),like_btn,mContext);
+            Presenter_Home_Posts home_posts_presenter = new Presenter_Home_Posts(Adapter_Home.this,mContext);
+            Presenter_Login login_presenter = new Presenter_Login();
+            String id = login_presenter.getUID(mContext);
+            home_posts_presenter.like(id,array_post_id.get(i),like_btn,mContext);
 
 
-                }
-
-
-
-        });
+            });
     }
-    private void liked(Boolean status,ImageView like_btn){
-        //TODO liked 28.4.20
-
-
-
-           like_btn.setImageDrawable(mContext.getDrawable(R.mipmap.like_active));//TODO change to like_btn_full
-
-
-
-
-    }
-
-
-
 
 
     private void training_and_post_onClick(@NonNull ViewHolder_training viewHolder) {
-        viewHolder.start_training_txt.setOnClickListener(v -> {
-            training_txt_action();
-
-        });
+        viewHolder.start_training_txt.setOnClickListener(v -> training_txt_action());
         viewHolder.post_success_txt.setOnClickListener(v -> {
             video_upload_fragment mFragment = new video_upload_fragment();
 
@@ -524,18 +470,18 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
 
 
-    private void pause_play_video(@NonNull final ViewHolder viewHolder,int i) {
+    private void pause_play_video(@NonNull final ViewHolder viewHolder) {
         viewHolder.video_view.setOnClickListener(v -> {
 
-            if (clicked == 0) {
-                //viewHolder.video_view.pl
-                //clicked = 1;
-            } else {
-                //viewHolder.video_view.pause();
-                //clicked = 0;
+           //if (clicked == 0) {
+           //    //viewHolder.video_view.pl
+           //    //clicked = 1;
+           //} else {
+           //    //viewHolder.video_view.pause();
+           //    //clicked = 0;
 
 
-            }
+           //}
 
 
         });

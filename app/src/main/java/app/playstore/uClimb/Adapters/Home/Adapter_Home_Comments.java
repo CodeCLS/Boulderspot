@@ -1,7 +1,6 @@
 package app.playstore.uClimb.Adapters.Home;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,19 +16,24 @@ import app.playstore.uClimb.R;
 
 public class Adapter_Home_Comments extends RecyclerView.Adapter<Adapter_Home_Comments.ViewHolder> {
     private static final String TAG = "comment_home";
-    private ArrayList<String> array_name = new ArrayList();
-    private ArrayList<String> array_comment_id = new ArrayList();
-    private ArrayList<String> array_comment = new ArrayList();
-    private ArrayList<String> array_User_ID = new ArrayList();
-    private ArrayList<String> array_time = new ArrayList();
+    private ArrayList<String> array_name;
+    private ArrayList<String> array_comment_id;
+    private ArrayList<String> array_comment;
+    //private ArrayList<String> array_User_ID = new ArrayList();
+    private ArrayList<String> array_time;
 
-    private Context mContext;
-
-    public Adapter_Home_Comments(ArrayList<String> array_name, ArrayList<String> array_comment_id, ArrayList<String> array_comment, ArrayList<String> array_User_ID, ArrayList<String> array_time) {
+    //public Adapter_Home_Comments(ArrayList<String> array_name, ArrayList<String> array_comment_id, ArrayList<String> array_comment, ArrayList<String> array_User_ID, ArrayList<String> array_time) {
+    //    this.array_name = array_name;
+    //    this.array_comment_id = array_comment_id;
+    //    this.array_comment = array_comment;
+    //    this.array_User_ID = array_User_ID;
+    //    this.array_time = array_time;
+    //}
+    public Adapter_Home_Comments(ArrayList<String> array_name, ArrayList<String> array_comment_id, ArrayList<String> array_comment, ArrayList<String> array_time) {
         this.array_name = array_name;
         this.array_comment_id = array_comment_id;
         this.array_comment = array_comment;
-        this.array_User_ID = array_User_ID;
+        //this.array_User_ID = array_User_ID;
         this.array_time = array_time;
     }
 
@@ -37,10 +41,9 @@ public class Adapter_Home_Comments extends RecyclerView.Adapter<Adapter_Home_Com
     @Override
     public Adapter_Home_Comments.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.private_post_comment_item, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view);
-        mContext = parent.getContext();
+        //Context mContext = parent.getContext();
 
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     @SuppressLint("SetTextI18n")
@@ -61,7 +64,7 @@ public class Adapter_Home_Comments extends RecyclerView.Adapter<Adapter_Home_Com
         return array_comment.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView comment_txt;
 
         public ViewHolder(@NonNull View itemView) {

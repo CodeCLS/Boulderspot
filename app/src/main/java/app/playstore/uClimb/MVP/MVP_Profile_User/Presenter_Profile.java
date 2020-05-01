@@ -194,8 +194,8 @@ public class Presenter_Profile {
         position_long = Objects.requireNonNull(dataSnapshot.child("User").child(uid).child("Position").child("Position_lon").getValue()).toString();
         position_last_updated = Objects.requireNonNull(dataSnapshot.child("User").child(uid).child("Position").child("Position_last_Time_updated").getValue()).toString();
         position_status = Boolean.valueOf(Objects.requireNonNull(dataSnapshot.child("User").child(uid).child("Position").child("position_status").getValue()).toString());
-        profile_adapter = new Adapter_Profile(uid,stat_uid,Age,Name,profile_img,Info,Subscription,grade,country,follower,following,Height,competition
-                ,account_type,time_created,position_lat,position_long,position_last_updated,position_status,Email);
+        profile_adapter = new Adapter_Profile(uid, Age,Name,profile_img,Info, country,follower,following,Height,competition
+                , Email);
         recyclerView.setAdapter(profile_adapter);
 
 

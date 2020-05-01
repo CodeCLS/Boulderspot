@@ -17,25 +17,32 @@ import java.util.ArrayList;
 import app.playstore.uClimb.R;
 
 public class Adapter_Location_Friends_List extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private ArrayList<String> friend_id = new ArrayList<>();
-    private ArrayList<String> friend_location_status = new ArrayList<>();
-    private ArrayList<String> friend_location_time = new ArrayList<>();
-    private ArrayList<String> friend_name = new ArrayList<>();
-    private ArrayList<String> friend_url_img = new ArrayList<>();
+    //private ArrayList<String> friend_id = new ArrayList<>();
+    private ArrayList<String> friend_location_status;
+    //private ArrayList<String> friend_location_time = new ArrayList<>();
+    private ArrayList<String> friend_name;
+    private ArrayList<String> friend_url_img;
     private Context mContext;
 
-    public Adapter_Location_Friends_List(ArrayList<String> friend_id, ArrayList<String> friend_location_status, ArrayList<String> friend_location_time, ArrayList<String> friend_name, ArrayList<String> friend_url_img) {
-        this.friend_id = friend_id;
+    //public Adapter_Location_Friends_List(ArrayList<String> friend_id, ArrayList<String> friend_location_status, ArrayList<String> friend_location_time, ArrayList<String> friend_name, ArrayList<String> friend_url_img) {
+    //    //this.friend_id = friend_id;
+    //    this.friend_location_status = friend_location_status;
+    //    //this.friend_location_time = friend_location_time;
+    //    this.friend_name = friend_name;
+    //    this.friend_url_img = friend_url_img;
+    //}
+
+    public Adapter_Location_Friends_List(ArrayList<String> friend_location_status, ArrayList<String> friend_name, ArrayList<String> friend_url_img) {
+        //this.friend_id = friend_id;
         this.friend_location_status = friend_location_status;
-        this.friend_location_time = friend_location_time;
+        //this.friend_location_time = friend_location_time;
         this.friend_name = friend_name;
         this.friend_url_img = friend_url_img;
     }
 
     @Override
     public int getItemViewType(int position) {
-        int i = 0;
-        return i;
+        return 0;
     }
 
     @NonNull
@@ -51,6 +58,7 @@ public class Adapter_Location_Friends_List extends RecyclerView.Adapter<Recycler
 
         }
 
+        assert viewHolder != null;
         return viewHolder;
 
     }
@@ -84,12 +92,12 @@ public class Adapter_Location_Friends_List extends RecyclerView.Adapter<Recycler
         return friend_name.size();
     }
 
-    private class Standart_viewholder extends RecyclerView.ViewHolder {
+    private static class Standart_viewholder extends RecyclerView.ViewHolder {
         de.hdodenhof.circleimageview.CircleImageView img;
         TextView name;
         ConstraintLayout constraintLayout;
         de.hdodenhof.circleimageview.CircleImageView status_img;
-        public Standart_viewholder(View view) {
+        private Standart_viewholder(View view) {
             super(view);
             img = view.findViewById(R.id.img_location_item);
             name = view.findViewById(R.id.location_item_name);

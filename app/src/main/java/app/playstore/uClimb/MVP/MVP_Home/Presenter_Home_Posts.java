@@ -56,8 +56,8 @@ public class Presenter_Home_Posts {
     private ArrayList<String> array_post_id = new ArrayList();
     private ArrayList<String> array_type = new ArrayList();
     private ArrayList<String> array_likes = new ArrayList();
-    Adapter_Home_Comments adapter_home_comment = new Adapter_Home_Comments(array_name_comment,array_comment_id,array_comment,array_User_ID,array_time_comment);
-    Adapter_Home adapter_home = new Adapter_Home(array_time,array_name,array_source_img,array_source,array_info,array_place,array_user_id,array_post_id,array_type,array_likes);
+    Adapter_Home_Comments adapter_home_comment = new Adapter_Home_Comments(array_name_comment,array_comment_id,array_comment, array_time_comment);
+    Adapter_Home adapter_home = new Adapter_Home(array_name,array_source_img,array_source,array_info, array_post_id,array_type);
     private String mAuth;
     private Context mContext;
 

@@ -58,7 +58,7 @@ public class Presenter_Location extends Fragment implements OnMapReadyCallback ,
 
 
     public static GoogleMap mMap;
-    private Adapter_Location_Friends_List friend_location_list = new Adapter_Location_Friends_List(friend_id, friend_location_status, friend_location_time, friend_name, friend_url_img);
+    private Adapter_Location_Friends_List friend_location_list = new Adapter_Location_Friends_List(friend_location_status, friend_name, friend_url_img);
 
     public Presenter_Location(Context mContext, View view, SupportMapFragment mapFragment) {
         this.mContext = mContext;

@@ -56,72 +56,96 @@ import app.playstore.uClimb.MVP.MVP_Profile_User.Presenter_Profile;
 public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final String TAG = "Profile_Adapter";
     private String uid;
-    private String stat_uid;
+    //private String stat_uid;
     private String Age;
     private String Name;
     private String profile_img;
     private String Info;
-    private String Subscription;
-    private String grade;
+    //private String Subscription;
+    //private String grade;
     private String country;
-    private ArrayList follower = new ArrayList();
-    private ArrayList  following = new ArrayList();
+    private ArrayList follower;
+    private ArrayList  following;
     private String Height;
-    private ArrayList friends = new ArrayList();
-    private ArrayList following_final = new ArrayList();
-    private ArrayList follower_final = new ArrayList();
+    private ArrayList friends;
+    //private ArrayList following_final;
+    //private ArrayList follower_final;
 
-    private String account_type;
-    private String time_created;
-    private String position_lat;
-    private String position_long;
-    private String position_last_updated;
-    private Boolean position_status;
-    private ArrayList<String> uploads_post_id = new ArrayList<>();
-    private String IMG;
+    //private String account_type;
+    //private String time_created;
+    //private String position_lat;
+    //private String position_long;
+    //private String position_last_updated;
+    //private Boolean position_status;
+    //private ArrayList<String> uploads_post_id = new ArrayList<>();
+    //private String IMG;
 
     private String Email;
     private Context mContext;
 
     private boolean bool_clicked = false;
-    private ArrayList<String> countries = new ArrayList<String>();
+    //private ArrayList<String> countries;
 
 
-    private ArrayList<String> source = new ArrayList();
-    private ArrayList<String> type = new ArrayList();
-    private ArrayList<String> post_id = new ArrayList();
-    private ArrayList<String> info = new ArrayList();
-    private ArrayList<String> u_id = new ArrayList();
-    private ArrayList<String> time = new ArrayList();
-    private ArrayList<String> place = new ArrayList();
+    //private ArrayList<String> source;
+    //private ArrayList<String> type;
+    //private ArrayList<String> post_id;
+    //private ArrayList<String> info;
+    //private ArrayList<String> u_id;
+    //private ArrayList<String> time;
+    //private ArrayList<String> place;
+    //TODO uplaod data is null
 
 
-    private Adapter_Profile_User_Uploads custom_profile_adapter = new Adapter_Profile_User_Uploads(source,type,post_id,info,u_id,time,place);
+    //private Adapter_Profile_User_Uploads custom_profile_adapter = new Adapter_Profile_User_Uploads(source,type,post_id,info,u_id,time,place);
     private int numbercolumns = 2;
 
-    public Adapter_Profile() {
-    }
+    //public Adapter_Profile() {
+    //}
 
-    public Adapter_Profile(String uid, String stat_uid, String age, String name, String profile_img, String info, String subscription, String grade, String country, ArrayList follower, ArrayList following, String height, ArrayList friends, String account_type, String time_created, String position_lat, String position_long, String position_last_updated, Boolean position_status, String email) {
+   // public Adapter_Profile(String uid, String stat_uid, String age, String name, String profile_img, String info, String subscription, String grade, String country, ArrayList follower, ArrayList following, String height, ArrayList friends, String account_type, String time_created, String position_lat, String position_long, String position_last_updated, Boolean position_status, String email) {
+   //     this.uid = uid;
+   //     this.stat_uid = stat_uid;
+   //     Age = age;
+   //     Name = name;
+   //     this.profile_img = profile_img;
+   //     Info = info;
+   //     Subscription = subscription;
+   //     this.grade = grade;
+   //     this.country = country;
+   //     this.follower = follower;
+   //     this.following = following;
+   //     Height = height;
+   //     this.friends= friends;
+   //     this.account_type = account_type;
+   //     this.time_created = time_created;
+   //     this.position_lat = position_lat;
+   //     this.position_long = position_long;
+   //     this.position_last_updated = position_last_updated;
+   //     this.position_status = position_status;
+   //     this.Email = email;
+//
+   // }
+    public Adapter_Profile(String uid, String age, String name, String profile_img, String info, String country, ArrayList follower, ArrayList following, String height, ArrayList friends, String email) {
         this.uid = uid;
-        this.stat_uid = stat_uid;
+        //this.stat_uid = stat_uid;
         Age = age;
         Name = name;
         this.profile_img = profile_img;
         Info = info;
-        Subscription = subscription;
-        this.grade = grade;
+        //Subscription = subscription;
+        //this.grade = grade;
         this.country = country;
         this.follower = follower;
         this.following = following;
         Height = height;
         this.friends= friends;
-        this.account_type = account_type;
-        this.time_created = time_created;
-        this.position_lat = position_lat;
-        this.position_long = position_long;
-        this.position_last_updated = position_last_updated;
-        this.position_status = position_status;
+        //this.account_type = account_type;
+        //this.time_created = time_created;
+        //this.position_lat = position_lat;
+        //this.position_long = position_long;
+        //this.position_last_updated = position_last_updated;
+        //this.position_status = position_status;
         this.Email = email;
 
     }
@@ -130,7 +154,7 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         mContext = parent.getContext();
-        View view = null;
+        View view;
         RecyclerView.ViewHolder viewholder = null;
 
         if (viewType == 0){
@@ -186,22 +210,22 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot postSnapshot : dataSnapshot.child("User").child(uid).child("Posts").getChildren()){
-                        post_id.add(postSnapshot.getValue().toString());
+                        //post_id.add(postSnapshot.getValue().toString());
                     }
-                    for (int i = 0;i<post_id.size();i++){
-                        String id = post_id.get(i).toString();
-                        source.add(dataSnapshot.child("Posts").child(id).child("Source").getValue().toString());
-                        type.add(dataSnapshot.child("Posts").child(id).child("type").getValue().toString());
-                        info.add(dataSnapshot.child("Posts").child(id).child("info").getValue().toString());
-                        u_id.add(uid);
-                        time.add(dataSnapshot.child("Posts").child(id).child("time").getValue().toString());
-                        place.add(dataSnapshot.child("Posts").child(id).child("place").getValue().toString());
+                   //for (int i = 0;i<post_id.size();i++){
+                   //    //String id = post_id.get(i).toString();
+                   //    //source.add(dataSnapshot.child("Posts").child(id).child("Source").getValue().toString());
+                   //    //type.add(dataSnapshot.child("Posts").child(id).child("type").getValue().toString());
+                   //    //info.add(dataSnapshot.child("Posts").child(id).child("info").getValue().toString());
+                   //    //u_id.add(uid);
+                   //    //time.add(dataSnapshot.child("Posts").child(id).child("time").getValue().toString());
+                   //    //place.add(dataSnapshot.child("Posts").child(id).child("place").getValue().toString());
 
 
 
-                    }
+                   //}
                     standart_profile_c.rec.setLayoutManager(new GridLayoutManager(mContext,numbercolumns));
-                    standart_profile_c.rec.setAdapter(custom_profile_adapter);
+                    //standart_profile_c.rec.setAdapter(custom_profile_adapter);
 
                 }
 
