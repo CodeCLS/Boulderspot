@@ -45,7 +45,7 @@
                     android:id="@+id/upload_location"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/round_login_button"
+                    android:background="@drawable/public_button_grey"
                     android:text="Add Location"
                     android:elevation="10dp"
                     android:layout_margin="10dp"
@@ -66,7 +66,7 @@
                     android:id="@+id/upload_source_btn"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/round_login_button"
+                    android:background="@drawable/public_button_grey"
                     android:text="Load image/video"
                     android:layout_margin="10dp"
                     android:translationZ="10dp"
@@ -215,7 +215,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Submit"
-            android:background="@drawable/round_login_button"
+            android:background="@drawable/public_button_grey"
             android:layout_margin="10dp" />
 
 

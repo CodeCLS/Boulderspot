@@ -116,7 +116,7 @@
                 android:layout_marginTop="10dp"
                 android:textColor="@color/white"
                 android:layout_weight="1"
-                android:background="@drawable/round_login_button"
+                android:background="@drawable/public_button_grey"
                 android:elevation="0dp"
                 android:text="@string/register"
                 android:textSize="20sp"

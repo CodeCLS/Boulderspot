@@ -17,7 +17,7 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 
-import app.playstore.uClimb.Adapters.Adapter_search;
+import app.playstore.uClimb.Adapters.Search.Adapter_Search;
 import app.playstore.uClimb.R;
 
 public class Search_Fragment extends Fragment {
@@ -37,7 +37,7 @@ public class Search_Fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.search_page, container, false);
+        return inflater.inflate(R.layout.main_search_page, container, false);
 
 
 
@@ -88,7 +88,7 @@ public class Search_Fragment extends Fragment {
     private void initRec(@NonNull View view) {
         RecyclerView rec = view.findViewById(R.id.rec_search_main);
         rec.setLayoutManager(new LinearLayoutManager(getContext()));
-        rec.setAdapter(new Adapter_search());
+        rec.setAdapter(new Adapter_Search());
 
 
 

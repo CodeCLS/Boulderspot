@@ -19,7 +19,7 @@ import java.util.Objects;
 
 import app.playstore.uClimb.Fragments.Profile.Profile_Fragment;
 import app.playstore.uClimb.R;
-import app.playstore.uClimb.ViewModelPresenters.statistics_presenter;
+import app.playstore.uClimb.MVP.MVP_Statistics.Presenter_Statistics;
 
 public class Statistics_fragment extends Fragment {
     private static final String TAG = "statistics_fragment";
@@ -29,13 +29,13 @@ public class Statistics_fragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d(TAG,"statistics");
-        return LayoutInflater.from(getContext()).inflate(R.layout.statistics_page,container,false);
+        return LayoutInflater.from(getContext()).inflate(R.layout.main_statistics_page,container,false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        statistics_presenter statistics_presenter = new statistics_presenter(view);
+        Presenter_Statistics statistics_presenter = new Presenter_Statistics(view);
         statistics_presenter.setData(view,getContext());
         initviews(view);
         nav();

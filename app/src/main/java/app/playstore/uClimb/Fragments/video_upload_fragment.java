@@ -1,15 +1,10 @@
 package app.playstore.uClimb.Fragments;
 
-import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +25,6 @@ import androidx.fragment.app.Fragment;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.libraries.places.api.Places;
@@ -44,32 +38,21 @@ import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
 
 import app.playstore.uClimb.R;
-import app.playstore.uClimb.ViewModelPresenters.login.login_presenter;
-import app.playstore.uClimb.ViewModelPresenters.video.video_presenter;
+import app.playstore.uClimb.MVP.MVP_Login.Presenter_Login;
+import app.playstore.uClimb.MVP.MVP_Video_Upload.Presenter_Video;
 
 public class video_upload_fragment extends Fragment {
     private static final int REQUEST_TAKE_GALLERY_VIDEO = 222;
@@ -437,7 +420,7 @@ public class video_upload_fragment extends Fragment {
 
     private StorageReference initStorage() {
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-        login_presenter login_presenter = new login_presenter();
+        Presenter_Login login_presenter = new Presenter_Login();
         String uid = login_presenter.getUID(getContext());
         // add File/URI
         return storageRef.child("Sources_Users_Uploads").child(uid).child("_#"+random(10));
@@ -472,7 +455,7 @@ public class video_upload_fragment extends Fragment {
                             @Override
                             public void onSuccess(Uri uri) {
                                 Log.d(TAG,"Success"+uri.equals(uri + ""));
-                                video_presenter video_presenter = new video_presenter(place_id,spinner_grade.getSelectedItem().toString(),spinner_impression_grade.getSelectedItem().toString(),spinner_route_type.getSelectedItem().toString(),spinner_tries.getSelectedItem().toString(),place_Name,info_edit.getText().toString());
+                                Presenter_Video video_presenter = new Presenter_Video(place_id,spinner_grade.getSelectedItem().toString(),spinner_impression_grade.getSelectedItem().toString(),spinner_route_type.getSelectedItem().toString(),spinner_tries.getSelectedItem().toString(),place_Name,info_edit.getText().toString());
                                 video_presenter.addSuccess(getContext(),random(10),source_status,statistics_status,uri);
 
 

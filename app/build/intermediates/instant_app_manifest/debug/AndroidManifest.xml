@@ -54,9 +54,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCBG4HfWkuFX4MYM-7589gNw6hFbQiS8VM" />
 
-        <activity android:name="app.playstore.uClimb.Login_SignUp.extra_questions_register" />
+        <activity android:name="app.playstore.uClimb.Login.Userdata_Questions_uClimb" />
         <activity
-            android:name="app.playstore.uClimb.Login_SignUp.Boulderspot_Log_In"
+            android:name="app.playstore.uClimb.Login.Login_uClimb"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -78,7 +78,7 @@
             android:name="app.playstore.uClimb.Main.MainActivity"
             android:screenOrientation="fullSensor"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name="app.playstore.uClimb.Login_SignUp.Boulderspot_Sign_Up" />
+        <activity android:name="app.playstore.uClimb.Login.SignUp_uClimb" />
         <activity android:name="app.playstore.uClimb.Notifaction.Base_Internet" />
         <activity
             android:name="com.google.android.libraries.places.widget.AutocompleteActivity"

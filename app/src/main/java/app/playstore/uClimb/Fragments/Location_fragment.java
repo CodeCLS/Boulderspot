@@ -1,18 +1,10 @@
 package app.playstore.uClimb.Fragments;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.content.pm.PackageManager;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,19 +16,11 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
@@ -45,31 +29,15 @@ import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest;
 import com.google.android.libraries.places.api.net.FindCurrentPlaceResponse;
 import com.google.android.libraries.places.api.net.PlacesClient;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import app.playstore.uClimb.DB.AsynctaskMap;
-import app.playstore.uClimb.LocationService;
-import app.playstore.uClimb.Models.Locate_Model;
-import app.playstore.uClimb.ParserTask;
 import app.playstore.uClimb.R;
-import app.playstore.uClimb.ViewModelPresenters.friends_presenter;
-import app.playstore.uClimb.ViewModelPresenters.location_presenter;
+import app.playstore.uClimb.MVP.MVP_Friends.Presenter_Friends;
+import app.playstore.uClimb.MVP.MVP_Location.Presenter_Location;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
@@ -87,7 +55,7 @@ public class Location_fragment extends Fragment implements OnMapReadyCallback  {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.location_page, container, false);
+        return inflater.inflate(R.layout.main_location_page, container, false);
     }
 
     @Override
@@ -106,9 +74,9 @@ public class Location_fragment extends Fragment implements OnMapReadyCallback  {
         this.placesClient = Places.createClient(getContext());
 
 
-location_presenter location_presenter = new location_presenter(getContext(),view,mapFragment);
+Presenter_Location location_presenter = new Presenter_Location(getContext(),view,mapFragment);
 location_presenter.getData();
-friends_presenter friends_presenter = new friends_presenter(view,getContext());
+Presenter_Friends friends_presenter = new Presenter_Friends(view,getContext());
 friends_presenter.initViews();
 location_presenter.getLocation();
 

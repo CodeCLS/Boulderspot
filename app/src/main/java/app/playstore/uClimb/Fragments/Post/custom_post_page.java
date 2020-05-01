@@ -8,14 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
@@ -33,11 +30,11 @@ import com.squareup.picasso.Picasso;
 import java.util.Objects;
 
 import app.playstore.uClimb.R;
-import app.playstore.uClimb.ViewModelPresenters.custom_posts_presenter;
-import app.playstore.uClimb.ViewModelPresenters.login.login_presenter;
+import app.playstore.uClimb.MVP.MVP_Custom_Post.Presenter_Custom_Post;
+import app.playstore.uClimb.MVP.MVP_Login.Presenter_Login;
 
 public class custom_post_page extends Fragment {
-    private static final String TAG = "custom_post_page";
+    private static final String TAG = "main_custom_post_page";
     private SimpleExoPlayerView videoView;
     private ImageView img_post;
 
@@ -61,7 +58,7 @@ public class custom_post_page extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.custom_post_page,container,false);
+        return inflater.inflate(R.layout.main_custom_post_page,container,false);
     }
 
     @Override
@@ -95,7 +92,7 @@ public class custom_post_page extends Fragment {
                 liked = false;
                 FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
                 DatabaseReference databaseReference = firebaseDatabase.getReference("");
-                login_presenter login_presenter = new login_presenter();
+                Presenter_Login login_presenter = new Presenter_Login();
                 String id = login_presenter.getUID(getContext());
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -204,7 +201,7 @@ public class custom_post_page extends Fragment {
         img_like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                custom_posts_presenter custom_posts_presenter = new custom_posts_presenter();
+                Presenter_Custom_Post custom_posts_presenter = new Presenter_Custom_Post();
                 custom_posts_presenter.setupLike(getContext(),post_id,img_like);
 
             }
@@ -220,7 +217,7 @@ public class custom_post_page extends Fragment {
 
     }
     private void like_setup(){
-        custom_posts_presenter custom_posts_presenter = new custom_posts_presenter();
+        Presenter_Custom_Post custom_posts_presenter = new Presenter_Custom_Post();
         custom_posts_presenter.initLike(getContext(),img_like,post_id);
     }
 

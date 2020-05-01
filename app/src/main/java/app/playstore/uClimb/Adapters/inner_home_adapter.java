@@ -54,7 +54,7 @@ public class inner_home_adapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         View view;
         RecyclerView.ViewHolder viewHolder = null;
         if (viewType == 0){
-            view = LayoutInflater.from(mContext).inflate(R.layout.custom_home,parent,false);
+            view = LayoutInflater.from(mContext).inflate(R.layout.main_custom_home,parent,false);
             viewHolder = new ViewHolder(view);
 
 

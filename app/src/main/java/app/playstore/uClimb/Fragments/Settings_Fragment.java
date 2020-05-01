@@ -27,7 +27,7 @@ public class Settings_Fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         sharedPreferences = Objects.requireNonNull(container.getContext()).getSharedPreferences("Switch_Location",Context.MODE_PRIVATE);
 
-        return inflater.inflate(R.layout.settings_page,container,false);
+        return inflater.inflate(R.layout.main_settings_page,container,false);
     }
 
     @Override

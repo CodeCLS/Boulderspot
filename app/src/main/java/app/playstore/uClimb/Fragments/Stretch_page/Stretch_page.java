@@ -13,19 +13,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import app.playstore.uClimb.Adapters.adapter_stretch;
+import app.playstore.uClimb.Adapters.Training.Adapter_Training_Stretching;
 import app.playstore.uClimb.R;
 
 public class Stretch_page extends Fragment {
     private ArrayList<String> source = new ArrayList<>();
     private ArrayList<String> text = new ArrayList<>();
 
-    private app.playstore.uClimb.Adapters.adapter_stretch adapter_stretch = new adapter_stretch(source,text);
+    private Adapter_Training_Stretching adapter_stretch = new Adapter_Training_Stretching(source,text);
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.stretch_page,container,false);
+        return inflater.inflate(R.layout.main_stretch_page,container,false);
     }
 
     @Override

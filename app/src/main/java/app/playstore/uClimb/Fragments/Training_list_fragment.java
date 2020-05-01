@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import app.playstore.uClimb.Adapters.training_list_adapter;
+import app.playstore.uClimb.Adapters.Training.Adapter_Training_List;
 import app.playstore.uClimb.R;
 
 public class Training_list_fragment extends Fragment {
@@ -22,13 +22,13 @@ public class Training_list_fragment extends Fragment {
     private ArrayList<String> array_img_link = new ArrayList<>();
 
 
-    private training_list_adapter training_adapter = new training_list_adapter(array_img_link,array_txt ,getContext());
+    private Adapter_Training_List training_adapter = new Adapter_Training_List(array_img_link,array_txt ,getContext());
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.training_list,container,false);
+        return inflater.inflate(R.layout.main_training_list,container,false);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class Training_list_fragment extends Fragment {
     }
 
     private void initRec(View view) {
-        Log.d("training_list" , "context:" + training_adapter + "context_real:" + getContext());
+        Log.d("main_training_list" , "context:" + training_adapter + "context_real:" + getContext());
         RecyclerView rec = view.findViewById(R.id.rec_training_list);
         rec.setLayoutManager(new LinearLayoutManager(getContext()));
         rec.setAdapter(training_adapter);

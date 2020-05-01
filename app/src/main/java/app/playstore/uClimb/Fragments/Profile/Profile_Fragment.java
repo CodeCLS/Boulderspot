@@ -1,15 +1,10 @@
 package app.playstore.uClimb.Fragments.Profile;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -22,14 +17,11 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.Objects;
 
 import app.playstore.uClimb.Fragments.Statistics_fragment;
-import app.playstore.uClimb.Main.MainActivity;
 import app.playstore.uClimb.R;
-import app.playstore.uClimb.ViewModelPresenters.profile_presenter;
+import app.playstore.uClimb.MVP.MVP_Profile_User.Presenter_Profile;
 
 public class Profile_Fragment extends Fragment {
     private static final int CHANGE_PROFILE_PIC_CODE = 210;
@@ -40,7 +32,7 @@ public class Profile_Fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.profile_page,container,false);
+        return inflater.inflate(R.layout.main_profile_page,container,false);
     }
 
     @Override
@@ -60,7 +52,7 @@ public class Profile_Fragment extends Fragment {
 
     private void setRecyclerview(View view) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        profile_presenter profile_presenter = new profile_presenter(getContext());
+        Presenter_Profile profile_presenter = new Presenter_Profile(getContext());
         profile_presenter.setRecyclerview(getContext(),view);
     }
 

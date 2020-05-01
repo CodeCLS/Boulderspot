@@ -109,13 +109,13 @@
 54            android:value="AIzaSyCBG4HfWkuFX4MYM-7589gNw6hFbQiS8VM" />
 54-->/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:38:66-121
 55
-56        <activity android:name="app.playstore.uClimb.Login_SignUp.extra_questions_register" />
+56        <activity android:name="app.playstore.uClimb.Login.Userdata_Questions_uClimb" />
 56-->/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:39:9-40:15
-56-->/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:39:19-92
+56-->/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:39:19-86
 57        <activity
 57-->/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:41:9-59:20
-58            android:name="app.playstore.uClimb.Login_SignUp.Boulderspot_Log_In"
-58-->/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:42:13-80
+58            android:name="app.playstore.uClimb.Login.Login_uClimb"
+58-->/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:42:13-67
 59            android:label="@string/app_name" >
 59-->/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:45:13-45
 60            <intent-filter>
@@ -157,9 +157,9 @@
 78-->/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:61:13-51
 79            android:windowSoftInputMode="adjustPan" />
 79-->/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:62:13-52
-80        <activity android:name="app.playstore.uClimb.Login_SignUp.Boulderspot_Sign_Up" />
-80-->/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:68:9-90
-80-->/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:68:19-87
+80        <activity android:name="app.playstore.uClimb.Login.SignUp_uClimb" />
+80-->/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:68:9-77
+80-->/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:68:19-74
 81        <activity android:name="app.playstore.uClimb.Notifaction.Base_Internet" />
 81-->/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:69:9-83
 81-->/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:69:19-80

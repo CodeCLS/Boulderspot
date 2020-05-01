@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import app.playstore.uClimb.R;
-import app.playstore.uClimb.ViewModelPresenters.friends_presenter;
+import app.playstore.uClimb.MVP.MVP_Friends.Presenter_Friends;
 
 public class Friends_fragment extends Fragment {
     private ArrayList<String> array_img = new ArrayList<>();
@@ -24,7 +24,7 @@ public class Friends_fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.friends_page, container,false);
+        return inflater.inflate(R.layout.main_friends_page, container,false);
     }
 
     @Override
@@ -35,13 +35,13 @@ public class Friends_fragment extends Fragment {
     }
 
     private void initbar(View view) {
-        friends_presenter friends_presenter = new friends_presenter(view,getContext());
+        Presenter_Friends friends_presenter = new Presenter_Friends(view,getContext());
         friends_presenter.initViews();
 
     }
 
     private void setRec(@NonNull View view) {
-        friends_presenter friends_presenter = new friends_presenter(view,getContext());
+        Presenter_Friends friends_presenter = new Presenter_Friends(view,getContext());
         friends_presenter.setData();
 
 

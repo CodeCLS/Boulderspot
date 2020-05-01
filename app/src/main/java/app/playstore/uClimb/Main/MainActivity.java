@@ -5,10 +5,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,28 +20,20 @@ import com.danikula.videocache.CacheListener;
 import com.flarebit.flarebarlib.FlareBar;
 import com.flarebit.flarebarlib.Flaretab;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
-import com.yayandroid.locationmanager.LocationConfiguration;
-import com.yayandroid.locationmanager.LocationManager;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import app.playstore.uClimb.Fragments.Friends_fragment;
 import app.playstore.uClimb.Fragments.Settings_Fragment;
 import app.playstore.uClimb.Fragments.Statistics_fragment;
-import app.playstore.uClimb.LocationService;
 import app.playstore.uClimb.Notifaction.Base_Internet;
-import app.playstore.uClimb.DB.FeedReaderDBHelper;
 import app.playstore.uClimb.Fragments.Search.Search_Fragment;
 import app.playstore.uClimb.Fragments.Home.Home_Fragment;
 import app.playstore.uClimb.R;
-import app.playstore.uClimb.ViewModelPresenters.profile_presenter;
+import app.playstore.uClimb.MVP.MVP_Profile_User.Presenter_Profile;
 
 public class MainActivity extends Base_Internet implements CacheListener {
 
@@ -79,7 +68,6 @@ public class MainActivity extends Base_Internet implements CacheListener {
 
 
 
-    private FeedReaderDBHelper dbHelper = new FeedReaderDBHelper(MainActivity.this);
 
 
 
@@ -101,7 +89,7 @@ public class MainActivity extends Base_Internet implements CacheListener {
         if (requestCode == CHANGE_PROFILE_PIC_CODE) {
             if (data != null){
             final Uri imageUri = data.getData();
-            profile_presenter profile_presenter = new profile_presenter();
+            Presenter_Profile profile_presenter = new Presenter_Profile();
             profile_presenter.here_is_image(imageUri,this,progressBar);
 
         } }else {
@@ -120,7 +108,7 @@ public class MainActivity extends Base_Internet implements CacheListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_page);
+        setContentView(R.layout.private_main_ui);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 

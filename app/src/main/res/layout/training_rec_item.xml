@@ -7,7 +7,7 @@
     android:layout_height="100dp"
     android:elevation="20sp"
     android:orientation="horizontal">
-    <include layout="@layout/btn_add_upload" android:layout_weight="1"
+    <include layout="@layout/public_upload_button_ui" android:layout_weight="1"
         android:layout_height="match_parent"
         android:id="@+id/rec_item_btn_view"
         android:layout_margin="15dp"
@@ -30,7 +30,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/background_box" />
+            app:srcCompat="@drawable/public_background_layer_white_round" />
 
         <TextView
             android:id="@+id/txt_start_training"

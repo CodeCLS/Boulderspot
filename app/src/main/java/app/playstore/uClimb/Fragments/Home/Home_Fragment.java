@@ -6,9 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.transition.Scene;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,11 +19,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-import app.playstore.uClimb.Fragments.video_upload_fragment;
 import app.playstore.uClimb.R;
-import app.playstore.uClimb.ViewModelPresenters.home_posts_presenter;
+import app.playstore.uClimb.MVP.MVP_Home.Presenter_Home_Posts;
 
-public class Home_Fragment extends Fragment implements home_posts_presenter.display {
+public class Home_Fragment extends Fragment implements Presenter_Home_Posts.display {
     private static final String TAG = "Home Fragment";
     private String name_fire;
     private String URL;
@@ -84,7 +80,7 @@ public class Home_Fragment extends Fragment implements home_posts_presenter.disp
         String mAuth = sharedPreferences_UID.getString("mAuth_UID",null);
         Log.d(TAG,"mauth"+mAuth);
 
-        home_posts_presenter home_posts_presenter = new home_posts_presenter(this,getContext());
+        Presenter_Home_Posts home_posts_presenter = new Presenter_Home_Posts(this,getContext());
         home_posts_presenter.setData(view,getContext());
 
     }
