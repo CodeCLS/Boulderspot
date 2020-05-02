@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.MVP.MVP_Home.Presenter_Home_Posts;
 
-public class Home_Fragment extends Fragment implements Presenter_Home_Posts.display {
+public class Home_Fragment extends Fragment{
     private static final String TAG = "Home Fragment";
     private String name_fire;
     private String URL;
@@ -80,7 +80,7 @@ public class Home_Fragment extends Fragment implements Presenter_Home_Posts.disp
         String mAuth = sharedPreferences_UID.getString("mAuth_UID",null);
         Log.d(TAG,"mauth"+mAuth);
 
-        Presenter_Home_Posts home_posts_presenter = new Presenter_Home_Posts(this,getContext());
+        Presenter_Home_Posts home_posts_presenter = new Presenter_Home_Posts(getContext());
         home_posts_presenter.setData(view,getContext());
 
     }
@@ -132,11 +132,6 @@ public class Home_Fragment extends Fragment implements Presenter_Home_Posts.disp
 
 
 
-    @Override
-    public void allPostData(Bundle bundle) {
-
-
-    }
 
 
 

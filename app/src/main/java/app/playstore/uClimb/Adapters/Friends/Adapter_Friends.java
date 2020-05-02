@@ -66,7 +66,7 @@ public class Adapter_Friends extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             setViews(position, viewHolder_item_friend);
 
-            //transfer to user
+            //transfer to user_page
             username_onClick(position, viewHolder_item_friend);
 
 

@@ -13,9 +13,10 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
+
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,11 +46,12 @@ import java.util.ArrayList;
 
 import app.playstore.uClimb.Fragments.Training_list_fragment;
 import app.playstore.uClimb.Fragments.video_upload_fragment;
+import app.playstore.uClimb.Main.MainActivity;
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.MVP.MVP_Home.Presenter_Home_Posts;
 import app.playstore.uClimb.MVP.MVP_Login.Presenter_Login;
 
-public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Presenter_Home_Posts.display {
+public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     //private ArrayList<String> array_time;
     private ArrayList<String> array_name;
     private ArrayList<String> array_source_img;
@@ -61,6 +63,9 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private ArrayList<String> array_type;
     //private ArrayList<String> array_likes;
     private static final String TAG = "adapter_home";
+    private Presenter_Home_Posts presenter_home_posts;
+    private Presenter_Login login_presenter;
+
 
 
 
@@ -88,18 +93,7 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
 
-   //public Adapter_Home(ArrayList<String> array_time, ArrayList<String> array_name, ArrayList<String> array_source_img, ArrayList<String> array_source, ArrayList<String> array_info, ArrayList<String> array_place, ArrayList<String> array_user_id, ArrayList<String> array_post_id, ArrayList<String> array_type, ArrayList<String> array_likes) {
-   //    this.array_time = array_time;
-   //    this.array_name = array_name;
-   //    this.array_source_img = array_source_img;
-   //    this.array_source = array_source;
-   //    this.array_info = array_info;
-   //    this.array_place = array_place;
-   //    this.array_user_id = array_user_id;
-   //    this.array_post_id = array_post_id;
-   //    this.array_type = array_type;
-   //    this.array_likes = array_likes;
-   //}
+
 
 
     public Adapter_Home(ArrayList<String> array_name, ArrayList<String> array_source_img, ArrayList<String> array_source, ArrayList<String> array_info, ArrayList<String> array_post_id, ArrayList<String> array_type) {
@@ -108,11 +102,10 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         this.array_source_img = array_source_img;
         this.array_source = array_source;
         this.array_info = array_info;
-        //this.array_place = array_place;
-        //this.array_user_id = array_user_id;
+
         this.array_post_id = array_post_id;
         this.array_type = array_type;
-        //this.array_likes = array_likes;
+
     }
 
 
@@ -121,7 +114,10 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         RecyclerView.ViewHolder viewHolder = null;
+
         mContext = viewGroup.getContext();
+        this.presenter_home_posts = new Presenter_Home_Posts(mContext);//TODO might return null not sure
+        this.login_presenter = new Presenter_Login();
         View view;
         if (i == 0) {
             view = LayoutInflater.from(mContext).inflate(R.layout.training_rec_item, viewGroup, false);
@@ -176,135 +172,142 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
    // }
 
     private void setWidgets(ViewHolder viewHolder, int i) {
-        viewHolder.video_view.setBackgroundResource(android.R.color.transparent);
-
-        viewHolder.video_view.setDrawingCacheEnabled(true);
-        viewHolder.info_txt.setText(array_info.get(i));
-        Picasso.get().load(array_source_img.get(i)).fit().centerCrop().into(viewHolder.IMG_img_profile_pic);
+        general_widget_work(viewHolder, i);
 
         if (array_type.get(i).equals("Video")){
-            share_onClick(viewHolder.share_btn);
-            viewHolder.img_view.setVisibility(View.GONE);
-            viewHolder.video_view.setVisibility(View.VISIBLE);
-            Log.d(TAG,"array_source"+array_source.get(i));
-           Uri uri = Uri.parse(array_source.get(i));
-           Presenter_Login login_presenter = new Presenter_Login();
-           Presenter_Home_Posts.isLiked(array_post_id.get(i), login_presenter.getUID(mContext),viewHolder.like_btn);
 
-            // Produces DataSource instances through which media data is loaded.
-            DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(mContext,
-                    Util.getUserAgent(mContext, "uClimb"));
-// This is the MediaSource representing the media to be played.
-            MediaSource videoSource =
-                    new ProgressiveMediaSource.Factory(dataSourceFactory)
-                            .createMediaSource(uri);
-// Prepare the player with the source.
-
-            SimpleExoPlayer player = new SimpleExoPlayer.Builder(mContext).build();
-            player.prepare(videoSource);
-            viewHolder.video_view.setPlayer(player);
-            Handler handler = new Handler();
-            videoSource.addEventListener(handler, new MediaSourceEventListener() {
-                @Override
-                public void onMediaPeriodCreated(int windowIndex, MediaSource.MediaPeriodId mediaPeriodId) {
-                    player.seekTo(2);
-
-                }
-
-                @Override
-                public void onMediaPeriodReleased(int windowIndex, MediaSource.MediaPeriodId mediaPeriodId) {
-
-                }
-
-                @Override
-                public void onLoadStarted(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData) {
-                    viewHolder.progressBar.setVisibility(View.VISIBLE);
-
-
-                }
-
-                @Override
-                public void onLoadCompleted(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData) {
-                    viewHolder.progressBar.setVisibility(View.GONE);
-
-                }
-
-                @Override
-                public void onLoadCanceled(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData) {
-
-                }
-
-                @Override
-                public void onLoadError(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData, IOException error, boolean wasCanceled) {
-
-                }
-
-                @Override
-                public void onReadingStarted(int windowIndex, MediaSource.MediaPeriodId mediaPeriodId) {
-
-                }
-
-                @Override
-                public void onUpstreamDiscarded(int windowIndex, MediaSource.MediaPeriodId mediaPeriodId, MediaLoadData mediaLoadData) {
-
-                }
-
-                @Override
-                public void onDownstreamFormatChanged(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, MediaLoadData mediaLoadData) {
-
-                }
-            });
-            likedonCLick(i,viewHolder.like_btn);
+            share_onClick(viewHolder.share_btn,i);
+            Video_visibility(viewHolder);
+            Uri uri = Uri.parse(array_source.get(i));
+            Presenter_Home_Posts.isLiked(array_post_id.get(i), login_presenter.getUID(mContext),viewHolder.like_btn);
+            video_work(viewHolder, uri);
+            liked_onClick(i,viewHolder.like_btn);
 
 
 
         }
         else{
-            likedonCLick(i,viewHolder.like_btn);
-            share_onClick(viewHolder.share_btn);
+            liked_onClick(i,viewHolder.like_btn);
+            share_onClick(viewHolder.share_btn,i);
 
-            viewHolder.progressBar.setVisibility(View.VISIBLE);
-            viewHolder.video_view.setVisibility(View.GONE);
-            viewHolder.img_view.setVisibility(View.VISIBLE);
-            Picasso.get().load(array_source.get(i)).fit().centerCrop().into(viewHolder.img_view, new com.squareup.picasso.Callback() {
-                @Override
-                public void onSuccess() {
-                    viewHolder.progressBar.setVisibility(View.INVISIBLE);
-
-
-                }
-
-                @Override
-                public void onError(Exception e) {
-
-                }
-            });
-            likedonCLick(i,viewHolder.like_btn);
+            img_visibility(viewHolder);
+            img_work(viewHolder, i);
+            liked_onClick(i,viewHolder.like_btn);
 
 
 
 
 
         }
-        //HttpProxyCacheServer proxy = getProxy(mContext);
-        //proxy.registerCacheListener((CacheListener) mContext, array_source.get(i));
-        //String proxyUrl = proxy.getProxyUrl(array_source.get(i));
 
 
 
 
 
+
+    }
+
+    private void general_widget_work(ViewHolder viewHolder, int i) {
+        viewHolder.video_view.setBackgroundResource(android.R.color.transparent);
+
+        viewHolder.video_view.setDrawingCacheEnabled(true);
         viewHolder.name_txt.setText(array_name.get(i));
 
-        pause_play_video(viewHolder);
-
-
+        viewHolder.info_txt.setText(array_info.get(i));
+        Picasso.get().load(array_source_img.get(i)).fit().centerCrop().into(viewHolder.IMG_img_profile_pic);
     }
 
-    @Override
-    public void allPostData(Bundle bundle) {
+    private void img_work(ViewHolder viewHolder, int i) {
+        Picasso.get().load(array_source.get(i)).fit().centerCrop().into(viewHolder.img_view, new com.squareup.picasso.Callback() {
+            @Override
+            public void onSuccess() {
+                viewHolder.progressBar.setVisibility(View.INVISIBLE);
 
+
+            }
+
+            @Override
+            public void onError(Exception e) {
+
+            }
+        });
     }
+
+    private void img_visibility(ViewHolder viewHolder) {
+        viewHolder.progressBar.setVisibility(View.VISIBLE);
+        viewHolder.video_view.setVisibility(View.GONE);
+        viewHolder.img_view.setVisibility(View.VISIBLE);
+    }
+
+    private void Video_visibility(ViewHolder viewHolder) {
+        viewHolder.img_view.setVisibility(View.GONE);
+        viewHolder.video_view.setVisibility(View.VISIBLE);
+    }
+
+    private void video_work(ViewHolder viewHolder, Uri uri) {
+        DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(mContext,
+                Util.getUserAgent(mContext, "uClimb"));
+        MediaSource videoSource =
+                new ProgressiveMediaSource.Factory(dataSourceFactory)
+                        .createMediaSource(uri);
+        SimpleExoPlayer player = new SimpleExoPlayer.Builder(mContext).build();
+        player.prepare(videoSource);
+        viewHolder.video_view.setPlayer(player);
+        Handler handler = new Handler();
+        videoSource.addEventListener(handler, new MediaSourceEventListener() {
+            @Override
+            public void onMediaPeriodCreated(int windowIndex, MediaSource.MediaPeriodId mediaPeriodId) {
+                player.seekTo(2);
+
+            }
+
+            @Override
+            public void onMediaPeriodReleased(int windowIndex, MediaSource.MediaPeriodId mediaPeriodId) {
+
+            }
+
+            @Override
+            public void onLoadStarted(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData) {
+                viewHolder.progressBar.setVisibility(View.VISIBLE);
+
+
+            }
+
+            @Override
+            public void onLoadCompleted(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData) {
+                viewHolder.progressBar.setVisibility(View.GONE);
+
+            }
+
+            @Override
+            public void onLoadCanceled(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData) {
+
+            }
+
+            @Override
+            public void onLoadError(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData, IOException error, boolean wasCanceled) {
+
+            }
+
+            @Override
+            public void onReadingStarted(int windowIndex, MediaSource.MediaPeriodId mediaPeriodId) {
+
+            }
+
+            @Override
+            public void onUpstreamDiscarded(int windowIndex, MediaSource.MediaPeriodId mediaPeriodId, MediaLoadData mediaLoadData) {
+
+            }
+
+            @Override
+            public void onDownstreamFormatChanged(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, MediaLoadData mediaLoadData) {
+
+            }
+        });
+    }
+
+
+
 
     public void isLikedAction(Boolean return_status, ImageView like_btn) {
         if (return_status){
@@ -322,7 +325,6 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         LinearLayout abc;
-        //TextView grade_txt;
         TextView name_txt;
         ImageView img_view;
         de.hdodenhof.circleimageview.CircleImageView IMG_img_profile_pic;
@@ -337,11 +339,7 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         Button comment_btn;
         LinearLayout constraint_num1231q321;
         ProgressBar progressBar;
-        //RecyclerView comment_rec;
 
-
-        //TextView liked;
-        //  ImageView full_screen;
 
 
         ViewHolder(View view) {
@@ -349,7 +347,6 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             constraint_num1231q321 = view.findViewById(R.id.constraing_num1231q321);
             comment_btn = view.findViewById(R.id.btn_comment_home_custom);
             comment_edit = view.findViewById(R.id.edit_comment_home_custom);
-            //comment_rec = view.findViewById(R.id.rec_home_custom);
             abc = view.findViewById(R.id.abc);
             progressBar = view.findViewById(R.id.progress_custom_home);
             tools_btn_layout = view.findViewById(R.id.tools_btn_layout_home);
@@ -400,21 +397,15 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
 
 
-    private void share_onClick(ImageView share_btn) {
-      share_btn.setOnClickListener(v -> share_work((Activity)mContext));
+    private void share_onClick(ImageView share_btn,int i) {
+      share_btn.setOnClickListener(v -> {
+          presenter_home_posts.share_link(mContext,array_post_id.get(i));
+
+      });
+
     }
 
-    private void share_work(Activity activity) {
-        FirebaseDynamicLinks.getInstance()
-                .getDynamicLink(activity.getIntent())
-                .addOnSuccessListener(activity, pendingDynamicLinkData -> {
-                    //Uri deepLink = null;
-                    //if (pendingDynamicLinkData != null) {
-                    //    //deepLink = pendingDynamicLinkData.getLink();
-                    //}
-                })
-                .addOnFailureListener(activity, e -> Log.w("", "getDynamicLink:onFailure", e));
-    }
+
 
                 //.setLink(Uri.parse("post_link/"+array_post_id.get(position)))
                 //.setDomainUriPrefix("https://boulderspot.page.link")
@@ -425,13 +416,11 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
 
 
-    private void likedonCLick(int i, ImageView like_btn) {
+    private void liked_onClick(int i, ImageView like_btn) {
         like_btn.setOnClickListener(v -> {
 
-            Presenter_Home_Posts home_posts_presenter = new Presenter_Home_Posts(Adapter_Home.this,mContext);
-            Presenter_Login login_presenter = new Presenter_Login();
             String id = login_presenter.getUID(mContext);
-            home_posts_presenter.like(id,array_post_id.get(i),like_btn,mContext);
+            presenter_home_posts.like(id,array_post_id.get(i),like_btn,mContext);
 
 
             });
@@ -470,22 +459,7 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
 
 
-    private void pause_play_video(@NonNull final ViewHolder viewHolder) {
-        viewHolder.video_view.setOnClickListener(v -> {
 
-           //if (clicked == 0) {
-           //    //viewHolder.video_view.pl
-           //    //clicked = 1;
-           //} else {
-           //    //viewHolder.video_view.pause();
-           //    //clicked = 0;
-
-
-           //}
-
-
-        });
-    }
 
 
 }

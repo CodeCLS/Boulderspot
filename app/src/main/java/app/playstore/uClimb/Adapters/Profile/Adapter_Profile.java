@@ -43,7 +43,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -68,8 +67,8 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private ArrayList  following;
     private String Height;
     private ArrayList friends;
-    //private ArrayList following_final;
-    //private ArrayList follower_final;
+    private ArrayList<String> following_final = new ArrayList<String>();
+    private ArrayList<String> follower_final = new ArrayList<String>();
 
     //private String account_type;
     //private String time_created;
@@ -129,6 +128,7 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public Adapter_Profile(String uid, String age, String name, String profile_img, String info, String country, ArrayList follower, ArrayList following, String height, ArrayList friends, String email) {
         this.uid = uid;
         //this.stat_uid = stat_uid;
+
         Age = age;
         Name = name;
         this.profile_img = profile_img;
@@ -183,7 +183,7 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "Assert"})
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if(holder.getItemViewType() == 0){
@@ -192,16 +192,19 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         }
         if (holder.getItemViewType() == 1 ){
+            assert holder instanceof profile_a;
             viewholder_1_code((profile_a) holder);
 
 
         }
         if (holder.getItemViewType() == 2 ){
+            assert holder instanceof profile_b;
             viewholder_2_code((profile_b) holder);
 
 
         }
         if (holder.getItemViewType() == 3){
+            assert holder instanceof standart_profile_c;
             standart_profile_c standart_profile_c = (standart_profile_c) holder;
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             DatabaseReference databaseReference = firebaseDatabase.getReference("");
@@ -209,9 +212,9 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    for (DataSnapshot postSnapshot : dataSnapshot.child("User").child(uid).child("Posts").getChildren()){
-                        //post_id.add(postSnapshot.getValue().toString());
-                    }
+                   //for (DataSnapshot postSnapshot : dataSnapshot.child("User").child(uid).child("Posts").getChildren()){
+                   //    //post_id.add(postSnapshot.getValue().toString());
+                   //}
                    //for (int i = 0;i<post_id.size();i++){
                    //    //String id = post_id.get(i).toString();
                    //    //source.add(dataSnapshot.child("Posts").child(id).child("Source").getValue().toString());
@@ -242,58 +245,55 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         }
 
+    @SuppressLint("SetTextI18n")
     private void viewHolder_0_code(@NonNull standart_profile holder) {
-        standart_profile standart_profile = holder;
-        standart_profile.Imageview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Presenter_Profile profile_presenter = new Presenter_Profile(mContext);
-                profile_presenter.setProfilePic(mContext,standart_profile.progressBar);
+        holder.Imageview.setOnClickListener(v -> {
+            Presenter_Profile profile_presenter = new Presenter_Profile(mContext);
+            profile_presenter.setProfilePic(mContext, holder.progressBar);
 
-            }
         });
-        Picasso.get().load(profile_img).into(standart_profile.Imageview);
+        Picasso.get().load(profile_img).into(holder.Imageview);
         Log.d(TAG,"profile_img4" + profile_img);
-        standart_profile.Email.setText(Email);
-        standart_profile.Name.setText(Name);
-        standart_profile.age.setText(Age+ " years");
-        standart_profile.Country.setText(country);
-        standart_profile.uid.setText(uid);
-        standart_profile.info.setText(Info);
-        standart_profile.Height.setText(Height);
-        set_spinner_following(standart_profile);
-        set_spinner_follower(standart_profile);
-        set_spinner_friends(standart_profile);
-        standart_profile.Following_number.setText(following.size() + " Following");
-        standart_profile.Follower_number.setText(follower.size() + " Follower");
+        holder.Email.setText(Email);
+        holder.Name.setText(Name);
+        holder.age.setText(Age + " years");
+        holder.Country.setText(country);
+        holder.uid.setText(uid);
+        holder.info.setText(Info);
+        holder.Height.setText(Height);
+        set_spinner_following(holder);
+        set_spinner_follower(holder);
+        set_spinner_friends(holder);
+        holder.Following_number.setText(following.size() + " Following");
+        holder.Follower_number.setText(follower.size() + " Follower");
 // Create an ArrayAdapter using the string array and a default spinner layout
     }
 
     private void viewholder_1_code(@NonNull profile_a holder) {
         Log.d(TAG,"clicked_animate");
 
-        profile_a standart_profile_a = holder;
-        standart_profile_a.btn_change_pwd.setOnClickListener(new View.OnClickListener() {
+        holder.btn_change_pwd.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 bool_clicked = true;
                 Log.d(TAG,"clicked_animate");
 
                 animate_pwd_change_height();
-                standart_profile_a.change_edit_profile.setVisibility(View.VISIBLE);
-                standart_profile_a.email.setVisibility(View.VISIBLE);
-                standart_profile_a.old_pwd.setVisibility(View.VISIBLE);
-                standart_profile_a.btn_change_pwd.setText("Change PWD");
-                standart_profile_a.btn_change_pwd.setOnClickListener(new View.OnClickListener() {
+                holder.change_edit_profile.setVisibility(View.VISIBLE);
+                holder.email.setVisibility(View.VISIBLE);
+                holder.old_pwd.setVisibility(View.VISIBLE);
+                holder.btn_change_pwd.setText("Change PWD");
+                holder.btn_change_pwd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (bool_clicked){
 
 
-                            String pwd_new = standart_profile_a.btn_change_pwd.getText().toString();
-                            String pwd_old = standart_profile_a.old_pwd.getText().toString();
-                            String email = standart_profile_a.email.getText().toString();
-                            if (standart_profile_a.change_edit_profile.getText().toString().length() < 6 || standart_profile_a.email.getText().toString().isEmpty() || standart_profile_a.old_pwd.getText().toString().length() < 6) {
+                            String pwd_new = holder.btn_change_pwd.getText().toString();
+                            String pwd_old = holder.old_pwd.getText().toString();
+                            String email = holder.email.getText().toString();
+                            if (holder.change_edit_profile.getText().toString().length() < 6 || holder.email.getText().toString().isEmpty() || holder.old_pwd.getText().toString().length() < 6) {
                                 Toast.makeText(mContext, "Bitte geben sie ein längeres Passwort ein", Toast.LENGTH_SHORT).show();
 
                             } else {
@@ -326,14 +326,14 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
                                                         }
 
                                                         private void animate_pwd_layout_height_back() {
-                                                            ValueAnimator anim2 = ValueAnimator.ofInt(standart_profile_a.constraintLayout.getHeight(), standart_profile_a.constraintLayout.getHeight()-500);
+                                                            ValueAnimator anim2 = ValueAnimator.ofInt(holder.constraintLayout.getHeight(), holder.constraintLayout.getHeight()-500);
                                                             anim2.setStartDelay(200);
 
                                                             anim2.addUpdateListener(valueAnimator -> {
                                                                 int val = (Integer) valueAnimator.getAnimatedValue();
-                                                                ViewGroup.LayoutParams layoutParams = standart_profile_a.constraintLayout.getLayoutParams();
+                                                                ViewGroup.LayoutParams layoutParams = holder.constraintLayout.getLayoutParams();
                                                                 layoutParams.height = val;
-                                                                standart_profile_a.constraintLayout.setLayoutParams(layoutParams);
+                                                                holder.constraintLayout.setLayoutParams(layoutParams);
                                                             });
                                                             anim2.addListener(new AnimatorListenerAdapter() {
                                                                 @Override
@@ -361,14 +361,14 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
 
             private void animate_pwd_change_height() {
-                ValueAnimator anim2 = ValueAnimator.ofInt(standart_profile_a.constraintLayout.getHeight(), standart_profile_a.constraintLayout.getHeight()+500);
+                ValueAnimator anim2 = ValueAnimator.ofInt(holder.constraintLayout.getHeight(), holder.constraintLayout.getHeight()+500);
                 anim2.setStartDelay(200);
 
                 anim2.addUpdateListener(valueAnimator -> {
                     int val = (Integer) valueAnimator.getAnimatedValue();
-                    ViewGroup.LayoutParams layoutParams = standart_profile_a.constraintLayout.getLayoutParams();
+                    ViewGroup.LayoutParams layoutParams = holder.constraintLayout.getLayoutParams();
                     layoutParams.height = val;
-                    standart_profile_a.constraintLayout.setLayoutParams(layoutParams);
+                    holder.constraintLayout.setLayoutParams(layoutParams);
                 });
                 anim2.addListener(new AnimatorListenerAdapter() {
                     @Override
@@ -383,110 +383,101 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     private void viewholder_2_code(@NonNull profile_b holder) {
-        profile_b standart_profile_b = holder;
-        standart_profile_b.btn_change_data.setOnClickListener(new View.OnClickListener() {
+        holder.btn_change_data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 animate_height_data_change();
-                standart_profile_b.country.setVisibility(View.VISIBLE);
-                standart_profile_b.age.setVisibility(View.VISIBLE);
-                standart_profile_b.height.setVisibility(View.VISIBLE);
-                standart_profile_b.info.setVisibility(View.VISIBLE);
-                standart_profile_b.name.setVisibility(View.VISIBLE);
-                standart_profile_b.email.setVisibility(View.VISIBLE);
-                standart_profile_b.recyclerview_holder.setVisibility(View.VISIBLE);
-                standart_profile_b.recyclerView.setVisibility(View.VISIBLE);
-                standart_profile_b.input_friends.setVisibility(View.VISIBLE);
+                holder.country.setVisibility(View.VISIBLE);
+                holder.age.setVisibility(View.VISIBLE);
+                holder.height.setVisibility(View.VISIBLE);
+                holder.info.setVisibility(View.VISIBLE);
+                holder.name.setVisibility(View.VISIBLE);
+                holder.email.setVisibility(View.VISIBLE);
+                holder.recyclerview_holder.setVisibility(View.VISIBLE);
+                holder.recyclerView.setVisibility(View.VISIBLE);
+                holder.input_friends.setVisibility(View.VISIBLE);
 
-                standart_profile_b.btn_change_data.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                holder.btn_change_data.setOnClickListener(v1 -> {
 
-                        FirebaseDatabase auth = FirebaseDatabase.getInstance();
-                        DatabaseReference reference = auth.getReference("");
-                        Presenter_Login login_presenter = new Presenter_Login();
-                        String uid = login_presenter.getUID(mContext);
-                        standart_profile_b.btn_change_data.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Locale[] locales = Locale.getAvailableLocales();
-                                for (Locale locale : locales) {
-                                    String country = locale.getDisplayCountry();
-                                    if (country.trim().length()>0 && !countries.contains(country)) {
-                                        countries.add(country);
-                                    }
-                                }
+                    FirebaseDatabase auth = FirebaseDatabase.getInstance();
+                    DatabaseReference reference = auth.getReference("");
+                    Presenter_Login login_presenter = new Presenter_Login();
+                    String uid = login_presenter.getUID(mContext);
+                    holder.btn_change_data.setOnClickListener(v11 -> {
+                        //Locale[] locales = Locale.getAvailableLocales();
+                        //for (Locale locale : locales) {
+                        //    //String country = locale.getDisplayCountry();
+                        //    //if (country.trim().length()>0 && !countries.contains(country)) {
+                        //        //countries.add(country);
+                        //    //}
+                        //}
 
-                                System.out.println( "# countries found: " + countries.size());
-                                if (!standart_profile_b.age.getText().toString().isEmpty() && Integer.parseInt(standart_profile_b.age.getText().toString()) < 100){
-                                    reference.child("User").child(uid).child("Age").setValue(standart_profile_b.age.getText().toString());
+                        //System.out.println( "# countries found: " + countries.size());
+                        if (!holder.age.getText().toString().isEmpty() && Integer.parseInt(holder.age.getText().toString()) < 100){
+                            reference.child("User").child(uid).child("Age").setValue(holder.age.getText().toString());
 
 
-                                }
-                                if (Integer.parseInt(standart_profile_b.age.getText().toString()) > 100){
-                                    Toast.makeText(mContext, "Alter zu groß", Toast.LENGTH_SHORT).show();
-                                }
-                                else{
+                        }
+                        if (Integer.parseInt(holder.age.getText().toString()) > 100){
+                            Toast.makeText(mContext, "Alter zu groß", Toast.LENGTH_SHORT).show();
+                        }
+
+                        if (!holder.height.getText().toString().isEmpty() && Integer.parseInt(holder.height.getText().toString())>250){
+                            reference.child("User").child(uid).child("Height").child(holder.height.getText().toString());
 
 
-                                }
-                                if (!standart_profile_b.height.getText().toString().isEmpty() && Integer.parseInt(standart_profile_b.height.getText().toString())>250){
-                                    reference.child("User").child(uid).child("Height").child(standart_profile_b.height.getText().toString());
+                        }if (Integer.parseInt(holder.height.getText().toString())>250){
+                            Toast.makeText(mContext, "Echte Größe bitte eingeben", Toast.LENGTH_SHORT).show();
+                        }
+
+                        if (!holder.info.getText().toString().isEmpty() && holder.info.getText().toString().length() < 300){
+                            reference.child("User").child(uid).child("Info").child(holder.info.getText().toString());
 
 
-                                }if (Integer.parseInt(standart_profile_b.height.getText().toString())>250){
-                                    Toast.makeText(mContext, "Echte Größe bitte eingeben", Toast.LENGTH_SHORT).show();
-                                }
-                                else{
+                        }if (holder.info.getText().toString().length() > 300){
+                            Toast.makeText(mContext, "Text zu lang", Toast.LENGTH_SHORT).show();
 
-                                }
-                                if (!standart_profile_b.info.getText().toString().isEmpty() && standart_profile_b.info.getText().toString().length() < 300){
-                                    reference.child("User").child(uid).child("Info").child(standart_profile_b.info.getText().toString());
-
-
-                                }if (standart_profile_b.info.getText().toString().length() > 300){
-                                    Toast.makeText(mContext, "Text zu lang", Toast.LENGTH_SHORT).show();
-
-                                }
-                                if (!standart_profile_b.country.getText().toString().isEmpty() && countries.contains(standart_profile_b.country.getText())){
-                                    reference.child("User").child(uid).child("Country").child(standart_profile_b.country.getText().toString());
-
-
-                                }if (!countries.contains(standart_profile_b.country.getText().toString())){
-                                    Toast.makeText(mContext, "Das Land gibt es nicht", Toast.LENGTH_SHORT).show();
-
-
-                                }
-                                else{
-                                    return;
-                                }
-                                if (!standart_profile_b.name.getText().toString().isEmpty()&&standart_profile_b.name.getText().toString().length() < 15){
-                                    reference.child("User").child(uid).child("Name").child(standart_profile_b.name.getText().toString());
+                        }
+                        //if (!holder.country.getText().toString().isEmpty() && countries.contains(holder.country.getText())){
+                        //    reference.child("User").child(uid).child("Country").child(holder.country.getText().toString());
+//
+//
+                        //}
+                        //if (!countries.contains(holder.country.getText().toString())){
+                        //    Toast.makeText(mContext, "Das Land gibt es nicht", Toast.LENGTH_SHORT).show();
+//
+//
+                        //}
+                        //else{
+                        //    return;
+                        //}
+                        if (!holder.name.getText().toString().isEmpty()&& holder.name.getText().toString().length() < 15){
+                            reference.child("User").child(uid).child("Name").child(holder.name.getText().toString());
 
 
-                                }
-                                if (standart_profile_b.name.getText().toString().length() <15){
-                                    Toast.makeText(mContext, "Name zu lang", Toast.LENGTH_SHORT).show();
+                        }
+                        if (holder.name.getText().toString().length() <15){
+                            Toast.makeText(mContext, "Name zu lang", Toast.LENGTH_SHORT).show();
 
-                                }
+                        }
 
 
 
 
 
-                                if (!standart_profile_b.email.getText().toString().isEmpty() && isEmailValid(standart_profile_b.email.getText().toString())){
-                                    reference.child("User").child(uid).child("Email").child(standart_profile_b.email.getText().toString());
-                                    change_email_auth();
+                        if (!holder.email.getText().toString().isEmpty() && isEmailValid(holder.email.getText().toString())){
+                            reference.child("User").child(uid).child("Email").child(holder.email.getText().toString());
+                            change_email_auth();
 
 
 
-                                }
-                                if (!isEmailValid(standart_profile_b.email.getText().toString())){
-                                    Toast.makeText(mContext, "Echte Email bitte eingeben", Toast.LENGTH_SHORT).show();
+                        }
+                        if (!isEmailValid(holder.email.getText().toString())){
+                            Toast.makeText(mContext, "Echte Email bitte eingeben", Toast.LENGTH_SHORT).show();
 
 
 
-                                }
+                        }
 
 
 
@@ -494,23 +485,21 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
 
-                            }
-                        });
+                    });
 
-                    }
                 });
 
             }
 
             private void animate_height_data_change() {
-                ValueAnimator anim2 = ValueAnimator.ofInt(standart_profile_b.constraintLayout.getHeight(), standart_profile_b.constraintLayout.getHeight()+1000);
+                ValueAnimator anim2 = ValueAnimator.ofInt(holder.constraintLayout.getHeight(), holder.constraintLayout.getHeight()+1000);
                 anim2.setStartDelay(200);
 
                 anim2.addUpdateListener(valueAnimator -> {
                     int val = (Integer) valueAnimator.getAnimatedValue();
-                    ViewGroup.LayoutParams layoutParams = standart_profile_b.constraintLayout.getLayoutParams();
+                    ViewGroup.LayoutParams layoutParams = holder.constraintLayout.getLayoutParams();
                     layoutParams.height = val;
-                    standart_profile_b.constraintLayout.setLayoutParams(layoutParams);
+                    holder.constraintLayout.setLayoutParams(layoutParams);
                 });
                 anim2.addListener(new AnimatorListenerAdapter() {
                     @Override
@@ -525,7 +514,9 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     private boolean isEmailValid(String toString) {
-        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        String expression = "^[\\w.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        //String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+
         Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(toString);
         return matcher.matches();
@@ -537,25 +528,21 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
         AuthCredential credential = EmailAuthProvider
                 .getCredential("user@example.com", "password1234"); // Current Login Credentials \\
         // Prompt the user to re-provide their sign-in credentials
+        assert user != null;
         user.reauthenticate(credential)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Log.d(TAG, "User re-authenticated.");
-                        //Now change your email address \\
-                        //----------------Code for Changing Email Address----------\\
-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        user.updateEmail("user@example.com")
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                            Log.d(TAG, "User email address updated.");
-                                        }
-                                    }
-                                });
-                        //----------------------------------------------------------\\
-                    }
+                .addOnCompleteListener(task -> {
+                    Log.d(TAG, "User re-authenticated.");
+                    //Now change your email address \\
+                    //----------------Code for Changing Email Address----------\\
+                    FirebaseUser user1 = FirebaseAuth.getInstance().getCurrentUser();
+                    assert user1 != null;
+                    user1.updateEmail("user@example.com")
+                            .addOnCompleteListener(task1 -> {
+                                if (task1.isSuccessful()) {
+                                    Log.d(TAG, "User email address updated.");
+                                }
+                            });
+                    //----------------------------------------------------------\\
                 });
     }
 
@@ -592,7 +579,7 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         follower_final.add("/");
 
                     } else {
-                        String name = dataSnapshot.child("User").child(id).child("Name").getValue().toString();
+                        String name = Objects.requireNonNull(dataSnapshot.child("User").child(id).child("Name").getValue()).toString();
                         follower_final.add(name);
 
 

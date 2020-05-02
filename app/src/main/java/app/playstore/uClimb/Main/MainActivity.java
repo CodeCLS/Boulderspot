@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import app.playstore.uClimb.Fragments.Friends_fragment;
 import app.playstore.uClimb.Fragments.Settings_Fragment;
 import app.playstore.uClimb.Fragments.Statistics_fragment;
+import app.playstore.uClimb.MVP.MVP_Home.Presenter_Home_Posts;
 import app.playstore.uClimb.Notifaction.Base_Internet;
 import app.playstore.uClimb.Fragments.Search.Search_Fragment;
 import app.playstore.uClimb.Fragments.Home.Home_Fragment;
@@ -264,5 +265,14 @@ public class MainActivity extends Base_Internet implements CacheListener {
     @Override
     public void onCacheAvailable(File cacheFile, String url, int percentsAvailable) {
 
+    }
+
+    public void share_post() {
+        //Presenter_Home_Posts presenter_home_posts = new Presenter_Home_Posts(this);
+        //Uri link = presenter_home_posts.share_link(this,);
+        //Intent intent = new Intent(Intent.ACTION_SEND);
+        //intent.setType("text/plain");
+        //intent.putExtra(Intent.EXTRA_TEXT, link.toString());
+        //startActivity(Intent.createChooser(intent, "Sharing uClimb Post"));
     }
 }

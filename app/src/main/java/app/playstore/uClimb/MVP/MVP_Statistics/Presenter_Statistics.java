@@ -1,5 +1,6 @@
 package app.playstore.uClimb.MVP.MVP_Statistics;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
@@ -157,6 +158,7 @@ public class Presenter_Statistics {
 
                     if (dataSnapshot.child("Statistics").child(statistics_id).child("Workouts").getChildrenCount() == 0){
                         if (view_main.getRootView() != null) {
+                            Log.d(TAG,"viewmain"+view_main);
                             Snackbar snackbar = Snackbar.make(view_main.getRootView(), "No workout progress posted yet", BaseTransientBottomBar.LENGTH_SHORT);
                             snackbar.setBackgroundTint(mContext.getResources().getColor(R.color.colorPrimaryDark));
                             snackbar.show();

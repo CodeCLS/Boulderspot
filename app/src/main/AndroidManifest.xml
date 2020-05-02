@@ -43,14 +43,7 @@
 
 
             android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data
-                    android:host="app.playstore.uclimb"
-                    android:scheme="uclimb"/>
-            </intent-filter>
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -59,12 +52,27 @@
         </activity>
         <activity android:name="app.playstore.uClimb.Main.MainActivity"
             android:screenOrientation="fullSensor"
-            android:windowSoftInputMode="adjustPan"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data
+                    android:host="app.playstore.uClimb"
+                    android:scheme="uClimb"
+                    tools:ignore="AppLinkUrlError" />
+            </intent-filter>
+
+
+
+        </activity>
 
 
 
 
-        />
+
+
+
         <activity android:name="app.playstore.uClimb.Login.SignUp_uClimb" />
         <activity android:name="app.playstore.uClimb.Notifaction.Base_Internet" />
 

@@ -1,6 +1,9 @@
 package app.playstore.uClimb.MVP.MVP_Home;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,12 +15,19 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.dynamiclinks.DynamicLink;
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
+import com.google.firebase.dynamiclinks.ShortDynamicLink;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,9 +36,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import app.playstore.uClimb.Adapters.Home.Adapter_Home;
 import app.playstore.uClimb.Adapters.Home.Adapter_Home_Comments;
+import app.playstore.uClimb.MVP.MVP_Invite.InviteContent;
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.MVP.MVP_Login.Presenter_Login;
 
@@ -59,13 +71,11 @@ public class Presenter_Home_Posts {
     Adapter_Home_Comments adapter_home_comment = new Adapter_Home_Comments(array_name_comment,array_comment_id,array_comment, array_time_comment);
     Adapter_Home adapter_home = new Adapter_Home(array_name,array_source_img,array_source,array_info, array_post_id,array_type);
     private String mAuth;
-    private Context mContext;
 
 
 
 
     private Model_Home_Posts model_home;
-    private display display;
     private void clearArrayLists() {
         array_type.clear();
         array_post_id.clear();
@@ -81,9 +91,8 @@ public class Presenter_Home_Posts {
 
     }
 
-    public Presenter_Home_Posts(display display, Context mContext) {
+    public Presenter_Home_Posts(Context mContext) {
         this.model_home = new Model_Home_Posts();
-        this.display = display;
         Presenter_Login login_presenter = new Presenter_Login();
         this.mAuth = login_presenter.getUID(mContext);
         Log.d(TAG,"mAuth3" + this.mAuth);
@@ -421,12 +430,65 @@ public class Presenter_Home_Posts {
 
     }
 
+    public void share_link(Context mContext,String id) {
 
-    public interface display{
-        void allPostData(Bundle bundle);
+
+        Task<ShortDynamicLink> uri  = FirebaseDynamicLinks.getInstance().createDynamicLink()
+                .setLink(Uri.parse("https://boulderspot.page.link/Post_invite"))
+                .setDomainUriPrefix("https://boulderspot.page.link")
+                .setAndroidParameters(
+                        new DynamicLink.AndroidParameters.Builder()
+                                .setMinimumVersion(11)
+                                .build())
+                .setSocialMetaTagParameters(
+                        new DynamicLink.SocialMetaTagParameters.Builder()
+                                .setTitle("Cool Post via uClimb")
+                                .setDescription("uClimb is the social media of climbers...Come and join :)")
+
+                                //.setImageUrl(Uri.parse("https://onestickers.com/img/main-logo.png"))
+                                .build())
+                .buildShortDynamicLink()
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG,"failure");
+
+
+                    }
+                })
+                .addOnCompleteListener(task -> Log.d(TAG,"loading")).addOnFailureListener(e -> Log.d(TAG," cause you are a cool person: " + e)).addOnSuccessListener(new OnSuccessListener<ShortDynamicLink>() {
+                    @Override
+                    public void onSuccess(ShortDynamicLink shortDynamicLink) {
+                        Log.d(TAG,"successs");
+                        if (shortDynamicLink != null){
+                            Log.d(TAG,"linkk" + shortDynamicLink.getShortLink());
+                            Intent sendIntent = new Intent();
+                            sendIntent.setAction(Intent.ACTION_SEND);
+                            sendIntent.putExtra(Intent.EXTRA_SUBJECT,"Someone wants to show you an awesome climbing video");
+                            sendIntent.setType("text/plain");
+                            sendIntent.putExtra(Intent.EXTRA_TEXT,"Come join your friend and share your climbing experience to the whole community..." + shortDynamicLink.getShortLink());
+                            mContext.startActivity(sendIntent);
+
+
+                        }
+
+                    }
+                });
+
+
+
+
+
 
 
     }
+
+
+    // [START ddl_generate_content_link]
+
+
+
+
 
 
 }
