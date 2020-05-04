@@ -466,6 +466,7 @@ public class Presenter_Home_Posts {
                             sendIntent.setAction(Intent.ACTION_SEND);
                             sendIntent.putExtra(Intent.EXTRA_SUBJECT,"Someone wants to show you an awesome climbing video");
                             sendIntent.setType("text/plain");
+                            sendIntent.putExtra("Post_ID",id);
                             sendIntent.putExtra(Intent.EXTRA_TEXT,"Come join your friend and share your climbing experience to the whole community..." + shortDynamicLink.getShortLink());
                             mContext.startActivity(sendIntent);
 

@@ -62,10 +62,8 @@ public class Adapter_Search extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder.getItemViewType()== 0){
             getPeople();
-
             ViewHolderSearch viewHolderSearch = (ViewHolderSearch) holder;
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext,
-                    android.R.layout.simple_dropdown_item_1line, peoples);
+            ArrayAdapter<String> adapter = new Adapter_Spinner(mContext,R.layout.,peoples,peoples);
             viewHolderSearch.editText.setAdapter(adapter);
             viewHolderSearch.Enter.setOnClickListener(new View.OnClickListener() {
                 @Override

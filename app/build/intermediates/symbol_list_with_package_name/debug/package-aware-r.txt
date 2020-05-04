@@ -2541,6 +2541,7 @@ id icon_only
 id ifRoom
 id ignore
 id image
+id image_round_spinner_search
 id imageview_item_search_page
 id img_home_like
 id img_home_share
@@ -2718,7 +2719,7 @@ id rec_friends_profile_edit
 id rec_home
 id rec_home_custom
 id rec_item_btn_view
-id rec_item_upload_btn_view
+id rec_item_btn_view_training
 id rec_location
 id rec_profile_images_and_videos_uploads
 id rec_search_main
@@ -2788,6 +2789,7 @@ id spinner_friends_profile
 id spinner_grade_upload
 id spinner_impression_grade_upload
 id spinner_route_type_upload
+id spinner_search_txt
 id spinner_tries_upload
 id spline
 id split_action_bar
@@ -2860,6 +2862,7 @@ id top
 id topPanel
 id top_landscape
 id touch_outside
+id training_frame_btn
 id transitionToEnd
 id transitionToStart
 id transition_current_scene
@@ -2880,7 +2883,6 @@ id txt_info_session
 id txt_item_list_training
 id txt_name_item_friend
 id txt_session_type
-id txt_start_training
 id txt_time_boulder
 id txt_time_session
 id txt_username_custom
@@ -3103,6 +3105,8 @@ layout profile_page_user_multiple_layout_b
 layout profile_page_user_standart_layout
 layout public_bar_post_ui
 layout public_no_connection
+layout public_spinner_search_item
+layout public_training_button_ui
 layout public_upload_button_ui
 layout search_bar
 layout search_custom_recyclerview
@@ -3160,6 +3164,7 @@ mipmap settingsicon
 mipmap share_icon
 mipmap statistics_icon_a
 mipmap target
+mipmap training_icon
 mipmap user_icon_blue
 plurals mtrl_badge_content_description
 raw places_keep

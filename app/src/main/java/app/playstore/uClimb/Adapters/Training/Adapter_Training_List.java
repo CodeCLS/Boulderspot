@@ -24,6 +24,7 @@ import app.playstore.uClimb.Fragments.custom_workout.custom_workout_page;
 import app.playstore.uClimb.R;
 
 public class Adapter_Training_List extends RecyclerView.Adapter<Adapter_Training_List.ViewHolder> {
+    private static final String TAG = "Adapter_training";
     private ArrayList<String> img_array = new ArrayList<>();
 
     private ArrayList<String> txt_array = new ArrayList<>();
@@ -52,6 +53,7 @@ public class Adapter_Training_List extends RecyclerView.Adapter<Adapter_Training
     @Override
     public void onBindViewHolder(@NonNull Adapter_Training_List.ViewHolder holder, final int position) {
         holder.txt.setText(txt_array.get(position));
+        Log.d(TAG,"img_position");
         Picasso.get().load(img_array.get(position)).fit().centerCrop().into(holder.img);
         holder.txt.setOnClickListener(new View.OnClickListener() {
             @Override

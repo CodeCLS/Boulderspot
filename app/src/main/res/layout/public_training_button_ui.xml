@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="230dp"
+    android:layout_height="60dp"
+    android:layout_margin="100dp"
+    android:id="@+id/training_frame_btn"
+
+    >
+
+
+
+
+
+
+
+    <TextView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:paddingStart="5dp"
+        android:elevation="5dp"
+
+
+        android:layout_margin="5dp"
+        android:background="@drawable/public_important_background_white_round"
+        android:textAlignment="textStart"
+
+        android:textSize="20sp"
+
+
+        android:layout_height="match_parent"
+        android:text="Training"
+        tools:ignore="RtlCompat" />
+
+
+
+
+
+
+    <ImageView
+
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:layout_marginEnd="5dp"
+        android:elevation="5dp"
+        android:padding="5dp"
+
+
+
+
+        app:srcCompat="@mipmap/training_icon" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</FrameLayout>

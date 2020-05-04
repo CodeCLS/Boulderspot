@@ -365,16 +365,15 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     }
 
     static class ViewHolder_training extends RecyclerView.ViewHolder {
-        LinearLayout layout;
-        TextView start_training_txt;
-        FrameLayout post_success_txt;
+
+        FrameLayout post_success_frame;
+        FrameLayout frameLayout;
 
 
         ViewHolder_training(View view) {
             super(view);
-            layout = view.findViewById(R.id.rec_training_item_layout);
-            start_training_txt = view.findViewById(R.id.txt_start_training);
-            post_success_txt = view.findViewById(R.id.rec_item_btn_view);
+            frameLayout = view.findViewById(R.id.rec_item_btn_view_training);
+            post_success_frame = view.findViewById(R.id.rec_item_btn_view);
 
 
         }
@@ -428,8 +427,8 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
     private void training_and_post_onClick(@NonNull ViewHolder_training viewHolder) {
-        viewHolder.start_training_txt.setOnClickListener(v -> training_txt_action());
-        viewHolder.post_success_txt.setOnClickListener(v -> {
+        viewHolder.frameLayout.setOnClickListener(v -> training_txt_action());
+        viewHolder.post_success_frame.setOnClickListener(v -> {
             video_upload_fragment mFragment = new video_upload_fragment();
 
 

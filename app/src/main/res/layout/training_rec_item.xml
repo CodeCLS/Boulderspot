@@ -7,46 +7,21 @@
     android:layout_height="100dp"
     android:elevation="20sp"
     android:orientation="horizontal">
+
     <include layout="@layout/public_upload_button_ui" android:layout_weight="1"
         android:layout_height="match_parent"
         android:id="@+id/rec_item_btn_view"
         android:layout_margin="15dp"
         android:layout_width="match_parent" />
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+
+    <include layout="@layout/public_training_button_ui" android:layout_weight="1"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
+        android:id="@+id/rec_item_btn_view_training"
         android:layout_margin="15dp"
-
-        android:layout_weight="1">
-
-        <ImageView
-            android:id="@+id/rec_item_upload_btn_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        android:layout_width="match_parent" />
 
 
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/public_background_layer_white_round" />
 
-        <TextView
-            android:id="@+id/txt_start_training"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="Start Training"
-            android:textColor="@color/colorPrimaryDark"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
