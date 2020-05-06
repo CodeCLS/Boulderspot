@@ -1,6 +1,7 @@
 package app.playstore.uClimb.Adapters.Statistics;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.anychart.enums.Anchor;
 import com.anychart.enums.HoverMode;
 import com.anychart.enums.Position;
 import com.anychart.enums.TooltipPositionMode;
+import com.anychart.graphics.vector.SolidFill;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -146,6 +148,9 @@ public class Adapter_Statistics extends RecyclerView.Adapter<RecyclerView.ViewHo
 
                 pie_sessions.data(data_sessions);
 
+
+
+
                 view_holder.anyChartView.setChart(pie_sessions);
 
 
@@ -180,6 +185,25 @@ public class Adapter_Statistics extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             }
             pie_grade.data(data_grade);
+            ArrayList<String> arrayList = new ArrayList<String>();
+            arrayList.add("#068799");
+            arrayList.add("#AE6272");
+            arrayList.add("#CE9BA9");
+            arrayList.add("#B39DDB");
+            arrayList.add("#E25353");
+            arrayList.add("#EF9A9A");
+            arrayList.add("#F7C83B");
+            arrayList.add("#FFECB3");
+            arrayList.add("#F7C83B");
+
+
+            for (int i = 0;i<data_grade.size();i++){
+                SolidFill solidFill = new SolidFill(arrayList.get(i),1);
+                pie_grade.palette().itemAt(i,solidFill);
+
+
+            }
+
 
 
             view_holder.anyChartView.setChart(pie_grade);

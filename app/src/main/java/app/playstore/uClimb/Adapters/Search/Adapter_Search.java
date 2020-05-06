@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,9 +32,10 @@ import app.playstore.uClimb.MVP.MVP_Search.Presenter_Search;
 
 public class Adapter_Search extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final String TAG = "Adapter_search";
-    Context mContext;
-    ArrayList peoples = new ArrayList();
-    ArrayList people_id = new ArrayList();
+    private Context mContext;
+    private ArrayList peoples = new ArrayList();
+    private ArrayList people_id = new ArrayList();
+    private ArrayList peoples_img = new ArrayList<String>();
 
     @NonNull
     @Override
@@ -61,46 +63,7 @@ public class Adapter_Search extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder.getItemViewType()== 0){
-            getPeople();
-            ViewHolderSearch viewHolderSearch = (ViewHolderSearch) holder;
-            ArrayAdapter<String> adapter = new Adapter_Spinner(mContext,R.layout.,peoples,peoples);
-            viewHolderSearch.editText.setAdapter(adapter);
-            viewHolderSearch.Enter.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-
-                    String input = viewHolderSearch.editText.getText().toString();
-                    Log.d(TAG,"array_people" + peoples);
-                    if (peoples.contains(input)){
-                        custom_profile custom_profile = new custom_profile();
-                        int index =peoples.indexOf(input);
-                        Bundle bundle = new Bundle();
-                        bundle.putString("uid",people_id.get(index).toString());
-                        custom_profile.setArguments(bundle);
-                        FragmentManager fragmentManager = ((AppCompatActivity)mContext).getSupportFragmentManager();
-                        fragmentManager.beginTransaction().addToBackStack("Fragment_custom_post").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                                .replace(R.id.container_fragment, custom_profile).commit();
-
-
-
-
-                    }
-                    else{
-                        Toast.makeText(mContext, "Diesen User gibt es nicht", Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-            });
-          //  viewHolderSearch.Enter.setOnClickListener(v -> {
-          //      String input =((ViewHolderSearch) holder).editText.getText().toString();
-//
-//
-          //      //TODO enter onclick
-//x
-//
-//
-          //  });
+            getPeopleImg(holder);
 
 
         }
@@ -114,7 +77,73 @@ public class Adapter_Search extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     }
 
-    private void getPeople() {
+    private void holder_zero(RecyclerView.ViewHolder holder) {
+        ViewHolderSearch viewHolderSearch = (ViewHolderSearch) holder;
+        ArrayAdapter adapter = new Adapter_Spinner(mContext,R.layout.public_spinner_search_item,peoples,peoples_img);
+        viewHolderSearch.editText.setAdapter(adapter);
+        Log.d(TAG,"array_people" + peoples);
+
+        viewHolderSearch.Enter.setOnClickListener(v -> {
+
+
+            String input = viewHolderSearch.editText.getText().toString();
+            Log.d(TAG,"array_people" + peoples);
+            if (peoples.contains(input)){
+                custom_profile custom_profile = new custom_profile();
+                int index =peoples.indexOf(input);
+                Bundle bundle = new Bundle();
+                bundle.putString("uid",people_id.get(index).toString());
+                custom_profile.setArguments(bundle);
+                FragmentManager fragmentManager = ((AppCompatActivity)mContext).getSupportFragmentManager();
+                fragmentManager.beginTransaction().addToBackStack("Fragment_custom_post").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .replace(R.id.container_fragment, custom_profile).commit();
+
+
+
+
+            }
+            else{
+                Toast.makeText(mContext, "Diesen User gibt es nicht", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+        //  viewHolderSearch.Enter.setOnClickListener(v -> {
+        //      String input =((ViewHolderSearch) holder).editText.getText().toString();
+//
+//
+        //      //TODO enter onclick
+//x
+//
+//
+        //  });
+    }
+
+    private void getPeopleImg(RecyclerView.ViewHolder holder) {
+
+        peoples_img.clear();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference("");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot.child("User").getChildren()){
+                    peoples_img.add(postSnapshot.child("IMG").getValue().toString());
+
+
+                }
+                getPeople(holder);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void getPeople(RecyclerView.ViewHolder holder) {
 
 
         people_id.clear();
@@ -129,6 +158,9 @@ public class Adapter_Search extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
                 }
+                Log.d(TAG,"array_people" + peoples);
+
+                holder_zero(holder);
 
             }
 

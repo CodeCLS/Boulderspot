@@ -41,26 +41,36 @@
                 tools:ignore="RtlCompat" />
 
         </LinearLayout>
+
         <LinearLayout
+            android:id="@+id/constraing_num1231q321"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/constraing_num1231q321"
 
 
+            android:layout_weight="0.7"
+            android:background="#fff">
 
-            android:layout_weight="0.7">
+            <ImageView
+                android:id="@+id/img_view_custom_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+
+                android:visibility="gone" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.9"
-                android:background="@color/colorPrimaryDark">
+                android:background="#fff">
 
                 <com.google.android.exoplayer2.ui.SimpleExoPlayerView
                     android:id="@+id/video_custom_home"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:background="#fff"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -68,14 +78,6 @@
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <ImageView
-                android:id="@+id/img_view_custom_home"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="gone"
-
-                android:layout_weight="0.5" />
 
 
         </LinearLayout>
