@@ -1,4 +1,4 @@
-package app.playstore.uClimb.Adapters.Profile;
+package app.playstore.uClimb.Obsolete;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -87,22 +87,19 @@ public class Adapter_Profile_User_Uploads extends RecyclerView.Adapter<RecyclerV
             standart_holder_video  standart_holder_video = (Adapter_Profile_User_Uploads.standart_holder_video) holder;
             standart_holder_video.videoView.setVideoPath(source.get(position));
             standart_holder_video.videoView.seekTo(10);
-            standart_holder_video.videoView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    custom_post_page custom_post_page = new custom_post_page();
-                    Bundle arguments = new Bundle();
-                    arguments.putString("Source",source.get(position));
-                    arguments.putString("Type",type.get(position));
-                    arguments.putString("PostID",post_id.get(position));
-                    arguments.putString("UserID",u_id.get(position));
-                    custom_post_page.setArguments(arguments);
+            standart_holder_video.videoView.setOnClickListener(v -> {
+                custom_post_page custom_post_page = new custom_post_page();
+                Bundle arguments = new Bundle();
+                arguments.putString("Source",source.get(position));
+                arguments.putString("Type",type.get(position));
+                arguments.putString("PostID",post_id.get(position));
+                arguments.putString("UserID",u_id.get(position));
+                custom_post_page.setArguments(arguments);
 
-                    FragmentManager fragmentManager = ((AppCompatActivity)mContext).getSupportFragmentManager();
-                    fragmentManager.beginTransaction().addToBackStack("Fragment_custom_post_page").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                            .replace(R.id.container_fragment, custom_post_page).commit();
+                FragmentManager fragmentManager = ((AppCompatActivity)mContext).getSupportFragmentManager();
+                fragmentManager.beginTransaction().addToBackStack("Fragment_custom_post_page").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .replace(R.id.container_fragment, custom_post_page).commit();
 
-                }
             });
 
 
@@ -135,6 +132,12 @@ public class Adapter_Profile_User_Uploads extends RecyclerView.Adapter<RecyclerV
 
                 }
             });
+
+
+
+        }
+        if (holder.getItemViewType() ==2 || holder.getItemViewType() == 3){
+
 
 
 

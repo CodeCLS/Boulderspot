@@ -3,21 +3,37 @@ package app.playstore.uClimb.Adapters.Profile;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.source.MediaSourceEventListener;
+import com.google.android.exoplayer2.source.ProgressiveMediaSource;
+import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
+import com.google.android.exoplayer2.upstream.DataSource;
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
+import com.google.android.exoplayer2.util.Util;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import app.playstore.uClimb.Obsolete.Adapter_Profile_User_Uploads;
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.MVP.MVP_Custom_Profile.Presenter_Custom_Profile;
 
@@ -58,6 +74,7 @@ public class Adapter_Profile_Custom_User_Page extends RecyclerView.Adapter<Recyc
 
     private Context mContext;
 
+
     public Adapter_Profile_Custom_User_Page(String uid, String stat_uid, String age, String name, String profile_img, String info, String subscription, String grade, String country, ArrayList follower, ArrayList following, String height, String account_type, String time_created, ArrayList<String> posts) {
         this.uid = uid;
         this.stat_uid = stat_uid;
@@ -77,10 +94,14 @@ public class Adapter_Profile_Custom_User_Page extends RecyclerView.Adapter<Recyc
 
     }
 
+    public Adapter_Profile_Custom_User_Page() {
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-         mContext = parent.getContext();
+        mContext = parent.getContext();
+        Log.d(TAG,"Context5" + mContext);
         View view;
         RecyclerView.ViewHolder viewHolder= null;
 
@@ -100,7 +121,7 @@ public class Adapter_Profile_Custom_User_Page extends RecyclerView.Adapter<Recyc
         }
         if (viewType == 2){
             Log.d(TAG,"post1" + posts);
-            view = LayoutInflater.from(mContext).inflate(R.layout.private_custom_viewholder_custom_profile_2,parent,false);
+            view = LayoutInflater.from(mContext).inflate(R.layout.public_custom_upload_user,parent,false);
             viewHolder = new uploads_viewholder_profile_custom(view);
 
 
@@ -127,42 +148,168 @@ public class Adapter_Profile_Custom_User_Page extends RecyclerView.Adapter<Recyc
 
         }
         if (holder.getItemViewType() == 1){
-            follow_profile_viewholder follow_profile_viewholder = (Adapter_Profile_Custom_User_Page.follow_profile_viewholder) holder;
-            Drawable background = follow_profile_viewholder.button.getBackground();
-            background.setTint(mContext.getResources().getColor(R.color.blue_pressed_btn));
+            Presenter_Custom_Profile custom_profile_presenter = new Presenter_Custom_Profile();
+            Log.d(TAG,"Context6" + mContext);
 
-            follow_profile_viewholder.button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Presenter_Custom_Profile custom_profile_presenter = new Presenter_Custom_Profile();
-                    custom_profile_presenter.follow_new_user(mContext,uid);
-                }
-            });
+
+
+            follow_profile_viewholder follow_profile_viewholder = (Adapter_Profile_Custom_User_Page.follow_profile_viewholder) holder;
+            custom_profile_presenter.isLiked(uid,mContext,follow_profile_viewholder.button);
+
+
 
 
         }
         if (holder.getItemViewType() == 2){
+            position = position;
+            if (position > posts.size()){
+                position = position-1;
+            }
             uploads_viewholder_profile_custom uploads_viewholder_profile_custom = (uploads_viewholder_profile_custom) holder;
             Presenter_Custom_Profile custom_profile_presenter = new Presenter_Custom_Profile();
 
-            custom_profile_presenter.setRec_inner(uploads_viewholder_profile_custom.recyclerView,mContext,uid);
-
-
-
-
-
+            Presenter_Custom_Profile custom_profile = new Presenter_Custom_Profile();
+            int holdertype = holder.getItemViewType();
+            custom_profile.getSource(mContext,position,uploads_viewholder_profile_custom.img,uploads_viewholder_profile_custom.exoPlayer,uploads_viewholder_profile_custom.progress_custom_upload_profile,custom_profile,holdertype,posts);
 
 
 
         }
+
+
+    }
+
+    public void addPosts(Context back_context,int position, ImageView img, SimpleExoPlayerView exoPlayer,ProgressBar progressBar, int holdertype, ArrayList<String> source, ArrayList type) {
+
+            Log.d(TAG,"video21"+type.get(position));
+            if (type.get(position).equals("Video")){
+                Log.d(TAG,"source" + source);
+                Uri uri = Uri.parse(source.get(position));
+                Log.d(TAG,"Context" + back_context);
+                img.setVisibility(View.GONE);
+                DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(back_context,
+                        Util.getUserAgent(back_context, "uClimb"));
+                MediaSource videoSource =
+                        new ProgressiveMediaSource.Factory(dataSourceFactory)
+                                .createMediaSource(uri);
+                SimpleExoPlayer player = new SimpleExoPlayer.Builder(back_context).build();
+                player.prepare(videoSource);
+                exoPlayer.setPlayer(player);
+                Handler handler = new Handler();
+                videoSource.addEventListener(handler, new MediaSourceEventListener() {
+                    @Override
+                    public void onMediaPeriodCreated(int windowIndex, MediaSource.MediaPeriodId mediaPeriodId) {
+                        player.seekTo(2);
+
+                    }
+
+                    @Override
+                    public void onMediaPeriodReleased(int windowIndex, MediaSource.MediaPeriodId mediaPeriodId) {
+
+                    }
+
+                    @Override
+                    public void onLoadStarted(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData) {
+                        progressBar.setVisibility(View.VISIBLE);
+
+
+                    }
+
+                    @Override
+                    public void onLoadCompleted(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData) {
+                        progressBar.setVisibility(View.GONE);
+
+                    }
+
+                    @Override
+                    public void onLoadCanceled(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData) {
+
+                    }
+
+                    @Override
+                    public void onLoadError(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData, IOException error, boolean wasCanceled) {
+
+                    }
+
+                    @Override
+                    public void onReadingStarted(int windowIndex, MediaSource.MediaPeriodId mediaPeriodId) {
+
+                    }
+
+                    @Override
+                    public void onUpstreamDiscarded(int windowIndex, MediaSource.MediaPeriodId mediaPeriodId, MediaLoadData mediaLoadData) {
+
+                    }
+
+                    @Override
+                    public void onDownstreamFormatChanged(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, MediaLoadData mediaLoadData) {
+
+                    }
+                });
+
+            }
+            else{
+                exoPlayer.setVisibility(View.GONE);
+                Picasso.get().load(source.get(position)).fit().into(img);
+
+            }
+
+
+
+
+
+
 
 
     }
 
     @Override
     public int getItemCount() {
-        return 3;
+        Log.d(TAG,"item_count" + (2+ posts.size()));
+        return 2 + posts.size();
     }
+
+    public void setFollowing(boolean b,Button btn,Context mContext) {
+        if (b){
+            Presenter_Custom_Profile custom_profile_presenter = new Presenter_Custom_Profile();
+            Drawable background = btn.getBackground();
+            background.setTint(mContext.getResources().getColor(R.color.cpb_green));
+            btn.setText("Following");
+
+
+            btn.setOnClickListener(v ->
+
+                    custom_profile_presenter.follow_new_user(mContext,uid,b));
+                    Drawable background1 = btn.getBackground();
+
+                    background1.setTint(mContext.getResources().getColor(R.color.blue_pressed_btn));
+
+
+
+
+        }
+        else{
+            Presenter_Custom_Profile custom_profile_presenter = new Presenter_Custom_Profile();
+
+            Drawable background = btn.getBackground();
+            background.setTint(mContext.getResources().getColor(R.color.blue_pressed_btn));
+            btn.setText("Follow");
+
+            btn.setOnClickListener(v ->
+                    custom_profile_presenter.follow_new_user(mContext,uid,b));
+                    Drawable background1 = btn.getBackground();
+                    background1.setTint(mContext.getResources().getColor(R.color.cpb_green));
+
+
+
+
+
+        }
+    }
+
+    public void setPosts() {
+    }
+
     public static class standart_profile_view extends RecyclerView.ViewHolder{
         TextView Name;
         TextView Grade;
@@ -198,11 +345,17 @@ public class Adapter_Profile_Custom_User_Page extends RecyclerView.Adapter<Recyc
         }
     }
 
-    private class uploads_viewholder_profile_custom extends RecyclerView.ViewHolder {
-        RecyclerView recyclerView;
+    public class uploads_viewholder_profile_custom extends RecyclerView.ViewHolder {
+        SimpleExoPlayerView exoPlayer;
+        ImageView img;
+        ProgressBar progress_custom_upload_profile;
+
         public uploads_viewholder_profile_custom(View view) {
             super(view);
-            recyclerView = view.findViewById(R.id.rec_viewholder_profile_custom_2_12);
+           img = view.findViewById(R.id.adapter_profile_custom_uploads_img);
+           exoPlayer = view.findViewById(R.id.adapter_profile_custom_uploads_video);
+           progress_custom_upload_profile = view.findViewById(R.id.progress_custom_upload_profile);
+
         }
     }
 
@@ -217,18 +370,23 @@ public class Adapter_Profile_Custom_User_Page extends RecyclerView.Adapter<Recyc
     @Override
     public int getItemViewType(int position) {
         int i = 0;
-        if (position == 0){
+        Log.d(TAG,"Position:" + position);
+        if (position== 0){
             i = 0;
+        }
+        else{
+            if (position == 1){
+                i = 1;
+
+            }
+            else {
+                i= 2;
+            }
+
 
         }
-        if (position == 1){
-            i = 1;
 
-        }
-        if (position == 2){
-            i = 2;
 
-        }
         return i;
     }
 }

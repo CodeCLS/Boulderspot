@@ -3,12 +3,17 @@ package app.playstore.uClimb.MVP.MVP_Custom_Profile;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import app.playstore.uClimb.Adapters.Profile.Adapter_Profile_Custom_User_Page;
-import app.playstore.uClimb.Adapters.Profile.Adapter_Profile_User_Uploads;
+import app.playstore.uClimb.Obsolete.Adapter_Profile_User_Uploads;
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.MVP.MVP_Login.Presenter_Login;
 
@@ -52,6 +57,7 @@ public class Presenter_Custom_Profile {
     private ArrayList<String> uid_inner = new ArrayList<String>();
     private ArrayList<String> time = new ArrayList<String>();
     private ArrayList<String> place = new ArrayList<String>();
+    Presenter_Login presenter_login = new Presenter_Login();
 
 
 
@@ -128,6 +134,7 @@ public class Presenter_Custom_Profile {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 Log.d(TAG,"uid:" +uid);
                 stat_uid = Objects.requireNonNull(dataSnapshot.child(uid).child("StatisticsID").getValue()).toString();
                 Age = Objects.requireNonNull(dataSnapshot.child(uid).child("Age").getValue()).toString();
@@ -150,10 +157,13 @@ public class Presenter_Custom_Profile {
                     Log.d(TAG,"post3" + posts);
 
                 }
+
+
+
                 Height = Objects.requireNonNull(dataSnapshot.child(uid).child("Height").getValue()).toString();
                 time_created = Objects.requireNonNull(dataSnapshot.child(uid).child("Time_created").getValue()).toString();
                 account_type = Objects.requireNonNull(dataSnapshot.child(uid).child("account_type").getValue()).toString();
-                Log.d(TAG,"post2" + posts);
+                Log.d(TAG,"post2");
                 Adapter_Profile_Custom_User_Page profile_adapter = new Adapter_Profile_Custom_User_Page(uid,stat_uid,Age,Name,profile_img,Info,Subscription,grade,country,follower,following,Height,account_type,time_created,posts);
                 RecyclerView rec = view.findViewById(R.id.custom_profile_rec);
                 rec.setLayoutManager(new LinearLayoutManager(mContext));
@@ -174,15 +184,96 @@ public class Presenter_Custom_Profile {
     }
 
 
-    public void follow_new_user(Context mContext,String id_user) {
+    public void follow_new_user(Context mContext, String id_user, boolean b) {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference("");
-        Presenter_Login login_presenter = new Presenter_Login();
-        String id = login_presenter.getUID(mContext);
-        Log.d(TAG,"uid"+id);
-        Log.d(TAG,"id_user"+id_user);
+        if (b){
+            String uid = presenter_login.getUID(mContext);
+            databaseReference.child("User").child(uid).child("Following").child(id_user).removeValue();
+            databaseReference.child("User").child(id_user).child("Following").child(uid).removeValue();
 
 
-        databaseReference.child("User").child(id).child("Following").child(id_user).setValue(id_user);
+
+        }
+        else{
+
+            String id = presenter_login.getUID(mContext);
+            Log.d(TAG,"uid"+id);
+            Log.d(TAG,"id_user"+id_user);
+
+
+            databaseReference.child("User").child(id).child("Following").child(id_user).setValue(id_user);
+            databaseReference.child("User").child(id_user).child("Following").child(id).setValue(id);
+
+
+        }
+
+    }
+
+    public void isLiked(String uid, Context mContext, Button button) {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String u_iD = presenter_login.getUID(mContext);
+                Boolean status_user_existence = dataSnapshot.child("Users").child(u_iD).child("Following").child(uid).exists();
+                if (status_user_existence){
+                    Adapter_Profile_Custom_User_Page adapter_profile_custom_user_page = new Adapter_Profile_Custom_User_Page();
+
+                    adapter_profile_custom_user_page.setFollowing(true,button,mContext);
+
+                }
+                else{
+                    Adapter_Profile_Custom_User_Page adapter_profile_custom_user_page = new Adapter_Profile_Custom_User_Page();
+
+                    adapter_profile_custom_user_page.setFollowing(false,button,mContext);
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void getSource(Context mContext,int position, ImageView img, SimpleExoPlayerView exoplayer, ProgressBar progress, Presenter_Custom_Profile custom_profile, int holdertype, ArrayList posts) {
+        ArrayList source = new ArrayList<String>();
+        ArrayList type = new ArrayList<String>();
+        if (position>source.size()){
+            return;
+
+        }
+        position = position;
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        int finalPosition = position;
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (int i = 0; i< posts.size();i++){
+                    Log.d(TAG," source: " + posts + " position: " + finalPosition);
+                    String id = posts.get(finalPosition).toString();
+                    source.add(dataSnapshot.child("Posts").child(id).child("Source").getValue().toString());
+                    type.add(dataSnapshot.child("Posts").child(id).child("type").getValue().toString());
+
+
+                }
+
+                Adapter_Profile_Custom_User_Page custom_user_page = new Adapter_Profile_Custom_User_Page();
+                custom_user_page.addPosts(mContext,finalPosition, img, exoplayer, progress, holdertype,source,type);
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 }

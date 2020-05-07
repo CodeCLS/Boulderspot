@@ -2298,6 +2298,8 @@ id action_mode_close_button
 id action_text
 id actions
 id activity_chooser_view_content
+id adapter_profile_custom_uploads_img
+id adapter_profile_custom_uploads_video
 id add
 id adjust_height
 id adjust_width
@@ -2703,6 +2705,7 @@ id profile_rec
 id progress_bar
 id progress_circular
 id progress_custom_home
+id progress_custom_upload_profile
 id progress_horizontal
 id progress_item_search_img
 id progress_item_search_video
@@ -3104,6 +3107,7 @@ layout profile_page_user_multiple_layout_a
 layout profile_page_user_multiple_layout_b
 layout profile_page_user_standart_layout
 layout public_bar_post_ui
+layout public_custom_upload_user
 layout public_no_connection
 layout public_spinner_search_item
 layout public_training_button_ui

@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import app.playstore.uClimb.Adapters.Profile.Adapter_Profile;
-import app.playstore.uClimb.Adapters.Profile.Adapter_Profile_User_Uploads;
+import app.playstore.uClimb.Obsolete.Adapter_Profile_User_Uploads;
 import app.playstore.uClimb.Main.MainActivity;
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.MVP.MVP_Login.Presenter_Login;

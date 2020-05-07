@@ -1,11 +1,13 @@
 package app.playstore.uClimb.Adapters.Search;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -79,9 +81,22 @@ public class Adapter_Search extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private void holder_zero(RecyclerView.ViewHolder holder) {
         ViewHolderSearch viewHolderSearch = (ViewHolderSearch) holder;
-        ArrayAdapter adapter = new Adapter_Spinner(mContext,R.layout.public_spinner_search_item,peoples,peoples_img);
+        Adapter_Spinner adapter = new Adapter_Spinner(mContext,R.layout.public_spinner_search_item,peoples.toArray(),peoples_img,peoples,mContext);
         viewHolderSearch.editText.setAdapter(adapter);
-        Log.d(TAG,"array_people" + peoples);
+        Log.d(TAG,"array_people2" + adapter);
+        viewHolderSearch.editText.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                custom_profile custom_profile = new custom_profile();
+                Bundle bundle = new Bundle();
+                bundle.putString("uid",people_id.get(position).toString());
+                custom_profile.setArguments(bundle);
+
+                FragmentManager fragmentManager = ((AppCompatActivity)mContext).getSupportFragmentManager();
+                fragmentManager.beginTransaction().addToBackStack("Fragment_custom_profile").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .replace(R.id.container_fragment,custom_profile).commit();
+            }
+        });
 
         viewHolderSearch.Enter.setOnClickListener(v -> {
 
