@@ -19,7 +19,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MediaSourceEventListener;
@@ -34,6 +33,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import app.playstore.uClimb.Obsolete.Adapter_Profile_User_Uploads;
+import app.playstore.uClimb.Public_Spinner_Base_Profiles;
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.MVP.MVP_Custom_Profile.Presenter_Custom_Profile;
 
@@ -77,6 +77,7 @@ public class Adapter_Profile_Custom_User_Page extends RecyclerView.Adapter<Recyc
 
     public Adapter_Profile_Custom_User_Page(String uid, String stat_uid, String age, String name, String profile_img, String info, String subscription, String grade, String country, ArrayList follower, ArrayList following, String height, String account_type, String time_created, ArrayList<String> posts) {
         this.uid = uid;
+        Log.d(TAG,"uid3" + uid + "uid4 " +this.uid);
         this.stat_uid = stat_uid;
         Age = age;
         Name = name;
@@ -133,6 +134,7 @@ public class Adapter_Profile_Custom_User_Page extends RecyclerView.Adapter<Recyc
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        position = position-2;
         if (holder.getItemViewType() == 0){
             standart_profile_view standart_profile_view = (Adapter_Profile_Custom_User_Page.standart_profile_view) holder;
 
@@ -143,6 +145,7 @@ public class Adapter_Profile_Custom_User_Page extends RecyclerView.Adapter<Recyc
             standart_profile_view.Info.setText(Info);
             standart_profile_view.Height.setText(Height);
             Picasso.get().load(profile_img).fit().into(standart_profile_view.img_profile);
+            setFollowerSpinner(standart_profile_view.spinner_follower,standart_profile_view.spinner_following);
 
 
 
@@ -154,17 +157,18 @@ public class Adapter_Profile_Custom_User_Page extends RecyclerView.Adapter<Recyc
 
 
             follow_profile_viewholder follow_profile_viewholder = (Adapter_Profile_Custom_User_Page.follow_profile_viewholder) holder;
-            custom_profile_presenter.isLiked(uid,mContext,follow_profile_viewholder.button);
+            custom_profile_presenter.isFollowing(uid,mContext,follow_profile_viewholder.button);
 
 
 
 
         }
         if (holder.getItemViewType() == 2){
-            position = position;
-            if (position > posts.size()){
-                position = position-1;
-            }
+            Log.d(TAG,"people21" + position + " " + posts.size());
+            //if (position > posts.size()){
+            //    Log.d(TAG,"people22");
+            //    position = position-1;
+            //}
             uploads_viewholder_profile_custom uploads_viewholder_profile_custom = (uploads_viewholder_profile_custom) holder;
             Presenter_Custom_Profile custom_profile_presenter = new Presenter_Custom_Profile();
 
@@ -179,14 +183,24 @@ public class Adapter_Profile_Custom_User_Page extends RecyclerView.Adapter<Recyc
 
     }
 
+    private void setFollowerSpinner(Spinner Follower,Spinner Following) {
+        Presenter_Custom_Profile custom_profile = new Presenter_Custom_Profile();
+        custom_profile.getUserData(mContext,Follower,Following);
+
+
+    }
+
+
+
     public void addPosts(Context back_context,int position, ImageView img, SimpleExoPlayerView exoPlayer,ProgressBar progressBar, int holdertype, ArrayList<String> source, ArrayList type) {
 
             Log.d(TAG,"video21"+type.get(position));
             if (type.get(position).equals("Video")){
-                Log.d(TAG,"source" + source);
+                Log.d(TAG,"source21" + source);
                 Uri uri = Uri.parse(source.get(position));
                 Log.d(TAG,"Context" + back_context);
                 img.setVisibility(View.GONE);
+                exoPlayer.setVisibility(View.VISIBLE);
                 DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(back_context,
                         Util.getUserAgent(back_context, "uClimb"));
                 MediaSource videoSource =
@@ -250,7 +264,21 @@ public class Adapter_Profile_Custom_User_Page extends RecyclerView.Adapter<Recyc
             }
             else{
                 exoPlayer.setVisibility(View.GONE);
-                Picasso.get().load(source.get(position)).fit().into(img);
+                img.setVisibility(View.VISIBLE);
+                Picasso.get().load(source.get(position)).fit().into(img, new com.squareup.picasso.Callback() {
+                    @Override
+                    public void onSuccess() {
+                        Log.d(TAG,"Error22");
+
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        Log.d(TAG,"Error21: " + e);
+
+                    }
+                });
+
 
             }
 
@@ -269,7 +297,8 @@ public class Adapter_Profile_Custom_User_Page extends RecyclerView.Adapter<Recyc
         return 2 + posts.size();
     }
 
-    public void setFollowing(boolean b,Button btn,Context mContext) {
+    public void setFollowing(boolean b,Button btn,Context mContext, String uid) {
+        Log.d(TAG,"uid2: " + uid + "boolean " + b);
         if (b){
             Presenter_Custom_Profile custom_profile_presenter = new Presenter_Custom_Profile();
             Drawable background = btn.getBackground();
@@ -277,12 +306,17 @@ public class Adapter_Profile_Custom_User_Page extends RecyclerView.Adapter<Recyc
             btn.setText("Following");
 
 
-            btn.setOnClickListener(v ->
-
-                    custom_profile_presenter.follow_new_user(mContext,uid,b));
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
                     Drawable background1 = btn.getBackground();
-
                     background1.setTint(mContext.getResources().getColor(R.color.blue_pressed_btn));
+                    custom_profile_presenter.follow_new_user(mContext,uid,true,btn);
+
+
+
+                }
+            });
 
 
 
@@ -295,10 +329,17 @@ public class Adapter_Profile_Custom_User_Page extends RecyclerView.Adapter<Recyc
             background.setTint(mContext.getResources().getColor(R.color.blue_pressed_btn));
             btn.setText("Follow");
 
-            btn.setOnClickListener(v ->
-                    custom_profile_presenter.follow_new_user(mContext,uid,b));
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    custom_profile_presenter.follow_new_user(mContext,uid,b,btn);
                     Drawable background1 = btn.getBackground();
                     background1.setTint(mContext.getResources().getColor(R.color.cpb_green));
+                    Log.d(TAG,"hs32");
+
+                }
+            });
+
 
 
 

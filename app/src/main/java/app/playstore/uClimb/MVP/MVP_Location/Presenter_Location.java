@@ -129,6 +129,7 @@ public class Presenter_Location extends Fragment implements OnMapReadyCallback ,
 
     public void getLocation() {
         LocationManager locationManager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
+        Log.d(TAG,"location_manager"+locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER));
         if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -140,6 +141,10 @@ public class Presenter_Location extends Fragment implements OnMapReadyCallback ,
             return;
         }
         Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        Log.d(TAG,"Location32"+location);
+        if (location == null){
+            return;
+        }
         Log.d(TAG,"Locationgooglepls: " + location.getLatitude());
         Log.d(TAG,"Locationgooglepls: " + location.getLongitude());
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, this);
