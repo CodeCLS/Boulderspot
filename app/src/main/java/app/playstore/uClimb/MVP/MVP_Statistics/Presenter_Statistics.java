@@ -156,15 +156,15 @@ public class Presenter_Statistics {
 
                     Log.d(TAG,"workoutssize"+dataSnapshot.child("Statistics").child(statistics_id).child("Workouts").getChildrenCount());
 
-                    if (dataSnapshot.child("Statistics").child(statistics_id).child("Workouts").getChildrenCount() == 0){
-                        if (view_main.getRootView() != null) {
-                            Log.d(TAG,"viewmain"+view_main);
-                            Snackbar snackbar = Snackbar.make(view_main.getRootView(), "No workout progress posted yet", BaseTransientBottomBar.LENGTH_SHORT);
-                            snackbar.setBackgroundTint(mContext.getResources().getColor(R.color.colorPrimaryDark));
-                            snackbar.show();
-
-                        }
-                    }
+                    //if (dataSnapshot.child("Statistics").child(statistics_id).child("Workouts").getChildrenCount() == 0){
+                    //    if (view_main.getRootView() != null) {
+                    //        Log.d(TAG,"viewmain"+view_main);
+                    //        Snackbar snackbar = Snackbar.make(view_main.getRootView(), "No workout progress posted yet", BaseTransientBottomBar.LENGTH_SHORT);
+                    //        snackbar.setBackgroundTint(mContext.getResources().getColor(R.color.colorPrimaryDark));
+                    //        snackbar.show();
+//
+                    //    }
+                    //}
 
                     for (DataSnapshot postSnapshot : dataSnapshot.child("Statistics").child(statistics_id).child("Workouts").getChildren()) {
                         Log.d(TAG,"dataworkout2" + postSnapshot) ;

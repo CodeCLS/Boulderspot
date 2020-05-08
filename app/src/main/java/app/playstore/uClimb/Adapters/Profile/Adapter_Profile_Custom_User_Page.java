@@ -33,7 +33,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import app.playstore.uClimb.Obsolete.Adapter_Profile_User_Uploads;
-import app.playstore.uClimb.Public_Spinner_Base_Profiles;
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.MVP.MVP_Custom_Profile.Presenter_Custom_Profile;
 

@@ -93,10 +93,10 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/tools_btn_layout_home"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:id="@+id/tools_btn_layout_home"
+                android:layout_weight="2"
                 android:orientation="horizontal">
 
 
@@ -187,10 +187,7 @@
         android:id="@+id/progress_custom_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="120dp"
-        android:layout_marginBottom="120dp"
+        android:layout_margin="160dp"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

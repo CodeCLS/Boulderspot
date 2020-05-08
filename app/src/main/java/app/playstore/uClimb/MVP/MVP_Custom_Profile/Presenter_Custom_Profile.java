@@ -26,7 +26,7 @@ import java.util.Objects;
 
 import app.playstore.uClimb.Adapters.Profile.Adapter_Profile_Custom_User_Page;
 import app.playstore.uClimb.Obsolete.Adapter_Profile_User_Uploads;
-import app.playstore.uClimb.Public_Spinner_Base_Profiles;
+import app.playstore.uClimb.Adapters.Public_Spinner_Base_Profiles;
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.MVP.MVP_Login.Presenter_Login;
 
@@ -308,8 +308,8 @@ public class Presenter_Custom_Profile {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot: dataSnapshot.child("User").child(uid).child("Follower").getChildren()){
                     Follower.add(postSnapshot.getKey());
-                    String img = dataSnapshot.child(postSnapshot.getKey()).child("IMG").getValue().toString();
-                    String name = dataSnapshot.child(postSnapshot.getKey()).child("Name").getValue().toString();
+                    String img = dataSnapshot.child("User").child(postSnapshot.getKey()).child("IMG").getValue().toString();
+                    String name = dataSnapshot.child("User").child(postSnapshot.getKey()).child("Name").getValue().toString();
                     Follower_img.add(img);
                     Follower_name.add(name);
                 }

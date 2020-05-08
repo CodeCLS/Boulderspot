@@ -47,6 +47,7 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import app.playstore.uClimb.Adapters.Public_Spinner_Base_Profiles;
 import app.playstore.uClimb.Fragments.custom_profile;
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.MVP.MVP_Login.Presenter_Login;
@@ -69,6 +70,10 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private ArrayList friends;
     private ArrayList<String> following_final = new ArrayList<String>();
     private ArrayList<String> follower_final = new ArrayList<String>();
+    private ArrayList<String> following_name = new ArrayList<String>();
+    private ArrayList<String> follower_name = new ArrayList<String>();
+    private ArrayList<String> following_img = new ArrayList<String>();
+    private ArrayList<String> follower_img = new ArrayList<String>();
 
     //private String account_type;
     //private String time_created;
@@ -551,6 +556,8 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
         ArrayAdapter<String> dataAdapter_friends = new ArrayAdapter<String>(mContext,
                 android.R.layout.simple_spinner_item, friends);
 
+        //TODO here
+
 // Specify the layout to use when the list of choices appears
         dataAdapter_friends.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 // Apply the adapter to the spinner
@@ -559,14 +566,10 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private void set_spinner_follower(standart_profile standart_profile) {
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<String> dataAdapter_follower = new ArrayAdapter<String>(mContext,
-                android.R.layout.simple_spinner_item, follower);
 
 
 // Specify the layout to use when the list of choices appears
-        dataAdapter_follower.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 // Apply the adapter to the spinner
-        standart_profile.Follower.setAdapter(dataAdapter_follower);
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference("");
@@ -579,14 +582,59 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         follower_final.add("/");
 
                     } else {
-                        String name = Objects.requireNonNull(dataSnapshot.child("User").child(id).child("Name").getValue()).toString();
-                        follower_final.add(name);
+                        if (i==0){
+                            follower_final.add("/");
+                            follower_img.add("/");
+                            follower_name.add("/");
+
+                        }
+
+
+
+                            String id_user = Objects.requireNonNull(dataSnapshot.child("User").child(id).getKey());
+                            String name = Objects.requireNonNull(dataSnapshot.child("User").child(id).child("Name").getValue()).toString();
+                            String img = Objects.requireNonNull(dataSnapshot.child("User").child(id).child("IMG").getValue()).toString();
+
+                            follower_final.add(id_user);
+                            follower_img.add(img);
+                            follower_name.add(name);
+
+
 
 
                     }
 
 
                 }
+                standart_profile.Follower.setAdapter(new Public_Spinner_Base_Profiles(follower_img,follower_name,follower_final));
+                standart_profile.Follower.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        if (follower_final.get(position).equals("/")){
+                            return;
+                        }
+                        else{
+                            Log.d(TAG,"clicked_21" +"------- "+ id +" ----- " + parent.getItemAtPosition(0));
+                            String uid = follower.get(position-1).toString();
+                            custom_profile custom_profile = new custom_profile();
+                            Bundle bundle = new Bundle();
+                            bundle.putString("uid",uid);
+                            custom_profile.setArguments(bundle);
+                            FragmentManager fragmentManager = ((AppCompatActivity)mContext).getSupportFragmentManager();
+                            fragmentManager.beginTransaction().addToBackStack("Fragment_custom_profile").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                                    .replace(R.id.container_fragment,custom_profile).commit();
+                        }
+
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+
+
+
 
             }
 
@@ -595,28 +643,7 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             }
         });
-        standart_profile.Follower.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(TAG,"clicked_153324");
-                String uid = follower.get(position).toString();
-                custom_profile custom_profile = new custom_profile();
-                Bundle bundle = new Bundle();
-                bundle.putString("uid",uid);
-                custom_profile.setArguments(bundle);
 
-                FragmentManager fragmentManager = ((AppCompatActivity)mContext).getSupportFragmentManager();
-                fragmentManager.beginTransaction().addToBackStack("Fragment_custom_profile").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .replace(R.id.container_fragment,custom_profile).commit();
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                Log.d(TAG,"clicked_124233");
-
-            }
-        });
 
 
 
@@ -629,23 +656,70 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (int i = 0; i< following.size();i++){
+                for (int i = 0; i < following.size(); i++) {
                     String id = following.get(i).toString();
-                    if (!dataSnapshot.child("User").child(id).child("Name").exists()){
-                        following_final.add("/");
+                    if (!dataSnapshot.child("User").child(id).child("Name").exists()) {
+                        follower_final.add("/");
 
                     }
-                    else{
-                        String name = dataSnapshot.child("User").child(id).child("Name").getValue().toString();
-                        following_final.add(name);
+                    else {
+                        if (i==0){
+                            following_final.add("/");
+                            following_img.add("/");
+                            following_name.add("/");
+
+                        }
+                        String id_user = Objects.requireNonNull(dataSnapshot.child("User").child(id).getKey());
+                        String name = Objects.requireNonNull(dataSnapshot.child("User").child(id).child("Name").getValue()).toString();
+                        String img = Objects.requireNonNull(dataSnapshot.child("User").child(id).child("IMG").getValue()).toString();
+
+                        following_final.add(id_user);
+                        following_img.add(img);
+                        following_name.add(name);
+
 
 
                     }
-
-
 
 
                 }
+                standart_profile.Following.setAdapter(new Public_Spinner_Base_Profiles(following_img,following_name,following_final));
+                standart_profile.Following.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        Log.d(TAG,"clicked_15334" + " -----" + id + " -------" + parent);
+                        if (following_final.get(position).toString().equals("/")){
+                            return;
+
+                        }
+                        else{
+                            String uid = following.get(position-1).toString();
+                            custom_profile custom_profile = new custom_profile();
+                            Bundle bundle = new Bundle();
+                            bundle.putString("uid",uid);
+                            custom_profile.setArguments(bundle);
+                            FragmentManager fragmentManager = ((AppCompatActivity)mContext).getSupportFragmentManager();
+                            fragmentManager.beginTransaction().addToBackStack("Fragment_custom_profile").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                                    .replace(R.id.container_fragment,custom_profile).commit();
+
+                        }
+                      //String uid = following.get(position).toString();
+                      //custom_profile custom_profile = new custom_profile();
+                      //Bundle bundle = new Bundle();
+                      //bundle.putString("uid",uid);
+                      //custom_profile.setArguments(bundle);
+
+                      //FragmentManager fragmentManager = ((AppCompatActivity)mContext).getSupportFragmentManager();
+                      //fragmentManager.beginTransaction().addToBackStack("Fragment_custom_profile").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                      //        .replace(R.id.container_fragment,custom_profile).commit();
+
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
 
             }
 
@@ -657,34 +731,12 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
         });
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<String> dataAdapter_following = new ArrayAdapter<String>(mContext,
-                android.R.layout.simple_spinner_item, following_final);
+
 
 // Specify the layout to use when the list of choices appears
-        dataAdapter_following.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 // Apply the adapter to the spinner
-        standart_profile.Following.setAdapter(dataAdapter_following);
-        standart_profile.Following.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(TAG,"clicked_15334");
-                String uid = following.get(position).toString();
-                custom_profile custom_profile = new custom_profile();
-                Bundle bundle = new Bundle();
-                bundle.putString("uid",uid);
-                custom_profile.setArguments(bundle);
 
-                FragmentManager fragmentManager = ((AppCompatActivity)mContext).getSupportFragmentManager();
-                fragmentManager.beginTransaction().addToBackStack("Fragment_custom_profile").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .replace(R.id.container_fragment,custom_profile).commit();
 
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
 
     @Override

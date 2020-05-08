@@ -1,4 +1,4 @@
-package app.playstore.uClimb;
+package app.playstore.uClimb.Adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,8 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import app.playstore.uClimb.R;
 
 public class Public_Spinner_Base_Profiles extends BaseAdapter {
     private ArrayList source = new ArrayList<String>();
