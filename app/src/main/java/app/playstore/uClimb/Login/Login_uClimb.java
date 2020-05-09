@@ -1,7 +1,9 @@
 package app.playstore.uClimb.Login;
 
 import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,11 +12,13 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -42,13 +46,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.net.InetAddress;
 import java.util.Objects;
 
 import app.playstore.uClimb.Main.MainActivity;
+import app.playstore.uClimb.Notifaction.Base_Internet;
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.MVP.MVP_Login.Presenter_Login;
 
-public class Login_uClimb extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+public class Login_uClimb extends Base_Internet implements GoogleApiClient.OnConnectionFailedListener  {
     private static final String TAG = "Login";
     private static final int RC_SIGN_IN = 1;
     public static boolean status;
@@ -304,6 +310,7 @@ public class Login_uClimb extends AppCompatActivity implements GoogleApiClient.O
     protected void onStart() {
         super.onStart();
 
+
         mAuth = FirebaseAuth.getInstance();
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -312,8 +319,8 @@ public class Login_uClimb extends AppCompatActivity implements GoogleApiClient.O
 
     }
 
-    private void updateUI(FirebaseUser currentUser) {
 
+    private void updateUI(FirebaseUser currentUser) {
         if (currentUser == null){
             Log.d(TAG,"currentsuer" + currentUser);
             return;
@@ -326,7 +333,17 @@ public class Login_uClimb extends AppCompatActivity implements GoogleApiClient.O
             myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child(mAuth.getUid()).exists()){
+                    if (dataSnapshot.child(Objects.requireNonNull(mAuth.getUid()).toString()).exists()){
+                        SharedPreferences sharedPreferences = getSharedPreferences("UID",MODE_PRIVATE);
+                        SharedPreferences.Editor shared_edit = sharedPreferences.edit();
+                        shared_edit.putString("UID",mAuth.getUid().trim().toString());
+                        shared_edit.apply();
+
+                        SharedPreferences sharedPreferences_stat = getSharedPreferences("UID_STAT",MODE_PRIVATE);
+                        SharedPreferences.Editor shared_edit_stat = sharedPreferences_stat.edit();
+                        shared_edit_stat.putString("UID_STAT",dataSnapshot.child(mAuth.getUid()).child("StatisticsID").getValue().toString());
+                        shared_edit_stat.apply();
+
                         Log.d(TAG,"mauthexists");
 
                         Intent intent = new Intent(Login_uClimb.this, MainActivity.class);
@@ -337,6 +354,8 @@ public class Login_uClimb extends AppCompatActivity implements GoogleApiClient.O
 
                     }
                     else{
+                        Log.d(TAG,"helodsfs");
+
                         updateUInew(currentUser);
 
                     }
@@ -351,7 +370,26 @@ public class Login_uClimb extends AppCompatActivity implements GoogleApiClient.O
 
 
         }
-    }
+
+
+            //Log.d(TAG,"updateUI" + currentUser);
+            //FirebaseDatabase database = FirebaseDatabase.getInstance();
+            //DatabaseReference myRef = database.getReference("User");
+//
+//
+//
+            //Intent intent = new Intent(Login_uClimb.this, MainActivity.class);
+            ////startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(Boulderspot_Log_In.this).toBundle());
+            //startActivity(intent);
+//
+            //finish();
+
+
+
+
+
+        }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -366,9 +404,11 @@ public class Login_uClimb extends AppCompatActivity implements GoogleApiClient.O
 
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                firebaseAuthWithGoogle(account);
+
 
                 //firebaseAuthWithGoogle(account);
+
+                firebaseAuthWithGoogle(account);
             } catch (ApiException e) {
                 Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
                 // Google Sign In failed, update UI appropriately
@@ -393,22 +433,38 @@ public class Login_uClimb extends AppCompatActivity implements GoogleApiClient.O
 
 
 
+
                                 Log.d(TAG,"mAuthgoogle" + mAuth.getUid());
 
                                 // Write a message to the database
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                DatabaseReference myRef = database.getReference("");
+                                DatabaseReference myRef = database.getReference("User");
 
                                 myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         if (dataSnapshot.child(Objects.requireNonNull(mAuth.getUid())).exists()){
-                                            Log.d(TAG,"notfirst");
+                                            Log.d(TAG,"hellooo");
+
+
+                                            SharedPreferences sharedPreferences = getSharedPreferences("UID",MODE_PRIVATE);
+                                            SharedPreferences.Editor shared_edit = sharedPreferences.edit();
+                                            shared_edit.putString("UID",mAuth.getUid().trim().toString());
+                                            shared_edit.apply();
+
+
+                                            SharedPreferences sharedPreferences_stat = getSharedPreferences("UID_STAT",MODE_PRIVATE);
+                                            SharedPreferences.Editor shared_edit_stat = sharedPreferences_stat.edit();
+                                            shared_edit_stat.putString("UID_STAT",dataSnapshot.child(mAuth.getUid().trim().toString()).child("StatisticsID").getValue().toString());
+                                            shared_edit_stat.apply();
+
 
                                             updateUI(user);
 
                                         }
                                         else{
+                                            Log.d(TAG,"helodsfs");
+
                                             updateUInew(user);
 
                                         }

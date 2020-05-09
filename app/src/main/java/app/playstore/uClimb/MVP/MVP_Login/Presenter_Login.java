@@ -155,19 +155,22 @@ public class Presenter_Login {
     }
 
     public String getStatisticsID(Context mContext) {
-        SharedPreferences sharedPreferences = mContext.getSharedPreferences("statuid" , Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences("UID_STAT" , Context.MODE_PRIVATE);
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String stat_uid = dataSnapshot.child("User").child(getUID(mContext)).getKey();
-                if (stat_uid.equals(sharedPreferences.getString("statuid",null))){
+                String stat_uid = dataSnapshot.child("User").child(getUID(mContext)).child("StatisticsID").getValue().toString();
+                Log.d(TAG,"STAT24"+stat_uid);
+                if (stat_uid.equals(sharedPreferences.getString("UID_STAT",null))){
+                    Log.d(TAG,"STAT26"+stat_uid);
                 }
                 else{
+                    Log.d(TAG,"STAT25"+stat_uid);
                     SharedPreferences.Editor editor= sharedPreferences.edit();
-                    editor.putString("statuid",stat_uid);
+                    editor.putString("UID_STAT",stat_uid);
                     editor.apply();
                 }
             }
@@ -180,13 +183,13 @@ public class Presenter_Login {
 
 
 
-        return sharedPreferences.getString("statuid",null);
+        return sharedPreferences.getString("UID_STAT",null);
     }
 
     public String getUID(Context mContext) {
-        SharedPreferences sharedPreferences = mContext.getSharedPreferences("uid",Context.MODE_PRIVATE);
-        Log.d(TAG,"userid"+sharedPreferences.getString("uid",null));
-        return sharedPreferences.getString("uid",null);
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences("UID",Context.MODE_PRIVATE);
+        Log.d(TAG,"UID"+sharedPreferences.getString("UID",null));
+        return sharedPreferences.getString("UID",null);
     }
 
     public void getFriendsCompeting(Context mContext, View view) {
@@ -197,6 +200,7 @@ public class Presenter_Login {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.d(TAG,"UID23"+getUID(mContext));
 
                 for (DataSnapshot dataSnapshot1: dataSnapshot.child("User").child(getUID(mContext)).child("Friends").getChildren()){
                     friends.add(dataSnapshot1.getKey());

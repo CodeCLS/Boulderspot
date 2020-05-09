@@ -23,9 +23,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import app.playstore.uClimb.Main.MainActivity;
+import app.playstore.uClimb.Notifaction.Base_Internet;
 import app.playstore.uClimb.R;
 
-public class SignUp_uClimb extends AppCompatActivity {
+public class SignUp_uClimb extends Base_Internet {
     private static final String TAG = "Boulderspot_Sign_up";
     private EditText edit_email;
     private EditText edit_pwd;

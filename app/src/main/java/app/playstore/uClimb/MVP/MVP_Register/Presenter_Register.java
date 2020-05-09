@@ -133,6 +133,8 @@ public class Presenter_Register {
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("Follower").setValue(Follower);
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("Following").setValue(Following);
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("Position").setValue(Position);
+        myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("Points").setValue(0+"");
+
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("Position").child("Position_last_Time_updated").setValue(Position_last_Time_updated);
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("Position").child("Position_lat").setValue(Position_lat);
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("Position").child("Position_lon").setValue(Position_lon);
@@ -150,9 +152,9 @@ public class Presenter_Register {
         SharedPreferences.Editor shared_edit_stat = sharedPreferences_stat.edit();
         shared_edit_stat.putString("statuid" , mAuth.getUid());
         shared_edit_stat.apply();
-        SharedPreferences sharedPreferences = mContext.getSharedPreferences("uid", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences("UID", Context.MODE_PRIVATE);
         SharedPreferences.Editor shared_edit = sharedPreferences.edit();
-        shared_edit.putString("uid" , mAuth.getUid());
+        shared_edit.putString("UID" , mAuth.getUid());
         shared_edit.apply();
         Log.d(TAG,"12423");
 

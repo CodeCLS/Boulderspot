@@ -7,12 +7,14 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import app.playstore.uClimb.Fragments.Home.Home_Fragment;
 import app.playstore.uClimb.Fragments.no_connection;
+import app.playstore.uClimb.Login.Login_uClimb;
 import app.playstore.uClimb.R;
 
 public class Base_Internet extends AppCompatActivity {
@@ -71,10 +73,12 @@ public class Base_Internet extends AppCompatActivity {
     }
 
     private void setscreenback() {
-        Home_Fragment mFragment = new Home_Fragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container_fragment, mFragment).commit();
+        Intent intent = new Intent(this, Login_uClimb.class);
+        startActivity(intent);
+        ///Home_Fragment mFragment = new Home_Fragment();
+        ///FragmentManager fragmentManager = getSupportFragmentManager();
+        ///fragmentManager.beginTransaction()
+        ///        .replace(R.id.container_fragment, mFragment).commit();
     }
 
     @Override
@@ -90,10 +94,13 @@ public class Base_Internet extends AppCompatActivity {
 
 }
     private void setDefaultFragment() {
-        no_connection mFragment = new no_connection();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container_fragment, mFragment).commit();
+        Intent intent = new Intent(this, Login_uClimb.class);
+        startActivity(intent);
+        Toast.makeText(this, "Lost internet connection", Toast.LENGTH_SHORT).show();
+       //no_connection mFragment = new no_connection();
+       //FragmentManager fragmentManager = getSupportFragmentManager();
+       //fragmentManager.beginTransaction()
+       //        .replace(R.id.container_fragment, mFragment).commit();
     }
 
 

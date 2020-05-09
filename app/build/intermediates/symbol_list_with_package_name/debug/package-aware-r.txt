@@ -2335,8 +2335,6 @@ id btn_log_in_log_in
 id btn_publish_position
 id btn_register
 id btn_search_search
-id btn_sound_hang
-id btn_start_train_hangboard
 id buttonPanel
 id cancel_action
 id cancel_button
@@ -2526,8 +2524,6 @@ id group_divider
 id groups
 id guideline
 id guideline3
-id hang_time_edit
-id hang_time_txt
 id height_edit_profile
 id height_txt_profile
 id height_txt_profile_custom
@@ -2576,7 +2572,6 @@ id line3
 id linear
 id linearLayout
 id linearLayout2
-id linearLayout3
 id linearLayout4
 id linear_google_signupwith_login
 id linear_holding_button_and_txt
@@ -2645,10 +2640,6 @@ id number_followers_profile
 id number_followers_profile_custom
 id number_following_profile
 id number_following_profile_custom
-id number_rounds_edit
-id number_rounds_txt
-id number_sets_edit
-id number_sets_txt
 id off
 id on
 id one
@@ -2663,8 +2654,6 @@ id parent_matrix
 id password_toggle
 id path
 id pathRelative
-id pause_time_edit
-id pause_time_txt
 id peekHeight
 id percent
 id pin
@@ -2731,8 +2720,6 @@ id rec_training_list
 id rec_viewholder_profile_custom_2_12
 id rectangle
 id rectangles
-id rest_time_edit
-id rest_time_txt
 id reverseSawtooth
 id rewind_media_button
 id right
@@ -3233,6 +3220,7 @@ string common_open_on_phone
 string common_signin_button_text
 string common_signin_button_text_long
 string country_ex_deutschland
+string custom_link_img
 string default_video_combined_time
 string default_video_time
 string default_web_client_id
@@ -3303,6 +3291,7 @@ string library_circularprogressbutton_libraryVersion
 string library_circularprogressbutton_libraryWebsite
 string library_circularprogressbutton_licenseId
 string library_circularprogressbutton_repositoryLink
+string link_hangboard_img
 string locations_txt
 string login
 string media_error_general
@@ -3375,6 +3364,7 @@ string register
 string search_menu_title
 string sign_in
 string status_bar_notification_info_overflow
+string stretching_img_link
 string test
 string test_string
 string time_am
@@ -3385,6 +3375,7 @@ string title_home
 string title_notifications
 string uClimb_slogan
 string volume_changing
+string warmup_link_img
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog

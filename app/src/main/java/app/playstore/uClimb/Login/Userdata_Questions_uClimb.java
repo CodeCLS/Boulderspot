@@ -29,10 +29,11 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import app.playstore.uClimb.Main.MainActivity;
+import app.playstore.uClimb.Notifaction.Base_Internet;
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.MVP.MVP_Register.Presenter_Register;
 
-public class Userdata_Questions_uClimb extends AppCompatActivity {
+public class Userdata_Questions_uClimb extends Base_Internet {
     private static final String TAG = "extra";
     private AutoCompleteTextView edit_grade;
     private AutoCompleteTextView edit_height;

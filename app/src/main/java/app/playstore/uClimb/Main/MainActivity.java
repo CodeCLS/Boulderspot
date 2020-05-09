@@ -1,6 +1,7 @@
 package app.playstore.uClimb.Main;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
@@ -88,14 +89,12 @@ public class MainActivity extends Base_Internet implements CacheListener {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CHANGE_PROFILE_PIC_CODE) {
-            if (data != null){
+            if (data != null&& resultCode == Activity.RESULT_OK){
             final Uri imageUri = data.getData();
             Presenter_Profile profile_presenter = new Presenter_Profile();
             profile_presenter.here_is_image(imageUri,this,progressBar);
 
-        } }else {
-            Toast.makeText(this, "You haven't picked Image", Toast.LENGTH_LONG).show();
-        }
+        } }
     }
 
     @Override

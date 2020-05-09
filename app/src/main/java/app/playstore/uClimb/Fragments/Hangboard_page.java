@@ -303,21 +303,21 @@ public class Hangboard_page extends Fragment {
     }
 
     private void findViews(@NonNull View view) {
-        hang_time_edit = view.findViewById(R.id.hang_time_edit);
-        pause_time_edit = view.findViewById(R.id.pause_time_edit);
-        hang_time_txt = view.findViewById(R.id.hang_time_txt);
-        pause_time_txt = view.findViewById(R.id.pause_time_txt);
-
-        rest_time_edit = view.findViewById(R.id.rest_time_edit);
-        number_sets_edit = view.findViewById(R.id.number_sets_edit);
-        rest_time_txt = view.findViewById(R.id.rest_time_txt);
-        number_sets_txt = view.findViewById(R.id.number_sets_txt);
-
-        number_rounds_edit = view.findViewById(R.id.number_rounds_edit);
-        number_rounds_txt = view.findViewById(R.id.number_rounds_txt);
-
-        btn_start = view.findViewById(R.id.btn_start_train_hangboard);
-        btn_sound = view.findViewById(R.id.btn_sound_hang);
+       // hang_time_edit = view.findViewById(R.id.hang_time_edit);
+       // pause_time_edit = view.findViewById(R.id.pause_time_edit);
+       // hang_time_txt = view.findViewById(R.id.hang_time_txt);
+       // pause_time_txt = view.findViewById(R.id.pause_time_txt);
+//
+       // rest_time_edit = view.findViewById(R.id.rest_time_edit);
+       // number_sets_edit = view.findViewById(R.id.number_sets_edit);
+       // rest_time_txt = view.findViewById(R.id.rest_time_txt);
+       // number_sets_txt = view.findViewById(R.id.number_sets_txt);
+//
+       // number_rounds_edit = view.findViewById(R.id.number_rounds_edit);
+       // number_rounds_txt = view.findViewById(R.id.number_rounds_txt);
+//
+       // btn_start = view.findViewById(R.id.btn_start_train_hangboard);
+       // btn_sound = view.findViewById(R.id.btn_sound_hang);
     }
 
     @Override

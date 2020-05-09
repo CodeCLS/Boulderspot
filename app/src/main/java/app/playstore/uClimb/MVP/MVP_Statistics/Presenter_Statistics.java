@@ -97,6 +97,8 @@ public class Presenter_Statistics {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Presenter_Login login_presenter = new Presenter_Login();
                 String statistics_id = login_presenter.getStatisticsID(mContext);
+                Log.d(TAG,"STAT23"+statistics_id);
+
                 String uid = login_presenter.getUID(mContext);
                 Log.d(TAG,"friends" + friends);
                 friends = value;

@@ -1,5 +1,6 @@
 package app.playstore.uClimb.Fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -56,12 +57,12 @@ import app.playstore.uClimb.MVP.MVP_Video_Upload.Presenter_Video;
 
 public class video_upload_fragment extends Fragment {
     private static final int REQUEST_TAKE_GALLERY_VIDEO = 222;
-    private static final int RESULT_OK = -1;
+    private static final int RESULT_OK = 1;
     private static final int AUTOCOMPLETE_REQUEST_CODE = 1;
 
     private static final String TAG = "Video_Upload";
     private static final int RESULT_CANCELED = 5;
-    private static final int IMG_REQUEST_CODE = 8;
+    private static final int IMG_REQUEST_CODE = 0;
     private TextView file_name;
     private StorageReference mStorageRef;
     private EditText info_edit;
@@ -160,10 +161,10 @@ public class video_upload_fragment extends Fragment {
 
 
 
-                Intent intent = new Autocomplete.IntentBuilder(
-                        AutocompleteActivityMode.OVERLAY, fields)
-                        .build(getContext());
-                startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
+             Intent intent = new Autocomplete.IntentBuilder(
+                     AutocompleteActivityMode.OVERLAY, fields)
+                     .build(getContext());
+             startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
 
 
 
@@ -211,11 +212,11 @@ public class video_upload_fragment extends Fragment {
 
               }
               if (spinner_source_type.getSelectedItem().toString().equals("Image")){
-                  Log.d(TAG, "Clicked2");
-                  Intent intent = new Intent();
-                  intent.setType("image/*");
-                  intent.setAction(Intent.ACTION_GET_CONTENT);
-                  startActivityForResult(Intent.createChooser(intent, "Select Image"), IMG_REQUEST_CODE);
+                 Log.d(TAG, "Clicked2");
+                 Intent intent = new Intent();
+                 intent.setType("image/*");
+                 intent.setAction(Intent.ACTION_GET_CONTENT);
+                 startActivityForResult(Intent.createChooser(intent, "Select Image"), IMG_REQUEST_CODE);
 
               }
           }
@@ -328,7 +329,7 @@ public class video_upload_fragment extends Fragment {
 
         }
         else{
-            Toast.makeText(getContext(), "You either havent written more than 10 characters, didn't enter a location or entered a video/image. Please resolve", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "You either haven't written more than 10 characters, didn't enter a location or entered a video/image. Please resolve", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -344,68 +345,83 @@ public class video_upload_fragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d(TAG,"META:" + requestCode + "OK? " + resultCode);
+        super.onActivityResult(requestCode,resultCode,data);
+        //Log.d(TAG,"META:" + requestCode + "OK? " + resultCode);
 
-        if (requestCode == REQUEST_TAKE_GALLERY_VIDEO&& resultCode == resultCode) {
-            final Uri selectedVideoUri = data.getData();
-            Log.d(TAG,"metadata" + selectedVideoUri);
-            StorageMetadata metadata = new StorageMetadata.Builder()
-                    .setContentType("video/*")
-                    .build();
-            Log.d(TAG,"META:" + metadata);
-            if (selectedVideoUri == null) {
-                Log.d("selected video path", "null");
-            } else {
-                Log.d("selectedVideoPath", selectedVideoUri.toString());
-                if (selectedVideoUri != null) {
-                    Log.d(TAG,"selected1");
-
-
-                    //file_name.setText(selectedVideoUri.toString());
-
-
-                    selected_source = true;
-                    selected_video = true;
-                    selected_video_source = selectedVideoUri.toString();
-                    selected_img = false;
+        if (requestCode == REQUEST_TAKE_GALLERY_VIDEO) {
+            if(resultCode == Activity.RESULT_OK && data != null){
+                final Uri selectedVideoUri = data.getData();
+                Log.d(TAG,"metadata" + selectedVideoUri);
+                StorageMetadata metadata = new StorageMetadata.Builder()
+                        .setContentType("video/*")
+                        .build();
+                Log.d(TAG,"META:" + metadata);
+                if (selectedVideoUri == null) {
+                    Log.d("selected video path", "null");
+                } else {
+                    Log.d("selectedVideoPath", selectedVideoUri.toString());
+                    if (selectedVideoUri != null) {
+                        Log.d(TAG,"selected1");
 
 
+                        //file_name.setText(selectedVideoUri.toString());
 
+
+                        selected_source = true;
+                        selected_video = true;
+                        selected_video_source = selectedVideoUri.toString();
+                        selected_img = false;
+
+
+
+                    }
                 }
+
             }
+            else if (resultCode == Activity.RESULT_CANCELED){
+
+            }
+
         }
 
-        if (requestCode == IMG_REQUEST_CODE&& resultCode == resultCode){
-            final Uri selectedIMGUri = data.getData();
-            StorageMetadata metadata = new StorageMetadata.Builder()
-                    .setContentType("image/*")
-                    .build();
-            Log.d(TAG,"META:" + metadata);
-            if (selectedIMGUri == null) {
-                Log.d("selected image path", "null");
-            } else {
-                Log.d("selectedVideoPath", selectedIMGUri.toString());
-                if (selectedIMGUri != null) {
-                    Log.d(TAG,"selected1");
+        if (requestCode == IMG_REQUEST_CODE){
+            if (resultCode == Activity.RESULT_OK && data != null){
+                final Uri selectedIMGUri = data.getData();
+                StorageMetadata metadata = new StorageMetadata.Builder()
+                        .setContentType("image/*")
+                        .build();
+                Log.d(TAG,"META:" + metadata);
+                if (selectedIMGUri == null) {
+                    Log.d("selected image path", "null");
+                } else {
+                    Log.d("selectedVideoPath", selectedIMGUri.toString());
+                    if (selectedIMGUri != null) {
+                        Log.d(TAG,"selected1");
 
 
-                    selected_source = true;
-                    selected_img = true;
-                    selected_IMG_source = selectedIMGUri.toString();
-                    selected_video= false;
+                        selected_source = true;
+                        selected_img = true;
+                        selected_IMG_source = selectedIMGUri.toString();
+                        selected_video= false;
 
 
+                    }
                 }
+
             }
+            else if (resultCode == Activity.RESULT_CANCELED){
+
+            }
+
 
         }
 
         if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                Place place = Autocomplete.getPlaceFromIntent(data);
-                Log.d(TAG, "Place: " + place.getName() + ", " + place.getId());
-                place_id = place.getId();
-                place_Name = place.getName();
+            if (resultCode == Activity.RESULT_OK && data!= null) {
+              Place place = Autocomplete.getPlaceFromIntent(data);
+              Log.d(TAG, "Place: " + place.getName() + ", " + place.getId());
+              place_id = place.getId();
+              place_Name = place.getName();
             } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
                 // TODO: Handle the error.
                 Status status = Autocomplete.getStatusFromIntent(data);
