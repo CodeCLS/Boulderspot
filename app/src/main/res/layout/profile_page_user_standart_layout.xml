@@ -19,13 +19,25 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
+
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/circle_profile_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="20dp"
+            android:layout_margin="10dp"
             android:layout_weight="2.5"
             android:src="@mipmap/plus" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:layout_marginBottom="5dp"
+            android:text="Tap image to change"
+            android:alpha="0.7" />
+
+
 
         <ProgressBar
             android:id="@+id/progress_upload_profile_pic"

@@ -2509,7 +2509,6 @@ id forward_media_button
 id fourth
 id frame_profile_statistics
 id frame_profile_up
-id friends_input_profile
 id friends_linear
 id friends_rec
 id friends_txt_profile
@@ -2583,7 +2582,6 @@ id linear_google_signupwith_login
 id linear_holding_button_and_txt
 id linear_holding_user_edit_pwd_edit_1234
 id linear_log_in_holding123
-id linear_rec_holder_profile
 id listMode
 id list_item
 id loading_progressbar_uploading
@@ -2718,7 +2716,6 @@ id radio
 id ratio
 id rec_custom_comments
 id rec_custom_workouts
-id rec_friends_profile_edit
 id rec_home
 id rec_home_custom
 id rec_item_btn_view

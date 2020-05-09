@@ -396,11 +396,10 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 holder.age.setVisibility(View.VISIBLE);
                 holder.height.setVisibility(View.VISIBLE);
                 holder.info.setVisibility(View.VISIBLE);
+                holder.country.setVisibility(View.VISIBLE);
                 holder.name.setVisibility(View.VISIBLE);
                 holder.email.setVisibility(View.VISIBLE);
-                holder.recyclerview_holder.setVisibility(View.VISIBLE);
-                holder.recyclerView.setVisibility(View.VISIBLE);
-                holder.input_friends.setVisibility(View.VISIBLE);
+                holder.height.setVisibility(View.VISIBLE);
 
                 holder.btn_change_data.setOnClickListener(v1 -> {
 
@@ -408,7 +407,6 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     DatabaseReference reference = auth.getReference("");
                     Presenter_Login login_presenter = new Presenter_Login();
                     String uid = login_presenter.getUID(mContext);
-                    holder.btn_change_data.setOnClickListener(v11 -> {
                         //Locale[] locales = Locale.getAvailableLocales();
                         //for (Locale locale : locales) {
                         //    //String country = locale.getDisplayCountry();
@@ -418,25 +416,27 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         //}
 
                         //System.out.println( "# countries found: " + countries.size());
-                        if (!holder.age.getText().toString().isEmpty() && Integer.parseInt(holder.age.getText().toString()) < 100){
+                        if (!holder.age.getText().toString().isEmpty() && Integer.parseInt(holder.age.getText().toString().trim()) < 100){
                             reference.child("User").child(uid).child("Age").setValue(holder.age.getText().toString());
 
 
-                        }
-                        if (Integer.parseInt(holder.age.getText().toString()) > 100){
-                            Toast.makeText(mContext, "Alter zu groß", Toast.LENGTH_SHORT).show();
-                        }
 
-                        if (!holder.height.getText().toString().isEmpty() && Integer.parseInt(holder.height.getText().toString())>250){
-                            reference.child("User").child(uid).child("Height").child(holder.height.getText().toString());
-
-
-                        }if (Integer.parseInt(holder.height.getText().toString())>250){
-                            Toast.makeText(mContext, "Echte Größe bitte eingeben", Toast.LENGTH_SHORT).show();
                         }
+                       //if (Integer.parseInt(holder.age.getText().toString()) > 100  ){
+                       //    Toast.makeText(mContext, "Alter zu groß", Toast.LENGTH_SHORT).show();
+                       //}
+
+                        if (!holder.height.getText().toString().isEmpty() && Integer.parseInt(holder.height.getText().toString().trim())>250){
+                            reference.child("User").child(uid).child("Height").setValue(holder.height.getText().toString());
+
+
+                        }
+                        //if (Integer.parseInt(holder.height.getText().toString())>250){
+                        //    Toast.makeText(mContext, "Echte Größe bitte eingeben", Toast.LENGTH_SHORT).show();
+                        //}
 
                         if (!holder.info.getText().toString().isEmpty() && holder.info.getText().toString().length() < 300){
-                            reference.child("User").child(uid).child("Info").child(holder.info.getText().toString());
+                            reference.child("User").child(uid).child("Info").setValue(holder.info.getText().toString());
 
 
                         }if (holder.info.getText().toString().length() > 300){
@@ -457,32 +457,33 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         //    return;
                         //}
                         if (!holder.name.getText().toString().isEmpty()&& holder.name.getText().toString().length() < 15){
-                            reference.child("User").child(uid).child("Name").child(holder.name.getText().toString());
+                            Log.d(TAG,"123123");
+                            reference.child("User").child(uid).child("Name").setValue(holder.name.getText().toString());
 
 
                         }
-                        if (holder.name.getText().toString().length() <15){
-                            Toast.makeText(mContext, "Name zu lang", Toast.LENGTH_SHORT).show();
+                       //if (holder.name.getText().toString().length() <15){
+                       //    Toast.makeText(mContext, "Name zu lang", Toast.LENGTH_SHORT).show();
 
-                        }
+                       //}
 
 
 
 
 
                         if (!holder.email.getText().toString().isEmpty() && isEmailValid(holder.email.getText().toString())){
-                            reference.child("User").child(uid).child("Email").child(holder.email.getText().toString());
-                            change_email_auth();
+                            reference.child("User").child(uid).child("Email").setValue(holder.email.getText().toString());
+                            //change_email_auth();
 
 
 
                         }
-                        if (!isEmailValid(holder.email.getText().toString())){
-                            Toast.makeText(mContext, "Echte Email bitte eingeben", Toast.LENGTH_SHORT).show();
+                       //if (!isEmailValid(holder.email.getText().toString())){
+                       //    Toast.makeText(mContext, "Echte Email bitte eingeben", Toast.LENGTH_SHORT).show();
 
 
 
-                        }
+                       //}
 
 
 
@@ -490,7 +491,7 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
 
-                    });
+
 
                 });
 
@@ -541,7 +542,7 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     //----------------Code for Changing Email Address----------\\
                     FirebaseUser user1 = FirebaseAuth.getInstance().getCurrentUser();
                     assert user1 != null;
-                    user1.updateEmail("user@example.com")
+                    user.updateEmail("user@example.com")
                             .addOnCompleteListener(task1 -> {
                                 if (task1.isSuccessful()) {
                                     Log.d(TAG, "User email address updated.");
@@ -807,9 +808,6 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
         EditText height;
         AutoCompleteTextView country;
         EditText info;
-        AutoCompleteTextView input_friends;
-        RecyclerView recyclerView;
-        LinearLayout recyclerview_holder;
         ConstraintLayout constraintLayout;
         public profile_b(@NonNull View itemView) {
             super(itemView);
@@ -820,10 +818,7 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
             height = itemView.findViewById(R.id.height_edit_profile);
             country = itemView.findViewById(R.id.country_edit_profile);
             info = itemView.findViewById(R.id.profile_edit_info);
-            recyclerview_holder = itemView.findViewById(R.id.linear_rec_holder_profile);
             constraintLayout = itemView.findViewById(R.id.standart_profile_page_layout_b);
-            recyclerView = itemView.findViewById(R.id.rec_friends_profile_edit);
-            input_friends = itemView.findViewById(R.id.friends_input_profile);
 
 
 
