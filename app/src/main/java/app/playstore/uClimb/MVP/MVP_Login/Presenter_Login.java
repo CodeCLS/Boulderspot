@@ -111,15 +111,38 @@ public class Presenter_Login {
                                 Log.d(TAG, "signInWithEmail:success");
                                 Toast.makeText(mContext, "Success", Toast.LENGTH_SHORT).show();
                                 FirebaseUser user = mAuth_fire.getCurrentUser();
-                                Intent intent = new Intent(mContext , MainActivity.class);
-                                mContext.startActivity(intent);
+
+                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("User");
+                                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        SharedPreferences sharedPreferences = mContext.getSharedPreferences("UID",Context.MODE_PRIVATE);
+                                        SharedPreferences.Editor shared_edit = sharedPreferences.edit();
+                                        shared_edit.putString("UID",user.getUid().trim().toString());
+                                        shared_edit.apply();
+
+                                        SharedPreferences sharedPreferences_stat = mContext.getSharedPreferences("UID_STAT",Context.MODE_PRIVATE);
+                                        SharedPreferences.Editor shared_edit_stat = sharedPreferences_stat.edit();
+                                        shared_edit_stat.putString("UID_STAT",dataSnapshot.child(user.getUid()).child("StatisticsID").getValue().toString());
+                                        shared_edit_stat.apply();
+                                        Intent intent = new Intent(mContext , MainActivity.class);
+                                        mContext.startActivity(intent);
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
+
+
 
                             } else {
-                                Toast.makeText(mContext, "No newsog User", Toast.LENGTH_SHORT).show();
 
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                Toast.makeText(mContext, "Authentication failed.",
+                                Toast.makeText(mContext, "Authentication failed." + task.getException().getLocalizedMessage(),
                                         Toast.LENGTH_SHORT).show();
                             }
 

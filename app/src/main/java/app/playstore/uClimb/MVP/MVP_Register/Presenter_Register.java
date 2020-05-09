@@ -148,9 +148,9 @@ public class Presenter_Register {
 
         myRef.child("User").child(Objects.requireNonNull(mAuth.getUid())).child("StatisticsID").setValue(hash);
         myRef.child("Statistics").child(Objects.requireNonNull(hash)).setValue(hash);
-        SharedPreferences sharedPreferences_stat = mContext.getSharedPreferences("statuid", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences_stat = mContext.getSharedPreferences("UID_STAT", Context.MODE_PRIVATE);
         SharedPreferences.Editor shared_edit_stat = sharedPreferences_stat.edit();
-        shared_edit_stat.putString("statuid" , mAuth.getUid());
+        shared_edit_stat.putString("UID_STAT" , mAuth.getUid());
         shared_edit_stat.apply();
         SharedPreferences sharedPreferences = mContext.getSharedPreferences("UID", Context.MODE_PRIVATE);
         SharedPreferences.Editor shared_edit = sharedPreferences.edit();
