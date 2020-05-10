@@ -2313,6 +2313,7 @@ id animateToEnd
 id animateToStart
 id asConfigured
 id async
+id audio_btn_hangboard
 id auto
 id autoComplete
 id autoCompleteToEnd
@@ -2524,6 +2525,8 @@ id group_divider
 id groups
 id guideline
 id guideline3
+id hang_time_edit
+id hang_time_txt
 id height_edit_profile
 id height_txt_profile
 id height_txt_profile_custom
@@ -2572,6 +2575,7 @@ id line3
 id linear
 id linearLayout
 id linearLayout2
+id linearLayout3
 id linearLayout4
 id linear_google_signupwith_login
 id linear_holding_button_and_txt
@@ -2654,6 +2658,8 @@ id parent_matrix
 id password_toggle
 id path
 id pathRelative
+id pause_time_edit
+id pause_time_txt
 id peekHeight
 id percent
 id pin
@@ -2720,6 +2726,8 @@ id rec_training_list
 id rec_viewholder_profile_custom_2_12
 id rectangle
 id rectangles
+id rest_time_edit
+id rest_time_txt
 id reverseSawtooth
 id rewind_media_button
 id right
@@ -2727,6 +2735,8 @@ id right_icon
 id right_side
 id ring_view
 id rounded
+id rounds_edit
+id rounds_txt
 id satellite
 id save_non_transition_alpha
 id save_overlay_view
@@ -2752,6 +2762,8 @@ id second
 id select_dialog_listview
 id selected
 id sessions_statistic
+id sets_edit
+id sets_txt
 id shortcut
 id showCustom
 id showHome
@@ -2791,6 +2803,7 @@ id standart_profile_page_layout_b
 id start
 id startHorizontal
 id startVertical
+id start_btn_hangboard
 id start_pause_media_button
 id staticLayout
 id staticPostLayout
@@ -2863,6 +2876,7 @@ id txt_comment
 id txt_comments_custom
 id txt_duration_session
 id txt_grade_boulder
+id txt_hangboard_big_main
 id txt_info_boulder
 id txt_info_custom
 id txt_info_custom_home

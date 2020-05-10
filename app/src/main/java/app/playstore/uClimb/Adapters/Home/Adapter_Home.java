@@ -175,18 +175,23 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         general_widget_work(viewHolder, i);
 
         if (array_type.get(i).equals("Video")){
+            Presenter_Home_Posts.isLiked(array_post_id.get(i), login_presenter.getUID(mContext),viewHolder.like_btn);
+
+
+            liked_onClick(i,viewHolder.like_btn);
 
             share_onClick(viewHolder.share_btn,i);
             Video_visibility(viewHolder);
             Uri uri = Uri.parse(array_source.get(i));
-            Presenter_Home_Posts.isLiked(array_post_id.get(i), login_presenter.getUID(mContext),viewHolder.like_btn);
             video_work(viewHolder, uri);
-            liked_onClick(i,viewHolder.like_btn);
+
 
 
 
         }
         else{
+            Presenter_Home_Posts.isLiked(array_post_id.get(i), login_presenter.getUID(mContext),viewHolder.like_btn);
+
             liked_onClick(i,viewHolder.like_btn);
             share_onClick(viewHolder.share_btn,i);
 
@@ -311,6 +316,7 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     public void isLikedAction(Boolean return_status, ImageView like_btn) {
         if (return_status){
+            Log.d(TAG,"liekd123");
             like_btn.setImageResource(R.mipmap.like_active);
         }
         else{
@@ -420,6 +426,7 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
             String id = login_presenter.getUID(mContext);
             presenter_home_posts.like(id,array_post_id.get(i),like_btn,mContext);
+
 
 
             });

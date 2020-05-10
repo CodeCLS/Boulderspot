@@ -1,6 +1,7 @@
 package app.playstore.uClimb.MVP.MVP_Custom_Post;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,8 @@ import app.playstore.uClimb.R;
 import app.playstore.uClimb.MVP.MVP_Login.Presenter_Login;
 
 public class Presenter_Custom_Post {
+
+    private static final String TAG = "Presenter_post";
 
     public Presenter_Custom_Post() {
     }
@@ -50,20 +53,28 @@ public class Presenter_Custom_Post {
 
     }
     public void initLike(Context mContext,ImageView like,String post_id){
+        Log.d(TAG,"hisipfuhe");
+
         Presenter_Login login_presenter = new Presenter_Login();
         String uid = login_presenter.getUID(mContext);
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference("");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
+
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.d(TAG,"check3");
                 if (dataSnapshot.child("Posts").child(post_id).child("likes").child(uid).exists()){
-                    like.setImageResource(R.mipmap.like_passive);
+                    like.setImageResource(R.mipmap.like_active);
+                    Log.d(TAG,"check2");
+
 
 
                 }
                 else{
-                    like.setImageResource(R.mipmap.like_active);
+                    like.setImageResource(R.mipmap.like_passive);
+                    Log.d(TAG,"check1");
+
 
                 }
 

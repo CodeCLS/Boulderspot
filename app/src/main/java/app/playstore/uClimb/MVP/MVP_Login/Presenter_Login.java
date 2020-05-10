@@ -33,6 +33,7 @@ import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import app.playstore.uClimb.Main.MainActivity;
 import app.playstore.uClimb.R;
@@ -142,7 +143,7 @@ public class Presenter_Login {
 
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                Toast.makeText(mContext, "Authentication failed." + task.getException().getLocalizedMessage(),
+                                Toast.makeText(mContext, "Authentication failed." + Objects.requireNonNull(task.getException()).getLocalizedMessage(),
                                         Toast.LENGTH_SHORT).show();
                             }
 

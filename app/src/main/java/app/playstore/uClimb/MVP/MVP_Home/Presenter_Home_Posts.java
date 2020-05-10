@@ -379,7 +379,7 @@ public class Presenter_Home_Posts {
 
     public static void isLiked(String s, String d,ImageView like_btn) {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = firebaseDatabase.getReference();
+        DatabaseReference databaseReference = firebaseDatabase.getReference("");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -400,7 +400,7 @@ public class Presenter_Home_Posts {
 
     public void like(String id, String s, ImageView like_btn,Context mContext) {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = firebaseDatabase.getReference();
+        DatabaseReference databaseReference = firebaseDatabase.getReference("");
         //databaseReference.child("Posts").child(s).child("likes").child(id).setValue(id);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -408,11 +408,15 @@ public class Presenter_Home_Posts {
                 if (dataSnapshot.child("Posts").child(s).child("likes").child(id).exists()){
                     databaseReference.child("Posts").child(s).child("likes").child(id).removeValue();
                     like_btn.setImageResource(R.mipmap.like_passive);
+                    isLiked(s,id,like_btn);
 
 
                 }
                 else{
                     databaseReference.child("Posts").child(s).child("likes").child(id).setValue(id);
+
+                    isLiked(s,id,like_btn);
+
 
                     like_btn.setImageResource(R.mipmap.like_active);
 

@@ -70,7 +70,7 @@ public class custom_post_page extends Fragment {
         getcredentialsfragment();
 
         initViews(view);
-        onClick();
+        //onClick();
 
 
         checkSource(type,view);
@@ -89,7 +89,6 @@ public class custom_post_page extends Fragment {
         img_like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                liked = false;
                 FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
                 DatabaseReference databaseReference = firebaseDatabase.getReference("");
                 Presenter_Login login_presenter = new Presenter_Login();
