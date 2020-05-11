@@ -24,6 +24,9 @@
     <string name="stretching_img_link"><![CDATA[https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Project_data%2Fkatee-lue-y9RW69F3YnM-unsplash.jpg?alt=media&token=a4217b89-91e4-4c97-bc37-aca612823ddf]]></string>
     <string name="warmup_link_img"><![CDATA[https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Project_data%2Fbady-qb-VmYZe_yqxL0-unsplash.jpg?alt=media&token=885a7dec-6587-4814-9836-97ff4e3362c8]]></string>
     <string name="custom_link_img"><![CDATA[https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Project_data%2Ftommy-lisbin-wnq68O-6UNs-unsplash.jpg?alt=media&token=79d213e8-04bf-4635-826a-a2c14ecfb010]]></string>
+    <string name="Log_training">Log Training</string>
+    <string name="Cancel_txt">Cancel</string>
+    <string name="log_txt">Log</string>
 
 
 </resources>

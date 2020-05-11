@@ -2327,12 +2327,15 @@ id bottom
 id bottomBar
 id bottom_landscape
 id bounce
+id btn_add_workout
+id btn_cancel_log_workout
 id btn_change_data
 id btn_change_pwd
 id btn_comment_home_custom
 id btn_continue
 id btn_follow_profile_custom
 id btn_log_in_log_in
+id btn_log_workout
 id btn_publish_position
 id btn_register
 id btn_search_search
@@ -2345,6 +2348,7 @@ id center_vertical
 id chain
 id chains
 id checkbox
+id checkbox_log_training_public
 id checkbox_statistic
 id checked
 id chip
@@ -2416,6 +2420,7 @@ id edit_pwd_user
 id edit_query
 id edit_search_nav
 id edit_user_register
+id edittext_workouts_log_training
 id email_profile_new
 id email_txt_profile
 id end
@@ -2554,8 +2559,11 @@ id img_profile_uploads_custom_1
 id img_share_custom
 id img_view_custom
 id img_view_custom_home
+id include_log_0
+id include_log_1
 id include_nav_home
 id info
+id info_log_workout_edittext
 id info_txt_profile
 id info_txt_profile_custom
 id invisible
@@ -2790,6 +2798,7 @@ id spinner_impression_grade_upload
 id spinner_route_type_upload
 id spinner_search_txt
 id spinner_tries_upload
+id spinner_workouts_log_training
 id spline
 id split_action_bar
 id spread
@@ -2882,6 +2891,7 @@ id txt_info_custom
 id txt_info_custom_home
 id txt_info_session
 id txt_item_list_training
+id txt_log_training_12423424
 id txt_name_item_friend
 id txt_session_type
 id txt_time_boulder
@@ -3016,6 +3026,7 @@ layout main_friends_page
 layout main_hangboard_page
 layout main_location_page
 layout main_log_in_layout
+layout main_log_training_page
 layout main_page
 layout main_profile_page
 layout main_search_page
@@ -3091,6 +3102,8 @@ layout private_friends_item
 layout private_grades_accomplished
 layout private_img_profile_uploads
 layout private_item_location
+layout private_log_layout_0
+layout private_log_layout_1
 layout private_main_ui
 layout private_post_comment_item
 layout private_profile_page_user_multiple_layout_c
@@ -3171,6 +3184,8 @@ mipmap user_icon_blue
 plurals mtrl_badge_content_description
 raw places_keep
 raw training_sound
+string Cancel_txt
+string Log_training
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -3307,6 +3322,7 @@ string library_circularprogressbutton_licenseId
 string library_circularprogressbutton_repositoryLink
 string link_hangboard_img
 string locations_txt
+string log_txt
 string login
 string media_error_general
 string media_error_io

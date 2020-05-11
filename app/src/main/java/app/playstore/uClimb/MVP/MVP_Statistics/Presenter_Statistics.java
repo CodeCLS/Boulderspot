@@ -173,24 +173,24 @@ public class Presenter_Statistics {
 
 
                         String notes = postSnapshot.child("Info").getValue().toString();
-                        String train = postSnapshot.child("Train").getValue().toString();
-                        String pause = postSnapshot.child("Pause").getValue().toString();
-                        String rest =postSnapshot.child("Rest").getValue().toString();
+                        String train = postSnapshot.child("Hang_Time").getValue().toString();
+                        String pause = postSnapshot.child("Pause_Time").getValue().toString();
+                        String rest =postSnapshot.child("Rest_Time").getValue().toString();
                         String set =postSnapshot.child("Sets").getValue().toString();
-                        String round =postSnapshot.child("Rows").getValue().toString();
+                        String round =postSnapshot.child("Rounds").getValue().toString();
                         sesssions_train_time.add(train);
                         sesssions_pause_time.add(pause);
                         sesssions_rest_time.add(rest);
                         sesssions_rounds_time.add(round);
                         sesssions_sets_time.add(set);
                         training_sessions_notes.add(notes);
-                        if (training_sessions_types.contains(postSnapshot.child("Title").getValue().toString())) {
-                            int index = training_sessions_types.indexOf(postSnapshot.child("Title").getValue().toString());
+                        if (training_sessions_types.contains(postSnapshot.child("Name").getValue().toString())) {
+                            int index = training_sessions_types.indexOf(postSnapshot.child("Name").getValue().toString());
                             int amount = Integer.parseInt(training_sessions_amount.get(index)) + 1;
                             training_sessions_amount.add(index, String.valueOf(amount));
 
                         } else {
-                            String name_from_workout = postSnapshot.child("Title").getValue().toString();
+                            String name_from_workout = postSnapshot.child("Name").getValue().toString();
                             String amount = "1";
                             String time = postSnapshot.child("Time").getValue().toString();
                             training_sessions_amount.add(amount);

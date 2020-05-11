@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:layout_margin="10dp"
+    android:background="@drawable/public_important_background_white_round"
+    android:elevation="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/info_log_workout_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <CheckBox
+            android:id="@+id/checkbox_log_training_public"
+            android:layout_width="match_parent"
+            android:text="Public workout"
+            android:layout_height="match_parent"
+            android:layout_weight="1.6" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.6"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_log_workout"
+                android:layout_width="match_parent"
+                android:text="@string/log_txt"
+                android:layout_margin="5dp"
+                android:background="@drawable/public_button_grey"
+                android:layout_weight="1"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/btn_cancel_log_workout"
+                android:layout_width="match_parent"
+                android:background="@drawable/public_button_grey"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:text="@string/Cancel_txt"
+                android:layout_height="match_parent" />
+
+
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

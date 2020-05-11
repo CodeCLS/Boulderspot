@@ -157,6 +157,7 @@ public class Adapter_Profile_Custom_User_Page extends RecyclerView.Adapter<Recyc
 
             follow_profile_viewholder follow_profile_viewholder = (Adapter_Profile_Custom_User_Page.follow_profile_viewholder) holder;
             custom_profile_presenter.isFollowing(uid,mContext,follow_profile_viewholder.button);
+            custom_profile_presenter.addFriend(uid,mContext,follow_profile_viewholder.btn_friend);
 
 
 
@@ -400,10 +401,12 @@ public class Adapter_Profile_Custom_User_Page extends RecyclerView.Adapter<Recyc
     }
 
     private class follow_profile_viewholder extends RecyclerView.ViewHolder {
+        Button btn_friend;
         Button button;
         public follow_profile_viewholder(View view) {
             super(view);
             button = view.findViewById(R.id.btn_follow_profile_custom);
+            btn_friend = view.findViewById(R.id.btn_friends_custom_profile)
         }
     }
 

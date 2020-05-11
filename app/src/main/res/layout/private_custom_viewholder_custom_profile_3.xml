@@ -11,5 +11,12 @@
         android:text="Follow this person"
         android:layout_margin="10dp"
         android:background="@drawable/public_button_grey" />
+    <Button
+        android:id="@+id/btn_friends_custom_profile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Add as Friend"
+        android:layout_margin="10dp"
+        android:background="@drawable/public_button_grey" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

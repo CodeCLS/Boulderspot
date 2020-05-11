@@ -32,12 +32,7 @@
                 android:orientation="vertical">
 
 
-                <EditText
-                    android:id="@+id/hang_time_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:inputType="number" />
+
 
                 <TextView
                     android:id="@+id/hang_time_txt"
@@ -49,6 +44,15 @@
                     android:textColor="#00574B"
                     android:textSize="14sp" />
 
+                <EditText
+                    android:id="@+id/hang_time_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+
+                    android:layout_weight="1"
+                    android:inputType="number" />
+
 
             </LinearLayout>
 
@@ -68,13 +72,7 @@
                 android:orientation="vertical">
 
 
-                <EditText
 
-                    android:id="@+id/pause_time_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:inputType="number" />
 
                 <TextView
                     android:id="@+id/pause_time_txt"
@@ -84,6 +82,15 @@
                     android:gravity="center"
                     android:text="Pause Time"
                     android:textColor="#00574B" />
+                <EditText
+
+                    android:id="@+id/pause_time_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+
+                    android:inputType="number" />
 
             </LinearLayout>
 
@@ -103,12 +110,6 @@
                 android:orientation="vertical">
 
 
-                <EditText
-                    android:id="@+id/rest_time_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:inputType="number" />
 
                 <TextView
                     android:id="@+id/rest_time_txt"
@@ -118,6 +119,13 @@
                     android:gravity="center"
                     android:text="Rest Time"
                     android:textColor="#00574B" />
+                <EditText
+                    android:id="@+id/rest_time_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:inputType="number" />
 
 
             </LinearLayout>
@@ -137,12 +145,7 @@
                 android:orientation="vertical">
 
 
-                <EditText
-                    android:id="@+id/sets_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:inputType="number" />
+
 
                 <TextView
                     android:id="@+id/sets_txt"
@@ -152,7 +155,14 @@
                     android:gravity="center"
                     android:text="Sets"
                     android:textColor="#00574B" />
+                <EditText
+                    android:id="@+id/sets_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
 
+                    android:inputType="number" />
             </LinearLayout>
         </GridLayout>
 
@@ -167,12 +177,7 @@
             android:elevation="10dp"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/rounds_edit"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:inputType="number" />
+
 
             <TextView
                 android:id="@+id/rounds_txt"
@@ -182,6 +187,13 @@
                 android:gravity="center"
                 android:text="Rounds"
                 android:textColor="#00574B" />
+            <EditText
+                android:id="@+id/rounds_edit"
+                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:inputType="number" />
 
 
         </LinearLayout>

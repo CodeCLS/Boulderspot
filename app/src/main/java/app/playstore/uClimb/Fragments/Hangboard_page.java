@@ -1,10 +1,12 @@
 package app.playstore.uClimb.Fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +19,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import app.playstore.uClimb.Fragments.Training.Log_Training_Fragment;
 import app.playstore.uClimb.R;
 
 public class Hangboard_page extends Fragment {
@@ -126,6 +132,9 @@ public class Hangboard_page extends Fragment {
                     rest_time_txt.setText("Rest Time");
                     sets_txt.setText("Sets");
                     rounds_txt.setText("Rounds");
+                    mediaPlayer.stop();
+                    Context context = getContext();
+                    mediaPlayer = mediaPlayer.create(context,R.raw.training_sound);
 
 
 
@@ -204,14 +213,39 @@ public class Hangboard_page extends Fragment {
         if (hang_starter != Integer.parseInt(rounds_string)){
             sets_num =0;
             SetsProcedure(sets_string, hang_time_string, pause_time_string, rest_time_string, rounds_string);
-            rest_time_txt.setText("Hang");
+            rest_time_txt.setText("0");
 
 
 
 
         }
         else{
+
+            //TODO fix sound when different timer and fix sound between some timers
             Toast.makeText(getContext(), "Finished", Toast.LENGTH_SHORT).show();
+            Log_Training_Fragment log_training_fragment = new Log_Training_Fragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("Hang_Time",hang_time_string);
+            bundle.putString("Pause_Time",pause_time_string);
+            bundle.putString("Rest_Time",pause_time_string);
+            bundle.putString("Sets",pause_time_string);
+            bundle.putString("Rounds",pause_time_string);
+
+            log_training_fragment.setArguments(bundle);
+            FragmentManager fragmentManager = ((AppCompatActivity) getContext()).getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().addToBackStack("Log_training").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .replace(R.id.container_fragment,log_training_fragment);
+            fragmentTransaction.commit();
+            //final Handler handler = new Handler();
+           //btn_status = 2;
+           //handler.postDelayed(new Runnable() {
+           //    @Override
+           //    public void run() {
+           //        btn_status = 1;
+           //        //Do something after 100ms
+           //    }
+           //}, 100);
+
 
 
         }
@@ -234,9 +268,14 @@ public class Hangboard_page extends Fragment {
 
         if (sets_num != Integer.parseInt(sets_string)){
             startHang(hang_time_string,pause_time_string,rest_time_string,sets_string,rounds_string);
+            if (audio_status){
+                mediaPlayer.start();
+
+            }
+
             sets_num++;
             sets_txt.setText(sets_num+"");
-            pause_time_txt.setText("Hang");
+            pause_time_txt.setText("0");
 
 
 
@@ -244,6 +283,10 @@ public class Hangboard_page extends Fragment {
 
         }
         else{
+            if (audio_status){
+                mediaPlayer.start();
+
+            }
             startRest(hang_time_string,pause_time_string,rest_time_string,sets_string,rounds_string);
             hang_starter++;
             rounds_txt.setText(hang_starter+"");
@@ -269,7 +312,11 @@ public class Hangboard_page extends Fragment {
                 Work_Procedure(sets_string,hang_time_string,pause_time_string,rest_time_string,rounds_string);
                 if (audio_status){
                     mediaPlayer.stop();
+                    Context context = getContext();
+                    mediaPlayer = mediaPlayer.create(context,R.raw.training_sound);
                 }
+                mediaPlayer = mediaPlayer.create(getContext(),R.raw.training_sound);
+
 
 
                 //SetsProcedure(hang_time_string,pause_time_string,rest_time_string,sets_string,rounds_string);
@@ -313,10 +360,14 @@ public class Hangboard_page extends Fragment {
             public void onFinish() {
                 if (audio_status){
                     mediaPlayer.stop();
+                    Context context = getContext();
+                    mediaPlayer = mediaPlayer.create(context,R.raw.training_sound);
                 }
+                mediaPlayer = mediaPlayer.create(getContext(),R.raw.training_sound);
+
 
                 startPause(hang_time_string,pause_time_string,rest_time_string,sets_string,rounds_string);
-                hang_time_txt.setText("Break");
+                hang_time_txt.setText("0");
             }
 
         }.start();
@@ -339,7 +390,11 @@ public class Hangboard_page extends Fragment {
             public void onFinish() {
                 if (audio_status){
                     mediaPlayer.stop();
+                    Context context = getContext();
+                    mediaPlayer = mediaPlayer.create(context,R.raw.training_sound);
                 }
+                mediaPlayer = mediaPlayer.create(getContext(),R.raw.training_sound);
+
                 //startHang(hang_time_string,pause_time_string,rest_time_string,sets_string,rounds_string);
                 SetsProcedure(sets_string,hang_time_string,pause_time_string,rest_time_string,rounds_string);
 
@@ -422,6 +477,23 @@ public class Hangboard_page extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+        mediaPlayer.stop();
+        if (hang_timer != null){
+            hang_timer.cancel();
+
+
+        }
+        if (pause_timer != null){
+            pause_timer.cancel();
+
+
+        }
+        if (rest_timer != null){
+            rest_timer.cancel();
+
+
+        }
+
         getFragmentManager().beginTransaction().remove(this).commitAllowingStateLoss();
 
     }

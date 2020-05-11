@@ -356,4 +356,20 @@ public class Presenter_Custom_Profile {
             }
         });
     }
+
+    public void addFriend(String uid, Context mContext, Button btn_friend) {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            //TODO add if for if btn pressed and add friend boolean
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
 }
