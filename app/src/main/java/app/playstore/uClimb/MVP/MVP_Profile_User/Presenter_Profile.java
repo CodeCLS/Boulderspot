@@ -182,11 +182,14 @@ public class Presenter_Profile {
 
 
         }
-        for (DataSnapshot postSnapshot: dataSnapshot.child("close_friends_competitiors").getChildren()){
+        for (DataSnapshot postSnapshot: dataSnapshot.child("User").child(uid).child("Friends").getChildren()){
             Boolean bool = competition.add(postSnapshot.getValue());
+            Log.d(TAG,"Friends43_" + competition);
+
 
 
         }
+        Log.d(TAG,"Friends3_" + competition);
 
         account_type = Objects.requireNonNull(dataSnapshot.child("User").child(uid).child("account_type").getValue()).toString();
         time_created = Objects.requireNonNull(dataSnapshot.child("User").child(uid).child("Time_created").getValue()).toString();

@@ -186,14 +186,14 @@ public class Presenter_Custom_Profile {
     }
 
 
-    public void follow_new_user(Context mContext, String id_user, boolean b,Button btn) {
+    public void follow_new_user(Context mContext, String id_user, boolean b,Button btn,Button btn_friend) {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference("");
         if (b){
             String uid = presenter_login.getUID(mContext);
             databaseReference.child("User").child(uid).child("Following").child(id_user).removeValue();
             databaseReference.child("User").child(id_user).child("Follower").child(uid).removeValue();
-            isFollowing(id_user,mContext,btn);
+            isFollowing(id_user,mContext,btn,btn_friend);
 
 
 
@@ -208,7 +208,7 @@ public class Presenter_Custom_Profile {
 
             databaseReference.child("User").child(id).child("Following").child(id_user).setValue(id_user);
             databaseReference.child("User").child(id_user).child("Follower").child(id).setValue(id);
-            isFollowing(id_user,mContext,btn);
+            isFollowing(id_user,mContext,btn,btn_friend);
 
 
 
@@ -216,7 +216,7 @@ public class Presenter_Custom_Profile {
 
     }
 
-    public void isFollowing(String uid, Context mContext, Button button) {
+    public void isFollowing(String uid, Context mContext, Button button,Button btn_friend) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -227,13 +227,13 @@ public class Presenter_Custom_Profile {
                 if (status_user_existence){
                     Adapter_Profile_Custom_User_Page adapter_profile_custom_user_page = new Adapter_Profile_Custom_User_Page();
 
-                    adapter_profile_custom_user_page.setFollowing(true,button,mContext,uid);
+                    adapter_profile_custom_user_page.setFollowing(true,button,mContext,uid,btn_friend);
 
                 }
                 else{
                     Adapter_Profile_Custom_User_Page adapter_profile_custom_user_page = new Adapter_Profile_Custom_User_Page();
 
-                    adapter_profile_custom_user_page.setFollowing(false,button,mContext,uid);
+                    adapter_profile_custom_user_page.setFollowing(false,button,mContext,uid,btn_friend);
 
 
                 }
@@ -358,11 +358,34 @@ public class Presenter_Custom_Profile {
     }
 
     public void addFriend(String uid, Context mContext, Button btn_friend) {
+        String id = presenter_login.getUID(mContext);
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             //TODO add if for if btn pressed and add friend boolean
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                btn_friend.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (dataSnapshot.child("User").child(id).child("Friends").child(uid).exists()){
+                            databaseReference.child("User").child(id).child("Friends").child(uid).removeValue();
+
+                            setFriendImage(false,btn_friend);
+                            addFriend(uid,mContext,btn_friend);
+
+                        }
+                        else{
+                            databaseReference.child("User").child(id).child("Friends").child(uid).setValue(uid);
+
+                            setFriendImage(true,btn_friend);
+                            addFriend(uid,mContext,btn_friend);
+
+
+
+                        }
+                    }
+                });
+
             }
 
             @Override
@@ -370,6 +393,47 @@ public class Presenter_Custom_Profile {
 
             }
         });
+
+    }
+
+    public void isFriend(String uid, Context mContext, Button btn_friend) {
+        String id = presenter_login.getUID(mContext);
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            //TODO add if for if btn pressed and add friend boolean
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child("User").child(id).child("Friends").child(uid).exists()){
+                    setFriendImage(true,btn_friend);
+
+                }
+                else{
+                    setFriendImage(false,btn_friend);
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void setFriendImage(boolean b,Button btn_friend) {
+        if (b){
+            btn_friend.setText("Added as Friend");
+
+        }
+        else{
+            btn_friend.setText("Add as Friend");
+
+        }
+
 
     }
 }

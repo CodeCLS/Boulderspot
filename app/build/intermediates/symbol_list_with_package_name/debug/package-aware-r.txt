@@ -2334,6 +2334,7 @@ id btn_change_pwd
 id btn_comment_home_custom
 id btn_continue
 id btn_follow_profile_custom
+id btn_friends_custom_profile
 id btn_log_in_log_in
 id btn_log_workout
 id btn_publish_position
@@ -2713,6 +2714,7 @@ id progress_item_search_video
 id progress_seek_bar
 id progress_upload_profile_pic
 id pwd_edit_change_profile
+id pwd_edit_profile
 id pwd_old_profile
 id qualityDes
 id radio

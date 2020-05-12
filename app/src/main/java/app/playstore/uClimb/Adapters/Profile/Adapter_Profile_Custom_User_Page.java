@@ -156,7 +156,8 @@ public class Adapter_Profile_Custom_User_Page extends RecyclerView.Adapter<Recyc
 
 
             follow_profile_viewholder follow_profile_viewholder = (Adapter_Profile_Custom_User_Page.follow_profile_viewholder) holder;
-            custom_profile_presenter.isFollowing(uid,mContext,follow_profile_viewholder.button);
+            custom_profile_presenter.isFollowing(uid,mContext,follow_profile_viewholder.button,follow_profile_viewholder.btn_friend);
+            custom_profile_presenter.isFriend(uid,mContext,follow_profile_viewholder.btn_friend);
             custom_profile_presenter.addFriend(uid,mContext,follow_profile_viewholder.btn_friend);
 
 
@@ -297,13 +298,15 @@ public class Adapter_Profile_Custom_User_Page extends RecyclerView.Adapter<Recyc
         return 2 + posts.size();
     }
 
-    public void setFollowing(boolean b,Button btn,Context mContext, String uid) {
+    public void setFollowing(boolean b,Button btn,Context mContext, String uid,Button btn_friend) {
         Log.d(TAG,"uid2: " + uid + "boolean " + b);
         if (b){
             Presenter_Custom_Profile custom_profile_presenter = new Presenter_Custom_Profile();
             Drawable background = btn.getBackground();
-            background.setTint(mContext.getResources().getColor(R.color.cpb_green));
+            background.setTint(mContext.getResources().getColor(R.color.blue_pressed_btn));
             btn.setText("Following");
+            btn_friend.setVisibility(View.VISIBLE);
+
 
 
             btn.setOnClickListener(new View.OnClickListener() {
@@ -311,7 +314,9 @@ public class Adapter_Profile_Custom_User_Page extends RecyclerView.Adapter<Recyc
                 public void onClick(View v) {
                     Drawable background1 = btn.getBackground();
                     background1.setTint(mContext.getResources().getColor(R.color.blue_pressed_btn));
-                    custom_profile_presenter.follow_new_user(mContext,uid,true,btn);
+                    btn_friend.setVisibility(View.INVISIBLE);
+
+                    custom_profile_presenter.follow_new_user(mContext,uid,true,btn,btn_friend);
 
 
 
@@ -328,12 +333,16 @@ public class Adapter_Profile_Custom_User_Page extends RecyclerView.Adapter<Recyc
             Drawable background = btn.getBackground();
             background.setTint(mContext.getResources().getColor(R.color.blue_pressed_btn));
             btn.setText("Follow");
+            btn_friend.setVisibility(View.INVISIBLE);
+
 
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    custom_profile_presenter.follow_new_user(mContext,uid,b,btn);
+                    custom_profile_presenter.follow_new_user(mContext,uid,b,btn,btn_friend);
                     Drawable background1 = btn.getBackground();
+                    btn_friend.setVisibility(View.VISIBLE);
+
                     background1.setTint(mContext.getResources().getColor(R.color.cpb_green));
                     Log.d(TAG,"hs32");
 
@@ -406,7 +415,7 @@ public class Adapter_Profile_Custom_User_Page extends RecyclerView.Adapter<Recyc
         public follow_profile_viewholder(View view) {
             super(view);
             button = view.findViewById(R.id.btn_follow_profile_custom);
-            btn_friend = view.findViewById(R.id.btn_friends_custom_profile)
+            btn_friend = view.findViewById(R.id.btn_friends_custom_profile);
         }
     }
 

@@ -29,7 +29,9 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
@@ -43,6 +45,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -103,6 +107,10 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     //private Adapter_Profile_User_Uploads custom_profile_adapter = new Adapter_Profile_User_Uploads(source,type,post_id,info,u_id,time,place);
     private int numbercolumns = 2;
+    private ArrayList friends_final = new ArrayList<String>();
+    private ArrayList friends_img = new ArrayList<String>();
+    private ArrayList friends_name = new ArrayList<String>();
+    private int btn_status = 0;
 
     //public Adapter_Profile() {
     //}
@@ -391,17 +399,26 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
         holder.btn_change_data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                animate_height_data_change();
-                holder.country.setVisibility(View.VISIBLE);
-                holder.age.setVisibility(View.VISIBLE);
-                holder.height.setVisibility(View.VISIBLE);
-                holder.info.setVisibility(View.VISIBLE);
-                holder.country.setVisibility(View.VISIBLE);
-                holder.name.setVisibility(View.VISIBLE);
-                holder.email.setVisibility(View.VISIBLE);
-                holder.height.setVisibility(View.VISIBLE);
+                if (btn_status ==0) {
+                    Log.d(TAG,"Adapter23");
 
-                holder.btn_change_data.setOnClickListener(v1 -> {
+                    animate_height_data_change();
+                    holder.country.setVisibility(View.VISIBLE);
+                    holder.age.setVisibility(View.VISIBLE);
+                    holder.height.setVisibility(View.VISIBLE);
+                    holder.info.setVisibility(View.VISIBLE);
+                    holder.country.setVisibility(View.VISIBLE);
+                    holder.name.setVisibility(View.VISIBLE);
+                    holder.email.setVisibility(View.VISIBLE);
+                    holder.height.setVisibility(View.VISIBLE);
+                    holder.pwd_edit.setVisibility(View.VISIBLE);
+                    btn_status = 1;
+                }
+                else{
+                    Log.d(TAG,"Adapter24");
+
+
+
 
                     FirebaseDatabase auth = FirebaseDatabase.getInstance();
                     DatabaseReference reference = auth.getReference("");
@@ -418,6 +435,7 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         //System.out.println( "# countries found: " + countries.size());
                         if (!holder.age.getText().toString().isEmpty() && Integer.parseInt(holder.age.getText().toString().trim()) < 100){
                             reference.child("User").child(uid).child("Age").setValue(holder.age.getText().toString());
+                            Toast.makeText(mContext, "Alter geändert", Toast.LENGTH_SHORT).show();
 
 
 
@@ -428,6 +446,8 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                         if (!holder.height.getText().toString().isEmpty() && Integer.parseInt(holder.height.getText().toString().trim())>250){
                             reference.child("User").child(uid).child("Height").setValue(holder.height.getText().toString());
+                            Toast.makeText(mContext, "Größe geändert", Toast.LENGTH_SHORT).show();
+
 
 
                         }
@@ -437,28 +457,32 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                         if (!holder.info.getText().toString().isEmpty() && holder.info.getText().toString().length() < 300){
                             reference.child("User").child(uid).child("Info").setValue(holder.info.getText().toString());
+                            Toast.makeText(mContext, "Bio geändert", Toast.LENGTH_SHORT).show();
+
 
 
                         }if (holder.info.getText().toString().length() > 300){
                             Toast.makeText(mContext, "Text zu lang", Toast.LENGTH_SHORT).show();
 
                         }
-                        //if (!holder.country.getText().toString().isEmpty() && countries.contains(holder.country.getText())){
-                        //    reference.child("User").child(uid).child("Country").child(holder.country.getText().toString());
+                        if (!holder.country.getText().toString().isEmpty() && getCities().contains(holder.country.getText())){
+                            reference.child("User").child(uid).child("Country").child(holder.country.getText().toString());
 //
 //
-                        //}
-                        //if (!countries.contains(holder.country.getText().toString())){
-                        //    Toast.makeText(mContext, "Das Land gibt es nicht", Toast.LENGTH_SHORT).show();
+                        }
+                        if (!getCities().contains(holder.country.getText().toString()) && !holder.country.getText().toString().isEmpty()){
+                            Toast.makeText(mContext, "Das Land gibt es nicht. Bitte Groß- und Kleinschreibung beachten.", Toast.LENGTH_LONG).show();
 //
 //
-                        //}
-                        //else{
-                        //    return;
-                        //}
+                        }
+                        else{
+                            return;
+                        }
                         if (!holder.name.getText().toString().isEmpty()&& holder.name.getText().toString().length() < 15){
                             Log.d(TAG,"123123");
                             reference.child("User").child(uid).child("Name").setValue(holder.name.getText().toString());
+                            Toast.makeText(mContext, "Name geändert", Toast.LENGTH_SHORT).show();
+
 
 
                         }
@@ -471,9 +495,9 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
 
-                        if (!holder.email.getText().toString().isEmpty() && isEmailValid(holder.email.getText().toString())){
-                            reference.child("User").child(uid).child("Email").setValue(holder.email.getText().toString());
-                            //change_email_auth();
+                        if (!holder.email.getText().toString().isEmpty() && isEmailValid(holder.email.getText().toString()) && !holder.pwd_edit.getText().toString().isEmpty()){
+                            //reference.child("User").child(uid).child("Email").setValue(holder.email.getText().toString());
+                            change_email_auth(holder.email.getText().toString(),holder.pwd_edit.getText().toString());
 
 
 
@@ -493,7 +517,7 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
 
-                });
+                }
 
             }
 
@@ -528,41 +552,156 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return matcher.matches();
     }
 
-    private void change_email_auth() {
+    private void change_email_auth(String email, String pwd) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Log.d(TAG,"usercurrent"+user);
         // Get auth credentials from the user for re-authentication
         AuthCredential credential = EmailAuthProvider
-                .getCredential("user@example.com", "password1234"); // Current Login Credentials \\
+                .getCredential(Email, pwd); // Current Login Credentials \\
         // Prompt the user to re-provide their sign-in credentials
-        assert user != null;
-        user.reauthenticate(credential)
-                .addOnCompleteListener(task -> {
-                    Log.d(TAG, "User re-authenticated.");
-                    //Now change your email address \\
-                    //----------------Code for Changing Email Address----------\\
-                    FirebaseUser user1 = FirebaseAuth.getInstance().getCurrentUser();
-                    assert user1 != null;
-                    user.updateEmail("user@example.com")
+        if (user==null){
+            Toast.makeText(mContext, "Try again later", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+                    user.updateEmail(email)
                             .addOnCompleteListener(task1 -> {
                                 if (task1.isSuccessful()) {
-                                    Log.d(TAG, "User email address updated.");
+                                    Log.d(TAG,"success231");
+                                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                                    databaseReference.child("User").child(uid).child("Email").setValue(email);
+                                    Toast.makeText(mContext, "Email geändert", Toast.LENGTH_SHORT).show();
+
                                 }
-                            });
+                                else{
+                                    Log.d(TAG,"errror21");
+
+                                    Toast.makeText(mContext, "Error: " + Objects.requireNonNull(task1.getException()).getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(mContext, "Error: " + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
+
+                        }
+                    }).addOnCanceledListener(new OnCanceledListener() {
+                        @Override
+                        public void onCanceled() {
+
+                        }
+                    });
                     //----------------------------------------------------------\\
-                });
+
+    }
+    public ArrayList getCities(){
+
+        ArrayList<String> list=new ArrayList<String>();
+
+        String[] locales = Locale.getISOCountries();
+
+        for (String countryCode : locales) {
+
+            Locale obj = new Locale("", countryCode);
+
+
+            System.out.println("Country Name = " + obj.getDisplayCountry());
+
+            list.add(obj.getDisplayCountry());
+
+        }
+        return list;
     }
 
     private void set_spinner_friends(standart_profile standart_profile) {
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<String> dataAdapter_friends = new ArrayAdapter<String>(mContext,
-                android.R.layout.simple_spinner_item, friends);
 
-        //TODO here
 
 // Specify the layout to use when the list of choices appears
-        dataAdapter_friends.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 // Apply the adapter to the spinner
-        standart_profile.Friends.setAdapter(dataAdapter_friends);
+        Log.d(TAG,"Friends23" + friends);
+
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference("");
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (int i = 0; i < friends.size(); i++) {
+                    String id = follower.get(i).toString();
+                    if (!dataSnapshot.child("User").child(id).child("Name").exists()) {
+                        friends_final.add("/");
+
+                    } else {
+                        if (i==0){
+                            Log.d(TAG,"friends_null" + friends);
+                            friends_final.add("/");
+                            friends_img.add("/");
+                            friends_name.add("/");
+
+                        }
+
+
+
+                        String id_user = Objects.requireNonNull(dataSnapshot.child("User").child(id).getKey());
+                        String name = Objects.requireNonNull(dataSnapshot.child("User").child(id).child("Name").getValue()).toString();
+                        String img = Objects.requireNonNull(dataSnapshot.child("User").child(id).child("IMG").getValue()).toString();
+
+                        friends_final.add(id_user);
+                        friends_img.add(img);
+                        friends_name.add(name);
+
+
+
+
+                    }
+
+
+                }
+                if (friends_final.isEmpty()){
+                    friends_final.add("/");
+                    friends_img.add("/");
+                    friends_name.add("/");
+                }
+                standart_profile.Friends.setAdapter(new Public_Spinner_Base_Profiles(friends_img,friends_name,friends_final));
+                standart_profile.Friends.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        if (friends_final.get(position).equals("/")){
+                            return;
+                        }
+                        else{
+                            Log.d(TAG,"clicked_21" +"------- "+ id +" ----- " + parent.getItemAtPosition(0));
+                            String uid = friends.get(position-1).toString();
+                            custom_profile custom_profile = new custom_profile();
+                            Bundle bundle = new Bundle();
+                            bundle.putString("uid",uid);
+                            custom_profile.setArguments(bundle);
+                            FragmentManager fragmentManager = ((AppCompatActivity)mContext).getSupportFragmentManager();
+                            fragmentManager.beginTransaction().addToBackStack("Fragment_custom_profile").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                                    .replace(R.id.container_fragment,custom_profile).commit();
+                        }
+
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
     }
 
     private void set_spinner_follower(standart_profile standart_profile) {
@@ -606,6 +745,11 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     }
 
 
+                }
+                if (follower_final.isEmpty()){
+                    follower_final.add("/");
+                    follower_img.add("/");
+                    follower_img.add("/");
                 }
                 standart_profile.Follower.setAdapter(new Public_Spinner_Base_Profiles(follower_img,follower_name,follower_final));
                 standart_profile.Follower.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -683,6 +827,11 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     }
 
 
+                }
+                if (following_final.isEmpty()){
+                    follower_final.add("/");
+                    following_img.add("/");
+                    following_name.add("/");
                 }
                 standart_profile.Following.setAdapter(new Public_Spinner_Base_Profiles(following_img,following_name,following_final));
                 standart_profile.Following.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -809,10 +958,12 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
         AutoCompleteTextView country;
         EditText info;
         ConstraintLayout constraintLayout;
+        EditText pwd_edit;
         public profile_b(@NonNull View itemView) {
             super(itemView);
 
             age = itemView.findViewById(R.id.age_edit_profile);
+            pwd_edit = itemView.findViewById(R.id.pwd_edit_profile);
             name = itemView.findViewById(R.id.Name_edit_profile);
             email = itemView.findViewById(R.id.Email_edit_profile);
             height = itemView.findViewById(R.id.height_edit_profile);
