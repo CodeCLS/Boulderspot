@@ -27,6 +27,9 @@
     <string name="Log_training">Log Training</string>
     <string name="Cancel_txt">Cancel</string>
     <string name="log_txt">Log</string>
+    <string name="welcome_short_info">uClimb ist eine Community-App für Kletterer. Teile Fotos und Videos von deinen besten Kletter-Momenten, schau dir Statistiken an und erstelle gemeinsam mit anderen Trainingspläne! Egal ob Bouldern, Toprope oder Vorstieg, diese App bietet die perfekte Ergänzung!</string>
+    <string name="beta_message">"Vielen Dank, dass du uClimb heruntergeladen hast. Da dies noch eine Beta Version ist, würden wir für feedback sehr offen sein. Email: boulderspot2019@gmail.com ..... Des weiteren lesen wir alle eure Feedbacks und versuchen sie in die App einzubauen. "</string>
+    <string name="press_long_to_delete_post">Press long to delete Post</string>
 
 
 </resources>

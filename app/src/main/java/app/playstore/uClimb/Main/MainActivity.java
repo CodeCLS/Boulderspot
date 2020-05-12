@@ -2,14 +2,19 @@ package app.playstore.uClimb.Main;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -85,6 +90,63 @@ public class MainActivity extends Base_Internet implements CacheListener {
         startActivityForResult(photoPickerIntent, 210);
     }
 
+    public void BetaMessage(){
+        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+        Boolean first_time = sharedPreferences.getBoolean("First",true);
+        Log.d(TAG,"First" + first_time);
+
+        if (first_time){
+            Dialog dialog = new AlertDialog.Builder(this)
+                    .setTitle("Willkommen zu uClimb")
+                    .setMessage(getResources().getString(R.string.welcome_short_info) )
+
+                    // Specifying a listener allows you to take an action before dismissing the dialog.
+                    // The dialog is automatically dismissed when a dialog button is clicked.
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Continue with delete operation
+                            dialog.dismiss();
+                            showbetadialog();
+
+                        }
+                    })
+
+                    .show();
+
+            SharedPreferences.Editor shared_ed = sharedPreferences.edit();
+            shared_ed.putBoolean("First",false);
+            shared_ed.apply();
+
+        }
+        else{
+            return;
+        }
+
+
+
+        }
+
+    private void showbetadialog() {
+        Dialog dialog = new AlertDialog.Builder(this)
+                .setTitle("Beta Message")
+                .setMessage(getResources().getString(R.string.beta_message) )
+
+                // Specifying a listener allows you to take an action before dismissing the dialog.
+                // The dialog is automatically dismissed when a dialog button is clicked.
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Continue with delete operation
+                        dialog.dismiss();
+
+
+                    }
+                })
+
+                .show();
+
+    }
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -110,6 +172,7 @@ public class MainActivity extends Base_Internet implements CacheListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.private_main_ui);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        BetaMessage();
 
 
 

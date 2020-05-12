@@ -192,6 +192,8 @@ public class Presenter_Custom_Profile {
         if (b){
             String uid = presenter_login.getUID(mContext);
             databaseReference.child("User").child(uid).child("Following").child(id_user).removeValue();
+            databaseReference.child("User").child(uid).child("Friends").child(id_user).removeValue();
+
             databaseReference.child("User").child(id_user).child("Follower").child(uid).removeValue();
             isFollowing(id_user,mContext,btn,btn_friend);
 

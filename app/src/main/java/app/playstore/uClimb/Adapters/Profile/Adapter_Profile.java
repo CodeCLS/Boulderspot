@@ -4,8 +4,11 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
+import android.app.MediaRouteButton;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -22,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentManager;
@@ -29,6 +34,14 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.source.MediaSourceEventListener;
+import com.google.android.exoplayer2.source.ProgressiveMediaSource;
+import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
+import com.google.android.exoplayer2.upstream.DataSource;
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
+import com.google.android.exoplayer2.util.Util;
 import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -44,6 +57,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.Locale;
@@ -52,6 +66,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import app.playstore.uClimb.Adapters.Public_Spinner_Base_Profiles;
+import app.playstore.uClimb.Fragments.Profile.Profile_Fragment;
 import app.playstore.uClimb.Fragments.custom_profile;
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.MVP.MVP_Login.Presenter_Login;
@@ -71,13 +86,16 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private ArrayList follower;
     private ArrayList  following;
     private String Height;
-    private ArrayList friends;
-    private ArrayList<String> following_final = new ArrayList<String>();
-    private ArrayList<String> follower_final = new ArrayList<String>();
-    private ArrayList<String> following_name = new ArrayList<String>();
-    private ArrayList<String> follower_name = new ArrayList<String>();
-    private ArrayList<String> following_img = new ArrayList<String>();
-    private ArrayList<String> follower_img = new ArrayList<String>();
+
+    private ArrayList<String> arrayList_Source = new ArrayList<>();
+    private ArrayList<String> arrayList_type = new ArrayList<>();
+    private ArrayList<String> arrayList_info = new ArrayList<>();
+    private ArrayList<String> arrayList_place = new ArrayList<>();
+    private ArrayList<String> arrayList_uid = new ArrayList<>();
+    private ArrayList<String> arrayList_post_id = new ArrayList<>();
+    private ArrayList<String> arrayList_time = new ArrayList<>();
+    private ArrayList<String> arrayList_likes = new ArrayList<>();
+    private ArrayList<String> arrayList_comments= new ArrayList<>();
 
     //private String account_type;
     //private String time_created;
@@ -89,6 +107,15 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
     //private String IMG;
 
     private String Email;
+
+    private ArrayList friends;
+    private ArrayList<String> following_final = new ArrayList<String>();
+    private ArrayList<String> follower_final = new ArrayList<String>();
+    private ArrayList<String> following_name = new ArrayList<String>();
+    private ArrayList<String> follower_name = new ArrayList<String>();
+    private ArrayList<String> following_img = new ArrayList<String>();
+    private ArrayList<String> follower_img = new ArrayList<String>();
+
     private Context mContext;
 
     private boolean bool_clicked = false;
@@ -138,29 +165,29 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
    //     this.Email = email;
 //
    // }
-    public Adapter_Profile(String uid, String age, String name, String profile_img, String info, String country, ArrayList follower, ArrayList following, String height, ArrayList friends, String email) {
-        this.uid = uid;
-        //this.stat_uid = stat_uid;
 
+
+    public Adapter_Profile(String uid, String age, String name, String profile_img, String info, String country, ArrayList follower, ArrayList following, String height, ArrayList<String> arrayList_Source, ArrayList<String> arrayList_type, ArrayList<String> arrayList_info, ArrayList<String> arrayList_place, ArrayList<String> arrayList_uid, ArrayList<String> arrayList_post_id, ArrayList<String> arrayList_time, ArrayList<String> arrayList_likes, ArrayList<String> arrayList_comments, String email, ArrayList friends) {
+        this.uid = uid;
         Age = age;
         Name = name;
         this.profile_img = profile_img;
         Info = info;
-        //Subscription = subscription;
-        //this.grade = grade;
         this.country = country;
         this.follower = follower;
         this.following = following;
         Height = height;
-        this.friends= friends;
-        //this.account_type = account_type;
-        //this.time_created = time_created;
-        //this.position_lat = position_lat;
-        //this.position_long = position_long;
-        //this.position_last_updated = position_last_updated;
-        //this.position_status = position_status;
-        this.Email = email;
-
+        this.arrayList_Source = arrayList_Source;
+        this.arrayList_type = arrayList_type;
+        this.arrayList_info = arrayList_info;
+        this.arrayList_place = arrayList_place;
+        this.arrayList_uid = arrayList_uid;
+        this.arrayList_post_id = arrayList_post_id;
+        this.arrayList_time = arrayList_time;
+        this.arrayList_likes = arrayList_likes;
+        this.arrayList_comments = arrayList_comments;
+        Email = email;
+        this.friends = friends;
     }
 
     @NonNull
@@ -187,7 +214,7 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
         if (viewType == 3){
             view = LayoutInflater.from(mContext).inflate(R.layout.private_profile_page_user_multiple_layout_c,parent,false);
-            viewholder = new standart_profile(view);
+            viewholder = new standart_profile_c(view);
 //
         }
         return Objects.requireNonNull(viewholder);
@@ -198,65 +225,132 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @SuppressLint({"SetTextI18n", "Assert"})
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if(holder.getItemViewType() == 0){
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder,  int position) {
+        position = position-3;
+
+        if (holder.getItemViewType() == 0) {
             viewHolder_0_code((standart_profile) holder);
 
 
         }
-        if (holder.getItemViewType() == 1 ){
-            assert holder instanceof profile_a;
+        if (holder.getItemViewType() == 1) {
             viewholder_1_code((profile_a) holder);
 
 
         }
-        if (holder.getItemViewType() == 2 ){
-            assert holder instanceof profile_b;
+        if (holder.getItemViewType() == 2) {
             viewholder_2_code((profile_b) holder);
 
 
         }
-        if (holder.getItemViewType() == 3){
-            assert holder instanceof standart_profile_c;
+        if (holder.getItemViewType() == 3) {
+
+
             standart_profile_c standart_profile_c = (standart_profile_c) holder;
-            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-            DatabaseReference databaseReference = firebaseDatabase.getReference("");
 
-            databaseReference.addValueEventListener(new ValueEventListener() {
+
+            setWidgetspost(position, standart_profile_c);
+
+
+        }
+
+
+        }
+
+    private void setWidgetspost(int position, standart_profile_c standart_profile_c) {
+        int finalPosition = position;
+        standart_profile_c.delete_post.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                   //for (DataSnapshot postSnapshot : dataSnapshot.child("User").child(uid).child("Posts").getChildren()){
-                   //    //post_id.add(postSnapshot.getValue().toString());
-                   //}
-                   //for (int i = 0;i<post_id.size();i++){
-                   //    //String id = post_id.get(i).toString();
-                   //    //source.add(dataSnapshot.child("Posts").child(id).child("Source").getValue().toString());
-                   //    //type.add(dataSnapshot.child("Posts").child(id).child("type").getValue().toString());
-                   //    //info.add(dataSnapshot.child("Posts").child(id).child("info").getValue().toString());
-                   //    //u_id.add(uid);
-                   //    //time.add(dataSnapshot.child("Posts").child(id).child("time").getValue().toString());
-                   //    //place.add(dataSnapshot.child("Posts").child(id).child("place").getValue().toString());
+                public boolean onLongClick(View v) {
+                    delete_Post(finalPosition);
 
+                    return true;
+                }
 
+                private void delete_Post(int i) {
+                    DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
 
-                   //}
-                    standart_profile_c.rec.setLayoutManager(new GridLayoutManager(mContext,numbercolumns));
-                    //standart_profile_c.rec.setAdapter(custom_profile_adapter);
+                    databaseReference1.child("Posts").child(arrayList_post_id.get(i).toString()).removeValue();
+                    databaseReference1.child("User").child("Posts").child(arrayList_post_id.get(i).toString()).removeValue();
+                }
+            });
+        Log.d(TAG,"comments21" + arrayList_comments.size() + "position: " + position);
+        standart_profile_c.comments.setText(arrayList_comments.get(position).toString());
+        standart_profile_c.likes.setText(arrayList_likes.get(position).toString());
+        standart_profile_c.time.setText(arrayList_time.get(position).toString());
+        standart_profile_c.location.setText(arrayList_place.get(position).toString());
+        if (arrayList_type.get(position).toString().equals("IMG")){
+            standart_profile_c.exoPlayerView.setVisibility(View.GONE);
+            standart_profile_c.imageView.setVisibility(View.VISIBLE);
+            Picasso.get().load(arrayList_Source.get(position).toString()).fit().into(standart_profile_c.imageView);
+
+        }
+        if (arrayList_type.get(position).toString().equals("Video")){
+            standart_profile_c.exoPlayerView.setVisibility(View.VISIBLE);
+            standart_profile_c.imageView.setVisibility(View.INVISIBLE);
+            DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(mContext,
+                    Util.getUserAgent(mContext, "uClimb"));
+            MediaSource videoSource =
+                    new ProgressiveMediaSource.Factory(dataSourceFactory)
+                            .createMediaSource(Uri.parse(arrayList_Source.get(position).toString()));
+            SimpleExoPlayer player = new SimpleExoPlayer.Builder(mContext).build();
+            player.prepare(videoSource);
+            standart_profile_c.exoPlayerView.setPlayer(player);
+            Handler handler = new Handler();
+            videoSource.addEventListener(handler, new MediaSourceEventListener() {
+                @Override
+                public void onMediaPeriodCreated(int windowIndex, MediaSource.MediaPeriodId mediaPeriodId) {
+                    player.seekTo(2);
 
                 }
 
                 @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
+                public void onMediaPeriodReleased(int windowIndex, MediaSource.MediaPeriodId mediaPeriodId) {
+
+                }
+
+                @Override
+                public void onLoadStarted(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData) {
+                    standart_profile_c.progressBar.setVisibility(View.VISIBLE);
+
+
+                }
+
+                @Override
+                public void onLoadCompleted(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData) {
+                    standart_profile_c.progressBar.setVisibility(View.GONE);
+
+                }
+
+                @Override
+                public void onLoadCanceled(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData) {
+
+                }
+
+                @Override
+                public void onLoadError(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData, IOException error, boolean wasCanceled) {
+
+                }
+
+                @Override
+                public void onReadingStarted(int windowIndex, MediaSource.MediaPeriodId mediaPeriodId) {
+
+                }
+
+                @Override
+                public void onUpstreamDiscarded(int windowIndex, MediaSource.MediaPeriodId mediaPeriodId, MediaLoadData mediaLoadData) {
+
+                }
+
+                @Override
+                public void onDownstreamFormatChanged(int windowIndex, @Nullable MediaSource.MediaPeriodId mediaPeriodId, MediaLoadData mediaLoadData) {
 
                 }
             });
 
         }
+    }
 
-
-
-
-        }
 
     @SuppressLint("SetTextI18n")
     private void viewHolder_0_code(@NonNull standart_profile holder) {
@@ -279,6 +373,8 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
         set_spinner_friends(holder);
         holder.Following_number.setText(following.size() + " Following");
         holder.Follower_number.setText(follower.size() + " Follower");
+        holder.Friends_number.setText(friends.size()+" Friends");
+
 // Create an ArrayAdapter using the string array and a default spinner layout
     }
 
@@ -396,10 +492,12 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     private void viewholder_2_code(@NonNull profile_b holder) {
+
         holder.btn_change_data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (btn_status ==0) {
+
                     Log.d(TAG,"Adapter23");
 
                     animate_height_data_change();
@@ -412,103 +510,87 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     holder.email.setVisibility(View.VISIBLE);
                     holder.height.setVisibility(View.VISIBLE);
                     holder.pwd_edit.setVisibility(View.VISIBLE);
+                    holder.name.setText(Name);
+                    holder.email.setText(Email);
+                    holder.info.setText(Info);
+                    holder.age.setText(Age);
+                    holder.country.setText(country);
+                    holder.height.setText(Height);
                     btn_status = 1;
+                    holder.btn_change_data.setText("Press again to change data");
                 }
+
                 else{
                     Log.d(TAG,"Adapter24");
 
 
 
 
-                    FirebaseDatabase auth = FirebaseDatabase.getInstance();
-                    DatabaseReference reference = auth.getReference("");
+
                     Presenter_Login login_presenter = new Presenter_Login();
-                    String uid = login_presenter.getUID(mContext);
-                        //Locale[] locales = Locale.getAvailableLocales();
-                        //for (Locale locale : locales) {
-                        //    //String country = locale.getDisplayCountry();
-                        //    //if (country.trim().length()>0 && !countries.contains(country)) {
-                        //        //countries.add(country);
-                        //    //}
-                        //}
-
-                        //System.out.println( "# countries found: " + countries.size());
-                        if (!holder.age.getText().toString().isEmpty() && Integer.parseInt(holder.age.getText().toString().trim()) < 100){
-                            reference.child("User").child(uid).child("Age").setValue(holder.age.getText().toString());
-                            Toast.makeText(mContext, "Alter geändert", Toast.LENGTH_SHORT).show();
-
-
-
-                        }
-                       //if (Integer.parseInt(holder.age.getText().toString()) > 100  ){
-                       //    Toast.makeText(mContext, "Alter zu groß", Toast.LENGTH_SHORT).show();
-                       //}
-
-                        if (!holder.height.getText().toString().isEmpty() && Integer.parseInt(holder.height.getText().toString().trim())>250){
-                            reference.child("User").child(uid).child("Height").setValue(holder.height.getText().toString());
-                            Toast.makeText(mContext, "Größe geändert", Toast.LENGTH_SHORT).show();
+                    String name =holder.name.getText().toString();
+                    String email = holder.email.getText().toString();
+                    String info =holder.info.getText().toString();
+                    String age = holder.age.getText().toString();
+                    String country = holder.country.getText().toString();
+                    String height = holder.height.getText().toString();
+                    String pwd = holder.pwd_edit.getText().toString();
+                    if (name.length() < 10 && name.length()>1){
+                        if (isEmailValid(email)){
+                            if (info.length() < 40 && info.length() > 1){
+                                if (Integer.parseInt(age) < 2030&& Integer.parseInt(age) > 1950){
+                                    if (getCities().contains(country)){
+                                        if (Integer.parseInt(height)<250 && Integer.parseInt(height) > 130){
+                                            if (!pwd.isEmpty()) {
+                                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("");
+                                                String uid = login_presenter.getUID(mContext);
+                                                Log.d(TAG,"14523423");
 
 
 
-                        }
-                        //if (Integer.parseInt(holder.height.getText().toString())>250){
-                        //    Toast.makeText(mContext, "Echte Größe bitte eingeben", Toast.LENGTH_SHORT).show();
-                        //}
+                                                reference.child("User").child(uid).child("Name").setValue(name);
+                                                reference.child("User").child(uid).child("Info").setValue(info);
+                                                reference.child("User").child(uid).child("Age").setValue(age);
+                                                reference.child("User").child(uid).child("Country").setValue(country);
+                                                reference.child("User").child(uid).child("Height").setValue(height);
+                                                Toast.makeText(mContext, "Information geändert", Toast.LENGTH_SHORT).show();
+                                                change_email_auth(email, pwd);
 
-                        if (!holder.info.getText().toString().isEmpty() && holder.info.getText().toString().length() < 300){
-                            reference.child("User").child(uid).child("Info").setValue(holder.info.getText().toString());
-                            Toast.makeText(mContext, "Bio geändert", Toast.LENGTH_SHORT).show();
+                                                ((AppCompatActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.container_fragment,
+                                                        new Profile_Fragment()).commit();
+                                            }
+                                            else{
+                                                Toast.makeText(mContext, "Passwort eingeben", Toast.LENGTH_SHORT).show();
+                                            }
 
+                                        }
+                                        else{
+                                            Toast.makeText(mContext, "Falsche Größe", Toast.LENGTH_SHORT).show();
+                                        }
 
+                                    }
+                                    else{
+                                        Toast.makeText(mContext, "Kein existierendes Land", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                                else{
+                                    Toast.makeText(mContext, "Falsches Geburtsdatum", Toast.LENGTH_SHORT).show();
+                                }
 
-                        }if (holder.info.getText().toString().length() > 300){
-                            Toast.makeText(mContext, "Text zu lang", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                Toast.makeText(mContext, "Bio soll nicht länger als 40 und kleiner als 1 eine Zeichensetzung sein", Toast.LENGTH_SHORT).show();
+                            }
 
-                        }
-                        if (!holder.country.getText().toString().isEmpty() && getCities().contains(holder.country.getText())){
-                            reference.child("User").child(uid).child("Country").child(holder.country.getText().toString());
-//
-//
-                        }
-                        if (!getCities().contains(holder.country.getText().toString()) && !holder.country.getText().toString().isEmpty()){
-                            Toast.makeText(mContext, "Das Land gibt es nicht. Bitte Groß- und Kleinschreibung beachten.", Toast.LENGTH_LONG).show();
-//
-//
                         }
                         else{
-                            return;
+                            Toast.makeText(mContext, "Ungültige Email", Toast.LENGTH_SHORT).show();
                         }
-                        if (!holder.name.getText().toString().isEmpty()&& holder.name.getText().toString().length() < 15){
-                            Log.d(TAG,"123123");
-                            reference.child("User").child(uid).child("Name").setValue(holder.name.getText().toString());
-                            Toast.makeText(mContext, "Name geändert", Toast.LENGTH_SHORT).show();
 
-
-
-                        }
-                       //if (holder.name.getText().toString().length() <15){
-                       //    Toast.makeText(mContext, "Name zu lang", Toast.LENGTH_SHORT).show();
-
-                       //}
-
-
-
-
-
-                        if (!holder.email.getText().toString().isEmpty() && isEmailValid(holder.email.getText().toString()) && !holder.pwd_edit.getText().toString().isEmpty()){
-                            //reference.child("User").child(uid).child("Email").setValue(holder.email.getText().toString());
-                            change_email_auth(holder.email.getText().toString(),holder.pwd_edit.getText().toString());
-
-
-
-                        }
-                       //if (!isEmailValid(holder.email.getText().toString())){
-                       //    Toast.makeText(mContext, "Echte Email bitte eingeben", Toast.LENGTH_SHORT).show();
-
-
-
-                       //}
-
+                    }
+                    else{
+                        Toast.makeText(mContext, "Überprüfe deinen Namen", Toast.LENGTH_SHORT).show();
+                    }
 
 
 
@@ -554,44 +636,45 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private void change_email_auth(String email, String pwd) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user==null){
+            Toast.makeText(mContext, "Try again later", Toast.LENGTH_SHORT).show();
+            return;
+        }
         Log.d(TAG,"usercurrent"+user);
         // Get auth credentials from the user for re-authentication
         AuthCredential credential = EmailAuthProvider
                 .getCredential(Email, pwd); // Current Login Credentials \\
         // Prompt the user to re-provide their sign-in credentials
-        if (user==null){
-            Toast.makeText(mContext, "Try again later", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-                    user.updateEmail(email)
-                            .addOnCompleteListener(task1 -> {
-                                if (task1.isSuccessful()) {
-                                    Log.d(TAG,"success231");
-                                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-                                    databaseReference.child("User").child(uid).child("Email").setValue(email);
-                                    Toast.makeText(mContext, "Email geändert", Toast.LENGTH_SHORT).show();
-
-                                }
-                                else{
-                                    Log.d(TAG,"errror21");
-
-                                    Toast.makeText(mContext, "Error: " + Objects.requireNonNull(task1.getException()).getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(mContext, "Error: " + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-
-
+        user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                user.updateEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(mContext, "Email wurde geändert", Toast.LENGTH_SHORT).show();
+                            Log.d(TAG,"success231");
+                            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                            databaseReference.child("User").child(uid).child("Email").setValue(email);
                         }
-                    }).addOnCanceledListener(new OnCanceledListener() {
-                        @Override
-                        public void onCanceled() {
 
-                        }
-                    });
-                    //----------------------------------------------------------\\
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(mContext, "Error: " + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(mContext, "Error: " + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
     }
     public ArrayList getCities(){
@@ -657,10 +740,10 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
                 }
-                if (friends_final.isEmpty()){
-                    friends_final.add("/");
-                    friends_img.add("/");
-                    friends_name.add("/");
+                if (follower_final.isEmpty()){
+                    follower_final.add("/");
+                    follower_img.add("/");
+                    follower_img.add("/");
                 }
                 standart_profile.Friends.setAdapter(new Public_Spinner_Base_Profiles(friends_img,friends_name,friends_final));
                 standart_profile.Friends.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -891,7 +974,7 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 3 + arrayList_post_id.size();
     }
     public static class standart_profile extends RecyclerView.ViewHolder {
         de.hdodenhof.circleimageview.CircleImageView Imageview;
@@ -908,6 +991,7 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
         TextView Follower_number;
         TextView Following_number;
         ProgressBar progressBar;
+        TextView Friends_number;
 
 
         public standart_profile(@NonNull View itemView) {
@@ -926,6 +1010,7 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
             Friends= itemView.findViewById(R.id.spinner_friends_profile);
             Follower_number = itemView.findViewById(R.id.number_followers_profile);
             Following_number = itemView.findViewById(R.id.number_following_profile);
+            Friends_number = itemView.findViewById(R.id.friends_txt_profile);
 
 
             Log.d(TAG,"uid" + uid);
@@ -980,37 +1065,65 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemViewType(int position) {
-        int i = -2;
+        int finalI = -2;
+        Log.d(TAG,"position23"+position);
         if (position == 0){
-            i=0;
+            finalI=0;
+            Log.d(TAG,"final0"+position);
+
 
 
         }
-        if (position==1){
-            i=1;
+        if (position == 1){
+            finalI=1;
+            Log.d(TAG,"final1"+position);
+
 
 
         }
         if (position == 2){
-            i=2;
+            Log.d(TAG,"final2"+position);
+
+
+
+
+            finalI=2;
 
 
         }
-        if (position == 3){
-            i=3;
+        else{
+            Log.d(TAG,"final3"+position);
+
+
+            finalI=3;
 
 
         }
-        return i;
+        return finalI;
     }
 
 
     private class standart_profile_c extends RecyclerView.ViewHolder {
-        public RecyclerView rec;
-
+        public ProgressBar progressBar;
+        private SimpleExoPlayerView exoPlayerView;
+        private ImageView imageView;
+        private Button delete_post;
+        private ImageView share;
+        private TextView likes;
+        private TextView comments;
+        private TextView location;
+        private TextView time;
         public standart_profile_c(@NonNull View itemView) {
             super(itemView);
-            rec = itemView.findViewById(R.id.rec_profile_images_and_videos_uploads);
+            imageView = itemView.findViewById(R.id.img_user_profile_custom_post);
+            likes =  itemView.findViewById(R.id.likes_profile_custom_post);
+            comments = itemView.findViewById(R.id.comments_profile_custom_post);
+            exoPlayerView = itemView.findViewById(R.id.exoplayer_user_profile_custom_post);
+            delete_post = itemView.findViewById(R.id.btn_delete_profile_custom_post);
+            share = itemView.findViewById(R.id.share_profile_custom_post);
+            time = itemView.findViewById(R.id.time_user_posts_custom);
+            progressBar = itemView.findViewById(R.id.progress_custom_post_profile);
+            location = itemView.findViewById(R.id.place_user_posts_custom);
         }
     }
 

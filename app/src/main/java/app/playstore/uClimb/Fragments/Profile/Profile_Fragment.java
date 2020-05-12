@@ -39,7 +39,6 @@ public class Profile_Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Toast.makeText(getContext(), "Hey", Toast.LENGTH_SHORT).show();
         initViews(view);
         nav();
         setRecyclerview(view);

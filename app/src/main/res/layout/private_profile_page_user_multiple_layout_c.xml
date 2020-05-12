@@ -1,17 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="500dp" >
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rec_profile_images_and_videos_uploads"
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        >
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+                android:id="@+id/exoplayer_user_profile_custom_post"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/img_user_profile_custom_post"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.6">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:text="Berta Block BoulderHalle"
+                android:gravity="center"
+                android:id="@+id/place_user_posts_custom" />
+            <TextView
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:text="17:00 24.3.2003"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/time_user_posts_custom" />
+
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnCount="3"
+            android:layout_weight="1.6">
+
+            <TextView
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:text="likes 10000"
+
+                android:id="@+id/likes_profile_custom_post"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/comments_profile_custom_post"
+                android:text="comments 100"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:textAlignment="center"
+                android:layout_weight="1"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5">
+            <Button
+                android:id="@+id/btn_delete_profile_custom_post"
+                android:layout_margin="20dp"
+                android:text="@string/press_long_to_delete_post"
+                android:background="@color/grey_pressed_btn"
+                android:layout_weight="1"
+
+
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+            <ImageView
+                android:id="@+id/share_profile_custom_post"
+                android:src="@mipmap/share_icon"
+                android:padding="20dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+
+                android:layout_height="match_parent" />
+
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+        </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_custom_post_profile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
+        android:layout_margin="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+
+
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

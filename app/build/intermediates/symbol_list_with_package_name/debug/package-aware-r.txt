@@ -2333,6 +2333,7 @@ id btn_change_data
 id btn_change_pwd
 id btn_comment_home_custom
 id btn_continue
+id btn_delete_profile_custom_post
 id btn_follow_profile_custom
 id btn_friends_custom_profile
 id btn_log_in_log_in
@@ -2362,6 +2363,7 @@ id clear_text
 id clip_horizontal
 id clip_vertical
 id collapseActionView
+id comments_profile_custom_post
 id competition_statistic
 id competition_statistic_rec
 id confirm_button
@@ -2493,6 +2495,7 @@ id exo_shutter
 id exo_subtitles
 id exo_track_selection_view
 id exo_vr
+id exoplayer_user_profile_custom_post
 id expand_activities_button
 id expanded_menu
 id fade
@@ -2558,6 +2561,7 @@ id img_location_item
 id img_logo_round_login
 id img_profile_uploads_custom_1
 id img_share_custom
+id img_user_profile_custom_post
 id img_view_custom
 id img_view_custom_home
 id include_log_0
@@ -2579,6 +2583,7 @@ id largeLabel
 id layout
 id left
 id light
+id likes_profile_custom_post
 id line1
 id line3
 id linear
@@ -2672,6 +2677,7 @@ id pause_time_txt
 id peekHeight
 id percent
 id pin
+id place_user_posts_custom
 id places_autocomplete_action_bar
 id places_autocomplete_back_button
 id places_autocomplete_clear_button
@@ -2707,6 +2713,7 @@ id profile_rec
 id progress_bar
 id progress_circular
 id progress_custom_home
+id progress_custom_post_profile
 id progress_custom_upload_profile
 id progress_horizontal
 id progress_item_search_img
@@ -2726,7 +2733,6 @@ id rec_home_custom
 id rec_item_btn_view
 id rec_item_btn_view_training
 id rec_location
-id rec_profile_images_and_videos_uploads
 id rec_search_main
 id rec_search_page
 id rec_sessions
@@ -2774,6 +2780,7 @@ id selected
 id sessions_statistic
 id sets_edit
 id sets_txt
+id share_profile_custom_post
 id shortcut
 id showCustom
 id showHome
@@ -2862,6 +2869,7 @@ id third
 id thumbnail_image_view
 id time
 id time_current
+id time_user_posts_custom
 id title
 id titleDividerNoCustom
 id title_qustion2
@@ -3219,6 +3227,7 @@ string age
 string app_name
 string appbar_scrolling_view_behavior
 string battery_percent
+string beta_message
 string bottom_sheet_behavior
 string brightness_changing
 string cd_background_image_view
@@ -3391,6 +3400,7 @@ string playback_speed_1_25
 string playback_speed_1_5
 string playback_speed_2
 string player_error
+string press_long_to_delete_post
 string project_id
 string register
 string search_menu_title
@@ -3408,6 +3418,7 @@ string title_notifications
 string uClimb_slogan
 string volume_changing
 string warmup_link_img
+string welcome_short_info
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog

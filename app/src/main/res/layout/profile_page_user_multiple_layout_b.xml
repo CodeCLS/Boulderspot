@@ -85,7 +85,7 @@
        <EditText
            android:id="@+id/pwd_edit_profile"
            android:inputType="textPassword"
-           android:hint="Passwort---Nur für Email gebraucht"
+           android:hint="Passwort"
 
            android:layout_width="match_parent"
            android:layout_height="match_parent"

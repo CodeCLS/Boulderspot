@@ -8,7 +8,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,7 +27,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import app.playstore.uClimb.Adapters.Profile.Adapter_Profile;
-import app.playstore.uClimb.Obsolete.Adapter_Profile_User_Uploads;
 import app.playstore.uClimb.Main.MainActivity;
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.MVP.MVP_Login.Presenter_Login;
@@ -47,8 +45,10 @@ public class Presenter_Profile {
     private String country;
     private ArrayList follower = new ArrayList();
     private ArrayList  following = new ArrayList();
+    private ArrayList  friends = new ArrayList();
+
     private String Height;
-    private ArrayList competition = new ArrayList();
+    private ArrayList friends_id = new ArrayList();
     private String account_type;
     private String time_created;
     private String position_lat;
@@ -67,6 +67,10 @@ public class Presenter_Profile {
     private ArrayList<String> arrayList_uid = new ArrayList<>();
     private ArrayList<String> arrayList_post_id = new ArrayList<>();
     private ArrayList<String> arrayList_time = new ArrayList<>();
+    private ArrayList<String> arrayList_likes = new ArrayList<>();
+    private ArrayList<String> arrayList_comments= new ArrayList<>();
+
+
     private ProgressBar progressBar;
 
 
@@ -79,13 +83,13 @@ public class Presenter_Profile {
 
 
     }
-    public void setData(RecyclerView recyclerView){
+    public void setData(RecyclerView recyclerView,Context mContext){
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference("");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                fireData(dataSnapshot,recyclerView);
+                getDataPosts(mContext,dataSnapshot,recyclerView);
             }
 
             @Override
@@ -99,20 +103,24 @@ public class Presenter_Profile {
     public void setRecyclerview(Context mContext, View view){
         RecyclerView recyclerView = view.findViewById(R.id.profile_rec);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        setData(recyclerView);
+        setData(recyclerView,mContext);
         Log.d(TAG,"profile_img2" + profile_img);
 
 
     }
-    public void setRecyclerView(RecyclerView recyclerView,Context mContext){
+    public void getDataPosts(Context mContext,DataSnapshot dataSnapshot2 ,RecyclerView recyclerView2){
+        Log.d(TAG,"postid2");
+        ArrayList<String> post_id = new ArrayList<>();
+
+
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = firebaseDatabase.getReference();
+        DatabaseReference databaseReference = firebaseDatabase.getReference("");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ArrayList<String> post_id = new ArrayList<>();
-                for (DataSnapshot postSnapshot: dataSnapshot.child("User").child("Posts").getChildren()){
+                for (DataSnapshot postSnapshot: dataSnapshot.child("User").child(uid).child("Posts").getChildren()){
                     post_id.add(postSnapshot.getKey());
+                    Log.d(TAG,"postid"+post_id);
 
 
 
@@ -120,11 +128,16 @@ public class Presenter_Profile {
                 for (int i = 0;i< post_id.size();i++){
                     String id = post_id.get(i).toString();
                     String Source = dataSnapshot.toString();
-                    String type = dataSnapshot.child("Posts").child("type").getValue().toString();
-                    String info = dataSnapshot.child("Posts").child("Info").getValue().toString();
-                    String place = dataSnapshot.child("Posts").child("Place_name").getValue().toString();
-                    String time =dataSnapshot.child("Posts").child("Time").getValue().toString();
-                    String u_id =dataSnapshot.child("Posts").child("User_ID").getValue().toString();
+                    String type = dataSnapshot.child("Posts").child(id).child("type").getValue().toString();
+                    String info = dataSnapshot.child("Posts").child(id).child("Info").getValue().toString();
+                    String place = dataSnapshot.child("Posts").child(id).child("Place_name").getValue().toString();
+                    String time =dataSnapshot.child("Posts").child(id).child("Time").getValue().toString();
+                    String u_id =dataSnapshot.child("Posts").child(id).child("User_ID").getValue().toString();
+                    String likes =String.valueOf(dataSnapshot.child("Posts").child(id).child("likes").getChildrenCount());
+                    String commments =String.valueOf(dataSnapshot.child("Posts").child(id).child("comments").getChildrenCount());
+
+
+
                     arrayList_info.add(info);
                     arrayList_post_id.add(id);
                     arrayList_uid.add(u_id);
@@ -132,9 +145,13 @@ public class Presenter_Profile {
                     arrayList_Source.add(Source);
                     arrayList_time.add(time);
                     arrayList_place.add(place);
+                    arrayList_comments.add(commments);
+                    arrayList_likes.add(likes);
 
 
                 }
+                fireData(dataSnapshot2,recyclerView2);
+
             }
 
             @Override
@@ -142,19 +159,11 @@ public class Presenter_Profile {
 
             }
         });
-        Adapter_Profile_User_Uploads inner_profile_adapter = new Adapter_Profile_User_Uploads(arrayList_Source,arrayList_type,arrayList_post_id,arrayList_info,arrayList_uid,arrayList_time,arrayList_place);
-        recyclerView.setLayoutManager(new GridLayoutManager(mContext,2));
-        recyclerView.setAdapter(inner_profile_adapter);
-
-
-    }
-
-    private void getDataPosts(RecyclerView recyclerView) {
-
 
 
 
     }
+
 
     private void fireData(DataSnapshot dataSnapshot,RecyclerView recyclerView) {
         Age = dataSnapshot.child("User").child(uid).child("Age").getValue().toString();
@@ -183,13 +192,13 @@ public class Presenter_Profile {
 
         }
         for (DataSnapshot postSnapshot: dataSnapshot.child("User").child(uid).child("Friends").getChildren()){
-            Boolean bool = competition.add(postSnapshot.getValue());
-            Log.d(TAG,"Friends43_" + competition);
+            Boolean bool = friends_id.add(postSnapshot.getValue());
+            Log.d(TAG,"Friends43_" + friends_id);
 
 
 
         }
-        Log.d(TAG,"Friends3_" + competition);
+        Log.d(TAG,"Friends3_" + friends_id);
 
         account_type = Objects.requireNonNull(dataSnapshot.child("User").child(uid).child("account_type").getValue()).toString();
         time_created = Objects.requireNonNull(dataSnapshot.child("User").child(uid).child("Time_created").getValue()).toString();
@@ -197,8 +206,7 @@ public class Presenter_Profile {
         position_long = Objects.requireNonNull(dataSnapshot.child("User").child(uid).child("Position").child("Position_lon").getValue()).toString();
         position_last_updated = Objects.requireNonNull(dataSnapshot.child("User").child(uid).child("Position").child("Position_last_Time_updated").getValue()).toString();
         position_status = Boolean.valueOf(Objects.requireNonNull(dataSnapshot.child("User").child(uid).child("Position").child("position_status").getValue()).toString());
-        profile_adapter = new Adapter_Profile(uid, Age,Name,profile_img,Info, country,follower,following,Height,competition
-                , Email);
+        profile_adapter = new Adapter_Profile(uid, Age,Name,profile_img,Info, country,follower,following,Height,arrayList_Source, arrayList_type,arrayList_info,arrayList_place,arrayList_uid,arrayList_post_id,arrayList_time,arrayList_likes,arrayList_comments,Email, friends_id);
         recyclerView.setAdapter(profile_adapter);
 
 
