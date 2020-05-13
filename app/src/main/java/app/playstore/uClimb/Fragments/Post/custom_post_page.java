@@ -11,7 +11,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.MediaSource;
@@ -29,6 +32,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
+import app.playstore.uClimb.Fragments.Fragment_Comments;
 import app.playstore.uClimb.R;
 import app.playstore.uClimb.MVP.MVP_Custom_Post.Presenter_Custom_Post;
 import app.playstore.uClimb.MVP.MVP_Login.Presenter_Login;
@@ -55,6 +59,8 @@ public class custom_post_page extends Fragment {
     private String post_id = "";
     private Boolean liked = false;
 
+    private TextView comment_txt;
+
 
     @Nullable
     @Override
@@ -74,6 +80,7 @@ public class custom_post_page extends Fragment {
         getcredentialsfragment();
 
         initViews(view);
+        txtComment();
         //onClick();
 
 
@@ -87,6 +94,22 @@ public class custom_post_page extends Fragment {
 //
         //    }
         //});
+    }
+
+    private void txtComment() {
+        comment_txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment_Comments fragment_comments = new Fragment_Comments();
+                Bundle bundle = new Bundle();
+                bundle.putString("PostID",post_id);
+                fragment_comments.setArguments(bundle);
+                FragmentManager fragmentManager = ((AppCompatActivity)getContext()).getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().replace(R.id.container_fragment,fragment_comments).addToBackStack("Comments_Post").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                fragmentTransaction.commit();
+
+            }
+        });
     }
 
     private void onClick() {
@@ -264,6 +287,7 @@ public class custom_post_page extends Fragment {
        txt_name = view.findViewById(R.id.txt_username_custom);
        img_profile_pic = view.findViewById(R.id.profile_img_custom);
        info_txt = view.findViewById(R.id.txt_info_custom);
+       comment_txt = view.findViewById(R.id.txt_comments_custom);
 
     }
 

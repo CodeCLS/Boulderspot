@@ -51,7 +51,6 @@ public class Search_Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initViewsexceptRec(view);
 
 
 
@@ -68,25 +67,8 @@ public class Search_Fragment extends Fragment {
 
     }
 
-    private void setOnClick() {
-        search_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String search_string =search_edit.getText().toString();
 
 
-
-            }
-        });
-    }
-
-    private void initViewsexceptRec(View view) {
-
-
-
-
-
-    }
 
     private void initRec(@NonNull View view) {
         RecyclerView rec = view.findViewById(R.id.rec_search_main);

@@ -81,7 +81,8 @@ public class Adapter_Search extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private void holder_zero(RecyclerView.ViewHolder holder) {
         ViewHolderSearch viewHolderSearch = (ViewHolderSearch) holder;
-        Adapter_Spinner adapter = new Adapter_Spinner(mContext,R.layout.public_spinner_search_item,peoples.toArray(),peoples_img,peoples,mContext);
+        Log.d(TAG,"peoples234"+peoples);
+        Adapter_Spinner adapter = new Adapter_Spinner(mContext,R.layout.public_spinner_search_item,peoples,peoples_img,peoples,mContext);
         viewHolderSearch.editText.setAdapter(adapter);
         Log.d(TAG,"array_people2" + adapter);
         viewHolderSearch.editText.setOnItemClickListener(new AdapterView.OnItemClickListener() {

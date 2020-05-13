@@ -2413,6 +2413,8 @@ id easeIn
 id easeInOut
 id easeOut
 id edit_age_extra
+id edit_comment_btn
+id edit_comment_edit
 id edit_comment_home_custom
 id edit_country_extra
 id edit_email_name
@@ -2727,6 +2729,7 @@ id pwd_old_profile
 id qualityDes
 id radio
 id ratio
+id rec_comments
 id rec_custom_comments
 id rec_custom_workouts
 id rec_home
@@ -2893,6 +2896,7 @@ id transition_transform
 id triangle
 id txt_boulder_accomplishment
 id txt_comment
+id txt_comment_name
 id txt_comments_custom
 id txt_duration_session
 id txt_grade_boulder
@@ -2998,6 +3002,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout circle_menu
+layout comment_page
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.BreakIterator;
 import java.util.ArrayList;
 
 import app.playstore.uClimb.R;
@@ -21,6 +22,8 @@ public class Adapter_Home_Comments extends RecyclerView.Adapter<Adapter_Home_Com
     private ArrayList<String> array_comment;
     //private ArrayList<String> array_User_ID = new ArrayList();
     private ArrayList<String> array_time;
+    private ArrayList<String> array_uid;
+
 
     //public Adapter_Home_Comments(ArrayList<String> array_name, ArrayList<String> array_comment_id, ArrayList<String> array_comment, ArrayList<String> array_User_ID, ArrayList<String> array_time) {
     //    this.array_name = array_name;
@@ -29,12 +32,14 @@ public class Adapter_Home_Comments extends RecyclerView.Adapter<Adapter_Home_Com
     //    this.array_User_ID = array_User_ID;
     //    this.array_time = array_time;
     //}
-    public Adapter_Home_Comments(ArrayList<String> array_name, ArrayList<String> array_comment_id, ArrayList<String> array_comment, ArrayList<String> array_time) {
+    public Adapter_Home_Comments(ArrayList<String> array_name, ArrayList<String> array_comment_id, ArrayList<String> array_comment, ArrayList<String> array_time,ArrayList<String> array_uid) {
         this.array_name = array_name;
         this.array_comment_id = array_comment_id;
         this.array_comment = array_comment;
         //this.array_User_ID = array_User_ID;
         this.array_time = array_time;
+        this.array_uid = array_uid;
+
     }
 
     @NonNull
@@ -53,8 +58,9 @@ public class Adapter_Home_Comments extends RecyclerView.Adapter<Adapter_Home_Com
         Log.d(TAG,"array_commment" + array_comment);
         Log.d(TAG,"array_id" + array_comment_id);
         Log.d(TAG,"array_time" + array_time);
+        holder.comment_name.setText(array_name.get(position));
 
-        holder.comment_txt.setText(array_name.get(position)+ ": " + array_comment.get(position));
+        holder.comment_txt.setText(array_comment.get(position));
 
 
     }
@@ -65,11 +71,13 @@ public class Adapter_Home_Comments extends RecyclerView.Adapter<Adapter_Home_Com
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView comment_name;
         TextView comment_txt;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             comment_txt = itemView.findViewById(R.id.txt_comment);
+            comment_name = itemView.findViewById(R.id.txt_comment_name);
         }
     }
 }

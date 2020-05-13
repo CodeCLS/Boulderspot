@@ -20,6 +20,10 @@
         "source": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/res/layout/top_include_friends_and_locations.xml"
     },
     {
+        "merged": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/build/intermediates/res/merged/debug/layout_comment_page.xml.flat",
+        "source": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/res/layout/comment_page.xml"
+    },
+    {
         "merged": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/build/intermediates/res/merged/debug/layout_private_custom_viewholder_custom_profile_2.xml.flat",
         "source": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/res/layout/private_custom_viewholder_custom_profile_2.xml"
     },

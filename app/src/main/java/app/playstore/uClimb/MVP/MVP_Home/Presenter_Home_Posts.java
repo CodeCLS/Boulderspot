@@ -68,7 +68,7 @@ public class Presenter_Home_Posts {
     private ArrayList<String> array_post_id = new ArrayList();
     private ArrayList<String> array_type = new ArrayList();
     private ArrayList<String> array_likes = new ArrayList();
-    Adapter_Home_Comments adapter_home_comment = new Adapter_Home_Comments(array_name_comment,array_comment_id,array_comment, array_time_comment);
+    //Adapter_Home_Comments adapter_home_comment = new Adapter_Home_Comments(array_name_comment,array_comment_id,array_comment, array_time_comment);
     Adapter_Home adapter_home = new Adapter_Home(array_name,array_source_img,array_source,array_info, array_post_id,array_type,array_user_id);
     private String mAuth;
 
@@ -235,42 +235,7 @@ public class Presenter_Home_Posts {
 //
     //}
 
-    private void getcommentdata(Context mContext,RecyclerView rec,ArrayList<String> array_name, ArrayList<String> array_time, ArrayList<String> array_comment_id, ArrayList<String> array_comment, ArrayList<String> array_User_ID) {
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = firebaseDatabase.getReference("");
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot: dataSnapshot.child("Comments").getChildren()){
-                    String uid= Objects.requireNonNull(postSnapshot.child("U_ID").getValue()).toString();
-                    Log.d(TAG,"uid"+ uid);
 
-                    String name = dataSnapshot.child("User").child(uid).child("Name").getValue().toString();
-                    array_name_comment.add(name);
-                    Log.d(TAG,"postsnapshotname" + array_name);
-
-                    String time = postSnapshot.child("Time").getValue().toString();
-                    Log.d(TAG,"postsnapshottime" + array_time);
-                    array_time_comment.add(time);
-                    array_comment.add(postSnapshot.child("comment").getValue().toString());
-                    String comment_id = postSnapshot.getKey();
-                    array_comment_id.add(comment_id);
-                    String uid_String = postSnapshot.child("U_ID").getValue().toString();
-                    array_User_ID.add(uid_String);
-
-
-                }
-                rec.setAdapter(adapter_home_comment);
-                rec.setLayoutManager(new LinearLayoutManager(mContext));
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
 
     private DatabaseReference addDatatoArray_postID() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();

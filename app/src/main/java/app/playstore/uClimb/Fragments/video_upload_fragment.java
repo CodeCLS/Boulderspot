@@ -287,14 +287,15 @@ public class video_upload_fragment extends Fragment {
     }
 
     private void datawork() {
-        if (info_edit.getText().toString().length() > 10 &&selected_source&& place_id != null ){
+        Log.d(TAG,"info_edit32" + info_edit.getText().toString());
+        if (info_edit.getText().toString().length() > 20 &&selected_source&& place_id != null ){
             if (!checkbox_statistics.isSelected()){
                 if (selected_img){
-                    uploadProgress(selected_IMG_source,initStorage(),true,true);
+                    uploadProgress(selected_IMG_source,initStorage(),true,true,info_edit.getText().toString());
 
                 }
                 if (selected_video){
-                    uploadProgress(selected_video_source,initStorage(),false,true);
+                    uploadProgress(selected_video_source,initStorage(),false,true,info_edit.getText().toString());
 
 
 
@@ -308,13 +309,13 @@ public class video_upload_fragment extends Fragment {
             }
             else{
                 if (selected_img){
-                    uploadProgress(selected_IMG_source,initStorage(),true,false);
+                    uploadProgress(selected_IMG_source,initStorage(),true,false,info_edit.getText().toString());
 
 
 
                 }
                 if (selected_video){
-                    uploadProgress(selected_video_source,initStorage(),false,false);
+                    uploadProgress(selected_video_source,initStorage(),false,false,info_edit.getText().toString());
 
 
 
@@ -445,7 +446,7 @@ public class video_upload_fragment extends Fragment {
         return storageRef.child("Sources_Users_Uploads").child(uid).child("_#"+random(10));
     }
 
-    private void uploadProgress(String selectedUri, final StorageReference ref, boolean source_status, boolean statistics_status) {
+    private void uploadProgress(String selectedUri, final StorageReference ref, boolean source_status, boolean statistics_status, String s) {
 
         ref.putFile(Uri.parse(selectedUri)).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -468,13 +469,14 @@ public class video_upload_fragment extends Fragment {
                         selected_img = false;
                         selected_video = false;
                         progressBar.setVisibility(View.GONE);
+                        Log.d(TAG,"infoupload: " + info_edit.getText().toString());
 
 
                         ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
                                 Log.d(TAG,"Success"+uri.equals(uri + ""));
-                                Presenter_Video video_presenter = new Presenter_Video(place_id,spinner_grade.getSelectedItem().toString(),spinner_impression_grade.getSelectedItem().toString(),spinner_route_type.getSelectedItem().toString(),spinner_tries.getSelectedItem().toString(),place_Name,info_edit.getText().toString());
+                                Presenter_Video video_presenter = new Presenter_Video(place_id,spinner_grade.getSelectedItem().toString(),spinner_impression_grade.getSelectedItem().toString(),spinner_route_type.getSelectedItem().toString(),spinner_tries.getSelectedItem().toString(),place_Name,s);
                                 video_presenter.addSuccess(getContext(),random(10),source_status,statistics_status,uri);
 
 
