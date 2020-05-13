@@ -69,7 +69,7 @@ public class Presenter_Home_Posts {
     private ArrayList<String> array_type = new ArrayList();
     private ArrayList<String> array_likes = new ArrayList();
     Adapter_Home_Comments adapter_home_comment = new Adapter_Home_Comments(array_name_comment,array_comment_id,array_comment, array_time_comment);
-    Adapter_Home adapter_home = new Adapter_Home(array_name,array_source_img,array_source,array_info, array_post_id,array_type);
+    Adapter_Home adapter_home = new Adapter_Home(array_name,array_source_img,array_source,array_info, array_post_id,array_type,array_user_id);
     private String mAuth;
 
 
@@ -174,28 +174,40 @@ public class Presenter_Home_Posts {
 
 
     private void addDatato_arrays(@NonNull DataSnapshot dataSnapshot, DataSnapshot postSnapshot) {
-        String time =postSnapshot.child("Time").getValue().toString();
-        String name = dataSnapshot.child("User").child(postSnapshot.child("User_ID").getValue().toString()).child("Name").getValue().toString();
-        String profile_img = dataSnapshot.child("User").child(postSnapshot.child("User_ID").getValue().toString()).child("IMG").getValue().toString();
-        String source = postSnapshot.child("Source").getValue().toString();
-        String info = postSnapshot.child("Info").getValue().toString();
-        String place = postSnapshot.child("Place").getValue().toString();
-        String uID = postSnapshot.child("User_ID").getValue().toString();
-        String post_ID = postSnapshot.getKey().toString();
-        String type = postSnapshot.child("type").getValue().toString();
-        String likes = String.valueOf(postSnapshot.child("likes").getChildrenCount());
 
-        array_time.add(time);
-        array_name.add(name);
-        array_source_img.add(profile_img);
-        array_source.add(source);
-        array_info.add(info);
-        array_place.add(place);
-        array_user_id.add(uID);
-        array_post_id.add(post_ID);
-        array_type.add(type);
-        array_likes.add(likes);
-        Log.d(TAG,"likes"+likes);
+
+        if (!dataSnapshot.child("User").child(postSnapshot.child("User_ID").getValue().toString()).child("Name").exists()){
+            return;
+
+        }
+        else{
+            String name = dataSnapshot.child("User").child(postSnapshot.child("User_ID").getValue().toString()).child("Name").getValue().toString();
+            String time =postSnapshot.child("Time").getValue().toString();
+
+            String profile_img = dataSnapshot.child("User").child(postSnapshot.child("User_ID").getValue().toString()).child("IMG").getValue().toString();
+            String source = postSnapshot.child("Source").getValue().toString();
+            String info = postSnapshot.child("Info").getValue().toString();
+            String place = postSnapshot.child("Place").getValue().toString();
+            String uID = postSnapshot.child("User_ID").getValue().toString();
+            String post_ID = postSnapshot.getKey().toString();
+            String type = postSnapshot.child("type").getValue().toString();
+            String likes = String.valueOf(postSnapshot.child("likes").getChildrenCount());
+
+            array_time.add(time);
+            array_name.add(name);
+            array_source_img.add(profile_img);
+            array_source.add(source);
+            array_info.add(info);
+            array_place.add(place);
+            array_user_id.add(uID);
+            array_post_id.add(post_ID);
+            array_type.add(type);
+            array_likes.add(likes);
+            Log.d(TAG,"likes"+likes);
+
+        }
+
+
 
     }
 

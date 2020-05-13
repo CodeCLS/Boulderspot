@@ -29,16 +29,27 @@
             android:layout_weight="1.2">
 
 
+
             <TextView
                 android:id="@+id/txt_username_home"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="120dp"
                 android:gravity="center_vertical"
+                android:layout_weight="1"
                 android:padding="10dp"
                 android:text="Caleb Seeling"
                 android:textSize="20sp"
                 tools:ignore="RtlCompat" />
+
+            <Button
+                android:id="@+id/btn_more_posts_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="10sp"
+                android:layout_weight="5"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:text="More..." />
 
         </LinearLayout>
 

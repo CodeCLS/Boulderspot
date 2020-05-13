@@ -23,6 +23,7 @@
                 android:id="@+id/exoplayer_user_profile_custom_post"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -35,6 +36,7 @@
                 android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -106,7 +108,7 @@
                 android:id="@+id/btn_delete_profile_custom_post"
                 android:layout_margin="20dp"
                 android:text="@string/press_long_to_delete_post"
-                android:background="@color/grey_pressed_btn"
+                android:background="@drawable/public_important_background_white_round"
                 android:layout_weight="1"
 
 

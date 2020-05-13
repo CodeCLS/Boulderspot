@@ -2338,6 +2338,7 @@ id btn_follow_profile_custom
 id btn_friends_custom_profile
 id btn_log_in_log_in
 id btn_log_workout
+id btn_more_posts_home
 id btn_publish_position
 id btn_register
 id btn_search_search

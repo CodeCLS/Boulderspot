@@ -1,6 +1,7 @@
-package app.playstore.uClimb.Fragments;
+package app.playstore.uClimb.Fragments.Training;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -11,6 +12,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -23,6 +27,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import java.util.Objects;
 
 import app.playstore.uClimb.Fragments.Training.Log_Training_Fragment;
 import app.playstore.uClimb.R;
@@ -62,6 +68,9 @@ public class Hangboard_page extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if (container != null){
+            container.removeAllViews();
+        }
         return inflater.inflate(R.layout.main_hangboard_page,container,false);
     }
 
@@ -71,6 +80,8 @@ public class Hangboard_page extends Fragment {
         mediaPlayer = MediaPlayer.create(getContext(),R.raw.training_sound);
         initViews(view);
         onClick(view);
+
+
 
     }
 
@@ -447,6 +458,7 @@ public class Hangboard_page extends Fragment {
     }
 
     private void initViews(View view) {
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         hang_time_edit = view.findViewById(R.id.hang_time_edit);
         pause_time_edit = view.findViewById(R.id.pause_time_edit);
         rest_time_edit = view.findViewById(R.id.rest_time_edit);

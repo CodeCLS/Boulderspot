@@ -396,6 +396,7 @@ public class Login_uClimb extends Base_Internet implements GoogleApiClient.OnCon
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
+            Toast.makeText(this, "Loading...", Toast.LENGTH_SHORT).show();
 
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {

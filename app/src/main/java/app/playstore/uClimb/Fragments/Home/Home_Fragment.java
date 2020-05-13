@@ -51,7 +51,9 @@ public class Home_Fragment extends Fragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
+        if (container != null){
+            container.removeAllViews();
+        }
         return inflater.inflate(R.layout.main_page, container, false);
 
     }

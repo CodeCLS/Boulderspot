@@ -127,7 +127,9 @@ public class Presenter_Profile {
                 }
                 for (int i = 0;i< post_id.size();i++){
                     String id = post_id.get(i).toString();
-                    String Source = dataSnapshot.toString();
+                    Log.d(TAG,"id21" + id);
+
+                    String Source = dataSnapshot.child("Posts").child(id).child("Source").getValue().toString();
                     String type = dataSnapshot.child("Posts").child(id).child("type").getValue().toString();
                     String info = dataSnapshot.child("Posts").child(id).child("Info").getValue().toString();
                     String place = dataSnapshot.child("Posts").child(id).child("Place_name").getValue().toString();

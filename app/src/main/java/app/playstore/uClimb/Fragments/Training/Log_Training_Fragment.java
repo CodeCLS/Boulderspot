@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import app.playstore.uClimb.Fragments.Hangboard_page;
 import app.playstore.uClimb.MVP.MVP_Training.Presenter_Training;
 import app.playstore.uClimb.R;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -24,6 +23,9 @@ public class Log_Training_Fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if (container != null){
+            container.removeAllViews();
+        }
         return inflater.inflate(R.layout.main_log_training_page,container,false);
 
     }

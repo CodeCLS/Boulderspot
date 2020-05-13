@@ -30,8 +30,13 @@ public class custom_workout_page extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if (container != null){
+            container.removeAllViews();
+        }
         return inflater.inflate(R.layout.private_custom_workout_page,container,false);
     }
+
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

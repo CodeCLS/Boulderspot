@@ -37,6 +37,9 @@ public class Search_Fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if (container != null){
+            container.removeAllViews();
+        }
         return inflater.inflate(R.layout.main_search_page, container, false);
 
 

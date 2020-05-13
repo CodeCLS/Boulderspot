@@ -55,6 +55,9 @@ public class Location_fragment extends Fragment implements OnMapReadyCallback  {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if (container != null){
+            container.removeAllViews();
+        }
         return inflater.inflate(R.layout.main_location_page, container, false);
     }
 

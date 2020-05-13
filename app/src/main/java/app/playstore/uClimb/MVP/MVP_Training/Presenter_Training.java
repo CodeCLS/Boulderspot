@@ -13,8 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,7 +27,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Random;
 
-import app.playstore.uClimb.Fragments.Hangboard_page;
+import app.playstore.uClimb.Fragments.Training.Hangboard_page;
 import app.playstore.uClimb.MVP.MVP_Login.Presenter_Login;
 import app.playstore.uClimb.R;
 import de.hdodenhof.circleimageview.CircleImageView;

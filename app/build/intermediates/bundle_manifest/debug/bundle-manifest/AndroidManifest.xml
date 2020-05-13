@@ -68,7 +68,7 @@
         <activity
             android:name="app.playstore.uClimb.Main.MainActivity"
             android:screenOrientation="fullSensor"
-            android:windowSoftInputMode="adjustPan" >
+            android:windowSoftInputMode="stateAlwaysVisible" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 

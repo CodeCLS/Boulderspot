@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +18,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 
+import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,6 +46,7 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import app.playstore.uClimb.Fragments.Post.custom_post_page;
 import app.playstore.uClimb.Fragments.Training_list_fragment;
 import app.playstore.uClimb.Fragments.video_upload_fragment;
 import app.playstore.uClimb.Main.MainActivity;
@@ -52,6 +55,7 @@ import app.playstore.uClimb.MVP.MVP_Home.Presenter_Home_Posts;
 import app.playstore.uClimb.MVP.MVP_Login.Presenter_Login;
 
 public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+    private  ArrayList<String> array_uid;
     //private ArrayList<String> array_time;
     private ArrayList<String> array_name;
     private ArrayList<String> array_source_img;
@@ -96,12 +100,15 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
 
-    public Adapter_Home(ArrayList<String> array_name, ArrayList<String> array_source_img, ArrayList<String> array_source, ArrayList<String> array_info, ArrayList<String> array_post_id, ArrayList<String> array_type) {
+    public Adapter_Home(ArrayList<String> array_name, ArrayList<String> array_source_img, ArrayList<String> array_source, ArrayList<String> array_info, ArrayList<String> array_post_id, ArrayList<String> array_type,ArrayList<String> array_uid) {
         //this.array_time = array_time;
         this.array_name = array_name;
         this.array_source_img = array_source_img;
         this.array_source = array_source;
         this.array_info = array_info;
+        this.array_uid = array_uid;
+        this.array_info = array_info;
+
 
         this.array_post_id = array_post_id;
         this.array_type = array_type;
@@ -150,6 +157,28 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
             assert viewHolder instanceof ViewHolder;
             ViewHolder viewHolder1 = (ViewHolder) viewHolder;
+            int finalI = i;
+            viewHolder1.custom_home_posts.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    custom_post_page custom_post_page = new custom_post_page();
+                    Bundle bundle = new Bundle();
+                    Log.d(TAG,"user_id_home" + array_info);
+                    bundle.putString("PostID",array_post_id.get(finalI));
+                    bundle.putString("Type",array_type.get(finalI));
+                    bundle.putString("Source",array_source.get(finalI));
+                    bundle.putString("UserID",array_uid.get(finalI));
+
+
+                    custom_post_page.setArguments(bundle);
+                    FragmentActivity fragmentActivity;
+                    FragmentManager fragmentManager = ((AppCompatActivity)mContext).getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().replace(R.id.container_fragment,custom_post_page).addToBackStack("Home_Adapter").setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                    fragmentTransaction.commit();
+
+                }
+            });
             setWidgets(viewHolder1, i);
 
 
@@ -345,11 +374,13 @@ public class Adapter_Home extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         Button comment_btn;
         LinearLayout constraint_num1231q321;
         ProgressBar progressBar;
+        Button custom_home_posts;
 
 
 
         ViewHolder(View view) {
             super(view);
+            custom_home_posts = view.findViewById(R.id.btn_more_posts_home);
             constraint_num1231q321 = view.findViewById(R.id.constraing_num1231q321);
             comment_btn = view.findViewById(R.id.btn_comment_home_custom);
             comment_edit = view.findViewById(R.id.edit_comment_home_custom);

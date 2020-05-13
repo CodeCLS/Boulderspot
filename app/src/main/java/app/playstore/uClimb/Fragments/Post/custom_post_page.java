@@ -39,6 +39,7 @@ public class custom_post_page extends Fragment {
     private ImageView img_post;
 
 
+
     private ImageView img_like;
     private ImageView img_share;
 
@@ -58,6 +59,9 @@ public class custom_post_page extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if (container != null){
+            container.removeAllViews();
+        }
         return inflater.inflate(R.layout.main_custom_post_page,container,false);
     }
 

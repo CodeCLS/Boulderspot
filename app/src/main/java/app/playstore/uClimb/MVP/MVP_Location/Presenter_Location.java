@@ -195,6 +195,9 @@ public class Presenter_Location extends Fragment implements OnMapReadyCallback ,
 
                         // Add a marker in Sydney, Australia,
                         // and move the map's camera to the same location.
+                        if (lat.isEmpty()){
+                            return;
+                        }
                         double latitude = Double.parseDouble(lat);
                         double longitude_final = Double.parseDouble(longitude);
                         Log.d(TAG,"latitudelongitude" + latitude + " " + longitude_final);

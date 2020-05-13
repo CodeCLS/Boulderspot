@@ -22,6 +22,9 @@ public class custom_profile extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if (container != null){
+            container.removeAllViews();
+        }
          mContext = Objects.requireNonNull(container).getContext();
         return LayoutInflater.from(mContext).inflate(R.layout.main_custom_profile_page_ui,container,false);
 

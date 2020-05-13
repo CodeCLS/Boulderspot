@@ -28,6 +28,9 @@ public class Statistics_fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if (container != null){
+            container.removeAllViews();
+        }
         Log.d(TAG,"statistics");
         return LayoutInflater.from(getContext()).inflate(R.layout.main_statistics_page,container,false);
     }

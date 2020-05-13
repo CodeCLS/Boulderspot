@@ -25,6 +25,9 @@ public class Settings_Fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if (container != null){
+            container.removeAllViews();
+        }
         sharedPreferences = Objects.requireNonNull(container.getContext()).getSharedPreferences("Switch_Location",Context.MODE_PRIVATE);
 
         return inflater.inflate(R.layout.main_settings_page,container,false);

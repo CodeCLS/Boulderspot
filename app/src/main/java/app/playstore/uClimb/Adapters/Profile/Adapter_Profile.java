@@ -229,21 +229,28 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
         position = position-3;
 
         if (holder.getItemViewType() == 0) {
+            Log.d(TAG,"Position1111" + position);
             viewHolder_0_code((standart_profile) holder);
 
 
         }
         if (holder.getItemViewType() == 1) {
+            Log.d(TAG,"Position2222" + position);
+
             viewholder_1_code((profile_a) holder);
 
 
         }
         if (holder.getItemViewType() == 2) {
+            Log.d(TAG,"Position333" + position);
+
             viewholder_2_code((profile_b) holder);
 
 
         }
         if (holder.getItemViewType() == 3) {
+            Log.d(TAG,"Position444" + position);
+
 
 
             standart_profile_c standart_profile_c = (standart_profile_c) holder;
@@ -257,11 +264,13 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         }
 
+    @SuppressLint("SetTextI18n")
     private void setWidgetspost(int position, standart_profile_c standart_profile_c) {
         int finalPosition = position;
         standart_profile_c.delete_post.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
+                    Log.d(TAG,"data_deleted");
                     delete_Post(finalPosition);
 
                     return true;
@@ -271,21 +280,36 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
 
                     databaseReference1.child("Posts").child(arrayList_post_id.get(i).toString()).removeValue();
-                    databaseReference1.child("User").child("Posts").child(arrayList_post_id.get(i).toString()).removeValue();
+                    databaseReference1.child("User").child(uid).child("Posts").child(arrayList_post_id.get(i).toString()).removeValue();
+                    arrayList_post_id.remove(i);
+                    arrayList_comments.remove(i);
+                    arrayList_info.remove(i);
+                    arrayList_likes.remove(i);
+                    arrayList_place.remove(i);
+                    arrayList_Source.remove(i);
+                    arrayList_time.remove(i);
+                    arrayList_type.remove(i);
+                    arrayList_uid.remove(i);
+
+                    notifyDataSetChanged();
+
                 }
             });
         Log.d(TAG,"comments21" + arrayList_comments.size() + "position: " + position);
-        standart_profile_c.comments.setText(arrayList_comments.get(position).toString());
-        standart_profile_c.likes.setText(arrayList_likes.get(position).toString());
+        standart_profile_c.comments.setText(arrayList_comments.get(position) + " comments");
+        standart_profile_c.likes.setText(arrayList_likes.get(position) + " likes");
         standart_profile_c.time.setText(arrayList_time.get(position).toString());
         standart_profile_c.location.setText(arrayList_place.get(position).toString());
-        if (arrayList_type.get(position).toString().equals("IMG")){
+        Log.d(TAG,"type234" +arrayList_type.get(position));
+        if (arrayList_type.get(position).equals("IMG")){
             standart_profile_c.exoPlayerView.setVisibility(View.GONE);
             standart_profile_c.imageView.setVisibility(View.VISIBLE);
-            Picasso.get().load(arrayList_Source.get(position).toString()).fit().into(standart_profile_c.imageView);
+            Log.d(TAG,"img234" + arrayList_Source.get(position));
+            Picasso.get().load(arrayList_Source.get(position)).fit().centerCrop().into(standart_profile_c.imageView);
 
         }
         if (arrayList_type.get(position).toString().equals("Video")){
+            Log.d(TAG,"video234");
             standart_profile_c.exoPlayerView.setVisibility(View.VISIBLE);
             standart_profile_c.imageView.setVisibility(View.INVISIBLE);
             DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(mContext,
@@ -349,6 +373,7 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
             });
 
         }
+        Log.d(TAG,"nothing234");
     }
 
 
@@ -974,6 +999,7 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
+        Log.d(TAG,"itemcount: " + (3+arrayList_post_id.size()));
         return 3 + arrayList_post_id.size();
     }
     public static class standart_profile extends RecyclerView.ViewHolder {
@@ -1065,17 +1091,17 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemViewType(int position) {
-        int finalI = -2;
+        int i = -2;
         Log.d(TAG,"position23"+position);
         if (position == 0){
-            finalI=0;
-            Log.d(TAG,"final0"+position);
 
+            Log.d(TAG,"final0"+position);
+            i=0;
 
 
         }
         if (position == 1){
-            finalI=1;
+            i=1;
             Log.d(TAG,"final1"+position);
 
 
@@ -1087,19 +1113,19 @@ public class Adapter_Profile extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
 
-            finalI=2;
+            i=2;
 
 
         }
-        else{
+        if (position >= 3){
             Log.d(TAG,"final3"+position);
 
 
-            finalI=3;
+            i=3;
 
 
         }
-        return finalI;
+        return i;
     }
 
 

@@ -18,7 +18,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import app.playstore.uClimb.Fragments.Hangboard_page;
+import app.playstore.uClimb.Fragments.Training.Hangboard_page;
 import app.playstore.uClimb.Fragments.Stretch_page.Stretch_page;
 import app.playstore.uClimb.Fragments.custom_workout.custom_workout_page;
 import app.playstore.uClimb.R;
