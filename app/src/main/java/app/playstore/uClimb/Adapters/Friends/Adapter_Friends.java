@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,31 +15,52 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import app.playstore.uClimb.Fragments.custom_profile;
+import app.playstore.uClimb.MVP.MVP_Login.Presenter_Login;
 import app.playstore.uClimb.R;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Adapter_Friends extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     //Main ArrayLists for Data
     private ArrayList<String> url_img;
     private ArrayList<String> user_txt;
+    private ArrayList<String> friend_invite_id;
+    private ArrayList<String> friend_invite_name;
+    private ArrayList<String> friend_invite_source;
+
+
     private ArrayList<String> u_id;
 
     private Context mContext;
 
-    public Adapter_Friends(ArrayList<String> url_img, ArrayList<String> user_txt, ArrayList<String> u_id) {
+
+    public Adapter_Friends(ArrayList<String> url_img, ArrayList<String> user_txt, ArrayList<String> friend_invite_id, ArrayList<String> friend_invite_name, ArrayList<String> friend_invite_source, ArrayList<String> u_id) {
         this.url_img = url_img;
         this.user_txt = user_txt;
+        this.friend_invite_id = friend_invite_id;
+        this.friend_invite_name = friend_invite_name;
+        this.friend_invite_source = friend_invite_source;
         this.u_id = u_id;
     }
 
     @Override
     public int getItemViewType(int position) {
+        int i = 0;
+        if (friend_invite_id.size() > position){
+            i = 1;
 
-        return 0;
+        }
+        else{
+            i = 0;
+        }
+
+        return i;
     }
 
     @NonNull
@@ -49,6 +72,13 @@ public class Adapter_Friends extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (viewType == 0){
             view = LayoutInflater.from(mContext).inflate(R.layout.private_friends_item,parent,false);
             viewHolder = new ViewHolder_item_friend(view);
+
+
+
+        }
+        if (viewType == 1){
+            view = LayoutInflater.from(mContext).inflate(R.layout.private_friends_item_invite,parent,false);
+            viewHolder = new ViewHolder_item_friend_invite(view);
 
 
 
@@ -68,6 +98,39 @@ public class Adapter_Friends extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             //transfer to user_page
             username_onClick(position, viewHolder_item_friend);
+
+
+        }
+        if (holder.getItemViewType() == 1){
+            ViewHolder_item_friend_invite viewHolder_item_friend_invite = (ViewHolder_item_friend_invite) holder;
+            viewHolder_item_friend_invite.txt_name.setText(friend_invite_name.get(position));
+            Picasso.get().load(friend_invite_source.get(position)).fit().centerCrop().into(viewHolder_item_friend_invite.circleImageView);
+            viewHolder_item_friend_invite.btn_delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Presenter_Login presenter_login = new Presenter_Login();
+                    String id = presenter_login.getUID(mContext);
+                    Toast.makeText(mContext, "Deleted", Toast.LENGTH_SHORT).show();
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                    databaseReference.child("User").child(id).child("Invite_Friends").child(friend_invite_id.get(position)).removeValue();
+
+                }
+            });
+            viewHolder_item_friend_invite.btn_accept.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(mContext, "Accepted", Toast.LENGTH_SHORT).show();
+                    Presenter_Login presenter_login = new Presenter_Login();
+                    String id = presenter_login.getUID(mContext);
+                    Toast.makeText(mContext, "Deleted", Toast.LENGTH_SHORT).show();
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                    databaseReference.child("User").child(id).child("Invite_Friends").child(friend_invite_id.get(position)).removeValue();
+                    databaseReference.child("User").child(id).child("Friends").child(friend_invite_id.get(position)).setValue(friend_invite_id.get(position));
+
+
+                }
+            });
+
 
 
         }
@@ -98,7 +161,7 @@ public class Adapter_Friends extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
-        return u_id.size();
+        return u_id.size() + friend_invite_id.size();
     }
 
 
@@ -110,6 +173,22 @@ public class Adapter_Friends extends RecyclerView.Adapter<RecyclerView.ViewHolde
             super(view);
             img = view.findViewById(R.id.img_item_friend);
             username_txt = view.findViewById(R.id.txt_name_item_friend);
+
+        }
+    }
+
+    private class ViewHolder_item_friend_invite extends RecyclerView.ViewHolder {
+        CircleImageView circleImageView;
+        TextView txt_name;
+        Button btn_accept;
+        Button btn_delete;
+
+        public ViewHolder_item_friend_invite(View view) {
+            super(view);
+            circleImageView = (CircleImageView) view.findViewById(R.id.img_item_friend_invite);
+            txt_name = view.findViewById(R.id.txt_name_item_friend_invite);
+            btn_accept = view.findViewById(R.id.btn_accept_invite);
+            btn_delete = view.findViewById(R.id.btn_delete_invite);
 
         }
     }

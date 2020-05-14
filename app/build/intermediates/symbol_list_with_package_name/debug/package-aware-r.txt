@@ -2327,12 +2327,14 @@ id bottom
 id bottomBar
 id bottom_landscape
 id bounce
+id btn_accept_invite
 id btn_add_workout
 id btn_cancel_log_workout
 id btn_change_data
 id btn_change_pwd
 id btn_comment_home_custom
 id btn_continue
+id btn_delete_invite
 id btn_delete_profile_custom_post
 id btn_follow_profile_custom
 id btn_friends_custom_profile
@@ -2558,6 +2560,7 @@ id imageview_item_search_page
 id img_home_like
 id img_home_share
 id img_item_friend
+id img_item_friend_invite
 id img_item_training
 id img_like_custom
 id img_location_item
@@ -2908,6 +2911,7 @@ id txt_info_session
 id txt_item_list_training
 id txt_log_training_12423424
 id txt_name_item_friend
+id txt_name_item_friend_invite
 id txt_session_type
 id txt_time_boulder
 id txt_time_session
@@ -3115,6 +3119,7 @@ layout private_custom_viewholder_custom_profile_2
 layout private_custom_viewholder_custom_profile_3
 layout private_custom_workout_page
 layout private_friends_item
+layout private_friends_item_invite
 layout private_grades_accomplished
 layout private_img_profile_uploads
 layout private_item_location

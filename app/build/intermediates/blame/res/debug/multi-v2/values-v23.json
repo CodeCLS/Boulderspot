@@ -4,7 +4,7 @@
             "outputFile": "/Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/9e025505c94c04007a8190f74982d1e9/cardview-1.0.0/res/values-v23/values-v23.xml",
+                    "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/923cd97b32caebf2e6b5629d421a10e9/cardview-1.0.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/09884e4f09dcb45cba6db7aeffefa6be/material-1.1.0/res/values-v23/values-v23.xml",
+                    "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/6029c1862846be4a7ec1743d4d20ec64/material-1.1.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,6",
                         "startColumns": "4,4",
@@ -42,7 +42,7 @@
                     }
                 },
                 {
-                    "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/2efaecca5c1a1576343f409480808e4b/work-runtime-2.0.0/res/values-v23/values-v23.xml",
+                    "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/a39933df0610c8afafd6c67abe596961/work-runtime-2.0.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -52,7 +52,7 @@
                     }
                 },
                 {
-                    "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/72755d8593c3ca1ed00b11907b10c688/appcompat-1.1.0/res/values-v23/values-v23.xml",
+                    "source": "/Users/freetime/.gradle/caches/transforms-2/files-2.1/6c5a1a33c151bf1b1b969a4997bc8337/appcompat-1.1.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,20,34,35,36,37,41,42,43,44",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",

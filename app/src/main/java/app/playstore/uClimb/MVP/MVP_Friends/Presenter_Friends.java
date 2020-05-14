@@ -34,10 +34,14 @@ public class Presenter_Friends {
     private ArrayList<String> friends_name = new ArrayList<>();
     private ArrayList<String> friends_img_url = new ArrayList<>();
 
+    private ArrayList<String> friends_id_invite = new ArrayList<>();
+    private ArrayList<String> friends_name_invite = new ArrayList<>();
+    private ArrayList<String> friends_img_url_invite = new ArrayList<>();
+
     private View view;
     private Context mContext;
     Model_Friends friends_model;
-    private Adapter_Friends friends_adapter = new Adapter_Friends(friends_img_url,friends_name,friends_id);
+    private Adapter_Friends friends_adapter = new Adapter_Friends(friends_img_url,friends_name,friends_id_invite,friends_name_invite,friends_img_url_invite,friends_id);
 
     public Presenter_Friends(View view, Context mContext) {
         this.view = view;
@@ -64,6 +68,12 @@ public class Presenter_Friends {
                     friends_img_url.add(url);
 
                 }
+                for (DataSnapshot postSnapshot: dataSnapshot.child("User").child(id).child("Invites_Friends").getChildren()){
+                    friends_id_invite.add(postSnapshot.getKey());
+                    friends_name_invite.add(dataSnapshot.child("User").child(postSnapshot.getKey()).child("Name").getValue().toString());
+                    friends_img_url_invite.add(dataSnapshot.child("User").child(postSnapshot.getKey()).child("IMG").getValue().toString());
+
+                }
                 initRec();
 
             }
@@ -72,6 +82,9 @@ public class Presenter_Friends {
                 friends_id.clear();
                 friends_name.clear();
                 friends_img_url.clear();
+                friends_id_invite.clear();
+                friends_name_invite.clear();
+                friends_img_url_invite.clear();
             }
 
             @Override

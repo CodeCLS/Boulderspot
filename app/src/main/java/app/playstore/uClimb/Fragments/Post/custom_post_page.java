@@ -176,6 +176,9 @@ public class custom_post_page extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Log.d(TAG,"profiles_source" + uid);
+                if (!dataSnapshot.child("User").child(uid).child("IMG").exists()){
+                    return;
+                }
                 String profile_source = Objects.requireNonNull(dataSnapshot.child("User").child(uid).child("IMG").getValue()).toString();
                 Picasso.get().load(profile_source).fit().into(img_profile_pic);
                 String name = Objects.requireNonNull(dataSnapshot.child("User").child(uid).child("Name").getValue().toString());
