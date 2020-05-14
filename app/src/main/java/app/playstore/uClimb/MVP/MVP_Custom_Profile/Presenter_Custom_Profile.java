@@ -369,9 +369,9 @@ public class Presenter_Custom_Profile {
                 btn_friend.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (dataSnapshot.child("User").child(id).child("Friends").child(uid).exists() || dataSnapshot.child("User").child(uid).child("Invite_Friends").child(uid).exists()){
+                        if (dataSnapshot.child("User").child(id).child("Friends").child(uid).exists() || dataSnapshot.child("User").child(uid).child("Invites_Friends").child(uid).exists()){
                             databaseReference.child("User").child(id).child("Friends").child(uid).removeValue();
-                            databaseReference.child("User").child(uid).child("Invite_Friends").child(uid).removeValue();
+                            databaseReference.child("User").child(uid).child("Invites_Friends").child(uid).removeValue();
 
 
                             setFriendImage(false,btn_friend);
@@ -379,7 +379,7 @@ public class Presenter_Custom_Profile {
 
                         }
                         else{
-                            databaseReference.child("User").child(uid).child("Invite_Friends").child(id).setValue(id);
+                            databaseReference.child("User").child(uid).child("Invites_Friends").child(id).setValue(id);
 
                             setFriendImage(true,btn_friend);
                             addFriend(uid,mContext,btn_friend);

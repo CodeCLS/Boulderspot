@@ -2,6 +2,7 @@ package app.playstore.uClimb.Adapters.Friends;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import app.playstore.uClimb.R;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Adapter_Friends extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private static final String TAG = "Adapter_Friends";
     //Main ArrayLists for Data
     private ArrayList<String> url_img;
     private ArrayList<String> user_txt;
@@ -51,7 +53,8 @@ public class Adapter_Friends extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemViewType(int position) {
-        int i = 0;
+        int i;
+        Log.d(TAG,"friend_invite: " + friend_invite_id  + " position: " + position);
         if (friend_invite_id.size() > position){
             i = 1;
 
@@ -93,6 +96,8 @@ public class Adapter_Friends extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         if (holder.getItemViewType() == 0){
             ViewHolder_item_friend viewHolder_item_friend = (ViewHolder_item_friend) holder;
+            position = position-friend_invite_id.size();
+
 
             setViews(position, viewHolder_item_friend);
 
@@ -103,8 +108,10 @@ public class Adapter_Friends extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
         if (holder.getItemViewType() == 1){
             ViewHolder_item_friend_invite viewHolder_item_friend_invite = (ViewHolder_item_friend_invite) holder;
+            Log.d(TAG,"friend_invite_name " + friend_invite_name+ "position: " + position);
             viewHolder_item_friend_invite.txt_name.setText(friend_invite_name.get(position));
             Picasso.get().load(friend_invite_source.get(position)).fit().centerCrop().into(viewHolder_item_friend_invite.circleImageView);
+            int finalPosition = position;
             viewHolder_item_friend_invite.btn_delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -112,10 +119,11 @@ public class Adapter_Friends extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     String id = presenter_login.getUID(mContext);
                     Toast.makeText(mContext, "Deleted", Toast.LENGTH_SHORT).show();
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-                    databaseReference.child("User").child(id).child("Invite_Friends").child(friend_invite_id.get(position)).removeValue();
+                    databaseReference.child("User").child(id).child("Invites_Friends").child(friend_invite_id.get(finalPosition)).removeValue();
 
                 }
             });
+            int finalPosition1 = position;
             viewHolder_item_friend_invite.btn_accept.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -124,8 +132,10 @@ public class Adapter_Friends extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     String id = presenter_login.getUID(mContext);
                     Toast.makeText(mContext, "Deleted", Toast.LENGTH_SHORT).show();
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-                    databaseReference.child("User").child(id).child("Invite_Friends").child(friend_invite_id.get(position)).removeValue();
-                    databaseReference.child("User").child(id).child("Friends").child(friend_invite_id.get(position)).setValue(friend_invite_id.get(position));
+                    databaseReference.child("User").child(id).child("Invites_Friends").child(friend_invite_id.get(finalPosition1)).removeValue();
+                    databaseReference.child("User").child(id).child("Friends").child(friend_invite_id.get(finalPosition1)).setValue(friend_invite_id.get(finalPosition1));
+                    databaseReference.child("User").child(friend_invite_id.get(finalPosition1)).child("Friends").child(id).setValue(id);
+
 
 
                 }
@@ -139,6 +149,8 @@ public class Adapter_Friends extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     private void setViews(int position, ViewHolder_item_friend viewHolder_item_friend) {
+        Log.d(TAG,"user_txt24:" + user_txt + " position: " + position);
+
         viewHolder_item_friend.username_txt.setText(user_txt.get(position));
 
         Picasso.get().load(url_img.get(position)).into(viewHolder_item_friend.img);

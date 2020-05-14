@@ -3,6 +3,7 @@ package app.playstore.uClimb.MVP.MVP_Location;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -31,8 +32,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
@@ -58,7 +61,8 @@ public class Presenter_Location extends Fragment implements OnMapReadyCallback ,
 
 
     public static GoogleMap mMap;
-    private Adapter_Location_Friends_List friend_location_list = new Adapter_Location_Friends_List(friend_location_status, friend_name, friend_url_img);
+    private int hours;
+    private Adapter_Location_Friends_List friend_location_list = new Adapter_Location_Friends_List(friend_location_status, friend_name, friend_url_img,friend_location_time);
 
     public Presenter_Location(Context mContext, View view, SupportMapFragment mapFragment) {
         this.mContext = mContext;
@@ -68,6 +72,7 @@ public class Presenter_Location extends Fragment implements OnMapReadyCallback ,
     }
 
     public void setRec() {
+
         RecyclerView recyclerView = view.findViewById(R.id.rec_location);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         recyclerView.setAdapter(friend_location_list);
@@ -160,7 +165,6 @@ public class Presenter_Location extends Fragment implements OnMapReadyCallback ,
                 databaseReference.child("User").child(uid).child("Position").child("Position_lat").setValue(location.getLatitude());
                 databaseReference.child("User").child(uid).child("Position").child("Position_lon").setValue(location.getLongitude());
                 databaseReference.child("User").child(uid).child("Position").child("Position_last_Time_updated").setValue(getTime());
-                databaseReference.child("User").child(uid).child("Position").child("position_status").setValue("Online");
 
 
 
@@ -184,6 +188,7 @@ public class Presenter_Location extends Fragment implements OnMapReadyCallback ,
                 @Override
                 public void onMapReady(GoogleMap googleMap) {
                     mMap = googleMap;
+                    Log.d(TAG,"FriendSIze: "+friend_id);
                     for (int i = 0;i <friend_id.size();i++) {
                         String id = friend_id.get(i);
                         String lat = friend_location_latitude.get(i);
@@ -203,7 +208,13 @@ public class Presenter_Location extends Fragment implements OnMapReadyCallback ,
                         Log.d(TAG,"latitudelongitude" + latitude + " " + longitude_final);
                         LatLng location = new LatLng(latitude, longitude_final);
                         LatLng europe = new LatLng(53.0000, 9.0000);
-                        if (status.equals("Online")){
+                        try {
+                            hours = compareTime(getTime(),friend_location_time.get(i));
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                        if (hours>2){
                             googleMap.addMarker(new MarkerOptions().position(location)
                                     .title(name + " is here.")).setIcon(BitmapDescriptorFactory
                                     .defaultMarker(BitmapDescriptorFactory.HUE_RED));
@@ -212,8 +223,8 @@ public class Presenter_Location extends Fragment implements OnMapReadyCallback ,
                         }
                         else {
                             googleMap.addMarker(new MarkerOptions().position(location)
-                                    .title(name + " is here.")).setIcon(BitmapDescriptorFactory
-                                    .defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                                    .title(name + " was here.")).setIcon(BitmapDescriptorFactory
+                                    .defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
 
                             googleMap.moveCamera(CameraUpdateFactory.newLatLng(europe));
                         }
@@ -231,8 +242,25 @@ public class Presenter_Location extends Fragment implements OnMapReadyCallback ,
 
     }
 
+    private int compareTime(String time , String time_now) throws ParseException {
 
-    @Override
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
+
+        Date date1 = simpleDateFormat.parse(time);
+        Date date2 = simpleDateFormat.parse(time_now);
+
+        long difference = date2.getTime() - date1.getTime();
+        int days = (int) (difference / (1000*60*60*24));
+        int hours = (int) ((difference - (1000*60*60*24*days)) / (1000*60*60));
+        int min = (int) (difference - (1000*60*60*24*days) - (1000*60*60*hours)) / (1000*60);
+        hours = (hours < 0 ? -hours : hours);
+        Log.d("======= Hours"," :: "+hours);
+        return hours;
+    }
+
+
+        @Override
     public void onMapReady(GoogleMap googleMap) {
         Log.d(TAG,"onmapready");
 

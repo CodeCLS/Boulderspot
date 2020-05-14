@@ -360,7 +360,12 @@ public class Presenter_Home_Posts {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Boolean return_status = dataSnapshot.child("Posts").child(s).child("likes").child(d).exists();
+                Log.d(TAG,"Posts234: " + dataSnapshot.child("Posts").child(s).child("likes").getValue() + " d:" + d);
+                Boolean return_status = false;
+                if (dataSnapshot.child("Posts").child(s).child("likes").child(d).exists()){
+                    return_status = true;
+
+                }
                 Adapter_Home adapter_home = new Adapter_Home();
 
                 adapter_home.isLikedAction(return_status,like_btn);

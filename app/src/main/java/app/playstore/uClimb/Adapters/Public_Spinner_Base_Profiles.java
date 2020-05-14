@@ -1,5 +1,6 @@
 package app.playstore.uClimb.Adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import app.playstore.uClimb.R;
 
 public class Public_Spinner_Base_Profiles extends BaseAdapter {
+    private static final String TAG = "Public_Base_Profile";
     private ArrayList source = new ArrayList<String>();
     private ArrayList name = new ArrayList<String>();
     private ArrayList uid = new ArrayList<String>();
@@ -47,6 +49,7 @@ public class Public_Spinner_Base_Profiles extends BaseAdapter {
         de.hdodenhof.circleimageview.CircleImageView circleImageView = convertView.findViewById(R.id.image_round_spinner_search);
         TextView textView = convertView.findViewById(R.id.spinner_search_txt);
         Picasso.get().load(source.get(position).toString()).fit().into(circleImageView);
+        Log.d(TAG,"name243: " + name);
         textView.setText(name.get(position).toString());
         return  convertView;
     }

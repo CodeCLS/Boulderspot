@@ -74,6 +74,7 @@ public class Presenter_Friends {
                     friends_img_url_invite.add(dataSnapshot.child("User").child(postSnapshot.getKey()).child("IMG").getValue().toString());
 
                 }
+
                 initRec();
 
             }
@@ -94,6 +95,7 @@ public class Presenter_Friends {
         });
 
     }
+
 
     private void initRec() {
         RecyclerView rec;
