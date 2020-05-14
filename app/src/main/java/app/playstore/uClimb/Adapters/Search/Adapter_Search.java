@@ -27,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import app.playstore.uClimb.Fragments.custom_profile;
 import app.playstore.uClimb.R;
@@ -38,6 +39,7 @@ public class Adapter_Search extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private ArrayList peoples = new ArrayList();
     private ArrayList people_id = new ArrayList();
     private ArrayList peoples_img = new ArrayList<String>();
+    private List<UserList> peoples_list = new ArrayList<>();
 
     @NonNull
     @Override
@@ -81,8 +83,8 @@ public class Adapter_Search extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private void holder_zero(RecyclerView.ViewHolder holder) {
         ViewHolderSearch viewHolderSearch = (ViewHolderSearch) holder;
-        Log.d(TAG,"peoples234"+peoples);
-        Adapter_Spinner adapter = new Adapter_Spinner(mContext,R.layout.public_spinner_search_item,peoples,peoples_img,peoples,mContext);
+        Log.d(TAG,"peoples234"+peoples_list);
+        Adapter_Spinner adapter = new Adapter_Spinner(mContext,R.layout.public_spinner_search_item,peoples_list);
         viewHolderSearch.editText.setAdapter(adapter);
         Log.d(TAG,"array_people2" + adapter);
         viewHolderSearch.editText.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -163,12 +165,15 @@ public class Adapter_Search extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
         people_id.clear();
+        peoples.clear();
+
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference("");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot: dataSnapshot.child("User").getChildren()){
+                    peoples_list.add(new UserList(postSnapshot.getKey().toString(),postSnapshot.child("Name").getValue().toString(),postSnapshot.child("IMG").getValue().toString()));
                     people_id.add(postSnapshot.getKey().toString());
                     peoples.add(postSnapshot.child("Name").getValue().toString());
 
