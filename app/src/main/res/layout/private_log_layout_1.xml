@@ -25,7 +25,8 @@
         <CheckBox
             android:id="@+id/checkbox_log_training_public"
             android:layout_width="match_parent"
-            android:text="Public workout"
+            android:text="Öffentliches Workout"
+            android:visibility="invisible"
             android:layout_height="match_parent"
             android:layout_weight="1.6" />
         <LinearLayout

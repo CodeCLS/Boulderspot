@@ -40,7 +40,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Hang Time"
+                    android:text="@string/training"
                     android:textColor="#00574B"
                     android:textSize="14sp" />
 
@@ -80,7 +80,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Pause Time"
+                    android:text="@string/pause"
                     android:textColor="#00574B" />
                 <EditText
 
@@ -117,7 +117,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Rest Time"
+                    android:text="@string/gro_e_pause"
                     android:textColor="#00574B" />
                 <EditText
                     android:id="@+id/rest_time_edit"
@@ -153,7 +153,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Sets"
+                    android:text="@string/sets"
                     android:textColor="#00574B" />
                 <EditText
                     android:id="@+id/sets_edit"
@@ -185,7 +185,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Rounds"
+                android:text="@string/rounds"
                 android:textColor="#00574B" />
             <EditText
                 android:id="@+id/rounds_edit"

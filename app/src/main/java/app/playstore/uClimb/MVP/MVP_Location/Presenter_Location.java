@@ -214,7 +214,7 @@ public class Presenter_Location extends Fragment implements OnMapReadyCallback ,
                             e.printStackTrace();
                         }
 
-                        if (hours>2){
+                        if (hours<5){
                             googleMap.addMarker(new MarkerOptions().position(location)
                                     .title(name + " is here.")).setIcon(BitmapDescriptorFactory
                                     .defaultMarker(BitmapDescriptorFactory.HUE_RED));

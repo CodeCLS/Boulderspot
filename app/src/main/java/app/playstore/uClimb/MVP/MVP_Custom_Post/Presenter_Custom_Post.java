@@ -3,6 +3,7 @@ package app.playstore.uClimb.MVP.MVP_Custom_Post;
 import android.content.Context;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -39,6 +40,8 @@ public class Presenter_Custom_Post {
                 else{
                     databaseReference.child("Posts").child(post_id).child("likes").child(uid).setValue(uid);
                     like.setImageResource(R.mipmap.like_active);
+                    Toast.makeText(mContext, "Liked", Toast.LENGTH_SHORT).show();
+
 
                 }
 

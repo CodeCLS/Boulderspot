@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Follow this person"
+        android:text="@string/dieser_person_folgen"
         android:layout_margin="10dp"
         android:background="@drawable/public_button_grey" />
     <Button
@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:text="Add as Friend"
+        android:text="Als Freund einladen"
         android:layout_margin="10dp"
         android:background="@drawable/public_button_grey" />
 

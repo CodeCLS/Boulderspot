@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/nav_search"
         android:layout_width="match_parent"
         android:layout_margin="10dp"
@@ -10,29 +10,26 @@
 
     android:background="@drawable/public_background_white_round_bottom" >
 
-    <Button
-        android:id="@+id/btn_search_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:background="@mipmap/searchbar"
-        android:elevation="10dp"
-/>
+
+
     <AutoCompleteTextView
         android:id="@+id/edit_search_nav"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+
+
         android:layout_toStartOf="@+id/btn_search_search"
         android:ems="10"
         android:hint="Person"
         android:inputType="textPersonName" />
-</RelativeLayout>
+    <Button
+        android:id="@+id/btn_search_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:translationZ="5dp"
+        android:layout_weight="5"
+        android:background="@mipmap/searchbar"
+        android:elevation="10dp"
+        />
+</LinearLayout>

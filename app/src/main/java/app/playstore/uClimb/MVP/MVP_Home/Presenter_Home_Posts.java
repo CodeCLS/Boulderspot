@@ -396,6 +396,7 @@ public class Presenter_Home_Posts {
                 }
                 else{
                     databaseReference.child("Posts").child(s).child("likes").child(id).setValue(id);
+                    Toast.makeText(mContext, "Liked", Toast.LENGTH_SHORT).show();
 
                     isLiked(s,id,like_btn);
 

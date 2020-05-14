@@ -229,11 +229,11 @@ public class MainActivity extends Base_Internet implements CacheListener {
         final FlareBar bottomBar = findViewById(R.id.bottomBar);
         bottomBar.setBarBackgroundColor(Color.parseColor("#FFFFFF"));
         ArrayList<Flaretab> tabs = new ArrayList<>();
-        tabs.add(new Flaretab(getResources().getDrawable(R.mipmap.house_ui_icon),"Home","#FFECB3"));
-        tabs.add(new Flaretab(getResources().getDrawable(R.mipmap.search_ui_icon_a),"Search","#80DEEA"));
-        tabs.add(new Flaretab(getResources().getDrawable(R.mipmap.communityicon),"Community","#B39DDB"));
-        tabs.add(new Flaretab(getResources().getDrawable(R.mipmap.user_icon_blue),"Profile","#EF9A9A"));
-        tabs.add(new Flaretab(getResources().getDrawable(R.mipmap.settingsicon),"Settings","#B2DFDB"));
+        tabs.add(new Flaretab(getResources().getDrawable(R.mipmap.house_ui_icon),this.getString(R.string.Home),"#FFECB3"));
+        tabs.add(new Flaretab(getResources().getDrawable(R.mipmap.search_ui_icon_a),this.getString(R.string.Suche),"#80DEEA"));
+        tabs.add(new Flaretab(getResources().getDrawable(R.mipmap.communityicon),this.getString(R.string.Community),"#B39DDB"));
+        tabs.add(new Flaretab(getResources().getDrawable(R.mipmap.user_icon_blue),this.getString(R.string.Profil),"#EF9A9A"));
+        tabs.add(new Flaretab(getResources().getDrawable(R.mipmap.settingsicon),this.getString(R.string.Einstellungen),"#B2DFDB"));
 
         bottomBar.setTabList(tabs);
         bottomBar.attachTabs(this);

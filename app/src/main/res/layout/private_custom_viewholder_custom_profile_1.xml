@@ -116,7 +116,7 @@
                     android:layout_marginBottom="5dp"
                     android:layout_weight="2"
                     android:gravity="center"
-                    android:text="Followers x"
+                    android:text="@string/follower_x"
                     android:textSize="17sp" />
 
                 <Spinner
@@ -148,7 +148,7 @@
                     android:layout_marginBottom="5dp"
                     android:layout_weight="2"
                     android:gravity="center"
-                    android:text="Following x"
+                    android:text="@string/following_x"
                     android:textSize="17sp" />
 
                 <Spinner

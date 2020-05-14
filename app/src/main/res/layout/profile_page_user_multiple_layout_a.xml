@@ -25,7 +25,7 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/public_button_grey"
-            android:text="Change Password" />
+            android:text="@string/passwort_ndern" />
         <EditText
             android:id="@+id/email_profile_new"
             android:layout_width="match_parent"

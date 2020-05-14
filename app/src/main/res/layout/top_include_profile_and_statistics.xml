@@ -18,7 +18,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
-s        <ImageView
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
@@ -28,9 +28,8 @@ s        <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Statistics"
+            android:text="@string/statistiken"
 
-            android:textColor="#000"
             android:textSize="16sp" />
 
     </FrameLayout>
@@ -49,7 +48,7 @@ s        <ImageView
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="User profile"
+            android:text="User Profil"
 
 
             android:textColor="#676767"
@@ -60,7 +59,7 @@ s        <ImageView
             android:layout_height="match_parent"
             android:layout_margin="20dp"
             android:layout_weight="1"
-            android:src="@mipmap/icon_user" />
+            android:src="@mipmap/user_icon_blue" />
 
     </LinearLayout>
 </LinearLayout>

@@ -35,8 +35,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="4"
                 android:layout_margin="10dp"
+                android:textSize="12sp"
                 android:background="@drawable/public_important_background_white_round"
-                android:text="Post" />
+                android:text="Posten" />
 
 
 

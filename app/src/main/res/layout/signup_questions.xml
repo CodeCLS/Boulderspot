@@ -36,7 +36,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
 
-                android:text="Mind answering some questions?"
+                android:text="@string/ein_paar_schnelle_fragen"
                 android:gravity="center"
                 android:textAlignment="center"
                 android:textSize="22sp"
