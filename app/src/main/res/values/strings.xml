@@ -1,0 +1,83 @@
+<resources>
+    <string name="app_name">uClimb</string>
+    <string name="title_activity_main_page">Hauptseite</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Benachrichtigungen</string>
+    <string name="email_patterm">^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$</string>
+    <string name="test">test</string>
+    <string name="test_string">Lorem Ipsum</string>
+    <string name="uClimb_slogan">uClimb ist eine Community-App für Kletterer. Teile Fotos und Videos von deinen besten Kletter-Momenten, schau dir Statistiken an und erstelle gemeinsam mit anderen Trainingspläne! Egal ob Bouldern, Toprope oder Vorstieg, diese App bietet die perfekte Ergänzung!</string>
+    <string name="height_in_cm">Größe in cm</string>
+    <string name="age">Geburtsdatum</string>
+    <string name="country_ex_deutschland">Land? z.B Deutschland</string>
+    <string name="grade_v_scale_ex_v13">Grad? V Skala(z.B V13)</string>
+    <string name="sign_in">Anmeldung</string>
+    <string name="password">Passwort</string>
+    <string name="register">Registrierung</string>
+    <string name="login">Login</string>
+    <string name="name_creator">Caleb Seeling</string>
+    <string name="googleapikeay">AIzaSyCBG4HfWkuFX4MYM-7589gNw6hFbQiS8VM</string>
+    <string name="locations_txt">Standorte</string>
+    <string name="friends_txt">Freunde</string>
+    <string name="link_hangboard_img"><![CDATA[https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Project_data%2FWhatsApp%20Image%202020-05-04%20at%2018.01.16.jpeg?alt=media&token=24ad628d-c929-457a-ab91-71cc8a58804c]]></string>
+    <string name="stretching_img_link"><![CDATA[https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Project_data%2Fkatee-lue-y9RW69F3YnM-unsplash.jpg?alt=media&token=a4217b89-91e4-4c97-bc37-aca612823ddf]]></string>
+    <string name="warmup_link_img"><![CDATA[https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Project_data%2Fbady-qb-VmYZe_yqxL0-unsplash.jpg?alt=media&token=885a7dec-6587-4814-9836-97ff4e3362c8]]></string>
+    <string name="custom_link_img"><![CDATA[https://firebasestorage.googleapis.com/v0/b/boulderspot-42564.appspot.com/o/Project_data%2Ftommy-lisbin-wnq68O-6UNs-unsplash.jpg?alt=media&token=79d213e8-04bf-4635-826a-a2c14ecfb010]]></string>
+    <string name="Log_training">Training protokollieren</string>
+    <string name="Cancel_txt">Abbrechen</string>
+    <string name="log_txt">Protokollieren</string>
+    <string name="welcome_short_info">uClimb ist eine Community-App für Kletterer. Teile Fotos und Videos von deinen besten Kletter-Momenten, schau dir Statistiken an und erstelle gemeinsam mit anderen Trainingspläne! Egal ob Bouldern, Toprope oder Vorstieg, diese App bietet die perfekte Ergänzung!</string>
+    <string name="beta_message">"Vielen Dank, dass du uClimb heruntergeladen hast. Da dies noch eine Beta Version ist, würden wir für feedback sehr offen sein. Email: boulderspot2019@gmail.com ..... Des weiteren lesen wir alle eure Feedbacks und versuchen sie in die App einzubauen. "</string>
+    <string name="press_long_to_delete_post">Press long to delete Post</string>
+    <string name="statistiken">Statistiken</string>
+    <string name="Einstellungen">Einstellungen</string>
+    <string name="Profil">Profil</string>
+    <string name="Community">Community</string>
+    <string name="Suche">Suche</string>
+    <string name="Home">Home</string>
+    <string name="diesen_aufstieg_in_den_statistiken_protokollieren">Diesen Aufstieg in den Statistiken protokollieren</string>
+    <string name="welche_art_von_klettern">Welche Kletterart?</string>
+    <string name="wie_viele_versuche_hat_es_gebraucht">Wie viele Versuche hat es gebraucht</string>
+    <string name="pause">Kleine Pause</string>
+    <string name="training">Training</string>
+    <string name="gro_e_pause">Große Pause</string>
+    <string name="sets">Sets</string>
+    <string name="rounds">Runden</string>
+    <string name="kommentare">Kommentare</string>
+    <string name="follower_x">Follower x</string>
+    <string name="following_x">Following x</string>
+    <string name="dieser_person_folgen">Dieser Person folgen</string>
+    <string name="einladung_akzeptieren">Annehmen</string>
+    <string name="einladung_ablehnen">Ablehnen</string>
+    <string name="passwort_ndern">Passwort ändern</string>
+    <string name="profildaten_ndern">Profildaten ändern</string>
+    <string name="ein_paar_schnelle_fragen">Ein paar schnelle Fragen</string>
+    <string name="foto_video_laden">Foto/Video laden</string>
+    <string name="Buchstaben_Zeichen">Entweder zuwenige Buchstaben und Zeichen oder zu viele</string>
+    <string name="trainingseinheitertellen">Trainingseinheit erstellen</string>
+    <string name="mehr">Mehr</string>
+    <string name="punkte">"Punkte: "</string>
+    <string name="Username">"Username: "</string>
+    <string name="klettergrad">"Klettergrad: "</string>
+    <string name="Versuche">"Versuche: "</string>
+    <string name="Datum">"Datum: "</string>
+    <string name="Notizen">"Notizen: "</string>
+    <string name="Info">"Info: "</string>
+    <string name="trainingszeit">"Trainings_Dauer: "</string>
+    <string name="kleine_pause_dauer">"Kleine Pause Dauer: "</string>
+    <string name="große_pause_dauer">"Große Pause Dauer: "</string>
+    <string name="Einheiten">"Einheiten: "</string>
+    <string name="Runden">"Runden: "</string>
+    <string name="trainingseinheit">"Trainingseinheit: "</string>
+    <string name="Sekunden">" Sekunden"</string>
+    <string name="lädt">Lädt</string>
+    <string name="Punkte">"Punkte: "</string>
+    <string name="Statistiken">Statistiken</string>
+    <string name="beta_message_title">Beta Message</string>
+    <string name="statistiken_message">Hier kannst du deine Kletterstatistiken sehen. Wenn du Videos von deinen Routen hochlädts oder Workouts machst, dann werden die Statistiken hier angezeigt. Außerdem kannst du dich mit deinen Freunden vergleichen und sehen wer momentan mehr Routen und Trainingseinheiten gemacht hat. Viel Spaß! </string>
+    <string name="Location">Standorte</string>
+    <string name="standorte_message">"Hier kannst du deine Position hochladen, um zum Beispiel deinen Freunden zuzeigen, wo du momentan kletterst. Rote Punkte sind Standorte die vor länger als 5 Stunden hochgeladen worden sind. Viel Spaß "</string>
+
+
+</resources>
