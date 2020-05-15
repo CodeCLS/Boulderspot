@@ -136,12 +136,7 @@ public class Adapter_Statistics extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         if (holder.getItemViewType() == 0){
             sessions_View_holder view_holder = (sessions_View_holder) holder;
-            view_holder.button_sessions.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    transaction_more(0);
-                }
-            });
+
 
             //Integer.valueOf(training_sessions_amount.get(position))
             //training_sessions_types.get(position)
@@ -153,6 +148,14 @@ public class Adapter_Statistics extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 
             }
+
+            view_holder.button_sessions.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d(TAG,"");
+                    transaction_more(0);
+                }
+            });
 
                 pie_sessions.data(data_sessions);
 
@@ -171,12 +174,7 @@ public class Adapter_Statistics extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 
             Grades_View_holder view_holder = (Grades_View_holder) holder;
-            view_holder.button_boulder.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    transaction_more(1);
-                }
-            });
+
 
 
             for (int i = 0;i<16;i++){
@@ -202,6 +200,12 @@ public class Adapter_Statistics extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 
                 }
+                view_holder.button_boulder.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        transaction_more(1);
+                    }
+                });
 
 
 
@@ -319,8 +323,9 @@ public class Adapter_Statistics extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     private void transaction_more(int i) {
+        Log.d(TAG,"i23: " + i);
         if (i== 0){
-            List_Fragment list_fragment = new List_Fragment(boulders_times,boulders_tries,boulders_grade,boulder_notes);
+            List_Fragment list_fragment = new List_Fragment(training_sessions_types,training_sessions_time,training_sessions_notes,sesssions_train_time,sesssions_pause_time,sesssions_rest_time,sesssions_sets_time,sesssions_rounds_time);
             Bundle bundle = new Bundle();
             bundle.putString("Type","Workout");
             list_fragment.setArguments(bundle);
@@ -328,15 +333,18 @@ public class Adapter_Statistics extends RecyclerView.Adapter<RecyclerView.ViewHo
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().replace(R.id.container_fragment,list_fragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
             fragmentTransaction.commit();
 
+
         }
         if (i == 1){
-            List_Fragment list_fragment = new List_Fragment(training_sessions_types,training_sessions_time,training_sessions_notes,sesssions_train_time,sesssions_pause_time,sesssions_rest_time,sesssions_sets_time,sesssions_rounds_time);
+            List_Fragment list_fragment = new List_Fragment(arrayList_tries,boulders_times,arrayList_boulder,boulder_notes);
             Bundle bundle = new Bundle();
+            Log.d(TAG,"boulder23" + arrayList_tries);
             bundle.putString("Type","Boulder");
             list_fragment.setArguments(bundle);
             FragmentManager fragmentManager = ((AppCompatActivity)mContext).getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().replace(R.id.container_fragment,list_fragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
             fragmentTransaction.commit();
+
 
         }
         if (i ==2){

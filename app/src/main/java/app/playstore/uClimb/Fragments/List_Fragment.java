@@ -79,6 +79,7 @@ public class List_Fragment extends Fragment {
         String type = bundle.getString("Type");
         RecyclerView recyclerView = view.findViewById(R.id.rec_list_fragment);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        Log.d(TAG,"training_boulder_tries" + training_boulder_grade);
 
         if (type.equals("Friends")){
             Log.d(TAG,"Frien32ds");
