@@ -229,7 +229,7 @@ public class Presenter_Login {
                 for (DataSnapshot dataSnapshot1: dataSnapshot.child("User").child(getUID(mContext)).child("Friends").getChildren()){
                     friends.add(dataSnapshot1.getKey());
                     Log.d(TAG,"login_presenter"+friends);
-                    Firebase_friends_callback.onCallback(friends,mContext,view);
+                    //Firebase_friends_callback.onCallback(friends,mContext,view);
 
                 }
                 Firebase_friends_callback.onCallback(friends,mContext,view);

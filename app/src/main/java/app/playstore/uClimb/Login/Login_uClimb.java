@@ -252,8 +252,8 @@ public class Login_uClimb extends Base_Internet implements GoogleApiClient.OnCon
             @RequiresApi(api = Build.VERSION_CODES.P)
             @Override
             public void onClick(View v) {
-                String email =edit_email.getText().toString();
-                String pwd = edit_pwd.getText().toString();
+                String email =edit_email.getText().toString().trim();
+                String pwd = edit_pwd.getText().toString().trim();
                 Log.d(TAG,"androidisEmail2" + edit_email_boolean_status);
 
 

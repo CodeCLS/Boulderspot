@@ -15,11 +15,14 @@
 
             />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rec_sessions"
+        <Button
+            android:id="@+id/sessions_btn_mehr"
             android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:text="@string/mehr"
+            android:background="@drawable/public_important_background_white_round"
+            android:layout_weight="3" />
 
 
 

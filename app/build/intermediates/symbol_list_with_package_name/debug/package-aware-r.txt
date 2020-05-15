@@ -2326,6 +2326,7 @@ id bold
 id bottom
 id bottomBar
 id bottom_landscape
+id boulder_btn_mehr
 id bounce
 id btn_accept_invite
 id btn_add_workout
@@ -2343,7 +2344,6 @@ id btn_log_workout
 id btn_more_posts_home
 id btn_publish_position
 id btn_register
-id btn_search_search
 id buttonPanel
 id cancel_action
 id cancel_button
@@ -2368,7 +2368,6 @@ id clip_vertical
 id collapseActionView
 id comments_profile_custom_post
 id competition_statistic
-id competition_statistic_rec
 id confirm_button
 id constraing_num1231q321
 id constraint_location_parent_1264
@@ -2522,6 +2521,7 @@ id forward_media_button
 id fourth
 id frame_profile_statistics
 id frame_profile_up
+id friends_btn_mehr
 id friends_linear
 id friends_rec
 id friends_txt_profile
@@ -2531,7 +2531,6 @@ id ghost_view_holder
 id gone
 id google_logo_log_in
 id grade_statistic
-id grade_statistic_rec
 id grade_txt_profile_custom
 id graph
 id graph_wrap
@@ -2566,6 +2565,7 @@ id img_like_custom
 id img_location_item
 id img_logo_round_login
 id img_profile_uploads_custom_1
+id img_search_search
 id img_share_custom
 id img_user_profile_custom_post
 id img_view_custom
@@ -2738,10 +2738,10 @@ id rec_home
 id rec_home_custom
 id rec_item_btn_view
 id rec_item_btn_view_training
+id rec_list_fragment
 id rec_location
 id rec_search_main
 id rec_search_page
-id rec_sessions
 id rec_stretch
 id rec_training_item_layout
 id rec_training_list
@@ -2783,6 +2783,7 @@ id search_voice_btn
 id second
 id select_dialog_listview
 id selected
+id sessions_btn_mehr
 id sessions_statistic
 id sets_edit
 id sets_txt
@@ -2897,11 +2898,10 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
-id txt_boulder_accomplishment
+id txt_boulder_tries
 id txt_comment
 id txt_comment_name
 id txt_comments_custom
-id txt_duration_session
 id txt_grade_boulder
 id txt_hangboard_big_main
 id txt_info_boulder
@@ -2912,9 +2912,14 @@ id txt_item_list_training
 id txt_log_training_12423424
 id txt_name_item_friend
 id txt_name_item_friend_invite
+id txt_pause_sessions
+id txt_rest_sessions
+id txt_rounds_sessions
 id txt_session_type
+id txt_sets_sessions
 id txt_time_boulder
 id txt_time_session
+id txt_train_time_sessions
 id txt_username_custom
 id txt_username_home
 id uclimb_log_in_title
@@ -3038,6 +3043,7 @@ layout exo_video_playback_control_view
 layout exo_video_view
 layout fullscreen_video_view
 layout item_quality
+layout list_view
 layout main_custom_home
 layout main_custom_post_page
 layout main_custom_profile_page_ui
@@ -3205,6 +3211,7 @@ mipmap user_icon_blue
 plurals mtrl_badge_content_description
 raw places_keep
 raw training_sound
+string Buchstaben_Zeichen
 string Cancel_txt
 string Community
 string Einstellungen
@@ -3449,6 +3456,7 @@ string title_dashboard
 string title_home
 string title_notifications
 string training
+string trainingseinheitertellen
 string uClimb_slogan
 string volume_changing
 string warmup_link_img

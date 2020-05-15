@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -104,7 +105,7 @@ public class Adapter_Search extends RecyclerView.Adapter<RecyclerView.ViewHolder
         viewHolderSearch.Enter.setOnClickListener(v -> {
 
 
-            String input = viewHolderSearch.editText.getText().toString();
+            String input = viewHolderSearch.editText.getText().toString().trim();
             Log.d(TAG,"array_people" + peoples);
             if (peoples.contains(input)){
                 custom_profile custom_profile = new custom_profile();
@@ -213,13 +214,13 @@ public class Adapter_Search extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     public static class ViewHolderSearch extends RecyclerView.ViewHolder{
-        Button Enter;
+        ImageView Enter;
         AutoCompleteTextView editText;
 
 
         public ViewHolderSearch(@NonNull View itemView) {
             super(itemView);
-            Enter = itemView.findViewById(R.id.btn_search_search);
+            Enter = itemView.findViewById(R.id.img_search_search);
             editText = itemView.findViewById(R.id.edit_search_nav);
 
         }

@@ -49,7 +49,7 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/txt_boulder_accomplishment"
+                    android:id="@+id/txt_boulder_tries"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="5dp"

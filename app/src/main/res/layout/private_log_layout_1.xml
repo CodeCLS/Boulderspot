@@ -20,7 +20,9 @@
             android:id="@+id/info_log_workout_edittext"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1" >
+            <requestFocus />
+        </EditText>
 
         <CheckBox
             android:id="@+id/checkbox_log_training_public"

@@ -41,6 +41,7 @@
         <activity android:name="app.playstore.uClimb.Login.Userdata_Questions_uClimb"
             />
         <activity
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="fullSensor"
             android:name="app.playstore.uClimb.Login.Login_uClimb"
 
@@ -55,7 +56,7 @@
         </activity>
         <activity android:name="app.playstore.uClimb.Main.MainActivity"
             android:screenOrientation="fullSensor"
-            android:windowSoftInputMode="stateAlwaysVisible">
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>

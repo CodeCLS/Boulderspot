@@ -1,17 +1,20 @@
 package app.playstore.uClimb.Adapters.Statistics;
 
 import android.content.Context;
-import android.graphics.Color;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.anychart.charts.Cartesian;
 import com.anychart.charts.Pie;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.anychart.AnyChart;
@@ -29,8 +32,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import app.playstore.uClimb.Fragments.List_Fragment;
 import app.playstore.uClimb.R;
-import app.playstore.uClimb.MVP.MVP_Statistics.Presenter_Statistics;
 
 public class Adapter_Statistics extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -59,16 +62,15 @@ public class Adapter_Statistics extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 
 
-
+    ArrayList<String> arrayList_boulder = new ArrayList<String>();
+    ArrayList<String> arrayList_tries = new ArrayList<String>();
     private static final String TAG = "Adapter_statistic";
-    private Adapter_Statistics_Friends adapter_statistics_competition = new Adapter_Statistics_Friends(competition_array_names,competition_array_boulderpoints);
-    private Adapter_Statistics_Boulder_Item adapter_statistics_boulder = new Adapter_Statistics_Boulder_Item(boulders_tries,boulders_times,boulders_grade,boulder_notes);
-    private Adapter_Statistics_Sessions adapter_statistics_sessions = new Adapter_Statistics_Sessions(training_sessions_types,training_sessions_time,training_sessions_notes,sesssions_train_time,sesssions_pause_time,sesssions_rest_time,sesssions_sets_time,sesssions_rounds_time);
 
     private Pie pie_sessions;
     private List<DataEntry> data_sessions;
 
     private Pie pie_grade;
+
     private List<DataEntry> data_grade;
 
     private Cartesian bar_competition;
@@ -134,6 +136,12 @@ public class Adapter_Statistics extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         if (holder.getItemViewType() == 0){
             sessions_View_holder view_holder = (sessions_View_holder) holder;
+            view_holder.button_sessions.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    transaction_more(0);
+                }
+            });
 
             //Integer.valueOf(training_sessions_amount.get(position))
             //training_sessions_types.get(position)
@@ -160,26 +168,41 @@ public class Adapter_Statistics extends RecyclerView.Adapter<RecyclerView.ViewHo
         if (holder.getItemViewType() == 1){
 
 
+
+
             Grades_View_holder view_holder = (Grades_View_holder) holder;
-            Presenter_Statistics statistics_presenter = new Presenter_Statistics();
-            statistics_presenter.setBoulderRec(view_holder.rec,mContext,adapter_statistics_boulder);
+            view_holder.button_boulder.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    transaction_more(1);
+                }
+            });
+
+
             for (int i = 0;i<16;i++){
                 Log.d(TAG,"data3: "  + "bouldermap: " + bouldermap +"position" + i);
 
                 Integer boulder = bouldermap.get("V"+i);
+
                 if (boulder==null){
                     Log.d(TAG,"data2: " + boulder + "bouldermap: " + bouldermap +"position" + position);
 
 
                 }
                 else{
+
                     Log.d(TAG,"data1: " + boulder + "bouldermap: " + bouldermap +"position" + i);
                     String boulder_grade = "V"+i;
+                    arrayList_boulder.add(boulder_grade);
+                    arrayList_tries.add(boulder+"");
+
+
                     data_grade.add(new ValueDataEntry(boulder_grade,boulder));
 
 
 
                 }
+
 
 
 
@@ -227,20 +250,24 @@ public class Adapter_Statistics extends RecyclerView.Adapter<RecyclerView.ViewHo
         if (holder.getItemViewType() == 2){
 
             competition_View_holder view_holder = (competition_View_holder) holder;
-            view_holder.rec.setLayoutManager(new LinearLayoutManager(mContext));
-            view_holder.rec.setAdapter(adapter_statistics_competition);
+            view_holder.button_friends.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    transaction_more(2);
+                }
+            });
 
             int points = 0;
-            Log.d(TAG,"points_adapter" + competition_array_uid);
+            Log.d(TAG,"points_adapter" + competition_array_names);
 
 
 
-            for (int i = 0; i< competition_array_uid.size();i++){
+            for (int i = 0; i< competition_array_names.size();i++){
                 Log.d(TAG,"points_adapter2" + competition_array_uid);
 
 
                 int competition_gradepoints_s= competition_array_boulderpoints.get(i);
-                String competition_name = competition_array_uid.get(i);
+                String competition_name = competition_array_names.get(i);
                 data_competition.add(new ValueDataEntry(competition_name,competition_gradepoints_s));
 
 
@@ -291,6 +318,39 @@ public class Adapter_Statistics extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     }
 
+    private void transaction_more(int i) {
+        if (i== 0){
+            List_Fragment list_fragment = new List_Fragment(boulders_times,boulders_tries,boulders_grade,boulder_notes);
+            Bundle bundle = new Bundle();
+            bundle.putString("Type","Workout");
+            list_fragment.setArguments(bundle);
+            FragmentManager fragmentManager = ((AppCompatActivity)mContext).getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().replace(R.id.container_fragment,list_fragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+            fragmentTransaction.commit();
+
+        }
+        if (i == 1){
+            List_Fragment list_fragment = new List_Fragment(training_sessions_types,training_sessions_time,training_sessions_notes,sesssions_train_time,sesssions_pause_time,sesssions_rest_time,sesssions_sets_time,sesssions_rounds_time);
+            Bundle bundle = new Bundle();
+            bundle.putString("Type","Boulder");
+            list_fragment.setArguments(bundle);
+            FragmentManager fragmentManager = ((AppCompatActivity)mContext).getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().replace(R.id.container_fragment,list_fragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+            fragmentTransaction.commit();
+
+        }
+        if (i ==2){
+            List_Fragment list_fragment = new List_Fragment(competition_array_names,competition_array_boulderpoints);
+            Bundle bundle = new Bundle();
+            bundle.putString("Type","Friends");
+            list_fragment.setArguments(bundle);
+            FragmentManager fragmentManager = ((AppCompatActivity)mContext).getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().replace(R.id.container_fragment,list_fragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+            fragmentTransaction.commit();
+        }
+
+    }
+
     @Override
     public int getItemCount() {
         return 3;
@@ -317,37 +377,37 @@ public class Adapter_Statistics extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public class sessions_View_holder extends RecyclerView.ViewHolder {
         AnyChartView anyChartView;
-        RecyclerView rec;
+        Button button_sessions;
 
         public sessions_View_holder(@NonNull View view) {
             super(view);
             anyChartView = view.findViewById(R.id.sessions_statistic);
 
-            rec = view.findViewById(R.id.rec_sessions);
+            button_sessions = view.findViewById(R.id.sessions_btn_mehr);
 
         }
     }
 
     public class Grades_View_holder extends RecyclerView.ViewHolder {
         AnyChartView anyChartView;
-        RecyclerView rec;
+        Button button_boulder;
         public Grades_View_holder(View view) {
             super(view);
             anyChartView = view.findViewById(R.id.grade_statistic);
 
-            rec = view.findViewById(R.id.grade_statistic_rec);
+            button_boulder = view.findViewById(R.id.boulder_btn_mehr);
         }
     }
 
     private class competition_View_holder extends RecyclerView.ViewHolder {
         AnyChartView anyChartView;
-        RecyclerView rec;
+        Button button_friends;
 
         public competition_View_holder(View view) {
             super(view);
             anyChartView = view.findViewById(R.id.competition_statistic);
 
-            rec = view.findViewById(R.id.competition_statistic_rec);
+            button_friends = view.findViewById(R.id.friends_btn_mehr);
         }
     }
 }

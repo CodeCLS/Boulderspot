@@ -30,7 +30,6 @@
     <string name="welcome_short_info">uClimb ist eine Community-App für Kletterer. Teile Fotos und Videos von deinen besten Kletter-Momenten, schau dir Statistiken an und erstelle gemeinsam mit anderen Trainingspläne! Egal ob Bouldern, Toprope oder Vorstieg, diese App bietet die perfekte Ergänzung!</string>
     <string name="beta_message">"Vielen Dank, dass du uClimb heruntergeladen hast. Da dies noch eine Beta Version ist, würden wir für feedback sehr offen sein. Email: boulderspot2019@gmail.com ..... Des weiteren lesen wir alle eure Feedbacks und versuchen sie in die App einzubauen. "</string>
     <string name="press_long_to_delete_post">Press long to delete Post</string>
-    <string name="mehr">Mehr</string>
     <string name="statistiken">Statistiken</string>
     <string name="Einstellungen">Einstellungen</string>
     <string name="Profil">Profil</string>
@@ -55,6 +54,9 @@
     <string name="profildaten_ndern">Profildaten ändern</string>
     <string name="ein_paar_schnelle_fragen">Ein paar schnelle Fragen</string>
     <string name="foto_video_laden">Foto/Video laden</string>
+    <string name="Buchstaben_Zeichen">Entweder zuwenige Buchstaben und Zeichen oder zu viele</string>
+    <string name="trainingseinheitertellen">Trainingseinheit erstellen</string>
+    <string name="mehr">Mehr</string>
 
 
 </resources>

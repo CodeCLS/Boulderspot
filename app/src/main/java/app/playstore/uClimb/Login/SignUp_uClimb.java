@@ -266,9 +266,9 @@ public class SignUp_uClimb extends Base_Internet {
 
                 }
                 else{
-                    String email = edit_email.getText().toString();
+                    String email = edit_email.getText().toString().trim();
                     if (isEmailValid(email)){
-                        if (edit_pwd.getText().length() > constant_length && edit_user.getText().length() > constant_length) {
+                        if (edit_pwd.getText().toString().trim().length() > constant_length && edit_user.getText().toString().trim().length() > constant_length) {
                             String pwd = edit_email.getText().toString();
                             String username = edit_user.getText().toString();
                             Intent intent = new Intent(SignUp_uClimb.this, Userdata_Questions_uClimb.class);
@@ -318,9 +318,9 @@ public class SignUp_uClimb extends Base_Internet {
 
     }
     private Boolean checkInput(EditText pwd,EditText username, EditText email){
-        Boolean boolean_pwd = pwd.getText().toString().isEmpty();
-        Boolean boolean_username = username.getText().toString().isEmpty();
-        Boolean boolean_email = email.getText().toString().isEmpty();
+        Boolean boolean_pwd = pwd.getText().toString().trim().isEmpty();
+        Boolean boolean_username = username.getText().toString().trim().isEmpty();
+        Boolean boolean_email = email.getText().toString().trim().isEmpty();
 
         Boolean all_inputs = false;
         if (!boolean_email && !boolean_pwd && !boolean_username){

@@ -19,17 +19,17 @@
         android:layout_height="match_parent"
 
 
-        android:layout_toStartOf="@+id/btn_search_search"
+        android:layout_toStartOf="@+id/img_search_search"
         android:ems="10"
         android:hint="Person"
         android:inputType="textPersonName" />
-    <Button
-        android:id="@+id/btn_search_search"
+    <ImageView
+        android:id="@+id/img_search_search"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:translationZ="5dp"
         android:layout_weight="5"
-        android:background="@mipmap/searchbar"
+        android:src="@mipmap/searchbar"
         android:elevation="10dp"
         />
 </LinearLayout>

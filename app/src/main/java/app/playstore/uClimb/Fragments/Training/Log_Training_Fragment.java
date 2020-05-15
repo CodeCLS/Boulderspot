@@ -46,6 +46,8 @@ public class Log_Training_Fragment extends Fragment {
         Spinner spinner = view.findViewById(R.id.spinner_workouts_log_training);
         EditText info = view.findViewById(R.id.info_log_workout_edittext);
         EditText workout_add_edit = view.findViewById(R.id.edittext_workouts_log_training);
+        info.clearFocus();
+        workout_add_edit.clearFocus();
         CheckBox checkBox = view.findViewById(R.id.checkbox_log_training_public);
         presenter_training.onClickBtn(getContext(),Hang_Time,Pause_Time,Rest_Time,Sets,Rounds,btn_cancel,btn_log,circleImageView,spinner,checkBox,workout_add_edit,info);
 

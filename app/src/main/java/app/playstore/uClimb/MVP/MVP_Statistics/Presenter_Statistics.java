@@ -1,6 +1,5 @@
 package app.playstore.uClimb.MVP.MVP_Statistics;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
@@ -9,8 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.snackbar.BaseTransientBottomBar;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -55,6 +52,7 @@ public class Presenter_Statistics {
 
     private ArrayList<String> training_sessions_notes = new ArrayList<>();
     private ArrayList<String> boulder_notes = new ArrayList<>();
+
     private Adapter_Statistics adapter_statistics = new Adapter_Statistics(training_sessions_time,training_sessions_types,training_sessions_amount,boulders_time,boulders_boulder_final,boulders_tries,competition_array_boulderpoints,competition_array_uid,competition_array_names,sesssions_train_time,sesssions_pause_time,sesssions_rest_time,sesssions_sets_time,sesssions_rounds_time,training_sessions_notes,boulder_notes);
     private View view;
 
@@ -89,7 +87,8 @@ public class Presenter_Statistics {
     public void getFireData(Context mContext, ArrayList value,View view_main) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("");
-        Log.d(TAG,"friends3" + friends);
+        friends = value;
+
 
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -100,8 +99,8 @@ public class Presenter_Statistics {
                 Log.d(TAG,"STAT23"+statistics_id);
 
                 String uid = login_presenter.getUID(mContext);
-                Log.d(TAG,"friends" + friends);
-                friends = value;
+                Log.d(TAG,"friends3" + friends);
+
 
 
                     for (int i = 0; i < friends.size(); i++) {
@@ -207,6 +206,8 @@ public class Presenter_Statistics {
                    recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
                    Log.d(TAG,"ADAPTER:" + training_sessions_time+training_sessions_notes+training_sessions_types+training_sessions_amount+boulders_time+boulders_grade);
                    recyclerView.setAdapter(adapter_statistics);
+                  //LayoutInflater layoutInflater = LayoutInflater.from(mContext).inflate(R.layout)
+                  //RecyclerView recyclerView = view_main
                     Log.d(TAG,"sessions"+boulders_tries);
 
 
@@ -273,7 +274,8 @@ public class Presenter_Statistics {
 
     public void setBoulderRec(RecyclerView rec, Context mContext, RecyclerView.Adapter adapter_statistics_boulder) {
         rec.setLayoutManager(new LinearLayoutManager(mContext));
-        Log.d(TAG,"Hallo123");
+        Log.d(TAG,"Hallo123" + adapter_statistics_boulder.getItemCount());
+
         rec.setAdapter(adapter_statistics_boulder);
     }
 }

@@ -137,18 +137,17 @@ public class Presenter_Training {
         btn_log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (btn_add_status == 1){
-                    if (info.getText().length() > 10){
-                        if (checkbox_public_workout.isChecked()){
-                            if (spinner.getCount()!= 0){
-
+                if (btn_add_status ==0){
+                    if (info.getText().toString().length() >1 && info.getText().toString().length() < 60){
+                        if (edit_add_workout_log.getText().toString().length() >1 && edit_add_workout_log.getText().toString().length() < 15){
+                            //)
 
                             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
                             String currentDateandTime = sdf.format(new Date());
 
 
                             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Statistics").child(statistics_id).child("Workouts").child(getRandomString(10));
-                            databaseReference.child("Name").setValue(spinner.getSelectedItem());
+                            databaseReference.child("Name").setValue(edit_add_workout_log.getText().toString());
                             databaseReference.child("Info").setValue(info.getText().toString());
 
                             databaseReference.child("Hang_Time").setValue(Hang_Time);
@@ -157,131 +156,93 @@ public class Presenter_Training {
                             databaseReference.child("Sets").setValue(Sets);
                             databaseReference.child("Rounds").setValue(Rounds);
                             databaseReference.child("Time").setValue(currentDateandTime);
-                            databaseReference.child("Public").setValue(true);
-
-                                transaction((AppCompatActivity)context);
-
-                                Toast.makeText(context, "Logged", Toast.LENGTH_SHORT).show();
+                            if (checkbox_public_workout.isChecked()){
+                                databaseReference.child("Public").setValue(true);
 
 
-
-
-                        }
-                            else{
-                                Toast.makeText(context, "Erstelle ein Workout", Toast.LENGTH_SHORT).show();
                             }
+                            else{
+                                databaseReference.child("Public").setValue(true);
+
+                            }
+
+                            transaction((AppCompatActivity)context);
+
+                            Toast.makeText(context, "Protokolliert", Toast.LENGTH_SHORT).show();
+
+
                         }
-                        else {
-                            if (spinner.getCount() != 0) {
+                        else{
+                            Toast.makeText(context, "Zu kurzer oder langer Workout Name", Toast.LENGTH_SHORT).show();
+
+
+                        }
+
+                    }
+                    else{
+                        Toast.makeText(context, R.string.Buchstaben_Zeichen, Toast.LENGTH_SHORT).show();
+
+                    }
+
+
+                }
+                else{
+
+                        if (info.getText().toString().length() >1 && info.getText().toString().length() < 60) {
+                            if (spinner.getSelectedItem() != null && spinner.getSelectedItem() != ""){
+
                                 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
                                 String currentDateandTime = sdf.format(new Date());
-
 
 
                                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Statistics").child(statistics_id).child("Workouts").child(getRandomString(10));
                                 databaseReference.child("Name").setValue(spinner.getSelectedItem());
                                 databaseReference.child("Info").setValue(info.getText().toString());
+
                                 databaseReference.child("Hang_Time").setValue(Hang_Time);
                                 databaseReference.child("Pause_Time").setValue(Pause_Time);
                                 databaseReference.child("Rest_Time").setValue(Rest_Time);
                                 databaseReference.child("Sets").setValue(Sets);
                                 databaseReference.child("Rounds").setValue(Rounds);
                                 databaseReference.child("Time").setValue(currentDateandTime);
-                                databaseReference.child("Public").setValue(true);
-
-                                Toast.makeText(context, "Logged", Toast.LENGTH_SHORT).show();
-                                transaction((AppCompatActivity)context);
-
-
-
-
-                            }
-                        else{
-                            Toast.makeText(context, "Bitte Workout erstellen", Toast.LENGTH_SHORT).show();
-                        }}
-                    }
-                    else{
-                        Toast.makeText(context, "Bitte schreiben sie mehr als 10 Buchstaben", Toast.LENGTH_SHORT).show();
-                    }
-                }
-                else{
-                    if (info.getText().length() > 10 ){
-                        if (!edit_add_workout_log.getText().toString().isEmpty()) {
-                            if (checkbox_public_workout.isChecked()) {
-                                if (edit_add_workout_log.getText().length()!= 0) {
-                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
-                                    String currentDateandTime = sdf.format(new Date());
-
-
-
-
-                                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Statistics").child(statistics_id).child("Workouts").child(getRandomString(10));
-                                    databaseReference.child("Info").setValue(info.getText().toString());
-
-                                    databaseReference.child("Name").setValue(edit_add_workout_log.getText().toString());
-                                    databaseReference.child("Hang_Time").setValue(Hang_Time);
-                                    databaseReference.child("Pause_Time").setValue(Pause_Time);
-                                    databaseReference.child("Rest_Time").setValue(Rest_Time);
-                                    databaseReference.child("Sets").setValue(Sets);
-                                    databaseReference.child("Rounds").setValue(Rounds);
-                                    databaseReference.child("Time").setValue(currentDateandTime);
+                                if (checkbox_public_workout.isChecked()){
                                     databaseReference.child("Public").setValue(true);
 
 
-
-
-                                    Toast.makeText(context, "Logged", Toast.LENGTH_SHORT).show();
-                                    transaction((AppCompatActivity)context);
-
-
-
                                 }
                                 else{
-                                    Toast.makeText(context, "Bitte Workout erstellen", Toast.LENGTH_SHORT).show();
-                                }
-                            } else {
-                                if (spinner.getCount() != 0) {
-                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
-                                    String currentDateandTime = sdf.format(new Date());
-
-
-
-                                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Statistics").child(statistics_id).child("Workouts").child(getRandomString(10));
-                                    databaseReference.child("Info").setValue(info.getText().toString());
-
-                                    databaseReference.child("Name").setValue(edit_add_workout_log.getText().toString());
-                                    databaseReference.child("Hang_Time").setValue(Hang_Time);
-                                    databaseReference.child("Pause_Time").setValue(Pause_Time);
-                                    databaseReference.child("Rest_Time").setValue(Rest_Time);
-                                    databaseReference.child("Sets").setValue(Sets);
-                                    databaseReference.child("Rounds").setValue(Rounds);
-                                    databaseReference.child("Time").setValue(currentDateandTime);
-                                    databaseReference.child("Public").setValue(false);
-
-                                    Toast.makeText(context, "Logged", Toast.LENGTH_SHORT).show();
-                                    transaction((AppCompatActivity)context);
-
-
+                                    databaseReference.child("Public").setValue(true);
 
                                 }
-                                else{
-                                    Toast.makeText(context, "Bitte Workout erstellen", Toast.LENGTH_SHORT).show();
-                                }
+
+                                transaction((AppCompatActivity)context);
+
+                                Toast.makeText(context, "Logged", Toast.LENGTH_SHORT).show();
+
+
+
                             }
+                            else{
+                                String s = context.getString(R.string.trainingseinheitertellen);
+                                Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
+
+                            }
+
                         }
                         else{
-                            Toast.makeText(context, "Bitte geben sie einen Workout Namen", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, R.string.Buchstaben_Zeichen, Toast.LENGTH_SHORT).show();
+
+
                         }
-                    }
-                    else{
-                        Toast.makeText(context, "Bitte schreiben sie mehr als 10 Buchstaben", Toast.LENGTH_SHORT).show();
-                    }
+
+
+
 
                 }
-                //TODO Log
 
             }
         });
+
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -294,7 +255,6 @@ public class Presenter_Training {
                 if (btn_add_status ==1){
                     spinner.setVisibility(View.GONE);
                     edit_add_workout_log.setVisibility(View.VISIBLE);
-                    add_workout_btn.setVisibility(View.GONE);
                     btn_add_status = 0;
 
 

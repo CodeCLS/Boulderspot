@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-84:12
-INJECTED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-84:12
-INJECTED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-84:12
-INJECTED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-84:12
+ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-85:12
+INJECTED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-85:12
+INJECTED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-85:12
+INJECTED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-85:12
 MERGED from [com.jarvanmo:exoplayerview:2.1.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/489638870e942683b9c230e48dade489/jetified-exoplayerview-2.1.5/AndroidManifest.xml:2:1-22:12
 MERGED from [com.google.android.exoplayer:exoplayer:2.11.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/4c3f54a5ebc12b91af3234acc9125503/jetified-exoplayer-2.11.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.exoplayer:exoplayer-dash:2.11.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/39ebbae91d7b918afd36183c11b5c9f7/jetified-exoplayer-dash-2.11.0/AndroidManifest.xml:17:1-24:12
@@ -97,9 +97,9 @@ MERGED from [androidx.print:print:1.0.0] /Users/freetime/.gradle/caches/transfor
 MERGED from [com.google.firebase:firebase-database-collection:17.0.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/3ab8ce0080fc4104c96ea6c28032f4ef/jetified-firebase-database-collection-17.0.0/AndroidManifest.xml:2:1-7:12
 MERGED from [com.android.volley:volley:1.1.1] /Users/freetime/.gradle/caches/transforms-2/files-2.1/6f2540b66b310f9001c104f9143e761c/jetified-volley-1.1.1/AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.datatransport:transport-api:2.1.0] /Users/freetime/.gradle/caches/transforms-2/files-2.1/f436af6fbc948f2be8b24811beb844cf/jetified-transport-api-2.1.0/AndroidManifest.xml:15:1-22:12
-INJECTED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-84:12
-INJECTED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-84:12
-INJECTED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-84:12
+INJECTED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-85:12
+INJECTED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-85:12
+INJECTED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-85:12
 	package
 		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:4:5-35
 		INJECTED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml
@@ -108,13 +108,13 @@ INJECTED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boul
 		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:5:5-41
 	android:versionName
 		INJECTED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml
-		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-84:12
+		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-85:12
 		INJECTED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml
 	xmlns:tools
 		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml
-		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-84:12
+		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:2:1-85:12
 		INJECTED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:2:11-69
@@ -169,7 +169,7 @@ ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulder
 	android:name
 		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:18:22-59
 application
-ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:23:5-82:19
+ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:23:5-83:19
 MERGED from [com.jarvanmo:exoplayerview:2.1.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/489638870e942683b9c230e48dade489/jetified-exoplayerview-2.1.5/AndroidManifest.xml:16:5-20:19
 MERGED from [com.jarvanmo:exoplayerview:2.1.5] /Users/freetime/.gradle/caches/transforms-2/files-2.1/489638870e942683b9c230e48dade489/jetified-exoplayerview-2.1.5/AndroidManifest.xml:16:5-20:19
 MERGED from [com.ornach.nobobutton:nobobutton:1.6] /Users/freetime/.gradle/caches/transforms-2/files-2.1/f0cc70ddd08fa3252f3b9aba2d9af8ce/jetified-nobobutton-1.6/AndroidManifest.xml:11:5-15:19
@@ -281,61 +281,63 @@ ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulder
 	android:name
 		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:41:19-86
 activity#app.playstore.uClimb.Login.Login_uClimb
-ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:43:9-55:20
+ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:43:9-56:20
 	android:screenOrientation
-		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:44:13-51
+		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:45:13-51
 	android:label
-		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:48:13-45
-	android:name
-		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:45:13-67
-intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:50:13-54:29
-action#android.intent.action.MAIN
-ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:51:17-69
-	android:name
-		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:51:25-66
-category#android.intent.category.LAUNCHER
-ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:53:17-77
-	android:name
-		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:53:27-74
-activity#app.playstore.uClimb.Main.MainActivity
-ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:56:9-71:20
-	android:screenOrientation
-		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:57:13-51
+		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:49:13-45
 	android:windowSoftInputMode
-		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:58:13-61
+		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:44:13-52
 	android:name
-		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:56:19-72
+		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:46:13-67
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:51:13-55:29
+action#android.intent.action.MAIN
+ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:52:17-69
+	android:name
+		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:52:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:54:17-77
+	android:name
+		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:54:27-74
+activity#app.playstore.uClimb.Main.MainActivity
+ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:57:9-72:20
+	android:screenOrientation
+		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:58:13-51
+	android:windowSoftInputMode
+		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:59:13-52
+	android:name
+		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:57:19-72
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:app.playstore.uClimb+data:scheme:uClimb
-ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:59:13-67:29
+ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:60:13-68:29
 action#android.intent.action.VIEW
-ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:60:17-68
+ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:61:17-68
 	android:name
-		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:60:25-66
+		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:61:25-66
 category#android.intent.category.DEFAULT
-ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:61:17-75
+ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:62:17-75
 	android:name
-		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:61:27-73
+		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:62:27-73
 category#android.intent.category.BROWSABLE
-ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:62:17-77
+ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:63:17-77
 	android:name
-		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:62:27-75
+		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:63:27-75
 data
-ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:63:17-66:54
+ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:64:17-67:54
 	android:host
-		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:64:21-56
+		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:65:21-56
 	android:scheme
-		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:65:21-44
+		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:66:21-44
 	tools:ignore
-		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:66:21-51
+		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:67:21-51
 activity#app.playstore.uClimb.Login.SignUp_uClimb
-ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:79:9-77
+ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:80:9-77
 	android:name
-		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:79:19-74
+		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:80:19-74
 activity#app.playstore.uClimb.Notifaction.Base_Internet
-ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:80:9-83
+ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:81:9-83
 	android:name
-		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:80:19-80
+		ADDED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml:81:19-80
 uses-sdk
 INJECTED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/freetime/Documents/Documents – Caleb’s MacBook Pro/Boulderspot3/app/src/main/AndroidManifest.xml
