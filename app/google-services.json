@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1076917323257",
+    "firebase_url": "https://boulderspot-42564.firebaseio.com",
+    "project_id": "boulderspot-42564",
+    "storage_bucket": "boulderspot-42564.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1076917323257:android:73d926079deb4d772e2928",
+        "android_client_info": {
+          "package_name": "app.playstore.boulderspot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1076917323257-9m3d9oukefr6u60am4g0l7b33dffe1nr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.playstore.boulderspot",
+            "certificate_hash": "b5d080a2eab18e854442b701bfbd7e8819ac5fbd"
+          }
+        },
+        {
+          "client_id": "1076917323257-6355p3rk2g71l75nbf7ahm2lgc2odfuq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpy7a1-7dpGfQRMwLBAYm_GBrBlAC_oaI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1076917323257-6355p3rk2g71l75nbf7ahm2lgc2odfuq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
