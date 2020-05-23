@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/nav_search"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_height="75dp"
+        android:padding="5dp"
+        android:elevation="10dp"
+
+
+    android:background="@drawable/public_background_white_round_bottom" >
+
+
+
+    <AutoCompleteTextView
+        android:id="@+id/edit_search_nav"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+
+
+        android:layout_toStartOf="@+id/img_search_search"
+        android:ems="10"
+        android:hint="Person"
+        android:inputType="textPersonName" />
+    <ImageView
+        android:id="@+id/img_search_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:translationZ="5dp"
+        android:layout_weight="5"
+        android:src="@mipmap/searchbar"
+        android:elevation="10dp"
+        />
+</LinearLayout>
